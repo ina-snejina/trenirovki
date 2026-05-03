@@ -9,80 +9,71 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:#FAF6EF;color:#2D2926;font-family:'DM Sans',sans-serif;min-height:100vh;}
 .app{max-width:860px;margin:0 auto;padding:28px 16px 60px;animation:fadeIn .6s ease both;}
-
-/* HEADER */
-.header{text-align:center;margin-bottom:28px;}
+.header{text-align:center;margin-bottom:24px;}
 .header-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#A09288;border:1px solid #E0D8CE;padding:5px 14px;border-radius:100px;margin-bottom:14px;}
 h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spacing:2px;line-height:.95;background:linear-gradient(135deg,#2D2926 40%,#A09288 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .header-sub{font-size:13px;color:#A09288;margin-top:8px;letter-spacing:1px;}
-
-/* NOTE */
-.postpartum-note{background:#FFF8F0;border:1px solid #EAE0D4;border-left:3px solid #FFB347;border-radius:12px;padding:12px 16px;margin-bottom:24px;font-size:13px;color:#8A7A6E;line-height:1.6;}
+.postpartum-note{background:#FFF8F0;border:1px solid #EAE0D4;border-left:3px solid #FFB347;border-radius:12px;padding:12px 16px;margin-bottom:22px;font-size:13px;color:#8A7A6E;line-height:1.6;}
 .postpartum-note strong{color:#C8853A;}
-
 /* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;}
 .stat-card{background:#fff;border:1px solid #E8E0D6;border-radius:14px;padding:14px 10px;text-align:center;box-shadow:0 1px 4px rgba(45,41,38,.05);}
 .stat-icon{font-size:18px;margin-bottom:2px;}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;color:#2D2926;}
 .stat-label{font-size:10px;color:#A09288;letter-spacing:1px;text-transform:uppercase;margin-top:1px;}
-
-/* SECTION TITLE */
 .section-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#C0B4AA;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
 .section-title::after{content:'';flex:1;height:1px;background:#E8E0D6;}
-
-/* ── WORKOUT SELECTOR ─────────────────────────── */
-.workout-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
-@media(min-width:500px){.workout-grid{grid-template-columns:repeat(3,1fr);}}
-@media(min-width:760px){.workout-grid{grid-template-columns:repeat(3,1fr);}}
-
-.workout-card{background:#fff;border:2px solid #E8E0D6;border-radius:16px;padding:16px 12px;cursor:pointer;transition:all .22s ease;text-align:center;position:relative;overflow:hidden;}
-.workout-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .22s;}
+/* CATEGORY TABS */
+.cat-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.cat-tab{padding:9px 18px;border-radius:100px;border:2px solid #E8E0D6;background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:#8A7A6E;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:6px;box-shadow:0 1px 3px rgba(45,41,38,.05);}
+.cat-tab:hover{border-color:#C8C0B6;color:#5A4A42;}
+.cat-tab.active{background:#2D2926;color:#FAF6EF;border-color:#2D2926;box-shadow:0 2px 8px rgba(45,41,38,.2);}
+/* WORKOUT GRID */
+.workout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;}
+@media(max-width:480px){.workout-grid{grid-template-columns:repeat(2,1fr);}}
+.workout-card{background:#fff;border:2px solid #E8E0D6;border-radius:16px;padding:14px 10px;cursor:pointer;transition:all .22s ease;text-align:center;position:relative;overflow:hidden;}
 .workout-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(45,41,38,.1);}
-.workout-card.active{border-color:var(--c)!important;box-shadow:0 4px 20px var(--glow);}
-.workout-card.active::before{opacity:1;}
-.wc-emoji{font-size:32px;margin-bottom:8px;display:block;}
-.wc-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#A09288;margin-bottom:3px;}
-.wc-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.5px;line-height:1.1;color:#2D2926;}
-.wc-sub{font-size:11px;color:#A09288;margin-top:3px;}
-.wc-active-badge{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--c);opacity:0;transition:opacity .2s;}
-.workout-card.active .wc-active-badge{opacity:1;}
-
-/* ── ACTIVE WORKOUT PANEL ─────────────────────── */
-.day-panel{background:#fff;border:2px solid #E8E0D6;border-radius:20px;overflow:hidden;margin-bottom:24px;box-shadow:0 2px 12px rgba(45,41,38,.06);transition:border-color .3s;}
-.day-header{padding:20px 22px 16px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #F0EAE2;transition:background .3s;}
-.day-emoji{font-size:36px;line-height:1;flex-shrink:0;}
+.workout-card.active{box-shadow:0 4px 20px var(--glow);}
+.wc-emoji{font-size:28px;margin-bottom:6px;display:block;}
+.wc-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#A09288;margin-bottom:2px;}
+.wc-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.5px;line-height:1.1;color:#2D2926;}
+.wc-sub{font-size:10px;color:#A09288;margin-top:2px;line-height:1.3;}
+.wc-badge{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--c);opacity:0;transition:opacity .2s;}
+.workout-card.active .wc-badge{opacity:1;}
+/* DAY PANEL */
+.day-panel{background:#fff;border:2px solid #E8E0D6;border-radius:20px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 12px rgba(45,41,38,.06);transition:border-color .3s;}
+.day-header{padding:18px 20px 14px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #F0EAE2;transition:background .3s;}
+.day-emoji{font-size:34px;line-height:1;flex-shrink:0;}
 .day-meta{flex:1;min-width:0;}
 .day-label{font-size:11px;letter-spacing:3px;color:#A09288;margin-bottom:3px;}
-.day-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;line-height:1;transition:color .3s;}
+.day-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;line-height:1;transition:color .3s;}
 .day-subtitle{font-size:12px;color:#A09288;margin-top:3px;}
 .day-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
-.progress-ring{position:relative;width:50px;height:50px;}
+.progress-ring{position:relative;width:48px;height:48px;}
 .progress-ring svg{transform:rotate(-90deg);}
-.progress-ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:#2D2926;}
+.progress-ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;color:#2D2926;}
 .mark-btn{font-size:11px;font-weight:600;letter-spacing:.5px;padding:6px 12px;border-radius:100px;border:2px solid;cursor:pointer;transition:all .2s;white-space:nowrap;line-height:1;}
-
 /* EXERCISES */
-.exercise-list{padding:14px;display:grid;gap:9px;}
-.exercise-card{background:#FAF6EF;border:1px solid #EDE6DC;border-radius:14px;overflow:hidden;transition:border-color .2s;position:relative;}
+.exercise-list{padding:12px;display:grid;gap:8px;}
+.exercise-card{background:#FAF6EF;border:1px solid #EDE6DC;border-radius:13px;overflow:hidden;transition:border-color .2s;position:relative;}
 .exercise-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 3px 3px 0;opacity:0;transition:opacity .2s;}
 .exercise-card.done::before{opacity:1;}
 .exercise-card:hover{border-color:#D8CEC4;}
-.exercise-top{padding:13px 15px;display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;cursor:pointer;user-select:none;}
-.exercise-name{font-weight:600;font-size:14px;color:#2D2926;margin-bottom:4px;transition:color .2s;}
+.exercise-top{padding:12px 14px;display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;cursor:pointer;user-select:none;}
+.exercise-name{font-weight:600;font-size:14px;color:#2D2926;margin-bottom:4px;}
 .exercise-card.done .exercise-name{text-decoration:line-through;color:#B0A49C;}
-.exercise-details{display:flex;gap:7px;flex-wrap:wrap;}
+.exercise-details{display:flex;gap:6px;flex-wrap:wrap;}
 .badge{font-size:11px;padding:2px 8px;border-radius:100px;background:#F0EAE2;color:#8A7A6E;font-weight:500;}
-.expand-btn{width:28px;height:28px;border-radius:50%;border:1px solid #D8CEC4;background:transparent;color:#A09288;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;}
+.expand-btn{width:27px;height:27px;border-radius:50%;border:1px solid #D8CEC4;background:transparent;color:#A09288;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;}
 .expand-btn:hover{border-color:#B0A49C;color:#7A6A62;}
 .expand-btn.open{transform:rotate(180deg);color:#5A4A42;border-color:#B0A49C;}
-.check-btn{width:28px;height:28px;border-radius:50%;border:2px solid #D8CEC4;background:transparent;color:transparent;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
+.check-btn{width:27px;height:27px;border-radius:50%;border:2px solid #D8CEC4;background:transparent;color:transparent;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
 .exercise-card.done .check-btn{border-color:transparent;color:#fff;}
 .exercise-desc{max-height:0;overflow:hidden;transition:max-height .4s ease;}
 .exercise-desc.open{max-height:500px;}
-.exercise-desc-inner{padding:12px 15px 16px;border-top:1px solid #F0EAE2;}
-.desc-layout{display:flex;gap:14px;align-items:flex-start;}
-.ex-svg-wrap{flex-shrink:0;width:82px;height:72px;background:#fff;border:1px solid #EDE6DC;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:5px;}
+.exercise-desc-inner{padding:11px 14px 15px;border-top:1px solid #F0EAE2;}
+.desc-layout{display:flex;gap:12px;align-items:flex-start;}
+.ex-svg-wrap{flex-shrink:0;width:78px;height:68px;background:#fff;border:1px solid #EDE6DC;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:4px;}
 .ex-svg{width:100%;height:100%;}
 .ex-svg line,.ex-svg path,.ex-svg polyline{stroke:#5A4A42;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none;}
 .ex-svg circle.head{fill:#5A4A42;stroke:none;}
@@ -93,80 +84,53 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
 .desc-tip::before{content:"💡 ";}
 .desc-muscles{display:flex;gap:5px;flex-wrap:wrap;}
 .muscle-tag{font-size:10px;padding:2px 7px;border-radius:100px;border:1px solid #E0D8CE;color:#A09288;}
-
-/* ── MONTHLY CALENDAR ─────────────────────────── */
-.cal-box{background:#fff;border:1px solid #E8E0D6;border-radius:20px;padding:20px 22px;margin-bottom:20px;box-shadow:0 2px 12px rgba(45,41,38,.06);}
-.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
-.cal-month-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;color:#2D2926;}
-.cal-nav-btn{width:32px;height:32px;border-radius:50%;border:1px solid #E0D8CE;background:transparent;cursor:pointer;font-size:14px;color:#8A7A6E;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.cal-nav-btn:hover{background:#F0EAE2;border-color:#C8C0B6;}
-.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px;}
-.cal-wd{font-size:10px;font-weight:600;letter-spacing:.5px;color:#C0B4AA;text-align:center;padding:4px 0;}
-.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
-.cal-cell{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#8A7A6E;background:#FAF6EF;border:1.5px solid transparent;transition:all .2s;cursor:default;position:relative;min-height:36px;}
+/* CALENDAR */
+.cal-box{background:#fff;border:1px solid #E8E0D6;border-radius:20px;padding:18px 20px;margin-bottom:18px;box-shadow:0 2px 12px rgba(45,41,38,.06);}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.cal-month-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#2D2926;}
+.cal-nav-btn{width:30px;height:30px;border-radius:50%;border:1px solid #E0D8CE;background:transparent;cursor:pointer;font-size:14px;color:#8A7A6E;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.cal-nav-btn:hover{background:#F0EAE2;}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:5px;}
+.cal-wd{font-size:10px;font-weight:600;letter-spacing:.5px;color:#C0B4AA;text-align:center;padding:3px 0;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-cell{aspect-ratio:1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#8A7A6E;background:#FAF6EF;border:1.5px solid transparent;min-height:34px;}
 .cal-cell.empty{background:transparent;border-color:transparent;}
 .cal-cell.today{border-style:dashed;border-color:#B0A49C;}
 .cal-cell.future{color:#D0C8C0;}
 .cal-cell.has-entry{color:#fff;border-color:transparent;}
-.cal-cell.has-entry .cal-day-num{color:#fff;}
-.cal-day-num{font-size:12px;font-weight:600;line-height:1;}
-.cal-day-dot{font-size:9px;font-weight:700;letter-spacing:.3px;margin-top:1px;opacity:.9;}
-
-/* Legend */
-.cal-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid #F0EAE2;}
-.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#8A7A6E;}
-.leg-dot{width:12px;height:12px;border-radius:4px;flex-shrink:0;}
-
+.cal-day-num{font-size:11px;font-weight:600;line-height:1;}
+.cal-day-dot{font-size:8px;font-weight:700;margin-top:1px;opacity:.9;}
+.cal-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #F0EAE2;}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:#8A7A6E;}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
 /* TIPS */
-.tips-box{background:#fff;border:1px solid #E8E0D6;border-radius:16px;padding:18px 20px;box-shadow:0 1px 4px rgba(45,41,38,.05);}
+.tips-box{background:#fff;border:1px solid #E8E0D6;border-radius:16px;padding:16px 18px;box-shadow:0 1px 4px rgba(45,41,38,.05);}
 .tips-title{font-size:11px;letter-spacing:2px;color:#C0B4AA;text-transform:uppercase;margin-bottom:10px;}
 .tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.tip-item{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:#8A7A6E;line-height:1.5;}
-.tip-icon{font-size:15px;flex-shrink:0;margin-top:1px;}
-
+.tip-item{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#8A7A6E;line-height:1.5;}
+.tip-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@media(max-width:500px){
-  .tips-grid{grid-template-columns:1fr;}
-  .desc-layout{flex-direction:column;}
-  .ex-svg-wrap{width:100%;height:90px;}
-  .stats-row{grid-template-columns:repeat(3,1fr);}
-}
+@media(max-width:500px){.tips-grid{grid-template-columns:1fr}.desc-layout{flex-direction:column}.ex-svg-wrap{width:100%;height:88px}}
 </style>
 </head>
 <body>
 <div class="app">
-
 <div class="header">
   <div class="header-tag">🏠 Тренировка у дома · Без оборудване</div>
   <h1>МОЯТ<br>ТРЕНИРОВЪЧЕН<br>ПЛАН</h1>
   <p class="header-sub">Следродилен период · Тонус · По твой график</p>
 </div>
-
 <div class="postpartum-note">
-  <strong>⚠️ Следродилна адаптация:</strong> Без ударно натоварване, с акцент върху тазово дъно, безопасна коремна активация и разтягане. Слушай тялото си и спри при болка.
+  <strong>⚠️ Следродилна адаптация:</strong> Без ударно натоварване, с акцент върху тазово дъно, безопасна коремна активация и разтягане. При упражнения с гири и пудовка — започни с лека тежест.
 </div>
-
 <div class="stats-row">
-  <div class="stat-card">
-    <div class="stat-icon">✅</div>
-    <div class="stat-num" id="statTotal">0</div>
-    <div class="stat-label">Тренировки</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">🔥</div>
-    <div class="stat-num" id="statStreak">0</div>
-    <div class="stat-label">Серия (дни)</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">📅</div>
-    <div class="stat-num" id="statMonth">0</div>
-    <div class="stat-label">Този месец</div>
-  </div>
+  <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-num" id="statTotal">0</div><div class="stat-label">Тренировки</div></div>
+  <div class="stat-card"><div class="stat-icon">🔥</div><div class="stat-num" id="statStreak">0</div><div class="stat-label">Серия (дни)</div></div>
+  <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-num" id="statMonth">0</div><div class="stat-label">Този месец</div></div>
 </div>
-
 <div class="section-title">Избери тренировка</div>
+<div class="cat-tabs" id="catTabs"></div>
 <div class="workout-grid" id="workoutGrid"></div>
-
 <div class="section-title">Упражнения</div>
 <div class="day-panel" id="dayPanel">
   <div class="day-header" id="dayHeader">
@@ -178,7 +142,7 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
     </div>
     <div class="day-right">
       <div class="progress-ring">
-        <svg width="50" height="50" viewBox="0 0 56 56">
+        <svg width="48" height="48" viewBox="0 0 56 56">
           <circle cx="28" cy="28" r="22" fill="none" stroke="#E8E0D6" stroke-width="4"/>
           <circle id="progressCircle" cx="28" cy="28" r="22" fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round" stroke-dasharray="138.23" stroke-dashoffset="138.23" style="transition:stroke-dashoffset .5s ease;"/>
         </svg>
@@ -189,7 +153,6 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
   </div>
   <div class="exercise-list" id="exerciseList"></div>
 </div>
-
 <div class="section-title">Календар</div>
 <div class="cal-box">
   <div class="cal-nav">
@@ -204,20 +167,18 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
   <div class="cal-days" id="calDays"></div>
   <div class="cal-legend" id="calLegend"></div>
 </div>
-
 <div class="tips-box">
   <div class="tips-title">Съвети за следродилно възстановяване</div>
   <div class="tips-grid">
     <div class="tip-item"><span class="tip-icon">🌬️</span> Издишвай при усилие на всяко упражнение</div>
-    <div class="tip-item"><span class="tip-icon">🏥</span> При болка в таза или корема — спри и се консултирай</div>
+    <div class="tip-item"><span class="tip-icon">🏋️</span> С гири/пудовка — започни с 1–2 кг и увеличавай бавно</div>
     <div class="tip-item"><span class="tip-icon">💧</span> Пий достатъчно вода, особено ако кърмиш</div>
     <div class="tip-item"><span class="tip-icon">😴</span> Сънят е тренировка — ключов за възстановяването</div>
   </div>
 </div>
-
-</div><!-- /app -->
+</div>
 <script>
-// ── SVGs ────────────────────────────────────────────────────────
+// ── SVG LIBRARY ───────────────────────────────────────────────
 const S={
   sumo:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="41"/><line x1="50" y1="24" x2="33" y2="37"/><line x1="50" y1="24" x2="67" y2="37"/><line x1="50" y1="41" x2="27" y2="58"/><line x1="27" y1="58" x2="20" y2="76"/><line x1="50" y1="41" x2="73" y2="58"/><line x1="73" y1="58" x2="80" y2="76"/></svg>`,
   bridge:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="10" cy="62" r="6"/><line x1="16" y1="62" x2="35" y2="62"/><line x1="35" y1="62" x2="54" y2="40"/><line x1="54" y1="40" x2="70" y2="58"/><line x1="70" y1="58" x2="73" y2="72"/><line x1="20" y1="62" x2="22" y2="72"/><line x1="82" y1="72" x2="73" y2="58"/></svg>`,
@@ -242,138 +203,273 @@ const S={
   sideplank:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="15" cy="30" r="6"/><line x1="21" y1="32" x2="68" y2="54"/><line x1="68" y1="54" x2="80" y2="72"/><line x1="38" y1="41" x2="18" y2="60"/><line x1="18" y1="60" x2="14" y2="72"/><line x1="21" y1="30" x2="14" y2="50"/><line x1="14" y1="50" x2="14" y2="72"/><line x1="50" y1="47" x2="50" y2="20"/></svg>`,
   slowpush:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="12" cy="40" r="6"/><line x1="18" y1="41" x2="60" y2="54"/><line x1="60" y1="54" x2="76" y2="72"/><line x1="26" y1="46" x2="14" y2="58"/><line x1="14" y1="58" x2="10" y2="72"/><line x1="56" y1="52" x2="66" y2="46"/><line x1="66" y1="46" x2="78" y2="60"/></svg>`,
   figure4:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="70" x2="95" y2="70"/><circle class="head" cx="10" cy="58" r="6"/><line x1="16" y1="58" x2="58" y2="60"/><line x1="16" y1="58" x2="16" y2="70"/><line x1="58" y1="60" x2="70" y2="44"/><line x1="70" y1="44" x2="82" y2="58"/><line x1="82" y1="58" x2="84" y2="70"/><line x1="52" y1="59" x2="60" y2="52"/><line x1="60" y1="52" x2="72" y2="52"/></svg>`,
-  savasana:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="62" x2="95" y2="62"/><circle class="head" cx="10" cy="52" r="6"/><line x1="16" y1="52" x2="80" y2="54"/><line x1="80" y1="54" x2="92" y2="56"/><line x1="24" y1="52" x2="22" y2="62"/><line x1="66" y1="53" x2="68" y2="62"/><line x1="22" y1="52" x2="18" y2="62"/><line x1="22" y1="52" x2="14" y2="62"/></svg>`
+  savasana:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="62" x2="95" y2="62"/><circle class="head" cx="10" cy="52" r="6"/><line x1="16" y1="52" x2="80" y2="54"/><line x1="80" y1="54" x2="92" y2="56"/><line x1="24" y1="52" x2="22" y2="62"/><line x1="66" y1="53" x2="68" y2="62"/><line x1="22" y1="52" x2="18" y2="62"/><line x1="22" y1="52" x2="14" y2="62"/></svg>`,
+  // Equipment SVGs
+  row:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="22" cy="24" r="6"/><line x1="22" y1="30" x2="52" y2="52"/><line x1="32" y1="38" x2="50" y2="26"/><line x1="32" y1="38" x2="14" y2="54"/><line x1="52" y1="52" x2="62" y2="68"/><line x1="62" y1="68" x2="66" y2="76"/><line x1="52" y1="52" x2="72" y2="60"/><line x1="72" y1="60" x2="76" y2="76"/></svg>`,
+  deadlift:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="30" cy="20" r="6"/><line x1="30" y1="26" x2="54" y2="52"/><line x1="38" y1="34" x2="20" y2="48"/><line x1="20" y1="48" x2="16" y2="58"/><line x1="38" y1="34" x2="54" y2="42"/><line x1="54" y1="52" x2="60" y2="68"/><line x1="60" y1="68" x2="64" y2="76"/><line x1="54" y1="52" x2="72" y2="58"/><line x1="72" y1="58" x2="76" y2="76"/><line x1="16" y1="58" x2="82" y2="60" stroke="#C8BEB4" stroke-width="2"/></svg>`,
+  curl:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="46"/><line x1="50" y1="46" x2="38" y2="62"/><line x1="38" y1="62" x2="36" y2="76"/><line x1="50" y1="46" x2="62" y2="62"/><line x1="62" y1="62" x2="64" y2="76"/><line x1="50" y1="26" x2="30" y2="38"/><line x1="30" y1="38" x2="28" y2="24"/><line x1="50" y1="26" x2="70" y2="38"/><line x1="70" y1="38" x2="72" y2="24"/></svg>`,
+  floorpress:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="66" x2="95" y2="66"/><circle class="head" cx="10" cy="56" r="6"/><line x1="16" y1="56" x2="70" y2="58"/><line x1="16" y1="56" x2="16" y2="66"/><line x1="70" y1="58" x2="80" y2="66"/><line x1="35" y1="57" x2="28" y2="40"/><line x1="28" y1="40" x2="16" y2="38"/><line x1="50" y1="57" x2="54" y2="40"/><line x1="54" y1="40" x2="66" y2="38"/></svg>`,
+  ohpress:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="12" r="6"/><line x1="50" y1="18" x2="50" y2="46"/><line x1="50" y1="46" x2="38" y2="60"/><line x1="38" y1="60" x2="36" y2="76"/><line x1="50" y1="46" x2="62" y2="60"/><line x1="62" y1="60" x2="64" y2="76"/><line x1="50" y1="26" x2="26" y2="20"/><line x1="26" y1="20" x2="22" y2="8"/><line x1="50" y1="26" x2="74" y2="20"/><line x1="74" y1="20" x2="78" y2="8"/></svg>`,
+  lateral:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="46"/><line x1="50" y1="46" x2="38" y2="60"/><line x1="38" y1="60" x2="36" y2="76"/><line x1="50" y1="46" x2="62" y2="60"/><line x1="62" y1="60" x2="64" y2="76"/><line x1="50" y1="28" x2="18" y2="36"/><line x1="50" y1="28" x2="82" y2="36"/></svg>`,
+  swing:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="36" cy="18" r="6"/><line x1="36" y1="24" x2="58" y2="48"/><line x1="44" y1="32" x2="24" y2="44"/><line x1="24" y1="44" x2="20" y2="58"/><line x1="44" y1="32" x2="64" y2="38"/><line x1="58" y1="48" x2="64" y2="64"/><line x1="64" y1="64" x2="68" y2="76"/><line x1="58" y1="48" x2="74" y2="56"/><line x1="74" y1="56" x2="78" y2="76"/><line x1="20" y1="58" x2="54" y2="60" stroke="#C8BEB4" stroke-width="2"/></svg>`,
+  halo:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="16" r="6"/><line x1="50" y1="22" x2="50" y2="48"/><line x1="50" y1="48" x2="38" y2="62"/><line x1="38" y1="62" x2="36" y2="76"/><line x1="50" y1="48" x2="62" y2="62"/><line x1="62" y1="62" x2="64" y2="76"/><path d="M32,12 Q50,4 68,12 Q74,18 68,24 Q50,16 32,24 Q26,18 32,12" stroke-width="2"/></svg>`,
+  goblet:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="18" r="6"/><line x1="50" y1="24" x2="50" y2="48"/><line x1="50" y1="36" x2="34" y2="44"/><line x1="34" y1="44" x2="38" y2="48"/><line x1="50" y1="36" x2="66" y2="44"/><line x1="66" y1="44" x2="62" y2="48"/><line x1="50" y1="48" x2="30" y2="62"/><line x1="30" y1="62" x2="24" y2="76"/><line x1="50" y1="48" x2="70" y2="62"/><line x1="70" y1="62" x2="76" y2="76"/></svg>`,
+  carry:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="46"/><line x1="50" y1="46" x2="40" y2="62"/><line x1="40" y1="62" x2="38" y2="76"/><line x1="50" y1="46" x2="62" y2="58"/><line x1="62" y1="58" x2="64" y2="76"/><line x1="50" y1="26" x2="28" y2="46"/><line x1="28" y1="46" x2="26" y2="58"/><line x1="50" y1="26" x2="72" y2="46"/><line x1="72" y1="46" x2="74" y2="58"/></svg>`,
+  windmill:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="40" cy="16" r="6"/><line x1="40" y1="22" x2="52" y2="52"/><line x1="44" y1="32" x2="24" y2="42"/><line x1="44" y1="32" x2="66" y2="8"/><line x1="52" y1="52" x2="42" y2="68"/><line x1="42" y1="68" x2="40" y2="76"/><line x1="52" y1="52" x2="68" y2="62"/><line x1="68" y1="62" x2="72" y2="76"/></svg>`,
+  russiantwist:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="50" cy="34" r="6"/><line x1="50" y1="40" x2="50" y2="60"/><line x1="50" y1="60" x2="34" y2="72"/><line x1="50" y1="60" x2="66" y2="72"/><line x1="50" y1="46" x2="28" y2="38"/><line x1="28" y1="38" x2="22" y2="30"/></svg>`
 };
 
-// ── WORKOUTS ─────────────────────────────────────────────────────
-const DAYS=[
+// ── WORKOUT CATEGORIES ────────────────────────────────────────
+const CATEGORIES=[
   {
-    id:1,label:"ТРЕНИРОВКА 1",title:"Крака & Тазово Дъно",subtitle:"Долна част · Стабилизация",
-    emoji:"🦵",color:"#E8605A",glow:"rgba(232,96,90,.2)",short:"Т1",
-    exercises:[
-      {name:"Широко клякане (Сумо)",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Бедра","Седалище","Тазово дъно"],what:"Застани с крака по-широко от раменете, пръстите под 45° навън. Бавно слизай надолу докато бедрата са успоредни с пода, след което се върни нагоре с контрол.",tip:"Стегни тазовото дъно при качването нагоре. Гръбначният стълб остава изправен."},
-      {name:"Глутеус мост",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазово дъно"],what:"Легни по гръб, колена свити, стъпала на пода. Бавно вдигни бедрата нагоре докато тялото образува права линия от рамене до колена. Задръж 2 сек. горе.",tip:"Идеално след раждане — активира тазовото дъно без натиск. Не стягай прекомерно кръста."},
-      {name:"Clamshell (странично коляно)",sets:3,reps:"15 повт. / страна",svg:S.clam,muscles:["Тазобедрени стабилизатори","Глутеус медиус"],what:"Легни настрани с наведени колена (позиция на плод). Запази стъпалата заедно и бавно повдигни горното коляно нагоре като отваряща се мида. Върни бавно.",tip:"Бедрата да не се завъртат назад. Темпото е бавно — 3 сек. нагоре, 3 сек. надолу."},
-      {name:"Wall Sit (статично клякане)",sets:3,reps:"30 сек.",svg:S.wallsit,muscles:["Квадрицепс","Седалище"],what:"Застани с гръб към стена, стъпи крачка напред. Плъзни се надолу по стената докато коленете са под ~90°. Задръж позицията и дишай.",tip:"Не е нужно да слизаш на точно 90° — дори 100–110° е ок. С времето ще напредваш."},
-      {name:"Разтягане на хип флексорите",sets:2,reps:"40 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"Застани в позиция на изпад — едно коляно на пода. Бутни бедрата леко напред и усети разтягане в предната страна на бедрото на долния крак.",tip:"След раждане хип флексорите са стегнати от дългото седене. Не пропускай това разтягане."},
-      {name:"Дълбок клон (Deep Squat Hold)",sets:2,reps:"45 сек.",svg:S.deepsquat,muscles:["Вътрешни бедра","Тазово дъно","Долен гръб"],what:"Клекни дълбоко, петите на пода, ръцете пред теб или лактите бутат коленете навън. Задръж и дишай спокойно.",tip:"Ако петите се вдигат — постави свита кърпа под тях. Освобождава тазовото дъно деликатно."}
+    id:'free', label:'Свободни', emoji:'🏠',
+    workouts:[
+      {id:1,label:"ТРЕНИРОВКА 1",title:"Крака & Тазово Дъно",subtitle:"Долна част · Стабилизация",emoji:"🦵",color:"#E8605A",glow:"rgba(232,96,90,.2)",short:"Т1",exercises:[
+        {name:"Широко клякане (Сумо)",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Бедра","Седалище","Тазово дъно"],what:"Застани с крака по-широко от раменете, пръстите под 45° навън. Бавно слизай докато бедрата са успоредни с пода, след което се върни с контрол.",tip:"Стегни тазовото дъно при качването нагоре. Гръбначният стълб остава изправен."},
+        {name:"Глутеус мост",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазово дъно"],what:"Легни по гръб, колена свити. Вдигни бедрата докато тялото образува права линия от рамене до колена. Задръж 2 сек. горе.",tip:"Идеално след раждане — активира тазовото дъно без натиск."},
+        {name:"Clamshell",sets:3,reps:"15 повт. / страна",svg:S.clam,muscles:["Тазобедрени стабилизатори","Глутеус медиус"],what:"Легни настрани с наведени колена. Бавно повдигни горното коляно нагоре като отваряща се мида. Върни бавно.",tip:"Бедрата да не се завъртат назад. 3 сек. нагоре, 3 сек. надолу."},
+        {name:"Wall Sit",sets:3,reps:"30 сек.",svg:S.wallsit,muscles:["Квадрицепс","Седалище"],what:"Гръб към стена, плъзни се надолу докато коленете са под ~90°. Задръж и дишай.",tip:"Не е нужно точно 90° — дори 100° е ок. С времето ще напредваш."},
+        {name:"Разтягане на хип флексорите",sets:2,reps:"40 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"В изпад, едно коляно на пода, бутни бедрата напред. Дишай дълбоко.",tip:"След раждане хип флексорите са стегнати от седенето. Не пропускай."},
+        {name:"Дълбок клон",sets:2,reps:"45 сек.",svg:S.deepsquat,muscles:["Вътрешни бедра","Тазово дъно","Долен гръб"],what:"Клекни дълбоко, петите на пода, лактите бутат коленете навън. Задръж и дишай.",tip:"Ако петите се вдигат — постави свита кърпа под тях."}
+      ]},
+      {id:2,label:"ТРЕНИРОВКА 2",title:"Горна Част & Мобилност",subtitle:"Ръце, Гръб · Постурална корекция",emoji:"🌿",color:"#3BAE94",glow:"rgba(59,174,148,.2)",short:"Т2",exercises:[
+        {name:"Лицеви опори на колене",sets:3,reps:"12 повт.",svg:S.pushupknee,muscles:["Гърди","Трицепс","Предни рамене"],what:"Колена на пода, ръце на ширина на раменете. Права линия от колена до глава. Бавно слизай и се избутай нагоре.",tip:"Не прескачай към пълни лицеви опори, докато не усетиш стабилност в корема."},
+        {name:"Cat-Cow",sets:3,reps:"10 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб","Корем"],what:"На четири крака. Вдишвай и изпускай гърба надолу (Крава). Издишвай и закръгляй гърба нагоре (Котка).",tip:"Едно от най-добрите упражнения след раждане."},
+        {name:"Bird-Dog",sets:3,reps:"10 повт. / страна",svg:S.birddog,muscles:["Дълбок корем","Долен гръб","Тазови стабилизатори"],what:"На четири крака. Протегни дясната ръка напред и левия крак назад. Задръж 3 сек., върни. Редувай.",tip:"Бедрата да не се накланят. Дишай равномерно."},
+        {name:"Superman",sets:3,reps:"12 повт.",svg:S.superman,muscles:["Долен гръб","Седалище","Задни рамене"],what:"Легни по корем, ръце напред. Вдигни едновременно ръцете и краката, задръж 2 сек., върни.",tip:"Укрепва гърба, отслабен от носенето на бебето."},
+        {name:"Разтягане на гърдите",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Гърди","Предни рамене"],what:"Заключи ръцете зад гърба, открий гърдите напред и нагоре. Задръж и дишай.",tip:"Кърменето и носенето стягат гърдите. Прави го и по всяко друго време."},
+        {name:"Шийна мобилност",sets:2,reps:"8 кръга / посока",svg:S.neck,muscles:["Врат","Горен трапец"],what:"Бавни кръгове с глава, после кръгови движения с рамене.",tip:"Гледането надолу при кърмене натоварва врата. Тази рутина е истинско облекчение."}
+      ]},
+      {id:3,label:"ТРЕНИРОВКА 3",title:"Дълбок Корем & Разтягане",subtitle:"Следродилна коремна активация",emoji:"🌸",color:"#C466C8",glow:"rgba(196,102,200,.2)",short:"Т3",exercises:[
+        {name:"Диафрагмено дишане",sets:3,reps:"8 вдишвания",svg:S.breathing,muscles:["Диафрагма","Дълбок корем","Тазово дъно"],what:"Легни по гръб, ръка на корема. Вдишвай — коремът се повдига. Издишвай напълно. Усети тазовото дъно при издишване.",tip:"Основното упражнение след раждане. Прави го всеки ден."},
+        {name:"Dead Bug",sets:3,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Легни по гръб, ръцете нагоре, колената на 90°. Бавно спускай десния крак и лявата ръка. Редувай.",tip:"Кръстът трябва да остава притиснат към пода."},
+        {name:"Тазови накланяния",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно","Долен гръб"],what:"Легни по гръб. При издишване натисни кръста към пода. При вдишване отпусни.",tip:"Деликатно активира дълбоките мускули."},
+        {name:"Разтягане на хамстрингите",sets:2,reps:"40 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб"],what:"Легни по гръб, вдигни крак с кърпа. Опитай да изправиш коляното до лек стрейч.",tip:"Само леко усещане — без болка."},
+        {name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш","Рамене"],what:"От четири крака, седни назад към петите, ръцете напред. Дишай дълбоко.",tip:"Ако петите не стигат до седалището — постави възглавница."},
+        {name:"Лежащо усукване",sets:2,reps:"45 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Хип флексори"],what:"Прекарай коляното към противоположната страна, погледни в обратна посока. Дишай.",tip:"При болка в симфизата — само леко движение."}
+      ]},
+      {id:4,label:"ТРЕНИРОВКА 4",title:"Пълно Тяло & Поток",subtitle:"Лек Full Body · Укрепване",emoji:"✨",color:"#7C6FD4",glow:"rgba(124,111,212,.2)",short:"Т4",exercises:[
+        {name:"Маршируване на място",sets:3,reps:"45 сек.",svg:S.march,muscles:["Крака","Корем","Кардио (безударно)"],what:"Вдигай коленете редуващо се до нивото на бедрото. Ръцете се движат в ритъм.",tip:"Безударно кардио — идеално след раждане."},
+        {name:"Клякане с вдигане на ръце",sets:3,reps:"15 повт.",svg:S.squatarms,muscles:["Крака","Рамене","Корем"],what:"При качването от клякане вдигни двете ръце над главата.",tip:"Издишвай при качването и вдигането."},
+        {name:"Страничен планк на коляно",sets:3,reps:"25 сек. / страна",svg:S.sideplank,muscles:["Кос корем","Тазови стабилизатори"],what:"Легни настрани, долното коляно свито, горният крак прав. Вдигни бедрата.",tip:"По-безопасна от пълния страничен планк след раждане."},
+        {name:"Бавни лицеви опори на колене",sets:3,reps:"10 повт.",svg:S.slowpush,muscles:["Гърди","Трицепс","Корем"],what:"4 сек. надолу, 2 сек. нагоре. Ексцентричният темп гради сила.",tip:"Бавното темпо е по-ефективно от бързите повторения."},
+        {name:"Фигура 4",sets:2,reps:"50 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени"],what:"Легни по гръб, кръстосай глезена върху другото коляно. Дръпни към гърдите.",tip:"Облекчава пириформис — честа болка след раждане."},
+        {name:"Саваса",sets:1,reps:"3–5 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Легни по гръб, затвори очи, отпусни всяка част от тялото. Дишай бавно.",tip:"Не е лукс — е необходимост."}
+      ]},
+      {id:5,label:"ТРЕНИРОВКА 5",title:"Тазово Дъно & Дъх",subtitle:"Дълбока активация · Много леко",emoji:"🌊",color:"#4A90D9",glow:"rgba(74,144,217,.2)",short:"Т5",exercises:[
+        {name:"Диафрагмено дишане (задълбочено)",sets:4,reps:"10 вдишвания",svg:S.breathing,muscles:["Диафрагма","Тазово дъно","Дълбок корем"],what:"Едната ръка на корема, другата на гърдите. Само долната ръка се повдига. 5 сек. вдишване, 5 сек. издишване.",tip:"Активира парасимпатиковата система. Прави бавно."},
+        {name:"Глутеус мост с пауза",sets:4,reps:"12 повт. (5 сек. пауза)",svg:S.bridge,muscles:["Седалище","Тазово дъно","Хамстринг"],what:"Глутеус мост с 5-секундна пауза горе. Стегни тазовото дъно при всяка пауза.",tip:"Паузата активира тазовото дъно по-дълбоко от бързите повторения."},
+        {name:"Clamshell с пауза",sets:3,reps:"12 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Тазобедрени стабилизатори"],what:"Clamshell с 3-секундна пауза в горната точка. Контролирано спускане.",tip:"Паузата значително увеличава ефекта."},
+        {name:"Тазови накланяния с дишане",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно"],what:"При вдишване изпъни кръста. При издишване натисни към пода и стегни корема.",tip:"Свързването на дишането с движението е основата на следродилното възстановяване."},
+        {name:"Dead Bug (бавен)",sets:3,reps:"6 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"4 сек. спускане, 2 сек. пауза, 4 сек. връщане. Кръстът притиснат към пода.",tip:"Бавното темпо прави Dead Bug значително по-ефективен."},
+        {name:"Поза на детето с дъх",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Долен гръб","Тазово дъно"],what:"В Child's Pose дишай дълбоко в гърба. Ребрата се разширяват настрани.",tip:"Деликатно разтяга тазовото дъно."}
+      ]},
+      {id:6,label:"ТРЕНИРОВКА 6",title:"Гръб & Стойка",subtitle:"Постурална корекция · Гръбначен стълб",emoji:"🏹",color:"#D4763B",glow:"rgba(212,118,59,.2)",short:"Т6",exercises:[
+        {name:"Cat-Cow (много бавно)",sets:4,reps:"12 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб"],what:"4 секунди за всяка позиция. Усети всяко прешленче как се движи.",tip:"Бавното темпо прави тази версия значително по-ефективна."},
+        {name:"Superman с редуване",sets:4,reps:"10 повт. / страна",svg:S.superman,muscles:["Долен гръб","Седалище"],what:"Редувай: само дясна ръка + ляв крак. Задръж 3 сек. Тялото остава стабилно.",tip:"По-контролирана и по-щадяща версия за кръста."},
+        {name:"Bird-Dog с удължена пауза",sets:3,reps:"8 повт. / страна",svg:S.birddog,muscles:["Дълбок корем","Долен гръб","Тазови стабилизатори"],what:"Протегни ръка и противоположен крак. Задръж 5 сек. Стегни корема.",tip:"5-секундната пауза е ключова — именно тогава стабилизаторите работят."},
+        {name:"Разтягане на гърдите",sets:3,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Предни рамене","Горен гръб"],what:"Ръцете зад гърба, открий гърдите. С всяко издишване се разтвори повече.",tip:"Коригира позата, огъната от кърмене и носене."},
+        {name:"Шийна мобилност",sets:3,reps:"10 кръга / посока",svg:S.neck,muscles:["Врат","Горен трапец","Рамене"],what:"Бавни кръгове с глава, после кръгови движения с рамене.",tip:"Истинско облекчение за натоварения врат."},
+        {name:"Лежащо усукване",sets:2,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","ИТ-лента"],what:"Прекарай коляното встрани, погледни обратно. Само гравитацията работи.",tip:"Ротационното разтягане е особено важно след раждане."}
+      ]},
+      {id:7,label:"ТРЕНИРОВКА 7",title:"Крака & Баланс",subtitle:"Стабилизация · Координация",emoji:"🌿",color:"#5D9E6E",glow:"rgba(93,158,110,.2)",short:"Т7",exercises:[
+        {name:"Плитко клякане на един крак",sets:3,reps:"10 повт. / крак",svg:S.sumo,muscles:["Квадрицепс","Седалище","Баланс"],what:"До стена за опора. Вдигни единия крак и клякай само на другия — само до 45°.",tip:"Едностранното клякане е по-ефективно за стабилизаторите."},
+        {name:"Глутеус мост с единия крак",sets:3,reps:"12 повт. / крак",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазови стабилизатори"],what:"В горната позиция на глутеус мост вдигни единия крак и задръж 2 сек.",tip:"Удвоява натоварването. Следи тазът да не се накланя."},
+        {name:"Странични изпади",sets:3,reps:"12 повт. / страна",svg:S.lunge,muscles:["Вътрешни бедра","Квадрицепс","Седалище"],what:"Крачка встрани, свий коляното на изпадащия крак. Другият крак прав.",tip:"Отлично за вътрешните бедра — рядко натоварвана зона."},
+        {name:"Clamshell стоящ",sets:3,reps:"15 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Баланс"],what:"До стена. Свий коляното и го повдигни встрани. Задръж 2 сек.",tip:"Добавя баланс — по-функционална версия."},
+        {name:"Wall Sit с движение на пети",sets:3,reps:"40 сек.",svg:S.wallsit,muscles:["Квадрицепс","Прасец","Баланс"],what:"В Wall Sit редувай вдигане на петите — лява, дясна, заедно.",tip:"Добавянето на прасеца прави упражнението по-предизвикателно."},
+        {name:"Разтягане на хип флексорите",sets:2,reps:"50 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"Изпад, едно коляно на пода, бутни бедрата напред. Вдигни ръцете за по-дълбок стрейч.",tip:"Дишай дълбоко в разтягането."}
+      ]},
+      {id:8,label:"ТРЕНИРОВКА 8",title:"Мобилност & Гъвкавост",subtitle:"Пълно тяло · Разтягане",emoji:"🌸",color:"#B5507A",glow:"rgba(181,80,122,.2)",short:"Т8",exercises:[
+        {name:"Cat-Cow с ротация",sets:3,reps:"8 повт. / страна",svg:S.catcow,muscles:["Гръбначен стълб","Гръден кош","Рамене"],what:"Cat-Cow с добавена ротация — пусни едната ръка зад врата и завърти лакътя нагоре.",tip:"Торакалната ротация е особено важна след раждане."},
+        {name:"Лежащо усукване (задълбочено)",sets:3,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Пириформис","ИТ-лента"],what:"С всяко издишване позволи на тялото да се усучи малко повече.",tip:"Не форсирай — дишай и изчакай тялото да се отпусне."},
+        {name:"Разтягане на хамстрингите",sets:3,reps:"50 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб","Прасец"],what:"Легни, вдигни крак с кърпа. Леко дърпай стъпалото към теб.",tip:"Мускулът се нуждае от 30+ сек. за да се отпусне реално."},
+        {name:"Фигура 4 (задълбочена)",sets:3,reps:"60 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени"],what:"С всяко издишване дръпни малко повече към гърдите.",tip:"Особено полезно при дискомфорт в седалището или ишиас."},
+        {name:"Поза на детето — широка",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Вътрешни бедра","Долен гръб","Ханш"],what:"Child's Pose с крака по-широко от раменете.",tip:"Отваря вътрешните бедра значително повече."},
+        {name:"Саваса (тяло сканиране)",sets:1,reps:"5–7 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Бавно пренасяй вниманието от пръстите нагоре и отпускай всяка част.",tip:"Body scan успокоява нервната система по-дълбоко от обикновената релаксация."}
+      ]},
+      {id:9,label:"ТРЕНИРОВКА 9",title:"Активно Възстановяване",subtitle:"Много леко · Движение & Дишане",emoji:"☀️",color:"#C49B2E",glow:"rgba(196,155,46,.2)",short:"Т9",exercises:[
+        {name:"Маршируване (бавно)",sets:3,reps:"60 сек.",svg:S.march,muscles:["Крака","Лека циркулация"],what:"Марширувай бавно и спокойно. Целта е леко кръвообращение, не интензивност.",tip:"Лекото движение ускорява възстановяването повече от пълна почивка."},
+        {name:"Cat-Cow (ритмично)",sets:3,reps:"10 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб"],what:"5 сек. за всяка позиция. Вдишване при Крава, издишване при Котка.",tip:"Синхронизира дишането с движението."},
+        {name:"Тазови накланяния",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно"],what:"При издишване натисни кръста. При вдишване отпусни. Деликатно.",tip:"Поддържа активацията на дълбокия корем дори в уморени дни."},
+        {name:"Разтягане на гърдите",sets:3,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Предни рамене"],what:"Ръцете зад гърба, затвори очи, дишай дълбоко.",tip:"Физически отваря тялото и подобрява настроението."},
+        {name:"Лежащо усукване",sets:2,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Корем"],what:"Само гравитацията работи. Дишай дълбоко.",tip:"Масажира вътрешните органи и освобождава напрежение."},
+        {name:"Саваса (удължена)",sets:1,reps:"7–10 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Позволи на тялото да е напълно тежко. Нека мислите минават.",tip:"Позволи си да почиваш без чувство за вина."}
+      ]}
     ]
   },
   {
-    id:2,label:"ТРЕНИРОВКА 2",title:"Горна Част & Мобилност",subtitle:"Ръце, Гръб · Постурална корекция",
-    emoji:"🌿",color:"#3BAE94",glow:"rgba(59,174,148,.2)",short:"Т2",
-    exercises:[
-      {name:"Лицеви опори на колене",sets:3,reps:"12 повт.",svg:S.pushupknee,muscles:["Гърди","Трицепс","Предни рамене"],what:"Колена на пода, ръце на ширина на раменете. Тялото е права линия от колена до глава. Бавно се свеждай към пода и се избутай нагоре.",tip:"Модифицираната версия е напълно достатъчна след раждане. Не прескачай към пълни, докато не усетиш стабилност в корема."},
-      {name:"Cat-Cow (Котка-Крава)",sets:3,reps:"10 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб","Корем"],what:"На четири крака, ръце под раменете, колена под бедрата. Вдишвай и изпускай гърба надолу (Крава). Издишвай и закръгляй гърба нагоре (Котка).",tip:"Едно от най-добрите упражнения след раждане — подвижност на гръбнака и мека активация на корема."},
-      {name:"Bird-Dog",sets:3,reps:"10 повт. / страна",svg:S.birddog,muscles:["Дълбок корем","Долен гръб","Тазови стабилизатори"],what:"На четири крака. Едновременно протегни дясната ръка напред и левия крак назад. Задръж 3 сек., върни. Редувай страни.",tip:"Бедрата да не се накланят. Дишай равномерно. Отлично за дълбок корем без натоварване."},
-      {name:"Superman (лежащ по корем)",sets:3,reps:"12 повт.",svg:S.superman,muscles:["Долен гръб","Седалище","Задни рамене"],what:"Легни по корем, ръце протегнати напред. Бавно вдигни едновременно ръцете и краката от пода, задръж 2 сек., върни. Главата в неутрална позиция.",tip:"Укрепва гърба, отслабен от дългото носене на бебето. Движението е меко — не форсирай."},
-      {name:"Разтягане на гърдите и раменете",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Гърди","Предни рамене","Бицепс"],what:"Застани или седни изправена. Заключи ръцете зад гърба. Изправи лактите, повдигни ги леко и открий гърдите напред и нагоре. Задръж и дишай.",tip:"Кърменето и носенето стягат гърдите и раменете. Прави го и по всяко друго време на деня."},
-      {name:"Шийна мобилност и рамене",sets:2,reps:"8 кръга / посока",svg:S.neck,muscles:["Врат","Горен трапец","Рамене"],what:"Седни или застани изправена. Бавно накланяй глава настрани (ухо към рамо). После правей малки кръгове с глава, след това кръгови движения с рамене.",tip:"Гледането надолу при кърмене натоварва врата. Тази рутина успокоява натрупаното напрежение."}
+    id:'dumbbell', label:'С гири', emoji:'🏋️',
+    workouts:[
+      {id:101,label:"Г1",title:"Крака & Седалище",subtitle:"С гири · Долна част",emoji:"🏋️",color:"#C85A3A",glow:"rgba(200,90,58,.2)",short:"Г1",exercises:[
+        {name:"Goblet squat",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Дръж гирата вертикално пред гърдите с двете ръце. Клякай дълбоко, лактите бутат коленете навън в долната точка.",tip:"Гирата пред гърдите помага да поддържаш гърба изправен."},
+        {name:"Romanian deadlift",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Гирите пред бедрата. Наведи се напред от ханша, като гирите се плъзгат по краката надолу. Изправи се назад, стягайки седалището.",tip:"Коленете са леко свити, гърбът е прав. Усети разтягането в хамстрингите."},
+        {name:"Реверсивни изпади",sets:3,reps:"12 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"Дръж гирите настрани. Направи крачка назад и клекни. Предното коляно над глезена. Върни се.",tip:"Реверсивният изпад е по-щадящ за коленете от напредния."},
+        {name:"Hip thrust с гира",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазово дъно"],what:"Легни по гръб, постави гирата на бедрата. Вдигни бедрата нагоре, стегни седалището горе. Задръж 2 сек.",tip:"Гирата увеличава натоварването значително. Започни с лека тежест."},
+        {name:"Sumo squat с гира",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Вътрешни бедра","Седалище","Квадрицепс"],what:"Широка стойка, дръж гирата вертикално между краката. Клякай надолу, гирата слиза между краката.",tip:"Гирата добавя натоварване, но и помага за баланса."},
+        {name:"Разтягане на хамстрингите",sets:2,reps:"45 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб"],what:"Легни по гръб, вдигни крак с кърпа. Задръж и дишай.",tip:"Задължително след тежките упражнения за задните бедра."}
+      ]},
+      {id:102,label:"Г2",title:"Гърди & Трицепс",subtitle:"С гири · Горна предна",emoji:"💪",color:"#5A3A8A",glow:"rgba(90,58,138,.2)",short:"Г2",exercises:[
+        {name:"Floor press",sets:4,reps:"12 повт.",svg:S.floorpress,muscles:["Гърди","Трицепс","Предни рамене"],what:"Легни по гръб, гирите на нивото на гърдите. Избутай нагоре докато ръцете са изправени. Бавно спусни.",tip:"Floor press е по-безопасен от пейка след раждане — ограничава амплитудата."},
+        {name:"Dumbbell flyes",sets:3,reps:"12 повт.",svg:S.floorpress,muscles:["Гърди","Предни рамене"],what:"Легни по гръб, гирите нагоре. Бавно отвори ръцете встрани (леко свити лакти) до леко разтягане в гърдите. Върни.",tip:"Много бавно — 4 сек. надолу. Усети гърдите, не раменете."},
+        {name:"Tricep overhead extension",sets:3,reps:"15 повт.",svg:S.curl,muscles:["Трицепс"],what:"Застани или седни. Дръж гирата с двете ръце над главата. Свий лактите — гирата слиза зад главата. Изправи.",tip:"Лактите остават неподвижни — само предмишниците се движат."},
+        {name:"Tricep kickback",sets:3,reps:"12 повт. / ръка",svg:S.row,muscles:["Трицепс"],what:"Наведи се напред, горната ръка успоредна с пода. Изправи лакътя назад докато ръката е права. Бавно върни.",tip:"Стегни трицепса в изправената позиция — задръж 1 сек."},
+        {name:"Close grip floor press",sets:3,reps:"10 повт.",svg:S.floorpress,muscles:["Трицепс","Гърди"],what:"Floor press, но с гирите по-близо — лактите покрай тялото при спускането.",tip:"Вариантът акцентира повече на трицепса."},
+        {name:"Разтягане на гърдите",sets:2,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Предни рамене"],what:"Ръцете зад гърба, открий гърдите нагоре. Дишай дълбоко.",tip:"Задължително след натоварване на гърдите."}
+      ]},
+      {id:103,label:"Г3",title:"Гръб & Бицепс",subtitle:"С гири · Горна задна",emoji:"🦾",color:"#3A7A5A",glow:"rgba(58,122,90,.2)",short:"Г3",exercises:[
+        {name:"Single arm row",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс","Задни рамене"],what:"Лявата ръка и коляно на пейка/стол. Дясната ръка дърпа гирата нагоре покрай тялото. Лакътят минава над гърба.",tip:"Дърпай с лакъта, не с ръката — така ангажираш гърба."},
+        {name:"Bent over row",sets:3,reps:"12 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведи се напред от ханша (~45°), гирите пред краката. Дърпай двете гири нагоре покрай тялото.",tip:"Гърбът е прав, погледът напред-надолу. Не се изправяй при движението."},
+        {name:"Bicep curl",sets:4,reps:"15 повт.",svg:S.curl,muscles:["Бицепс","Предмишница"],what:"Застани изправена. Завърти дланите нагоре. Огъни лактите и вдигни гирите към раменете. Бавно спусни.",tip:"Лактите покрай тялото — не ги движи напред."},
+        {name:"Hammer curl",sets:3,reps:"12 повт.",svg:S.curl,muscles:["Бицепс","Брахиалис","Предмишница"],what:"Дланите встрани (неутрален хват). Огъни лактите и вдигни гирите. Бавно спусни.",tip:"Hammer curl укрепва допълнителни мускули освен бицепса."},
+        {name:"Superman с гири",sets:3,reps:"10 повт.",svg:S.superman,muscles:["Долен гръб","Задни рамене"],what:"Легни по корем, гирите в ръцете. Вдигни ръцете и краката. Задръж 2 сек.",tip:"Лека тежест — фокусът е върху гърба, не теглото."},
+        {name:"Разтягане на гърба",sets:2,reps:"45 сек.",svg:S.childpose,muscles:["Гръб","Рамене"],what:"Child's Pose, ръцете протегнати максимално напред.",tip:"Освобождава натоварения гръб след редицата."}
+      ]},
+      {id:104,label:"Г4",title:"Рамене & Горна Част",subtitle:"С гири · Рамене",emoji:"🌟",color:"#6A5AAA",glow:"rgba(106,90,170,.2)",short:"Г4",exercises:[
+        {name:"Overhead press",sets:4,reps:"12 повт.",svg:S.ohpress,muscles:["Рамене","Трицепс","Горен трапец"],what:"Гирите на нивото на раменете, дланите напред. Избутай нагоре над главата докато ръцете са изправени. Бавно спусни.",tip:"Не прогъвай кръста при натискане — стегни корема."},
+        {name:"Lateral raise",sets:4,reps:"15 повт.",svg:S.lateral,muscles:["Средни рамене"],what:"Гирите настрани, дланите надолу. Вдигни ръцете встрани до нивото на раменете. Бавно спусни.",tip:"Много лека тежест — lateral raise е изолирано упражнение."},
+        {name:"Front raise",sets:3,reps:"12 повт.",svg:S.lateral,muscles:["Предни рамене"],what:"Гирите пред бедрата. Вдигни двете ръце напред до нивото на раменете. Бавно спусни.",tip:"Не залюлявай тялото. Само ръцете се движат."},
+        {name:"Reverse fly",sets:3,reps:"15 повт.",svg:S.row,muscles:["Задни рамене","Горен гръб"],what:"Наведи се напред от ханша. Вдигни гирите встрани с леко свити лакти.",tip:"Усети стискането между лопатките в горната точка."},
+        {name:"Upright row (лек)",sets:3,reps:"12 повт.",svg:S.curl,muscles:["Рамене","Горен трапец","Бицепс"],what:"Гирите пред бедрата, дланите към теб. Дърпай нагоре покрай тялото до нивото на брадичката.",tip:"Лактите водят движението нагоре. Лека тежест."},
+        {name:"Разтягане на раменете",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Рамене","Гърди"],what:"Ръцете зад гърба, открий гърдите и рамените нагоре.",tip:"Задължително след интензивно натоварване на раменете."}
+      ]},
+      {id:105,label:"Г5",title:"Core с тежест",subtitle:"С гири · Корем & Стабилност",emoji:"🔷",color:"#AA6A2A",glow:"rgba(170,106,42,.2)",short:"Г5",exercises:[
+        {name:"Weighted glute bridge",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Core","Тазово дъно"],what:"Гирата на бедрата. Вдигни бедрата нагоре, стегни седалището и корема. Задръж 2 сек.",tip:"Гирата значително увеличава ефекта. Започни с лека."},
+        {name:"Dead bug с гира",sets:3,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Дръж гирата с двете ръце нагоре. Бавно спускай противоположен крак. Гирата остава неподвижна.",tip:"Много бавно. Кръстът притиснат към пода."},
+        {name:"Russian twist (лек)",sets:3,reps:"20 повт.",svg:S.russiantwist,muscles:["Кос корем","Core"],what:"Седни, колената свити, гирата с две ръце. Усукай торса встрани — гирата докосва пода. Редувай страни.",tip:"Само леко повдигни краката ако може. Бавно и контролирано."},
+        {name:"Suitcase carry",sets:3,reps:"30 м. / ръка",svg:S.carry,muscles:["Core","Обдуктори","Трапец"],what:"Дръж гирата в едната ръка и ходи изправена. Тялото остава вертикално — не се накланяй към гирата.",tip:"Едно от най-функционалните Core упражнения. Имитира носенето на бебе."},
+        {name:"Side bend",sets:3,reps:"15 повт. / страна",svg:S.lateral,muscles:["Кос корем","Обдуктори"],what:"Гирата в едната ръка, плъзгай я надолу по крака докато усетиш странично разтягане. Върни се.",tip:"Бавно и контролирано — не залюлявай."},
+        {name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш"],what:"Child's Pose за освобождаване на натоварения Core.",tip:"Дишай дълбоко и отпусни напълно."}
+      ]},
+      {id:106,label:"Г6",title:"Full Body (Комбо)",subtitle:"С гири · Комбинирани движения",emoji:"⚡",color:"#2A7A8A",glow:"rgba(42,122,138,.2)",short:"Г6",exercises:[
+        {name:"Squat to press",sets:4,reps:"12 повт.",svg:S.squatarms,muscles:["Крака","Рамене","Core"],what:"Гирите на раменете. Клякай надолу, при качването нагоре — избутай гирите над главата. При следващото клякане — свали.",tip:"Комбинираното движение е много ефективно за изгаряне и кардио."},
+        {name:"Romanian deadlift",sets:3,reps:"15 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Гирите пред бедрата, наведи се напред от ханша. Изправи се, стягайки седалището.",tip:"Усети хамстрингите при спускането надолу."},
+        {name:"Bent over row",sets:3,reps:"12 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведен ~45°. Дърпай гирите нагоре покрай тялото.",tip:"Гърбът остава прав — не се изправяй при движението."},
+        {name:"Lateral raise",sets:3,reps:"15 повт.",svg:S.lateral,muscles:["Рамене"],what:"Вдигни гирите встрани до нивото на раменете. Бавно спусни.",tip:"Много лека тежест за lateral raise."},
+        {name:"Реверсивен изпад с curl",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Крака","Бицепс","Баланс"],what:"При всяко клякане в изпада — огъни лактите (bicep curl). Изправи се и спусни ръцете.",tip:"Комбо упражнение — ефективно и за крака, и за ръце."},
+        {name:"Саваса",sets:1,reps:"3–5 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Легни, затвори очи, дишай. Отпусни всяка мускула.",tip:"Задължителна релаксация след full body тренировка."}
+      ]},
+      {id:107,label:"Г7",title:"Крака (По-интензивно)",subtitle:"С гири · Долна Интензивна",emoji:"🔥",color:"#8A3A5A",glow:"rgba(138,58,90,.2)",short:"Г7",exercises:[
+        {name:"Goblet squat (дълбоко)",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Goblet squat с пауза в долната точка — задръж 2 сек. С по-тежка гира от Г1.",tip:"Паузата в долната позиция е много по-предизвикателна."},
+        {name:"Sumo deadlift",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Вътрешни бедра","Седалище","Долен гръб"],what:"Широка стойка, гирата между краката. Вземи гирата и се изправи, стягайки седалището и вътрешните бедра.",tip:"Sumo deadlift е отличен за вътрешните бедра."},
+        {name:"Split squat с гири",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"В изпад (задният крак на стол/диван по желание). Дръж гирите настрани. Клякай надолу и нагоре.",tip:"Задният крак на повърхност значително увеличава натоварването."},
+        {name:"Hip thrust с гира (тежко)",sets:4,reps:"15 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг"],what:"По-тежка гира на бедрата. Вдигни бедрата, задръж 3 сек. горе.",tip:"3-секундната пауза горе е ключова за максимална активация на седалището."},
+        {name:"Calf raise с гири",sets:3,reps:"20 повт.",svg:S.march,muscles:["Прасец","Солеус"],what:"Дръж гирите настрани. Вдигни се на пръсти, задръж 1 сек. горе, бавно слез.",tip:"Прасецът се нуждае от много повторения."},
+        {name:"Фигура 4",sets:2,reps:"50 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени"],what:"Задължително разтягане след интензивни крака.",tip:"Облекчава напрежението след тежкото натоварване."}
+      ]},
+      {id:108,label:"Г8",title:"Горна Част (Интензивно)",subtitle:"С гири · Горна Интензивна",emoji:"💫",color:"#4A6A2A",glow:"rgba(74,106,42,.2)",short:"Г8",exercises:[
+        {name:"Floor press (по-тежко)",sets:4,reps:"10 повт.",svg:S.floorpress,muscles:["Гърди","Трицепс"],what:"Floor press с по-тежки гири. 4 сек. надолу, избухване нагоре.",tip:"Контролирай спускането — не изпускай гирите."},
+        {name:"Bent over row (по-тежко)",sets:4,reps:"10 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведен ~45°, дърпай гирите максимално нагоре. Лопатките се свиват.",tip:"В горната точка задръж 1 сек. и стегни лопатките."},
+        {name:"Overhead press",sets:4,reps:"10 повт.",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"Гирите на раменете, натисни нагоре над главата. Бавно спусни.",tip:"Не прогъвай кръста. Стегни корема."},
+        {name:"Bicep curl (серия 21)",sets:3,reps:"21 повт.",svg:S.curl,muscles:["Бицепс"],what:"7 повт. от дъното до средата + 7 повт. от средата до горе + 7 пълни. Без пауза.",tip:"Сериите от 21 са изключително ефективни за бицепса."},
+        {name:"Tricep overhead extension",sets:3,reps:"15 повт.",svg:S.curl,muscles:["Трицепс"],what:"Гирата с двете ръце над главата. Свий лактите зад главата. Изправи.",tip:"Лактите близо — не ги разтваряй."},
+        {name:"Разтягане на гърдите и раменете",sets:2,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Рамене"],what:"Ръцете зад гърба, открий гърдите нагоре. С всяко издишване повече.",tip:"Задължително след интензивна горна тренировка."}
+      ]},
+      {id:109,label:"Г9",title:"Активно Възстановяване",subtitle:"С леки гири · Много лека",emoji:"🌤️",color:"#6A4A3A",glow:"rgba(106,74,58,.2)",short:"Г9",exercises:[
+        {name:"Light deadlift (много повт.)",sets:3,reps:"20 повт.",svg:S.deadlift,muscles:["Гръб","Крака","Циркулация"],what:"Много лека гира. Бавен Romanian deadlift с акцент на движението, не теглото.",tip:"Много повторения с лека тежест ускоряват кръвообращението и възстановяването."},
+        {name:"Light bent over row",sets:3,reps:"20 повт.",svg:S.row,muscles:["Гръб","Рамене"],what:"Много лека гира, бавни движения. Усети движението на лопатките.",tip:"Леката работа след тежки дни ускорява възстановяването."},
+        {name:"Light lateral raise",sets:3,reps:"20 повт.",svg:S.lateral,muscles:["Рамене"],what:"Много лека гира. Бавно вдигане и спускане на ръцете встрани.",tip:"Активира раменете без натоварване."},
+        {name:"Arm circles с гири",sets:2,reps:"30 сек. / посока",svg:S.lateral,muscles:["Рамене","Мобилност"],what:"Много леки гири. Правете кръгове с ръцете напред и назад. Бавно.",tip:"Мобилизира раменните стави след натоварване."},
+        {name:"Разтягане с гира",sets:2,reps:"45 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Странично"],what:"Гирата в едната ръка, наклони се странично. Задръж разтягането.",tip:"Страничното разтягане с тежест е много ефективно."},
+        {name:"Саваса",sets:1,reps:"5 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация след тренировката.",tip:"Дори при лека тренировка — релаксацията е важна."}
+      ]}
     ]
   },
   {
-    id:3,label:"ТРЕНИРОВКА 3",title:"Дълбок Корем & Разтягане",subtitle:"Следродилна коремна активация",
-    emoji:"🌸",color:"#C466C8",glow:"rgba(196,102,200,.2)",short:"Т3",
-    exercises:[
-      {name:"Диафрагмено дишане",sets:3,reps:"8 дълбоки вдишвания",svg:S.breathing,muscles:["Диафрагма","Дълбок корем","Тазово дъно"],what:"Легни по гръб, колена свити. Постави ръка на корема. Вдишвай бавно — коремът се повдига. Издишвай напълно — коремът потъва. Усети тазовото дъно да се активира при издишване.",tip:"Основното упражнение за активиране на дълбокия корем след раждане. Прави го всеки ден."},
-      {name:"Dead Bug",sets:3,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Легни по гръб, ръцете нагоре, колената на 90° над бедрата. Бавно спускай десния крак и лявата ръка към пода (не докосвай), върни. Редувай страни.",tip:"Кръстът трябва да остава притиснат към пода. Ако се вдига — намали амплитудата. Бавно е ключовото."},
-      {name:"Тазови накланяния",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно","Долен гръб"],what:"Легни по гръб, колена свити. Бавно натисни кръста към пода, задръж 3 сек., отпусни. Движението е деликатно — само тазът се движи.",tip:"Идеалното начало за активиране на корема след раждане. Не се изморява, но работи дълбоките мускули."},
-      {name:"Разтягане на хамстрингите (лежащо)",sets:2,reps:"40 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб","Прасец"],what:"Легни по гръб. Вдигни единия крак нагоре — дръж го с ръце или кърпа около стъпалото. Опитай да изправиш коляното докато усетиш мек стрейч.",tip:"Само леко усещане за разтягане — без болка. Хамстрингите са стегнати след бременност."},
-      {name:"Поза на детето (Child's Pose)",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш","Рамене"],what:"От четири крака, седни назад към петите, ръцете протегнати пред теб. Чело на пода. Дишай дълбоко и усети как гърбът се отпуска с всяко издишване.",tip:"Ако петите не стигат до седалището — постави възглавница между тях."},
-      {name:"Лежащо усукване на гръбнака",sets:2,reps:"45 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Хип флексори","ИТ-лента"],what:"Легни по гръб. Вдигни едното коляно и го прекарай към противоположната страна, ръцете отстрани. Погледни в обратна посока. Дишай и усещай нежното усукване.",tip:"При болка в симфизата — правете само леко движение. Иначе е чудесно за подвижност."}
-    ]
-  },
-  {
-    id:4,label:"ТРЕНИРОВКА 4",title:"Пълно Тяло & Поток",subtitle:"Лек Full Body · Укрепване",
-    emoji:"✨",color:"#7C6FD4",glow:"rgba(124,111,212,.2)",short:"Т4",
-    exercises:[
-      {name:"Маршируване на място",sets:3,reps:"45 сек.",svg:S.march,muscles:["Крака","Корем","Кардио (безударно)"],what:"Вдигай коленете редуващо се до нивото на бедрото, ръцете се движат в ритъм. Темпото е умерено — може да увеличаваш постепенно.",tip:"Безударно кардио — заменя jumping jacks без натоварване на тазовото дъно."},
-      {name:"Клякане с вдигане на ръце",sets:3,reps:"15 повт.",svg:S.squatarms,muscles:["Крака","Рамене","Корем"],what:"При качването нагоре от клякане вдигни двете ръце над главата. При следващото клякане — свали ги. Комбинираното движение ангажира горна и долна част едновременно.",tip:"Издишвай при качването и вдигането на ръцете. Темпото е бавно и контролирано."},
-      {name:"Страничен планк на коляно",sets:3,reps:"25 сек. / страна",svg:S.sideplank,muscles:["Кос корем","Тазови стабилизатори","Рамене"],what:"Легни настрани, долното коляно свито на пода, горният крак прав. Вдигни бедрата така че тялото да е права линия. Задръж позицията и дишай.",tip:"Модифицираната версия на коляното е по-безопасна от пълния страничен планк след раждане."},
-      {name:"Бавни лицеви опори на колене",sets:3,reps:"10 повт.",svg:S.slowpush,muscles:["Гърди","Трицепс","Корем"],what:"Лицеви опори на колене, но с акцент на бавното спускане — 4 сек. надолу, 2 сек. нагоре. Ексцентричният темп гради сила без претоварване.",tip:"Бавното темпо е по-ефективно от бързите повторения. Усети мускулите при спускането."},
-      {name:"Разтягане на седалището (Фигура 4)",sets:2,reps:"50 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени","Ишиас"],what:"Легни по гръб, кръстосай единия глезен върху другото коляно (цифрата 4). Хвани долното бедро и дръпни леко към гърдите. Усети дълбокото разтягане в седалището.",tip:"Облекчава напрежението в пириформис мускула — честа болка след раждане."},
-      {name:"Саваса (Пълна релаксация)",sets:1,reps:"3–5 минути",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Легни по гръб с ръце встрани. Затвори очи. Отпусни всяка част от тялото — от пръстите на краката до лицето. Дишай бавно. Не прави нищо.",tip:"Не е лукс — е необходимост. Нервната система след раждане е постоянно активирана. 5 мин. пълна релаксация имат реален физически ефект."}
-    ]
-  },
-  {
-    id:5,label:"ТРЕНИРОВКА 5",title:"Тазово Дъно & Дъх",subtitle:"Дълбока активация · Много леко",
-    emoji:"🌊",color:"#4A90D9",glow:"rgba(74,144,217,.2)",short:"Т5",
-    exercises:[
-      {name:"Диафрагмено дишане (задълбочено)",sets:4,reps:"10 вдишвания",svg:S.breathing,muscles:["Диафрагма","Тазово дъно","Дълбок корем"],what:"Легни по гръб, едната ръка на корема, другата на гърдите. Вдишвай само с корема — само долната ръка се повдига. Издишвай бавно и напълно. 5 сек. вдишване, 5 сек. издишване.",tip:"Изключително ефективно за възстановяване на дълбоките мускули. Бавното дишане активира парасимпатиковата система."},
-      {name:"Глутеус мост с пауза",sets:4,reps:"12 повт. (5 сек. пауза)",svg:S.bridge,muscles:["Седалище","Тазово дъно","Хамстринг"],what:"Направи глутеус мост и задръж горната позиция за 5 секунди. При всяка пауза стегни тазовото дъно. Бавно се върни надолу.",tip:"Паузата е ключова — именно тогава тазовото дъно работи по-дълбоко от бързите повторения."},
-      {name:"Clamshell с пауза",sets:3,reps:"12 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Тазобедрени стабилизатори"],what:"Clamshell с 3-секундна пауза в горната точка. Усети стягането в страничното бедро. Контролирано спускане за 3 секунди.",tip:"Паузата значително увеличава ефекта без допълнително натоварване."},
-      {name:"Тазови накланяния с дишане",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно","Долен гръб"],what:"При вдишване — леко изпъни кръста. При издишване — натисни кръста към пода и стегни долния корем. Движението следва ритъма на дишането.",tip:"Свързването на дишането с движението е основата на следродилното възстановяване."},
-      {name:"Dead Bug (бавен)",sets:3,reps:"6 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Dead Bug в много бавен темп — 4 сек. спускане, 2 сек. пауза, 4 сек. връщане. Дишай равномерно. Кръстът остава притиснат към пода.",tip:"Бавното темпо превръща Dead Bug в значително по-ефективно упражнение за дълбокия корем."},
-      {name:"Поза на детето с дъх",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Долен гръб","Тазово дъно","Рамене"],what:"В Child's Pose дишай дълбоко в гърба — усети как ребрата се разширяват настрани. С всяко издишване се отпускай малко повече.",tip:"Дълбокото дишане в тази позиция деликатно разтяга тазовото дъно."}
-    ]
-  },
-  {
-    id:6,label:"ТРЕНИРОВКА 6",title:"Гръб & Стойка",subtitle:"Постурална корекция · Гръбначен стълб",
-    emoji:"🏹",color:"#D4763B",glow:"rgba(212,118,59,.2)",short:"Т6",
-    exercises:[
-      {name:"Cat-Cow (много бавно)",sets:4,reps:"12 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб","Врат"],what:"На четири крака. Cat-Cow изключително бавно — 4 секунди за всяка позиция. Усети всяко прешленче как се движи. Дишай дълбоко.",tip:"Бавното темпо прави тази версия значително по-ефективна за подвижност на гръбнака."},
-      {name:"Superman с редуване",sets:4,reps:"10 повт. / страна",svg:S.superman,muscles:["Долен гръб","Седалище","Задни рамене"],what:"Вместо едновременно вдигане, редувай: само дясна ръка + ляв крак, после обратното. Задръж 3 сек. в горната точка. Тялото остава стабилно.",tip:"Редуващата версия е по-контролирана и по-щадяща за кръста след раждане."},
-      {name:"Bird-Dog с удължена пауза",sets:3,reps:"8 повт. / страна",svg:S.birddog,muscles:["Дълбок корем","Долен гръб","Тазови стабилизатори"],what:"Протегни дясната ръка и левия крак. Задръж 5 секунди. При паузата — стегни корема и усети баланса. Бавно върни и редувай.",tip:"5-секундната пауза е ключова — именно тогава стабилизаторите работят най-много."},
-      {name:"Разтягане на гърдите и раменете",sets:3,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Предни рамене","Горен гръб"],what:"Застани изправена. Заключи ръцете зад гърба, изправи лактите и открий гърдите напред. Задръж и дишай дълбоко.",tip:"Ежедневното кърмене и носене огъват горния гръб напред. Това разтягане коригира позата."},
-      {name:"Шийна мобилност",sets:3,reps:"10 кръга / посока",svg:S.neck,muscles:["Врат","Горен трапец","Рамене"],what:"Бавни кръгове с глава в двете посоки. После кръгови движения на рамене напред и назад. Темпото е много бавно.",tip:"Вратът и раменете носят огромно напрежение след раждане. Тази рутина е истинско облекчение."},
-      {name:"Лежащо усукване",sets:2,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","ИТ-лента","Хип флексори"],what:"Легни по гръб. Вдигни едното коляно и го прекарай към противоположната страна. Погледни в обратна посока. Задръж и дишай дълбоко в усукването.",tip:"Ротационното разтягане е особено важно след раждане — гръбначният стълб е бил компресиран."}
-    ]
-  },
-  {
-    id:7,label:"ТРЕНИРОВКА 7",title:"Крака & Баланс",subtitle:"Стабилизация · Координация",
-    emoji:"🌿",color:"#5D9E6E",glow:"rgba(93,158,110,.2)",short:"Т7",
-    exercises:[
-      {name:"Плитко клякане на един крак",sets:3,reps:"10 повт. / крак",svg:S.sumo,muscles:["Квадрицепс","Седалище","Баланс"],what:"Застани до стена или стол за опора. Вдигни единия крак леко от пода и клякай само на другия — плитко, само до 45°. Върни. Опората е за безопасност.",tip:"Едностранното клякане е значително по-ефективно за стабилизаторите от двустранното."},
-      {name:"Глутеус мост с единия крак",sets:3,reps:"12 повт. / крак",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазови стабилизатори"],what:"В горната позиция на глутеус мост вдигни единия крак от пода и задръж 2 сек. Върни крака, спусни бедрата. Редувай крак на всяко повторение.",tip:"Варианта с вдигнат крак удвоява натоварването на работящата страна. Следи тазът да не се накланя."},
-      {name:"Странични изпади",sets:3,reps:"12 повт. / страна",svg:S.lunge,muscles:["Вътрешни бедра","Квадрицепс","Седалище"],what:"Направи голяма крачка встрани, свий коляното на изпадащия крак и пренеси теглото. Другият крак остава прав. Върни се в изходна позиция.",tip:"Страничните изпади са отлични за вътрешните бедра — зона, която рядко се натоварва достатъчно."},
-      {name:"Clamshell стоящ",sets:3,reps:"15 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Тазобедрени абдуктори","Баланс"],what:"Застани до стена. Свий едното коляно и го повдигни встрани (като Clamshell, но изправена). Задръж 2 сек. Контролирано спусни.",tip:"Стоящата версия добавя елемент на баланс и е по-функционална за ежедневието."},
-      {name:"Wall Sit с движение на пети",sets:3,reps:"40 сек.",svg:S.wallsit,muscles:["Квадрицепс","Прасец","Баланс"],what:"В позиция Wall Sit, редувай бавно вдигане на петите — лява, дясна, заедно. Темпото е бавно. Гърбът остава притиснат към стената.",tip:"Добавянето на движение на прасеца прави Wall Sit значително по-предизвикателен."},
-      {name:"Разтягане на хип флексорите",sets:2,reps:"50 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"В позиция на изпад — едно коляно на пода. Бутни бедрата напред. Може да вдигнеш ръцете нагоре за по-дълбок стрейч.",tip:"Хип флексорите са едни от най-стегнатите мускули след бременност. Дишай дълбоко в разтягането."}
-    ]
-  },
-  {
-    id:8,label:"ТРЕНИРОВКА 8",title:"Мобилност & Гъвкавост",subtitle:"Пълно тяло · Разтягане",
-    emoji:"🌸",color:"#B5507A",glow:"rgba(181,80,122,.2)",short:"Т8",
-    exercises:[
-      {name:"Cat-Cow с ротация",sets:3,reps:"8 повт. / страна",svg:S.catcow,muscles:["Гръбначен стълб","Гръден кош","Рамене"],what:"На четири крака, след Cat-Cow добави ротация — в позиция Крава, пусни едната ръка зад врата и завърти лакътя нагоре към тавана. Задръж 2 сек. Редувай страни.",tip:"Торакалната ротация е изключително важна след раждане — гръдният кош е бил компресиран."},
-      {name:"Лежащо усукване (задълбочено)",sets:3,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Пириформис","ИТ-лента"],what:"Легни по гръб. Прекарай коляното към противоположната страна. Задръж и с всяко издишване позволи на тялото да се усучи малко повече. Само гравитацията работи.",tip:"Не форсирай — дишай дълбоко и изчакай тялото да се отпусне."},
-      {name:"Разтягане на хамстрингите",sets:3,reps:"50 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб","Прасец"],what:"Легни по гръб, вдигни единия крак с кърпа или ръце. Бавно изправяй коляното до лек стрейч. Задръж и дишай. Леко дърпай стъпалото към теб за стрейч на прасеца.",tip:"Мускулът се нуждае от 30+ секунди, за да се отпусне реално. Не бързай."},
-      {name:"Фигура 4 (задълбочена)",sets:3,reps:"60 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени","ИТ-лента"],what:"В позиция Фигура 4, хвани долното бедро и дръпни към гърдите. С всяко издишване дръпни малко повече.",tip:"Особено полезно при дискомфорт в седалището или ишиас след раждане."},
-      {name:"Поза на детето — широка",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Вътрешни бедра","Долен гръб","Ханш"],what:"Child's Pose с крака по-широко от раменете. Ръцете протегнати напред. Дишай дълбоко. Усети разтягането в слабините и вътрешните бедра.",tip:"Широката версия отваря вътрешните бедра значително повече от стандартната."},
-      {name:"Саваса (тяло сканиране)",sets:1,reps:"5–7 минути",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Легни по гръб. Затвори очи. Бавно пренасяй вниманието от пръстите на краката нагоре — усещай всяка част от тялото и я отпускай съзнателно.",tip:"Body scan техниката успокоява нервната система по-дълбоко от обикновената релаксация."}
-    ]
-  },
-  {
-    id:9,label:"ТРЕНИРОВКА 9",title:"Активно Възстановяване",subtitle:"Много леко · Движение & Дишане",
-    emoji:"☀️",color:"#C49B2E",glow:"rgba(196,155,46,.2)",short:"Т9",
-    exercises:[
-      {name:"Маршируване на място (бавно)",sets:3,reps:"60 сек.",svg:S.march,muscles:["Крака","Лека циркулация","Координация"],what:"Марширувай на място с бавно, спокойно темпо. Вдигай коленете само до нивото на бедрото. Дишай равномерно. Целта е леко кръвообращение, не интензивност.",tip:"В дните, когато тялото е уморено, лекото движение ускорява възстановяването повече от пълна почивка."},
-      {name:"Cat-Cow (ритмично)",sets:3,reps:"10 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб","Корем"],what:"Изключително бавен Cat-Cow — по 5 секунди за всяка позиция. Свържи движението с дишането: вдишване при Крава, издишване при Котка.",tip:"Синхронизирането на дишането с движението активира парасимпатиковата нервна система."},
-      {name:"Тазови накланяния",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно","Долен гръб"],what:"При издишване — натисни кръста към пода. При вдишване — отпусни. Движението е много малко и деликатно.",tip:"Дори в дни на умора, тазовите накланяния поддържат активацията на дълбокия корем."},
-      {name:"Разтягане на гърдите",sets:3,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Предни рамене","Горен гръб"],what:"Застани или седни. Заключи ръцете зад гърба и открий гърдите. Затвори очи. Дишай дълбоко и с всяко издишване се отпускай.",tip:"Разтягането на гърдите е особено важно в дни на стрес — физически отваря тялото и подобрява настроението."},
-      {name:"Лежащо усукване",sets:2,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Корем","Хип флексори"],what:"Легни по гръб, бавно прекарай коляното встрани. Не натискай — просто остави тялото да се отпуска с гравитацията. Дишай дълбоко.",tip:"Ротацията масажира вътрешните органи и освобождава напрежение в гръбначния стълб."},
-      {name:"Саваса (удължена)",sets:1,reps:"7–10 минути",svg:S.savasana,muscles:["Цяло тяло","Нервна система","Ум"],what:"Легни по гръб. Позволи на тялото да е напълно тежко. Затвори очи. Отпусни се напълно. Нека мислите минават, без да ги задържаш.",tip:"Удължената релаксация е истинска инвестиция в здравето. Позволи си да почиваш без чувство за вина."}
+    id:'kettlebell', label:'С пудовка', emoji:'⚫',
+    workouts:[
+      {id:201,label:"П1",title:"Крака & Сила",subtitle:"С пудовка · Долна база",emoji:"⚫",color:"#2A4A7A",glow:"rgba(42,74,122,.2)",short:"П1",exercises:[
+        {name:"KB Deadlift",sets:4,reps:"15 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Гръб"],what:"Пудовката между краката. Наведи се от ханша, хвани дръжката, изправи се стягайки седалището. Пудовката близо до краката.",tip:"Основата на KB тренировките. Научи правилния хип хиндж преди swing-а."},
+        {name:"KB Goblet squat",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Дръж пудовката вертикално пред гърдите за дръжката. Клякай дълбоко, лактите бутат коленете навън.",tip:"Пудовката пред гърдите е по-естествена и удобна от гирите."},
+        {name:"KB Sumo squat",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Вътрешни бедра","Седалище"],what:"Широка стойка, пудовката между краката. Клякай надолу, пудовката слиза.",tip:"Дръж пудовката за двата рога (horns) — по-удобно при широка стойка."},
+        {name:"KB Hip hinge (RDL)",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Долен гръб"],what:"Пудовката в едната или двете ръце. Бавен Romanian deadlift — усети хамстрингите.",tip:"Бавното темпо е ключово за хамстрингите."},
+        {name:"KB Farmer carry",sets:3,reps:"40 м.",svg:S.carry,muscles:["Core","Трапец","Предмишница"],what:"Пудовката в едната ръка, ходи изправена. Не се накланяй. После смени ръка.",tip:"Farmer carry е едно от най-функционалните упражнения — имитира ежедневното носене."},
+        {name:"Разтягане на хип флексорите",sets:2,reps:"45 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"В изпад, едно коляно на пода. Бутни бедрата напред.",tip:"Задължително след KB долна тренировка."}
+      ]},
+      {id:202,label:"П2",title:"Гръб & Core",subtitle:"С пудовка · Гръб и стабилност",emoji:"🔵",color:"#5A2A7A",glow:"rgba(90,42,122,.2)",short:"П2",exercises:[
+        {name:"KB Single arm row",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс","Core"],what:"Лявата ръка на стол. Пудовката в дясната, дърпай нагоре покрай тялото. Лакътят минава над гърба.",tip:"Пудовката е по-неудобна от гирите за row — по-добра хватка е за дръжката."},
+        {name:"KB Deadlift (двустранно)",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Гръб","Седалище"],what:"Пудовката между краката. Хип хиндж, изправи се стягайки задните мускули.",tip:"С пудовка позицията е малко по-широка от с гира."},
+        {name:"KB Halo",sets:3,reps:"10 повт. / посока",svg:S.halo,muscles:["Рамене","Core","Мобилност"],what:"Дръж пудовката обърната (дъното нагоре) с двете ръце. Бавно я движи около главата. Редувай посоки.",tip:"Halo е отлично за мобилност на раменете и активация на Core."},
+        {name:"KB Suitcase carry",sets:3,reps:"30 м. / ръка",svg:S.carry,muscles:["Core","Обдуктори"],what:"Пудовката в едната ръка, ходи изправена. Тялото вертикално.",tip:"Много по-трудно от giri — пудовката е по-неудобна форма."},
+        {name:"KB Deadbug",sets:3,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Дръж пудовката с двете ръце нагоре. Спускай противоположен крак. Пудовката неподвижна.",tip:"Добавената тежест увеличава значително предизвикателността."},
+        {name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Рамене"],what:"Child's Pose за освобождаване на натоварения гръб.",tip:"Дишай дълбоко."}
+      ]},
+      {id:203,label:"П3",title:"Рамене & Горна Част",subtitle:"С пудовка · Горна",emoji:"🟣",color:"#2A6A4A",glow:"rgba(42,106,74,.2)",short:"П3",exercises:[
+        {name:"KB Press (single)",sets:4,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"Пудовката на рамото в rack позиция (дъното нагоре). Натисни нагоре над главата. Бавно спусни.",tip:"Rack позицията с пудовка е уникална — по-стабилна от гира."},
+        {name:"KB Halo",sets:3,reps:"10 повт. / посока",svg:S.halo,muscles:["Рамене","Горен гръб","Мобилност"],what:"Пудовката обърната (дъното нагоре). Бавно движи около главата.",tip:"Отлично за мобилност на раменете."},
+        {name:"KB Upright row",sets:3,reps:"12 повт.",svg:S.curl,muscles:["Рамене","Горен трапец"],what:"Пудовката пред бедрата. Дърпай нагоре покрай тялото до нивото на брадичката.",tip:"Лактите водят движението. Лека пудовка."},
+        {name:"KB Floor press",sets:3,reps:"12 повт. / ръка",svg:S.floorpress,muscles:["Гърди","Трицепс"],what:"Легни по гръб, пудовката на рамото. Натисни нагоре. Бавно спусни.",tip:"Single arm floor press активира повече Core от двустранния."},
+        {name:"KB Row",sets:3,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс"],what:"Single arm KB row. Дърпай лакъта нагоре и назад.",tip:"Пудовката е по-неудобна хватка — по-добре развива хвата."},
+        {name:"Разтягане на раменете",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Рамене","Гърди"],what:"Ръцете зад гърба, открий гърдите нагоре.",tip:"Задължително след натоварване на раменете."}
+      ]},
+      {id:204,label:"П4",title:"Full Body (Свинг)",subtitle:"С пудовка · Хип хиндж & Мощност",emoji:"🌀",color:"#7A4A2A",glow:"rgba(122,74,42,.2)",short:"П4",exercises:[
+        {name:"KB Swing (модифициран)",sets:5,reps:"15 повт.",svg:S.swing,muscles:["Седалище","Хамстринг","Core","Рамене"],what:"Пудовката пред краката. Наведи се, хвани, люшни назад между краката. С взривно изправяне избутай пудовката напред до нивото на раменете. Кръстът работи, не ръцете.",tip:"Swing-ът е крал на KB упражненията. Започни с лека пудовка и правилна техника."},
+        {name:"KB Goblet squat",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Пудовката пред гърдите. Дълбоко клякане.",tip:"Комбинирай с Swing за пълен Full Body ефект."},
+        {name:"KB Clean (опростен)",sets:3,reps:"8 повт. / ръка",svg:S.swing,muscles:["Цяло тяло","Координация"],what:"Люшни пудовката и я вдигни в rack позиция на рамото. Контролирано спусни.",tip:"Опростена версия — практикувай бавно преди да добавяш скорост."},
+        {name:"KB Press",sets:3,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"От rack позиция натисни нагоре над главата.",tip:"Rack позицията е специфична за пудовката."},
+        {name:"KB Row",sets:3,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведи се, дърпай пудовката нагоре.",tip:"Добра форма — гърбът прав."},
+        {name:"Саваса",sets:1,reps:"5 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация след Full Body KB тренировка.",tip:"Swing тренировката е интензивна — релаксацията е задължителна."}
+      ]},
+      {id:205,label:"П5",title:"Core & Стабилност",subtitle:"С пудовка · Core",emoji:"🎯",color:"#4A2A6A",glow:"rgba(74,42,106,.2)",short:"П5",exercises:[
+        {name:"KB Deadbug",sets:4,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Дръж пудовката нагоре с двете ръце. Бавно спускай противоположен крак.",tip:"Пудовката добавя предизвикателство — много бавно."},
+        {name:"KB Farmer carry (двустранно)",sets:3,reps:"40 м.",svg:S.carry,muscles:["Core","Трапец","Предмишница"],what:"Пудовки в двете ръце. Ходи изправена, Core стегнат.",tip:"Двустранното носене е по-лесно от едностранното — добро начало."},
+        {name:"KB Windmill (лек)",sets:3,reps:"8 повт. / страна",svg:S.windmill,muscles:["Странично Core","Тазобедрени","Рамене"],what:"Пудовката в горната ръка, краката широко. Наведи се странично към долния крак, поглеждай нагоре към пудовката.",tip:"Започни без тежест за правилна техника. Много лека пудовка."},
+        {name:"KB Страничен планк",sets:3,reps:"25 сек. / страна",svg:S.sideplank,muscles:["Кос корем","Рамене"],what:"В страничен планк, поставени пудовка на горното бедро. Задръж позицията.",tip:"Добавената тежест прави страничния планк значително по-предизвикателен."},
+        {name:"KB Halo",sets:3,reps:"8 повт. / посока",svg:S.halo,muscles:["Рамене","Core","Мобилност"],what:"Бавни кръгове около главата с пудовката обърната.",tip:"Halo е едновременно Core и мобилност."},
+        {name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш"],what:"Освободи натоварения Core с дълбоко дишане в Child's Pose.",tip:"Дишай в гърба."}
+      ]},
+      {id:206,label:"П6",title:"Долна Част",subtitle:"С пудовка · Крака",emoji:"🟠",color:"#2A5A6A",glow:"rgba(42,90,106,.2)",short:"П6",exercises:[
+        {name:"KB Goblet squat (дълбоко)",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Пудовката пред гърдите. Клякай максимално дълбоко, пауза 2 сек. долу.",tip:"Дълбокото клякане е по-ефективно за вътрешните бедра."},
+        {name:"KB Romanian deadlift",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Пудовката в двете ръце. Бавен хип хиндж надолу, изправи се стягайки задните мускули.",tip:"Фокус върху хамстрингите при спускане."},
+        {name:"KB Sumo deadlift",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Вътрешни бедра","Седалище"],what:"Широка стойка, пудовката между краката. Хвани, изправи се стягайки вътрешните бедра.",tip:"Широката стойка акцентира вътрешните бедра."},
+        {name:"KB Hip thrust",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг"],what:"Пудовката на бедрата. Вдигни, задръж 2 сек. горе.",tip:"Пудовката е по-неудобна от гирата за hip thrust — използвай кърпа под нея."},
+        {name:"KB Lunge",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"Пудовката в едната или двете ръце. Реверсивен изпад.",tip:"Пудовката наблизо до тялото — не я дръж далеч."},
+        {name:"Фигура 4",sets:2,reps:"50 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени"],what:"Задължително разтягане след KB крака.",tip:"Пудовката натоварва задните мускули много — не пропускай разтягането."}
+      ]},
+      {id:207,label:"П7",title:"Горна Част",subtitle:"С пудовка · Горна",emoji:"🔶",color:"#6A2A4A",glow:"rgba(106,42,74,.2)",short:"П7",exercises:[
+        {name:"KB Press (двустранно)",sets:4,reps:"10 повт.",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"Двете пудовки в rack позиция. Натисни нагоре едновременно.",tip:"Двустранният press е по-стабилен — добре за начало."},
+        {name:"KB Row (двустранно)",sets:4,reps:"12 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведи се напред, двете пудовки висят. Дърпай двете нагоре едновременно.",tip:"Лопатките се свиват в горната точка."},
+        {name:"KB Halo",sets:3,reps:"10 повт. / посока",svg:S.halo,muscles:["Рамене","Горен гръб"],what:"Пудовката обърната, бавни кръгове около главата.",tip:"Добра загрявка за раменете."},
+        {name:"KB Single arm press",sets:3,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Core"],what:"От rack позиция натисни нагоре. Обратната ръка е до тялото.",tip:"Едностранният press активира повече Core."},
+        {name:"KB Curl",sets:3,reps:"12 повт.",svg:S.curl,muscles:["Бицепс"],what:"Дръж пудовката за дъното. Огъни лактите и вдигни. Бавно спусни.",tip:"Хватката за дъното е по-неудобна — добре тренира хвата."},
+        {name:"Разтягане на гърдите и раменете",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Гърди","Рамене"],what:"Ръцете зад гърба, открий гърдите нагоре.",tip:"Задължително след горна KB тренировка."}
+      ]},
+      {id:208,label:"П8",title:"Мобилност с пудовка",subtitle:"С пудовка · Гъвкавост",emoji:"🌿",color:"#3A5A2A",glow:"rgba(58,90,42,.2)",short:"П8",exercises:[
+        {name:"KB Halo (бавен)",sets:3,reps:"8 повт. / посока",svg:S.halo,muscles:["Рамене","Горен гръб","Врат"],what:"Много бавни кръгове около главата. Усети всяка точка от движението.",tip:"Бавният halo е изключително ефективен за мобилност."},
+        {name:"KB Windmill",sets:3,reps:"8 повт. / страна",svg:S.windmill,muscles:["Странично Core","Тазобедрени","Раменни"],what:"Пудовката в горната ръка. Наведи се странично, поглеждай нагоре.",tip:"Едно от най-добрите мобилност упражнения с KB. Леко тегло."},
+        {name:"KB Goblet deep squat hold",sets:3,reps:"45 сек.",svg:S.deepsquat,muscles:["Вътрешни бедра","Тазово дъно","Глезен"],what:"Пудовката пред гърдите, клекни максимално дълбоко и задръж. Лактите бутат коленете навън.",tip:"Пудовката помага да задържиш баланса в дълбокия клон."},
+        {name:"KB Figure 8 (бавно)",sets:3,reps:"10 повт.",svg:S.swing,muscles:["Core","Координация","Предмишница"],what:"Пудовката преминава между краката в осморка — ляво, дясно. Много бавно и контролирано.",tip:"Figure 8 е отлично за координация и мобилност на тазобедрените."},
+        {name:"KB Торакална ротация",sets:3,reps:"8 повт. / страна",svg:S.catcow,muscles:["Гръден кош","Гръбначен стълб"],what:"На четири крака, пудовката до рамото. Завърти лакъта нагоре към тавана. Погледни нагоре.",tip:"Торакалната ротация е много важна след раждане."},
+        {name:"Саваса",sets:1,reps:"5–7 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация след мобилност тренировка.",tip:"Мобилността изисква нервна система да е спокойна."}
+      ]},
+      {id:209,label:"П9",title:"Активно Възстановяване",subtitle:"С пудовка · Много лека",emoji:"🌅",color:"#5A4A2A",glow:"rgba(90,74,42,.2)",short:"П9",exercises:[
+        {name:"KB Light deadlift",sets:3,reps:"20 повт.",svg:S.deadlift,muscles:["Гръб","Крака","Циркулация"],what:"Много лека пудовка. Бавен хип хиндж с акцент на движението.",tip:"Лекото движение ускорява кръвообращението и ускорява възстановяването."},
+        {name:"KB Halo (много бавно)",sets:3,reps:"6 повт. / посока",svg:S.halo,muscles:["Рамене","Мобилност"],what:"Много бавни кръгове, усещай всяка точка.",tip:"Бавният halo е успокояващ и мобилизиращ."},
+        {name:"KB Light swing (хип хиндж)",sets:3,reps:"15 повт.",svg:S.swing,muscles:["Седалище","Хамстринг","Циркулация"],what:"Много лека пудовка. Фокус върху правилния хип хиндж — не мощността.",tip:"Лекият swing поддържа техниката без натоварване."},
+        {name:"KB Farmer carry (лек)",sets:3,reps:"30 м.",svg:S.carry,muscles:["Core","Трапец"],what:"Много лека пудовка. Ходи бавно и изправено.",tip:"Farmer carry с лека тежест е приятна и функционална активност."},
+        {name:"Разтягане на гръб и бедра",sets:2,reps:"50 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш"],what:"Child's Pose след леката тренировка.",tip:"Дишай дълбоко и отпусни напълно."},
+        {name:"Саваса",sets:1,reps:"5–7 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация. Нека тялото абсорбира тренировката.",tip:"Дори при лека тренировка — релаксацията е инвестиция."}
+      ]}
     ]
   }
 ];
 
-// ── STATE ─────────────────────────────────────────────────────────
-let activeDay=DAYS[0], completed={}, expanded={};
+// ── STATE ─────────────────────────────────────────────────────
+let activeCat=CATEGORIES[0];
+let activeDay=activeCat.workouts[0];
+let completed={}, expanded={};
 let calYear=new Date().getFullYear(), calMonth=new Date().getMonth();
 
-const LOG_KEY='workout_log_v2';
+const LOG_KEY='workout_log_v3';
 function loadLog(){try{return JSON.parse(localStorage.getItem(LOG_KEY)||'{}');}catch(e){return {};}}
 function saveLog(l){try{localStorage.setItem(LOG_KEY,JSON.stringify(l));}catch(e){}}
 function dKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function todayKey(){return dKey(new Date());}
 
-// ── STATS ─────────────────────────────────────────────────────────
+// Stats
 function getStreak(){
-  const log=loadLog(); let streak=0,d=new Date(); d.setHours(0,0,0,0);
-  for(let i=0;i<365;i++){
-    if(log[dKey(d)]){streak++;}else if(i>0){break;}
-    d.setDate(d.getDate()-1);
-  }
+  const log=loadLog();let streak=0,d=new Date();d.setHours(0,0,0,0);
+  for(let i=0;i<365;i++){if(log[dKey(d)]){streak++;}else if(i>0){break;}d.setDate(d.getDate()-1);}
   return streak;
 }
 function getMonthCount(){
@@ -388,39 +484,39 @@ function renderStats(){
   document.getElementById('statMonth').textContent=getMonthCount();
 }
 
-// ── WORKOUT SELECTOR ──────────────────────────────────────────────
+// Category tabs
+function renderCatTabs(){
+  const tabs=document.getElementById('catTabs');tabs.innerHTML='';
+  CATEGORIES.forEach(cat=>{
+    const btn=document.createElement('button');
+    btn.className='cat-tab'+(cat.id===activeCat.id?' active':'');
+    btn.innerHTML=`${cat.emoji} ${cat.label}`;
+    btn.onclick=()=>{activeCat=cat;activeDay=cat.workouts[0];completed={};expanded={};renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();};
+    tabs.appendChild(btn);
+  });
+}
+
+// Workout grid
 function renderWorkoutGrid(){
-  const grid=document.getElementById('workoutGrid');
-  grid.innerHTML='';
-  DAYS.forEach(d=>{
+  const grid=document.getElementById('workoutGrid');grid.innerHTML='';
+  activeCat.workouts.forEach(d=>{
     const card=document.createElement('div');
     card.className='workout-card'+(d.id===activeDay.id?' active':'');
     card.style.setProperty('--c',d.color);
     card.style.setProperty('--glow',d.glow);
-    if(d.id===activeDay.id){
-      card.style.background=`linear-gradient(135deg,${d.color}0d,#fff)`;
-    }
-    card.innerHTML=`
-      <span class="wc-emoji">${d.emoji}</span>
-      <div class="wc-label">${d.label}</div>
-      <div class="wc-title">${d.title}</div>
-      <div class="wc-sub">${d.subtitle}</div>
-      <div class="wc-active-badge"></div>`;
-    card.addEventListener('click',()=>{
-      activeDay=d; completed={}; expanded={};
-      renderWorkoutGrid(); renderDayPanel(); renderMarkBtn();
-    });
+    if(d.id===activeDay.id){card.style.background=`linear-gradient(135deg,${d.color}0d,#fff)`;}
+    card.innerHTML=`<span class="wc-emoji">${d.emoji}</span><div class="wc-label">${d.label}</div><div class="wc-title">${d.title}</div><div class="wc-sub">${d.subtitle}</div><div class="wc-badge"></div>`;
+    card.onclick=()=>{activeDay=d;completed={};expanded={};renderWorkoutGrid();renderDayPanel();renderMarkBtn();};
     grid.appendChild(card);
   });
 }
 
-// ── MARK TODAY ────────────────────────────────────────────────────
+// Mark today
 function toggleMarkToday(){
   const log=loadLog(),k=todayKey();
   if(log[k]&&log[k].id===activeDay.id){delete log[k];}
   else{log[k]={id:activeDay.id,short:activeDay.short,color:activeDay.color,label:activeDay.label};}
-  saveLog(log);
-  renderMarkBtn(); renderCalendar(); renderStats();
+  saveLog(log);renderMarkBtn();renderCalendar();renderStats();
 }
 function renderMarkBtn(){
   const btn=document.getElementById('markBtn');
@@ -432,7 +528,7 @@ function renderMarkBtn(){
   btn.style.background=marked?activeDay.color:'transparent';
 }
 
-// ── DAY PANEL ─────────────────────────────────────────────────────
+// Day panel
 let accentEl=null;
 function renderDayPanel(){
   const d=activeDay;
@@ -440,26 +536,21 @@ function renderDayPanel(){
   document.getElementById('dayHeader').style.background=`linear-gradient(135deg,${d.color}0d,transparent)`;
   document.getElementById('dayEmoji').textContent=d.emoji;
   document.getElementById('dayLabel').textContent=d.label;
-  const dt=document.getElementById('dayTitle'); dt.textContent=d.title; dt.style.color=d.color;
+  const dt=document.getElementById('dayTitle');dt.textContent=d.title;dt.style.color=d.color;
   document.getElementById('daySubtitle').textContent=d.subtitle;
   if(!accentEl){accentEl=document.createElement('style');document.head.appendChild(accentEl);}
   accentEl.textContent=`.exercise-card.done::before{background:${d.color}}.exercise-card.done .check-btn{background:${d.color};border-color:transparent;color:#fff}`;
-  const list=document.getElementById('exerciseList'); list.innerHTML='';
+  const list=document.getElementById('exerciseList');list.innerHTML='';
   d.exercises.forEach(ex=>{
-    const key=d.id+'-'+ex.name, done=!!completed[key], open=!!expanded[key];
+    const key=d.id+'-'+ex.name,done=!!completed[key],open=!!expanded[key];
     const tags=ex.muscles.map(m=>`<span class="muscle-tag">${m}</span>`).join('');
     const card=document.createElement('div');
     card.className='exercise-card'+(done?' done':'');
     card.innerHTML=`
       <div class="exercise-top">
-        <div>
-          <div class="exercise-name">${ex.name}</div>
-          <div class="exercise-details">
-            <span class="badge">🔁 ${ex.reps}</span>
-            <span class="badge">× ${ex.sets} серии</span>
-          </div>
-        </div>
-        <button class="expand-btn${open?' open':''}" title="Описание">▾</button>
+        <div><div class="exercise-name">${ex.name}</div>
+        <div class="exercise-details"><span class="badge">🔁 ${ex.reps}</span><span class="badge">× ${ex.sets} серии</span></div></div>
+        <button class="expand-btn${open?' open':''}">▾</button>
         <div class="check-btn">${done?'✓':''}</div>
       </div>
       <div class="exercise-desc${open?' open':''}">
@@ -474,13 +565,8 @@ function renderDayPanel(){
           </div>
         </div>
       </div>`;
-    card.querySelector('.expand-btn').addEventListener('click',e=>{
-      e.stopPropagation(); expanded[key]=!expanded[key]; renderDayPanel();
-    });
-    const toggle=e=>{
-      if(e)e.stopPropagation();
-      completed[key]=!completed[key]; renderDayPanel(); updateRing();
-    };
+    card.querySelector('.expand-btn').addEventListener('click',e=>{e.stopPropagation();expanded[key]=!expanded[key];renderDayPanel();});
+    const toggle=e=>{if(e)e.stopPropagation();completed[key]=!completed[key];renderDayPanel();updateRing();};
     card.querySelector('.check-btn').addEventListener('click',toggle);
     card.querySelector('.exercise-top').addEventListener('click',toggle);
     list.appendChild(card);
@@ -488,65 +574,48 @@ function renderDayPanel(){
   updateRing();
 }
 function updateRing(){
-  const done=activeDay.exercises.filter(e=>completed[activeDay.id+'-'+e.name]).length;
-  const p=Math.round(done/activeDay.exercises.length*100);
+  const d=activeDay,done=d.exercises.filter(e=>completed[d.id+'-'+e.name]).length;
+  const p=Math.round(done/d.exercises.length*100);
   document.getElementById('progressCircle').style.strokeDashoffset=2*Math.PI*22*(1-p/100);
-  document.getElementById('progressCircle').setAttribute('stroke',activeDay.color);
+  document.getElementById('progressCircle').setAttribute('stroke',d.color);
   document.getElementById('progressText').textContent=p+'%';
 }
 
-// ── MONTHLY CALENDAR ──────────────────────────────────────────────
+// Calendar
 const BG_MONTHS=['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември'];
-
-function changeMonth(dir){
-  calMonth+=dir;
-  if(calMonth>11){calMonth=0;calYear++;}
-  if(calMonth<0){calMonth=11;calYear--;}
-  renderCalendar();
-}
-
+function changeMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCalendar();}
 function renderCalendar(){
   const log=loadLog();
   document.getElementById('calMonthTitle').textContent=BG_MONTHS[calMonth]+' '+calYear;
-  const grid=document.getElementById('calDays'); grid.innerHTML='';
-
-  const today=new Date(); today.setHours(0,0,0,0);
+  const grid=document.getElementById('calDays');grid.innerHTML='';
+  const today=new Date();today.setHours(0,0,0,0);
   const firstDay=new Date(calYear,calMonth,1);
-  // Monday-based: Mon=0 … Sun=6
-  let startOffset=(firstDay.getDay()+6)%7;
+  const startOffset=(firstDay.getDay()+6)%7;
   const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-
-  // Empty cells before first day
-  for(let i=0;i<startOffset;i++){
-    const empty=document.createElement('div'); empty.className='cal-cell empty'; grid.appendChild(empty);
-  }
-
+  for(let i=0;i<startOffset;i++){const e=document.createElement('div');e.className='cal-cell empty';grid.appendChild(e);}
   for(let day=1;day<=daysInMonth;day++){
-    const d=new Date(calYear,calMonth,day); d.setHours(0,0,0,0);
-    const k=dKey(d);
-    const entry=log[k];
-    const isToday=d.getTime()===today.getTime();
-    const isFuture=d>today;
+    const d=new Date(calYear,calMonth,day);d.setHours(0,0,0,0);
+    const k=dKey(d),entry=log[k];
+    const isToday=d.getTime()===today.getTime(),isFuture=d>today;
     const cell=document.createElement('div');
     cell.className='cal-cell'+(isToday?' today':'')+(isFuture?' future':'')+(entry?' has-entry':'');
-    if(entry){
-      cell.style.background=entry.color;
-      cell.title=entry.label;
-    }
+    if(entry){cell.style.background=entry.color;cell.title=entry.label;}
     cell.innerHTML=`<div class="cal-day-num">${day}</div>${entry?`<div class="cal-day-dot">${entry.short}</div>`:''}`;
     grid.appendChild(cell);
   }
-
-  // Legend
-  const leg=document.getElementById('calLegend'); leg.innerHTML='';
-  DAYS.forEach(d=>{
-    const item=document.createElement('div'); item.className='leg-item';
-    item.innerHTML=`<div class="leg-dot" style="background:${d.color}"></div>${d.short}`;
-    leg.appendChild(item);
+  // Legend — all workouts from all categories
+  const leg=document.getElementById('calLegend');leg.innerHTML='';
+  CATEGORIES.forEach(cat=>{
+    cat.workouts.forEach(w=>{
+      const item=document.createElement('div');item.className='leg-item';
+      item.innerHTML=`<div class="leg-dot" style="background:${w.color}"></div>${w.short}`;
+      leg.appendChild(item);
+    });
   });
 }
 
-// ── INIT ──────────────────────────────────────────────────────────
+// Init
+renderCatTabs();
 renderWorkoutGrid();
 renderDayPanel();
 renderMarkBtn();
