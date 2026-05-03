@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#FAF6EF;color:#2D2926;font-family:'DM Sans',sans-serif;min-height:100vh;}
+body{background:#FFE2D1;color:#2D2926;font-family:'DM Sans',sans-serif;min-height:100vh;}
 .app{max-width:860px;margin:0 auto;padding:28px 16px 60px;animation:fadeIn .6s ease both;}
 .header{text-align:center;margin-bottom:24px;}
 .header-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#A09288;border:1px solid #E0D8CE;padding:5px 14px;border-radius:100px;margin-bottom:14px;}
@@ -17,21 +17,25 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
 .postpartum-note strong{color:#C8853A;}
 /* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;}
-.stat-card{background:#fff;border:1px solid #E8E0D6;border-radius:14px;padding:14px 10px;text-align:center;box-shadow:0 1px 4px rgba(45,41,38,.05);}
+.stat-card{background:#5E4C5A;border:1px solid #4A3A46;border-radius:14px;padding:14px 10px;text-align:center;box-shadow:0 1px 4px rgba(45,41,38,.1);}
 .stat-icon{font-size:18px;margin-bottom:2px;}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;color:#2D2926;}
-.stat-label{font-size:10px;color:#A09288;letter-spacing:1px;text-transform:uppercase;margin-top:1px;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;color:#FFE2D1;}
+.stat-label{font-size:10px;color:#C4A8BE;letter-spacing:1px;text-transform:uppercase;margin-top:1px;}
 .section-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#C0B4AA;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
 .section-title::after{content:'';flex:1;height:1px;background:#E8E0D6;}
 /* CATEGORY TABS */
 .cat-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
 .cat-tab{padding:9px 18px;border-radius:100px;border:2px solid #E8E0D6;background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:#8A7A6E;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:6px;box-shadow:0 1px 3px rgba(45,41,38,.05);}
 .cat-tab:hover{border-color:#C8C0B6;color:#5A4A42;}
-.cat-tab.active{background:#2D2926;color:#FAF6EF;border-color:#2D2926;box-shadow:0 2px 8px rgba(45,41,38,.2);}
+.cat-tab.active{background:#55917F;color:#fff;border-color:#55917F;box-shadow:0 2px 8px rgba(85,145,127,.3);}
+.cat-tab .tab-arrow{font-size:10px;transition:transform .3s ease;display:inline-block;}
+.cat-tab.open .tab-arrow{transform:rotate(180deg);}
 /* WORKOUT GRID */
-.workout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;}
+.workout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:0;}
 @media(max-width:480px){.workout-grid{grid-template-columns:repeat(2,1fr);}}
-.workout-card{background:#fff;border:2px solid #E8E0D6;border-radius:16px;padding:14px 10px;cursor:pointer;transition:all .22s ease;text-align:center;position:relative;overflow:hidden;}
+.workout-grid-body{overflow:hidden;max-height:0;transition:max-height .4s ease,margin-bottom .4s ease;margin-bottom:0;}
+.workout-grid-body.open{max-height:800px;margin-bottom:22px;}
+.workout-card{background:#E1F0C4;border:2px solid #C8DFA8;border-radius:16px;padding:14px 10px;cursor:pointer;transition:all .22s ease;text-align:center;position:relative;overflow:hidden;}
 .workout-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(45,41,38,.1);}
 .workout-card.active{box-shadow:0 4px 20px var(--glow);}
 .wc-emoji{font-size:28px;margin-bottom:6px;display:block;}
@@ -42,7 +46,12 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
 .workout-card.active .wc-badge{opacity:1;}
 /* DAY PANEL */
 .day-panel{background:#fff;border:2px solid #E8E0D6;border-radius:20px;overflow:hidden;margin-bottom:22px;box-shadow:0 2px 12px rgba(45,41,38,.06);transition:border-color .3s;}
-.day-header{padding:18px 20px 14px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #F0EAE2;transition:background .3s;}
+.day-panel-body{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+.day-panel-body.open{max-height:4000px;}
+.day-header{padding:18px 20px 14px;display:flex;align-items:center;gap:14px;transition:background .3s;cursor:pointer;user-select:none;}
+.day-header-hint{font-size:11px;color:#B0A49C;font-style:italic;margin-left:auto;padding-right:4px;white-space:nowrap;}
+.panel-arrow{font-size:13px;color:#B0A49C;transition:transform .3s ease;flex-shrink:0;}
+.panel-arrow.open{transform:rotate(180deg);}
 .day-emoji{font-size:34px;line-height:1;flex-shrink:0;}
 .day-meta{flex:1;min-width:0;}
 .day-label{font-size:11px;letter-spacing:3px;color:#A09288;margin-bottom:3px;}
@@ -85,23 +94,28 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
 .desc-muscles{display:flex;gap:5px;flex-wrap:wrap;}
 .muscle-tag{font-size:10px;padding:2px 7px;border-radius:100px;border:1px solid #E0D8CE;color:#A09288;}
 /* CALENDAR */
-.cal-box{background:#fff;border:1px solid #E8E0D6;border-radius:20px;padding:18px 20px;margin-bottom:18px;box-shadow:0 2px 12px rgba(45,41,38,.06);}
-.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
-.cal-month-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#2D2926;}
-.cal-nav-btn{width:30px;height:30px;border-radius:50%;border:1px solid #E0D8CE;background:transparent;cursor:pointer;font-size:14px;color:#8A7A6E;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.cal-nav-btn:hover{background:#F0EAE2;}
+.cal-box{background:#6D5C69;border:1px solid #5A4A56;border-radius:20px;padding:18px 20px;margin-bottom:18px;box-shadow:0 2px 12px rgba(45,41,38,.06);}
+.cal-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;}
+.cal-toggle-arrow{font-size:14px;color:#F0E8EE;transition:transform .3s ease;display:flex;align-items:center;gap:6px;}
+.cal-toggle-arrow.open{transform:rotate(180deg);}
+.cal-body{overflow:hidden;max-height:0;transition:max-height .4s ease,margin-top .4s ease;margin-top:0;}
+.cal-body.open{max-height:600px;margin-top:16px;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.cal-month-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#F0E8EE;}
+.cal-nav-btn{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);cursor:pointer;font-size:14px;color:#F0E8EE;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.cal-nav-btn:hover{background:rgba(255,255,255,.22);}
 .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:5px;}
-.cal-wd{font-size:10px;font-weight:600;letter-spacing:.5px;color:#C0B4AA;text-align:center;padding:3px 0;}
+.cal-wd{font-size:10px;font-weight:600;letter-spacing:.5px;color:#C4A8BE;text-align:center;padding:3px 0;}
 .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
-.cal-cell{aspect-ratio:1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#8A7A6E;background:#FAF6EF;border:1.5px solid transparent;min-height:34px;}
+.cal-cell{aspect-ratio:1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#F0E8EE;background:rgba(255,255,255,.12);border:1.5px solid transparent;min-height:34px;}
 .cal-cell.empty{background:transparent;border-color:transparent;}
-.cal-cell.today{border-style:dashed;border-color:#B0A49C;}
-.cal-cell.future{color:#D0C8C0;}
+.cal-cell.today{border-style:dashed;border-color:#F0E8EE;}
+.cal-cell.future{color:#A890A4;background:rgba(255,255,255,.06);}
 .cal-cell.has-entry{color:#fff;border-color:transparent;}
 .cal-day-num{font-size:11px;font-weight:600;line-height:1;}
 .cal-day-dot{font-size:8px;font-weight:700;margin-top:1px;opacity:.9;}
-.cal-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #F0EAE2;}
-.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:#8A7A6E;}
+.cal-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.15);}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:#D4C0D0;}
 .leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
 /* TIPS */
 .tips-box{background:#fff;border:1px solid #E8E0D6;border-radius:16px;padding:16px 18px;box-shadow:0 1px 4px rgba(45,41,38,.05);}
@@ -130,10 +144,13 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
 </div>
 <div class="section-title">Избери тренировка</div>
 <div class="cat-tabs" id="catTabs"></div>
-<div class="workout-grid" id="workoutGrid"></div>
+<div class="workout-grid-body" id="workoutGridBody">
+  <div style="height:12px"></div>
+  <div class="workout-grid" id="workoutGrid"></div>
+</div>
 <div class="section-title">Упражнения</div>
 <div class="day-panel" id="dayPanel">
-  <div class="day-header" id="dayHeader">
+  <div class="day-header" id="dayHeader" onclick="toggleExercises()">
     <div class="day-emoji" id="dayEmoji"></div>
     <div class="day-meta">
       <div class="day-label" id="dayLabel"></div>
@@ -148,24 +165,37 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
         </svg>
         <div class="progress-ring-text" id="progressText">0%</div>
       </div>
-      <button class="mark-btn" id="markBtn" onclick="toggleMarkToday()">Запази деня</button>
+    </div>
+    <div class="panel-arrow" id="panelArrow">▾</div>
+  </div>
+  <div class="day-panel-body" id="dayPanelBody">
+    <div style="border-top:1px solid #F0EAE2;">
+      <div style="padding:10px 20px 4px;display:flex;justify-content:flex-end;">
+        <button class="mark-btn" id="markBtn" onclick="event.stopPropagation();toggleMarkToday()">Запази деня</button>
+      </div>
+      <div class="exercise-list" id="exerciseList"></div>
     </div>
   </div>
-  <div class="exercise-list" id="exerciseList"></div>
 </div>
 <div class="section-title">Календар</div>
 <div class="cal-box">
-  <div class="cal-nav">
-    <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+  <div class="cal-toggle" onclick="toggleCalendar()">
     <div class="cal-month-title" id="calMonthTitle"></div>
-    <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+    <div id="calArrow" class="cal-toggle-arrow">▾</div>
   </div>
-  <div class="cal-weekdays">
-    <div class="cal-wd">П</div><div class="cal-wd">В</div><div class="cal-wd">С</div>
-    <div class="cal-wd">Ч</div><div class="cal-wd">П</div><div class="cal-wd">С</div><div class="cal-wd">Н</div>
+  <div class="cal-body" id="calBody">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="changeMonth(-1);event.stopPropagation()">‹</button>
+      <div style="flex:1"></div>
+      <button class="cal-nav-btn" onclick="changeMonth(1);event.stopPropagation()">›</button>
+    </div>
+    <div class="cal-weekdays">
+      <div class="cal-wd">П</div><div class="cal-wd">В</div><div class="cal-wd">С</div>
+      <div class="cal-wd">Ч</div><div class="cal-wd">П</div><div class="cal-wd">С</div><div class="cal-wd">Н</div>
+    </div>
+    <div class="cal-days" id="calDays"></div>
+    <div class="cal-legend" id="calLegend"></div>
   </div>
-  <div class="cal-days" id="calDays"></div>
-  <div class="cal-legend" id="calLegend"></div>
 </div>
 <div class="tips-box">
   <div class="tips-title">Съвети за следродилно възстановяване</div>
@@ -485,13 +515,46 @@ function renderStats(){
 }
 
 // Category tabs
+let exercisesOpen=false;
+
+function toggleExercises(){
+  exercisesOpen=!exercisesOpen;
+  document.getElementById('dayPanelBody').classList.toggle('open',exercisesOpen);
+  document.getElementById('panelArrow').classList.toggle('open',exercisesOpen);
+}
+
+function openExercises(){
+  exercisesOpen=true;
+  document.getElementById('dayPanelBody').classList.add('open');
+  document.getElementById('panelArrow').classList.add('open');
+}
+
+let gridOpen=false;
+
+function toggleGrid(cat){
+  const isSameCat=cat.id===activeCat.id;
+  if(isSameCat){
+    gridOpen=!gridOpen;
+  } else {
+    activeCat=cat;
+    activeDay=cat.workouts[0];
+    completed={};expanded={};
+    gridOpen=true;
+    renderDayPanel();renderMarkBtn();
+  }
+  document.getElementById('workoutGridBody').classList.toggle('open',gridOpen);
+  renderCatTabs();
+  renderWorkoutGrid();
+}
+
 function renderCatTabs(){
   const tabs=document.getElementById('catTabs');tabs.innerHTML='';
   CATEGORIES.forEach(cat=>{
     const btn=document.createElement('button');
-    btn.className='cat-tab'+(cat.id===activeCat.id?' active':'');
-    btn.innerHTML=`${cat.emoji} ${cat.label}`;
-    btn.onclick=()=>{activeCat=cat;activeDay=cat.workouts[0];completed={};expanded={};renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();};
+    const isActive=cat.id===activeCat.id;
+    btn.className='cat-tab'+(isActive?' active':'')+(isActive&&gridOpen?' open':'');
+    btn.innerHTML=`${cat.emoji} ${cat.label} <span class="tab-arrow">▾</span>`;
+    btn.onclick=()=>toggleGrid(cat);
     tabs.appendChild(btn);
   });
 }
@@ -506,7 +569,7 @@ function renderWorkoutGrid(){
     card.style.setProperty('--glow',d.glow);
     if(d.id===activeDay.id){card.style.background=`linear-gradient(135deg,${d.color}0d,#fff)`;}
     card.innerHTML=`<span class="wc-emoji">${d.emoji}</span><div class="wc-label">${d.label}</div><div class="wc-title">${d.title}</div><div class="wc-sub">${d.subtitle}</div><div class="wc-badge"></div>`;
-    card.onclick=()=>{activeDay=d;completed={};expanded={};renderWorkoutGrid();renderDayPanel();renderMarkBtn();};
+    card.onclick=()=>{activeDay=d;completed={};expanded={};renderWorkoutGrid();renderDayPanel();renderMarkBtn();openExercises();gridOpen=false;document.getElementById('workoutGridBody').classList.remove('open');renderCatTabs();};
     grid.appendChild(card);
   });
 }
@@ -612,6 +675,13 @@ function renderCalendar(){
       leg.appendChild(item);
     });
   });
+}
+
+let calOpen=false;
+function toggleCalendar(){
+  calOpen=!calOpen;
+  document.getElementById('calBody').classList.toggle('open',calOpen);
+  document.getElementById('calArrow').classList.toggle('open',calOpen);
 }
 
 // Init
