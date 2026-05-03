@@ -84,9 +84,12 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
 .desc-layout{display:flex;gap:12px;align-items:flex-start;}
 .ex-svg-wrap{flex-shrink:0;width:78px;height:68px;background:#fff;border:1px solid #EDE6DC;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:4px;}
 .ex-svg{width:100%;height:100%;}
-.ex-svg line,.ex-svg path,.ex-svg polyline{stroke:#5A4A42;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+.ex-svg line,.ex-svg path,.ex-svg polyline{stroke:#5A4A42;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;fill:none;}
 .ex-svg circle.head{fill:#5A4A42;stroke:none;}
-.ex-svg line.floor{stroke:#C8BEB4;stroke-width:1.5;stroke-dasharray:4,3;}
+.ex-svg circle.jt{fill:#fff;stroke:#5A4A42;stroke-width:2;}
+.ex-svg line.floor{stroke:#C8C4BE;stroke-width:1.5;stroke-dasharray:4,3;}
+.ex-svg line.arr{stroke:#A09288;stroke-width:1.5;stroke-dasharray:3,2;}
+.ex-svg path.arr{stroke:#A09288;stroke-width:1.5;fill:none;}
 .desc-text{flex:1;}
 .desc-what{font-size:13px;color:#5A4A44;line-height:1.6;margin-bottom:7px;}
 .desc-tip{font-size:12px;color:#8A7A6E;font-style:italic;line-height:1.5;padding:7px 10px;background:#FFF8F0;border-radius:8px;border-left:2px solid #E8D8CC;margin-bottom:8px;}
@@ -210,43 +213,443 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,62px);letter-spa
 <script>
 // ── SVG LIBRARY ───────────────────────────────────────────────
 const S={
-  sumo:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="41"/><line x1="50" y1="24" x2="33" y2="37"/><line x1="50" y1="24" x2="67" y2="37"/><line x1="50" y1="41" x2="27" y2="58"/><line x1="27" y1="58" x2="20" y2="76"/><line x1="50" y1="41" x2="73" y2="58"/><line x1="73" y1="58" x2="80" y2="76"/></svg>`,
-  bridge:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="10" cy="62" r="6"/><line x1="16" y1="62" x2="35" y2="62"/><line x1="35" y1="62" x2="54" y2="40"/><line x1="54" y1="40" x2="70" y2="58"/><line x1="70" y1="58" x2="73" y2="72"/><line x1="20" y1="62" x2="22" y2="72"/><line x1="82" y1="72" x2="73" y2="58"/></svg>`,
-  clam:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="10" cy="52" r="6"/><line x1="16" y1="52" x2="62" y2="56"/><line x1="62" y1="56" x2="80" y2="68"/><line x1="80" y1="68" x2="82" y2="72"/><line x1="62" y1="56" x2="72" y2="38"/><line x1="72" y1="38" x2="80" y2="52"/></svg>`,
-  wallsit:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><line x1="75" y1="10" x2="75" y2="76" stroke="#C8BEB4" stroke-width="1.5"/><circle class="head" cx="50" cy="18" r="6"/><line x1="50" y1="24" x2="50" y2="50"/><line x1="50" y1="32" x2="35" y2="40"/><line x1="50" y1="50" x2="27" y2="50"/><line x1="27" y1="50" x2="27" y2="76"/><line x1="50" y1="50" x2="73" y2="50"/><line x1="73" y1="50" x2="75" y2="76"/></svg>`,
-  lunge:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="12" r="6"/><line x1="50" y1="18" x2="50" y2="45"/><line x1="50" y1="28" x2="64" y2="38"/><line x1="50" y1="45" x2="68" y2="60"/><line x1="68" y1="60" x2="73" y2="76"/><line x1="50" y1="45" x2="32" y2="58"/><line x1="32" y1="58" x2="20" y2="58"/><line x1="20" y1="58" x2="20" y2="76"/></svg>`,
-  deepsquat:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="26" r="6"/><line x1="50" y1="32" x2="50" y2="52"/><line x1="50" y1="38" x2="33" y2="46"/><line x1="33" y1="46" x2="25" y2="38"/><line x1="50" y1="38" x2="67" y2="46"/><line x1="67" y1="46" x2="75" y2="38"/><line x1="50" y1="52" x2="28" y2="63"/><line x1="28" y1="63" x2="22" y2="76"/><line x1="50" y1="52" x2="72" y2="63"/><line x1="72" y1="63" x2="78" y2="76"/></svg>`,
-  pushupknee:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="14" cy="34" r="6"/><line x1="20" y1="36" x2="62" y2="52"/><line x1="62" y1="52" x2="78" y2="72"/><line x1="28" y1="41" x2="18" y2="60"/><line x1="18" y1="60" x2="14" y2="72"/><line x1="58" y1="50" x2="68" y2="44"/><line x1="68" y1="44" x2="80" y2="58"/></svg>`,
-  catcow:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="15" cy="34" r="6"/><path d="M21,36 Q40,22 60,28 Q75,32 80,36"/><line x1="25" y1="52" x2="25" y2="76"/><line x1="75" y1="52" x2="75" y2="76"/><line x1="18" y1="38" x2="18" y2="52"/><line x1="80" y1="38" x2="80" y2="52"/></svg>`,
-  birddog:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="12" cy="34" r="6"/><line x1="18" y1="36" x2="60" y2="38"/><line x1="30" y1="52" x2="30" y2="76"/><line x1="55" y1="52" x2="55" y2="76"/><line x1="25" y1="38" x2="25" y2="54"/><line x1="58" y1="38" x2="58" y2="54"/><line x1="18" y1="36" x2="4" y2="30"/><line x1="60" y1="38" x2="90" y2="36"/></svg>`,
-  superman:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="54" x2="95" y2="54"/><circle class="head" cx="14" cy="44" r="6"/><line x1="20" y1="44" x2="72" y2="46"/><line x1="14" y1="44" x2="5" y2="36"/><line x1="22" y1="44" x2="8" y2="38"/><line x1="72" y1="46" x2="88" y2="38"/><line x1="70" y1="46" x2="90" y2="42"/></svg>`,
-  chest:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="48"/><line x1="50" y1="24" x2="32" y2="40"/><line x1="32" y1="40" x2="48" y2="46"/><line x1="50" y1="24" x2="68" y2="40"/><line x1="68" y1="40" x2="52" y2="46"/><line x1="50" y1="48" x2="38" y2="64"/><line x1="38" y1="64" x2="36" y2="76"/><line x1="50" y1="48" x2="62" y2="64"/><line x1="62" y1="64" x2="64" y2="76"/></svg>`,
-  neck:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="57" cy="12" r="6"/><line x1="54" y1="18" x2="50" y2="25"/><line x1="50" y1="25" x2="50" y2="48"/><line x1="50" y1="30" x2="34" y2="42"/><line x1="50" y1="30" x2="66" y2="42"/><line x1="50" y1="48" x2="38" y2="62"/><line x1="38" y1="62" x2="36" y2="76"/><line x1="50" y1="48" x2="62" y2="62"/><line x1="62" y1="62" x2="64" y2="76"/></svg>`,
-  breathing:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="66" x2="95" y2="66"/><circle class="head" cx="10" cy="56" r="6"/><line x1="16" y1="56" x2="72" y2="58"/><line x1="40" y1="57" x2="36" y2="66"/><line x1="36" y1="66" x2="12" y2="66"/><line x1="72" y1="58" x2="82" y2="66"/><line x1="30" y1="57" x2="38" y2="50"/><line x1="38" y1="50" x2="50" y2="54"/></svg>`,
-  deadbug:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="66" x2="95" y2="66"/><circle class="head" cx="10" cy="56" r="6"/><line x1="16" y1="56" x2="62" y2="58"/><line x1="25" y1="57" x2="20" y2="66"/><line x1="40" y1="57" x2="32" y2="42"/><line x1="32" y1="42" x2="28" y2="30"/><line x1="62" y1="58" x2="90" y2="54"/><line x1="50" y1="57" x2="58" y2="44"/><line x1="58" y1="44" x2="60" y2="36"/></svg>`,
-  pelvictilt:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="68" x2="95" y2="68"/><circle class="head" cx="10" cy="58" r="6"/><line x1="16" y1="58" x2="60" y2="60"/><line x1="16" y1="58" x2="16" y2="68"/><line x1="60" y1="60" x2="70" y2="44"/><line x1="70" y1="44" x2="82" y2="60"/><line x1="82" y1="60" x2="84" y2="68"/><line x1="45" y1="59" x2="44" y2="68"/></svg>`,
-  hamstring:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="70" x2="95" y2="70"/><circle class="head" cx="10" cy="60" r="6"/><line x1="16" y1="60" x2="62" y2="62"/><line x1="16" y1="60" x2="16" y2="70"/><line x1="62" y1="62" x2="70" y2="46"/><line x1="70" y1="46" x2="60" y2="28"/><line x1="60" y1="28" x2="52" y2="28"/><line x1="48" y1="62" x2="50" y2="75"/></svg>`,
-  childpose:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="70" x2="95" y2="70"/><circle class="head" cx="82" cy="58" r="6"/><line x1="76" y1="60" x2="42" y2="62"/><line x1="42" y1="62" x2="30" y2="56"/><line x1="30" y1="56" x2="18" y2="52"/><line x1="42" y1="62" x2="40" y2="70"/><line x1="26" y1="62" x2="24" y2="70"/><line x1="18" y1="52" x2="10" y2="56"/></svg>`,
-  twist:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="70" x2="95" y2="70"/><circle class="head" cx="10" cy="58" r="6"/><line x1="16" y1="58" x2="62" y2="60"/><line x1="16" y1="58" x2="16" y2="70"/><line x1="10" y1="58" x2="6" y2="50"/><line x1="62" y1="60" x2="78" y2="52"/><line x1="78" y1="52" x2="88" y2="60"/><line x1="50" y1="59" x2="52" y2="48"/><line x1="52" y1="48" x2="66" y2="50"/></svg>`,
-  march:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="44"/><line x1="50" y1="24" x2="34" y2="36"/><line x1="50" y1="24" x2="66" y2="36"/><line x1="34" y1="36" x2="30" y2="48"/><line x1="50" y1="44" x2="62" y2="56"/><line x1="62" y1="56" x2="72" y2="48"/><line x1="50" y1="44" x2="38" y2="58"/><line x1="38" y1="58" x2="36" y2="76"/></svg>`,
-  squatarms:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="16" r="6"/><line x1="50" y1="22" x2="50" y2="46"/><line x1="50" y1="26" x2="34" y2="10"/><line x1="50" y1="26" x2="66" y2="10"/><line x1="50" y1="46" x2="28" y2="60"/><line x1="28" y1="60" x2="22" y2="76"/><line x1="50" y1="46" x2="72" y2="60"/><line x1="72" y1="60" x2="78" y2="76"/></svg>`,
-  sideplank:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="15" cy="30" r="6"/><line x1="21" y1="32" x2="68" y2="54"/><line x1="68" y1="54" x2="80" y2="72"/><line x1="38" y1="41" x2="18" y2="60"/><line x1="18" y1="60" x2="14" y2="72"/><line x1="21" y1="30" x2="14" y2="50"/><line x1="14" y1="50" x2="14" y2="72"/><line x1="50" y1="47" x2="50" y2="20"/></svg>`,
-  slowpush:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="12" cy="40" r="6"/><line x1="18" y1="41" x2="60" y2="54"/><line x1="60" y1="54" x2="76" y2="72"/><line x1="26" y1="46" x2="14" y2="58"/><line x1="14" y1="58" x2="10" y2="72"/><line x1="56" y1="52" x2="66" y2="46"/><line x1="66" y1="46" x2="78" y2="60"/></svg>`,
-  figure4:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="70" x2="95" y2="70"/><circle class="head" cx="10" cy="58" r="6"/><line x1="16" y1="58" x2="58" y2="60"/><line x1="16" y1="58" x2="16" y2="70"/><line x1="58" y1="60" x2="70" y2="44"/><line x1="70" y1="44" x2="82" y2="58"/><line x1="82" y1="58" x2="84" y2="70"/><line x1="52" y1="59" x2="60" y2="52"/><line x1="60" y1="52" x2="72" y2="52"/></svg>`,
-  savasana:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="62" x2="95" y2="62"/><circle class="head" cx="10" cy="52" r="6"/><line x1="16" y1="52" x2="80" y2="54"/><line x1="80" y1="54" x2="92" y2="56"/><line x1="24" y1="52" x2="22" y2="62"/><line x1="66" y1="53" x2="68" y2="62"/><line x1="22" y1="52" x2="18" y2="62"/><line x1="22" y1="52" x2="14" y2="62"/></svg>`,
-  // Equipment SVGs
-  row:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="22" cy="24" r="6"/><line x1="22" y1="30" x2="52" y2="52"/><line x1="32" y1="38" x2="50" y2="26"/><line x1="32" y1="38" x2="14" y2="54"/><line x1="52" y1="52" x2="62" y2="68"/><line x1="62" y1="68" x2="66" y2="76"/><line x1="52" y1="52" x2="72" y2="60"/><line x1="72" y1="60" x2="76" y2="76"/></svg>`,
-  deadlift:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="30" cy="20" r="6"/><line x1="30" y1="26" x2="54" y2="52"/><line x1="38" y1="34" x2="20" y2="48"/><line x1="20" y1="48" x2="16" y2="58"/><line x1="38" y1="34" x2="54" y2="42"/><line x1="54" y1="52" x2="60" y2="68"/><line x1="60" y1="68" x2="64" y2="76"/><line x1="54" y1="52" x2="72" y2="58"/><line x1="72" y1="58" x2="76" y2="76"/><line x1="16" y1="58" x2="82" y2="60" stroke="#C8BEB4" stroke-width="2"/></svg>`,
-  curl:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="46"/><line x1="50" y1="46" x2="38" y2="62"/><line x1="38" y1="62" x2="36" y2="76"/><line x1="50" y1="46" x2="62" y2="62"/><line x1="62" y1="62" x2="64" y2="76"/><line x1="50" y1="26" x2="30" y2="38"/><line x1="30" y1="38" x2="28" y2="24"/><line x1="50" y1="26" x2="70" y2="38"/><line x1="70" y1="38" x2="72" y2="24"/></svg>`,
-  floorpress:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="66" x2="95" y2="66"/><circle class="head" cx="10" cy="56" r="6"/><line x1="16" y1="56" x2="70" y2="58"/><line x1="16" y1="56" x2="16" y2="66"/><line x1="70" y1="58" x2="80" y2="66"/><line x1="35" y1="57" x2="28" y2="40"/><line x1="28" y1="40" x2="16" y2="38"/><line x1="50" y1="57" x2="54" y2="40"/><line x1="54" y1="40" x2="66" y2="38"/></svg>`,
-  ohpress:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="12" r="6"/><line x1="50" y1="18" x2="50" y2="46"/><line x1="50" y1="46" x2="38" y2="60"/><line x1="38" y1="60" x2="36" y2="76"/><line x1="50" y1="46" x2="62" y2="60"/><line x1="62" y1="60" x2="64" y2="76"/><line x1="50" y1="26" x2="26" y2="20"/><line x1="26" y1="20" x2="22" y2="8"/><line x1="50" y1="26" x2="74" y2="20"/><line x1="74" y1="20" x2="78" y2="8"/></svg>`,
-  lateral:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="46"/><line x1="50" y1="46" x2="38" y2="60"/><line x1="38" y1="60" x2="36" y2="76"/><line x1="50" y1="46" x2="62" y2="60"/><line x1="62" y1="60" x2="64" y2="76"/><line x1="50" y1="28" x2="18" y2="36"/><line x1="50" y1="28" x2="82" y2="36"/></svg>`,
-  swing:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="36" cy="18" r="6"/><line x1="36" y1="24" x2="58" y2="48"/><line x1="44" y1="32" x2="24" y2="44"/><line x1="24" y1="44" x2="20" y2="58"/><line x1="44" y1="32" x2="64" y2="38"/><line x1="58" y1="48" x2="64" y2="64"/><line x1="64" y1="64" x2="68" y2="76"/><line x1="58" y1="48" x2="74" y2="56"/><line x1="74" y1="56" x2="78" y2="76"/><line x1="20" y1="58" x2="54" y2="60" stroke="#C8BEB4" stroke-width="2"/></svg>`,
-  halo:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="16" r="6"/><line x1="50" y1="22" x2="50" y2="48"/><line x1="50" y1="48" x2="38" y2="62"/><line x1="38" y1="62" x2="36" y2="76"/><line x1="50" y1="48" x2="62" y2="62"/><line x1="62" y1="62" x2="64" y2="76"/><path d="M32,12 Q50,4 68,12 Q74,18 68,24 Q50,16 32,24 Q26,18 32,12" stroke-width="2"/></svg>`,
-  goblet:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="18" r="6"/><line x1="50" y1="24" x2="50" y2="48"/><line x1="50" y1="36" x2="34" y2="44"/><line x1="34" y1="44" x2="38" y2="48"/><line x1="50" y1="36" x2="66" y2="44"/><line x1="66" y1="44" x2="62" y2="48"/><line x1="50" y1="48" x2="30" y2="62"/><line x1="30" y1="62" x2="24" y2="76"/><line x1="50" y1="48" x2="70" y2="62"/><line x1="70" y1="62" x2="76" y2="76"/></svg>`,
-  carry:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="50" cy="10" r="6"/><line x1="50" y1="16" x2="50" y2="46"/><line x1="50" y1="46" x2="40" y2="62"/><line x1="40" y1="62" x2="38" y2="76"/><line x1="50" y1="46" x2="62" y2="58"/><line x1="62" y1="58" x2="64" y2="76"/><line x1="50" y1="26" x2="28" y2="46"/><line x1="28" y1="46" x2="26" y2="58"/><line x1="50" y1="26" x2="72" y2="46"/><line x1="72" y1="46" x2="74" y2="58"/></svg>`,
-  windmill:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="76" x2="95" y2="76"/><circle class="head" cx="40" cy="16" r="6"/><line x1="40" y1="22" x2="52" y2="52"/><line x1="44" y1="32" x2="24" y2="42"/><line x1="44" y1="32" x2="66" y2="8"/><line x1="52" y1="52" x2="42" y2="68"/><line x1="42" y1="68" x2="40" y2="76"/><line x1="52" y1="52" x2="68" y2="62"/><line x1="68" y1="62" x2="72" y2="76"/></svg>`,
-  russiantwist:`<svg class="ex-svg" viewBox="0 0 100 85"><line class="floor" x1="5" y1="72" x2="95" y2="72"/><circle class="head" cx="50" cy="34" r="6"/><line x1="50" y1="40" x2="50" y2="60"/><line x1="50" y1="60" x2="34" y2="72"/><line x1="50" y1="60" x2="66" y2="72"/><line x1="50" y1="46" x2="28" y2="38"/><line x1="28" y1="38" x2="22" y2="30"/></svg>`
+  // viewBox 0 0 120 100 for all — bigger, clearer
+  sumo:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="16" r="8"/>
+    <line x1="60" y1="24" x2="60" y2="52"/>
+    <line x1="60" y1="34" x2="40" y2="50"/><line x1="60" y1="34" x2="80" y2="50"/>
+    <line x1="60" y1="52" x2="28" y2="70"/><circle class="jt" cx="28" cy="70" r="3.5"/>
+    <line x1="28" y1="70" x2="18" y2="92"/>
+    <line x1="60" y1="52" x2="92" y2="70"/><circle class="jt" cx="92" cy="70" r="3.5"/>
+    <line x1="92" y1="70" x2="102" y2="92"/>
+  </svg>`,
+  bridge:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="86" x2="115" y2="86"/>
+    <circle class="head" cx="12" cy="74" r="8"/>
+    <line x1="20" y1="74" x2="44" y2="74"/>
+    <line x1="44" y1="74" x2="68" y2="48"/><circle class="jt" cx="44" cy="74" r="3.5"/>
+    <circle class="jt" cx="68" cy="48" r="3.5"/>
+    <line x1="68" y1="48" x2="88" y2="66"/><circle class="jt" cx="88" cy="66" r="3.5"/>
+    <line x1="88" y1="66" x2="92" y2="86"/>
+    <line x1="22" y1="74" x2="20" y2="86"/>
+    <line class="arr" x1="68" y1="48" x2="68" y2="30"/>
+    <path class="arr" d="M63,36 L68,26 L73,36"/>
+  </svg>`,
+  clam:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="88" x2="115" y2="88"/>
+    <circle class="head" cx="12" cy="62" r="8"/>
+    <line x1="20" y1="62" x2="72" y2="66"/>
+    <line x1="72" y1="66" x2="96" y2="80"/><circle class="jt" cx="72" cy="66" r="3.5"/>
+    <line x1="96" y1="80" x2="98" y2="88"/>
+    <line x1="72" y1="66" x2="88" y2="40"/>
+    <line class="arr" x1="88" y1="40" x2="100" y2="30"/>
+    <path class="arr" d="M96,35 L104,26 L106,37"/>
+    <line x1="72" y1="66" x2="90" y2="66"/>
+  </svg>`,
+  wallsit:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <line x1="88" y1="6" x2="88" y2="92" stroke="#C8C4BE" stroke-width="3"/>
+    <circle class="head" cx="56" cy="18" r="8"/>
+    <line x1="56" y1="26" x2="58" y2="56"/>
+    <line x1="56" y1="36" x2="38" y2="48"/>
+    <line x1="58" y1="56" x2="30" y2="56"/><circle class="jt" cx="30" cy="56" r="3.5"/>
+    <line x1="30" y1="56" x2="28" y2="92"/>
+    <line x1="58" y1="56" x2="86" y2="56"/><circle class="jt" cx="86" cy="56" r="3.5"/>
+    <line x1="86" y1="56" x2="88" y2="92"/>
+  </svg>`,
+  lunge:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="14" r="8"/>
+    <line x1="60" y1="22" x2="60" y2="52"/>
+    <line x1="60" y1="32" x2="76" y2="46"/>
+    <line x1="60" y1="52" x2="80" y2="70"/><circle class="jt" cx="80" cy="70" r="3.5"/>
+    <line x1="80" y1="70" x2="86" y2="92"/>
+    <line x1="60" y1="52" x2="38" y2="68"/><circle class="jt" cx="38" cy="68" r="3.5"/>
+    <line x1="38" y1="68" x2="22" y2="68"/>
+    <line x1="22" y1="68" x2="22" y2="92"/>
+  </svg>`,
+  deepsquat:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="28" r="8"/>
+    <line x1="60" y1="36" x2="58" y2="58"/>
+    <line x1="58" y1="42" x2="36" y2="50"/><line x1="36" y1="50" x2="28" y2="42"/>
+    <line x1="58" y1="42" x2="80" y2="50"/><line x1="80" y1="50" x2="88" y2="42"/>
+    <line x1="58" y1="58" x2="30" y2="72"/><circle class="jt" cx="30" cy="72" r="3.5"/>
+    <line x1="30" y1="72" x2="22" y2="92"/>
+    <line x1="58" y1="58" x2="86" y2="72"/><circle class="jt" cx="86" cy="72" r="3.5"/>
+    <line x1="86" y1="72" x2="94" y2="92"/>
+  </svg>`,
+  pushupknee:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="86" x2="115" y2="86"/>
+    <circle class="head" cx="14" cy="38" r="8"/>
+    <line x1="22" y1="40" x2="72" y2="60"/>
+    <line x1="72" y1="60" x2="90" y2="86"/>
+    <line x1="30" y1="46" x2="18" y2="68"/>
+    <line x1="18" y1="68" x2="14" y2="86"/>
+    <line x1="68" y1="58" x2="80" y2="50"/><circle class="jt" cx="80" cy="50" r="3.5"/>
+    <line x1="80" y1="50" x2="96" y2="64"/>
+    <line class="arr" x1="22" y1="40" x2="16" y2="26"/>
+    <path class="arr" d="M12,31 L16,21 L20,31"/>
+  </svg>`,
+  catcow:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="90" x2="115" y2="90"/>
+    <circle class="head" cx="16" cy="36" r="8"/>
+    <path d="M24,38 Q44,22 68,28 Q86,32 94,38" stroke-width="3"/>
+    <line x1="28" y1="56" x2="28" y2="90"/>
+    <line x1="90" y1="56" x2="90" y2="90"/>
+    <line x1="18" y1="40" x2="18" y2="58"/>
+    <line x1="94" y1="40" x2="96" y2="56"/>
+    <circle class="jt" cx="28" cy="56" r="3"/>
+    <circle class="jt" cx="90" cy="56" r="3"/>
+  </svg>`,
+  birddog:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="90" x2="115" y2="90"/>
+    <circle class="head" cx="14" cy="36" r="8"/>
+    <line x1="22" y1="38" x2="70" y2="40"/>
+    <line x1="36" y1="58" x2="36" y2="90"/>
+    <line x1="66" y1="58" x2="66" y2="90"/>
+    <line x1="28" y1="40" x2="28" y2="60"/>
+    <line x1="66" y1="40" x2="66" y2="60"/>
+    <line x1="22" y1="38" x2="4" y2="30"/>
+    <line x1="70" y1="40" x2="106" y2="38"/>
+    <circle class="jt" cx="36" cy="58" r="3"/>
+    <circle class="jt" cx="66" cy="58" r="3"/>
+  </svg>`,
+  superman:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="62" x2="115" y2="62"/>
+    <circle class="head" cx="14" cy="50" r="8"/>
+    <line x1="22" y1="50" x2="84" y2="52"/>
+    <line x1="14" y1="50" x2="4" y2="38"/>
+    <line x1="24" y1="50" x2="8" y2="42"/>
+    <line x1="84" y1="52" x2="104" y2="40"/>
+    <line x1="82" y1="52" x2="106" y2="46"/>
+    <line class="arr" x1="4" y1="38" x2="4" y2="28"/>
+    <path class="arr" d="M0,33 L4,24 L8,33"/>
+    <line class="arr" x1="104" y1="40" x2="108" y2="30"/>
+    <path class="arr" d="M104,35 L108,26 L112,35"/>
+  </svg>`,
+  chest:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="12" r="8"/>
+    <line x1="60" y1="20" x2="60" y2="54"/>
+    <line x1="60" y1="30" x2="36" y2="52"/>
+    <line x1="36" y1="52" x2="56" y2="58"/>
+    <line x1="60" y1="30" x2="84" y2="52"/>
+    <line x1="84" y1="52" x2="64" y2="58"/>
+    <line x1="60" y1="54" x2="44" y2="74"/><line x1="44" y1="74" x2="42" y2="92"/>
+    <line x1="60" y1="54" x2="76" y2="74"/><line x1="76" y1="74" x2="78" y2="92"/>
+  </svg>`,
+  neck:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="70" cy="14" r="8"/>
+    <line x1="66" y1="21" x2="60" y2="28"/>
+    <line x1="60" y1="28" x2="60" y2="58"/>
+    <line x1="60" y1="36" x2="40" y2="50"/>
+    <line x1="60" y1="36" x2="80" y2="50"/>
+    <line x1="60" y1="58" x2="46" y2="76"/><line x1="46" y1="76" x2="44" y2="92"/>
+    <line x1="60" y1="58" x2="74" y2="76"/><line x1="74" y1="76" x2="76" y2="92"/>
+    <path class="arr" d="M78,10 Q84,20 78,28" fill="none"/>
+    <path class="arr" d="M75,26 L78,30 L82,26"/>
+  </svg>`,
+  breathing:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="80" x2="115" y2="80"/>
+    <circle class="head" cx="14" cy="68" r="8"/>
+    <line x1="22" y1="68" x2="84" y2="70"/>
+    <line x1="22" y1="68" x2="20" y2="80"/>
+    <line x1="84" y1="70" x2="96" y2="80"/>
+    <line x1="48" y1="69" x2="44" y2="80"/>
+    <line x1="36" y1="69" x2="50" y2="56"/><line x1="50" y1="56" x2="66" y2="62"/>
+    <line class="arr" x1="54" y1="62" x2="54" y2="46"/>
+    <path class="arr" d="M50,52 L54,44 L58,52"/>
+  </svg>`,
+  deadbug:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="80" x2="115" y2="80"/>
+    <circle class="head" cx="12" cy="68" r="8"/>
+    <line x1="20" y1="68" x2="76" y2="70"/>
+    <line x1="20" y1="68" x2="18" y2="80"/>
+    <line x1="76" y1="70" x2="98" y2="80"/>
+    <line x1="46" y1="69" x2="36" y2="50"/><circle class="jt" cx="36" cy="50" r="3"/>
+    <line x1="36" y1="50" x2="30" y2="34"/>
+    <line x1="60" y1="69" x2="68" y2="52"/><circle class="jt" cx="68" cy="52" r="3"/>
+    <line x1="68" y1="52" x2="72" y2="36"/>
+    <line class="arr" x1="30" y1="34" x2="24" y2="22"/>
+    <line class="arr" x1="72" y1="36" x2="92" y2="34"/>
+  </svg>`,
+  pelvictilt:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="82" x2="115" y2="82"/>
+    <circle class="head" cx="12" cy="70" r="8"/>
+    <line x1="20" y1="70" x2="72" y2="72"/>
+    <line x1="20" y1="70" x2="18" y2="82"/>
+    <line x1="72" y1="72" x2="84" y2="54"/><circle class="jt" cx="72" cy="72" r="3.5"/>
+    <circle class="jt" cx="84" cy="54" r="3.5"/>
+    <line x1="84" y1="54" x2="100" y2="70"/><circle class="jt" cx="100" cy="70" r="3.5"/>
+    <line x1="100" y1="70" x2="104" y2="82"/>
+    <line x1="54" y1="71" x2="52" y2="82"/>
+    <path class="arr" d="M68,64 Q72,58 76,64" fill="none"/>
+  </svg>`,
+  hamstring:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="84" x2="115" y2="84"/>
+    <circle class="head" cx="12" cy="72" r="8"/>
+    <line x1="20" y1="72" x2="74" y2="74"/>
+    <line x1="20" y1="72" x2="18" y2="84"/>
+    <line x1="74" y1="74" x2="84" y2="56"/><circle class="jt" cx="74" cy="74" r="3.5"/>
+    <line x1="84" y1="56" x2="78" y2="34"/>
+    <line x1="78" y1="34" x2="68" y2="32"/>
+    <line x1="56" y1="74" x2="58" y2="84"/>
+    <line class="arr" x1="78" y1="34" x2="88" y2="26"/>
+    <path class="arr" d="M84,30 L91,22 L94,32"/>
+  </svg>`,
+  childpose:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="86" x2="115" y2="86"/>
+    <circle class="head" cx="100" cy="70" r="8"/>
+    <line x1="92" y1="72" x2="52" y2="74"/>
+    <line x1="52" y1="74" x2="36" y2="66"/><circle class="jt" cx="52" cy="74" r="3.5"/>
+    <line x1="36" y1="66" x2="18" y2="60"/>
+    <line x1="52" y1="74" x2="50" y2="86"/>
+    <line x1="34" y1="74" x2="32" y2="86"/>
+    <line x1="18" y1="60" x2="10" y2="66"/>
+  </svg>`,
+  twist:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="84" x2="115" y2="84"/>
+    <circle class="head" cx="12" cy="70" r="8"/>
+    <line x1="20" y1="70" x2="74" y2="72"/>
+    <line x1="18" y1="70" x2="14" y2="84"/>
+    <line x1="10" y1="70" x2="6" y2="60"/>
+    <line x1="74" y1="72" x2="94" y2="60"/><circle class="jt" cx="74" cy="72" r="3.5"/>
+    <line x1="94" y1="60" x2="108" y2="70"/><circle class="jt" cx="94" cy="60" r="3.5"/>
+    <line x1="60" y1="71" x2="64" y2="58"/>
+    <line x1="64" y1="58" x2="80" y2="60"/>
+    <path class="arr" d="M86,56 Q96,50 100,58" fill="none"/>
+  </svg>`,
+  march:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="12" r="8"/>
+    <line x1="60" y1="20" x2="60" y2="52"/>
+    <line x1="60" y1="30" x2="40" y2="44"/>
+    <line x1="60" y1="30" x2="80" y2="42"/>
+    <line x1="40" y1="44" x2="36" y2="58"/>
+    <line x1="60" y1="52" x2="74" y2="68"/><circle class="jt" cx="74" cy="68" r="3.5"/>
+    <line x1="74" y1="68" x2="86" y2="58"/>
+    <line x1="60" y1="52" x2="46" y2="70"/><circle class="jt" cx="46" cy="70" r="3.5"/>
+    <line x1="46" y1="70" x2="44" y2="92"/>
+    <line class="arr" x1="74" y1="68" x2="76" y2="50"/>
+    <path class="arr" d="M72,56 L76,46 L80,56"/>
+  </svg>`,
+  squatarms:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="18" r="8"/>
+    <line x1="60" y1="26" x2="60" y2="54"/>
+    <line x1="60" y1="30" x2="36" y2="14"/>
+    <line x1="60" y1="30" x2="84" y2="14"/>
+    <line x1="60" y1="54" x2="34" y2="70"/><circle class="jt" cx="34" cy="70" r="3.5"/>
+    <line x1="34" y1="70" x2="26" y2="92"/>
+    <line x1="60" y1="54" x2="86" y2="70"/><circle class="jt" cx="86" cy="70" r="3.5"/>
+    <line x1="86" y1="70" x2="94" y2="92"/>
+  </svg>`,
+  sideplank:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="88" x2="115" y2="88"/>
+    <circle class="head" cx="16" cy="32" r="8"/>
+    <line x1="24" y1="34" x2="80" y2="60"/>
+    <line x1="80" y1="60" x2="96" y2="88"/>
+    <line x1="44" y1="46" x2="20" y2="68"/>
+    <line x1="20" y1="68" x2="16" y2="88"/>
+    <line x1="24" y1="32" x2="14" y2="54"/>
+    <line x1="14" y1="54" x2="14" y2="88"/>
+    <line x1="60" y1="52" x2="60" y2="22"/>
+    <line class="arr" x1="60" y1="26" x2="60" y2="16"/>
+    <path class="arr" d="M56,22 L60,12 L64,22"/>
+  </svg>`,
+  slowpush:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="86" x2="115" y2="86"/>
+    <circle class="head" cx="12" cy="44" r="8"/>
+    <line x1="20" y1="46" x2="70" y2="62"/>
+    <line x1="70" y1="62" x2="88" y2="86"/>
+    <line x1="30" y1="52" x2="16" y2="68"/>
+    <line x1="16" y1="68" x2="12" y2="86"/>
+    <line x1="66" y1="60" x2="78" y2="52"/><circle class="jt" cx="78" cy="52" r="3.5"/>
+    <line x1="78" y1="52" x2="96" y2="68"/>
+    <line class="arr" x1="20" y1="46" x2="14" y2="30"/>
+    <path class="arr" d="M10,36 L14,26 L18,36"/>
+  </svg>`,
+  figure4:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="84" x2="115" y2="84"/>
+    <circle class="head" cx="12" cy="70" r="8"/>
+    <line x1="20" y1="70" x2="70" y2="72"/>
+    <line x1="18" y1="70" x2="16" y2="84"/>
+    <line x1="70" y1="72" x2="84" y2="52"/><circle class="jt" cx="70" cy="72" r="3.5"/>
+    <circle class="jt" cx="84" cy="52" r="3.5"/>
+    <line x1="84" y1="52" x2="100" y2="68"/><circle class="jt" cx="100" cy="68" r="3.5"/>
+    <line x1="100" y1="68" x2="104" y2="84"/>
+    <line x1="62" y1="71" x2="72" y2="62"/>
+    <line x1="72" y1="62" x2="88" y2="62"/>
+  </svg>`,
+  savasana:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="72" x2="115" y2="72"/>
+    <circle class="head" cx="12" cy="60" r="8"/>
+    <line x1="20" y1="60" x2="96" y2="62"/>
+    <line x1="96" y1="62" x2="112" y2="66"/>
+    <line x1="28" y1="60" x2="26" y2="72"/>
+    <line x1="26" y1="60" x2="20" y2="72"/>
+    <line x1="78" y1="61" x2="80" y2="72"/>
+    <line x1="36" y1="60" x2="34" y2="72"/>
+  </svg>`,
+  row:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="24" cy="26" r="8"/>
+    <line x1="24" y1="34" x2="58" y2="58"/>
+    <line x1="36" y1="44" x2="56" y2="28"/>
+    <line x1="36" y1="44" x2="16" y2="62"/>
+    <line x1="58" y1="58" x2="70" y2="76"/><circle class="jt" cx="58" cy="58" r="3.5"/>
+    <line x1="70" y1="76" x2="76" y2="92"/>
+    <line x1="58" y1="58" x2="80" y2="66"/>
+    <line x1="80" y1="66" x2="86" y2="92"/>
+    <line class="arr" x1="56" y1="28" x2="56" y2="14"/>
+    <path class="arr" d="M52,20 L56,10 L60,20"/>
+  </svg>`,
+  deadlift:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="32" cy="22" r="8"/>
+    <line x1="32" y1="30" x2="60" y2="58"/>
+    <line x1="42" y1="40" x2="22" y2="56"/><circle class="jt" cx="42" cy="40" r="3.5"/>
+    <line x1="22" y1="56" x2="18" y2="68"/>
+    <line x1="42" y1="40" x2="60" y2="50"/>
+    <line x1="60" y1="58" x2="68" y2="76"/><circle class="jt" cx="60" cy="58" r="3.5"/>
+    <line x1="68" y1="76" x2="72" y2="92"/>
+    <line x1="60" y1="58" x2="82" y2="64"/>
+    <line x1="82" y1="64" x2="88" y2="92"/>
+    <line x1="18" y1="68" x2="92" y2="70" stroke="#C8C4BE" stroke-width="2.5"/>
+  </svg>`,
+  curl:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="12" r="8"/>
+    <line x1="60" y1="20" x2="60" y2="54"/>
+    <line x1="60" y1="54" x2="44" y2="74"/><line x1="44" y1="74" x2="42" y2="92"/>
+    <line x1="60" y1="54" x2="76" y2="74"/><line x1="76" y1="74" x2="78" y2="92"/>
+    <line x1="60" y1="30" x2="34" y2="42"/><circle class="jt" cx="34" cy="42" r="3.5"/>
+    <line x1="34" y1="42" x2="30" y2="24"/>
+    <line x1="60" y1="30" x2="86" y2="42"/><circle class="jt" cx="86" cy="42" r="3.5"/>
+    <line x1="86" y1="42" x2="90" y2="24"/>
+    <rect x="26" y="20" width="8" height="5" rx="1" fill="#5A4A42"/>
+    <rect x="86" y="20" width="8" height="5" rx="1" fill="#5A4A42"/>
+  </svg>`,
+  floorpress:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="80" x2="115" y2="80"/>
+    <circle class="head" cx="12" cy="68" r="8"/>
+    <line x1="20" y1="68" x2="84" y2="70"/>
+    <line x1="20" y1="68" x2="18" y2="80"/>
+    <line x1="84" y1="70" x2="96" y2="80"/>
+    <line x1="40" y1="69" x2="34" y2="48"/><circle class="jt" cx="34" cy="48" r="3.5"/>
+    <line x1="34" y1="48" x2="18" y2="44"/>
+    <line x1="60" y1="69" x2="66" y2="48"/><circle class="jt" cx="66" cy="48" r="3.5"/>
+    <line x1="66" y1="48" x2="82" y2="44"/>
+    <rect x="10" y="40" width="10" height="5" rx="1" fill="#5A4A42"/>
+    <rect x="80" y="40" width="10" height="5" rx="1" fill="#5A4A42"/>
+    <line class="arr" x1="34" y1="48" x2="34" y2="34"/>
+    <path class="arr" d="M30,40 L34,30 L38,40"/>
+  </svg>`,
+  ohpress:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="14" r="8"/>
+    <line x1="60" y1="22" x2="60" y2="54"/>
+    <line x1="60" y1="54" x2="44" y2="72"/><line x1="44" y1="72" x2="42" y2="92"/>
+    <line x1="60" y1="54" x2="76" y2="72"/><line x1="76" y1="72" x2="78" y2="92"/>
+    <line x1="60" y1="30" x2="30" y2="24"/><circle class="jt" cx="30" cy="24" r="3.5"/>
+    <line x1="30" y1="24" x2="24" y2="8"/>
+    <line x1="60" y1="30" x2="90" y2="24"/><circle class="jt" cx="90" cy="24" r="3.5"/>
+    <line x1="90" y1="24" x2="96" y2="8"/>
+    <rect x="18" y="4" width="10" height="5" rx="1" fill="#5A4A42"/>
+    <rect x="92" y="4" width="10" height="5" rx="1" fill="#5A4A42"/>
+  </svg>`,
+  lateral:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="12" r="8"/>
+    <line x1="60" y1="20" x2="60" y2="54"/>
+    <line x1="60" y1="54" x2="44" y2="74"/><line x1="44" y1="74" x2="42" y2="92"/>
+    <line x1="60" y1="54" x2="76" y2="74"/><line x1="76" y1="74" x2="78" y2="92"/>
+    <line x1="60" y1="32" x2="20" y2="40"/>
+    <line x1="60" y1="32" x2="100" y2="40"/>
+    <rect x="10" y="36" width="10" height="5" rx="1" fill="#5A4A42"/>
+    <rect x="100" y="36" width="10" height="5" rx="1" fill="#5A4A42"/>
+    <line class="arr" x1="20" y1="40" x2="14" y2="26"/>
+    <line class="arr" x1="100" y1="40" x2="106" y2="26"/>
+  </svg>`,
+  swing:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="38" cy="20" r="8"/>
+    <line x1="38" y1="28" x2="64" y2="54"/>
+    <line x1="48" y1="38" x2="26" y2="50"/><circle class="jt" cx="48" cy="38" r="3.5"/>
+    <line x1="26" y1="50" x2="22" y2="64"/>
+    <line x1="48" y1="38" x2="70" y2="44"/>
+    <line x1="64" y1="54" x2="72" y2="72"/><circle class="jt" cx="64" cy="54" r="3.5"/>
+    <line x1="72" y1="72" x2="76" y2="92"/>
+    <line x1="64" y1="54" x2="86" y2="62"/>
+    <line x1="86" y1="62" x2="92" y2="92"/>
+    <circle cx="22" cy="64" r="6" fill="#5A4A42" opacity="0.6"/>
+    <line class="arr" x1="22" y1="64" x2="76" y2="32"/>
+    <path class="arr" d="M70,28 L80,30 L74,38"/>
+  </svg>`,
+  halo:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="18" r="8"/>
+    <line x1="60" y1="26" x2="60" y2="58"/>
+    <line x1="60" y1="58" x2="44" y2="76"/><line x1="44" y1="76" x2="42" y2="92"/>
+    <line x1="60" y1="58" x2="76" y2="76"/><line x1="76" y1="76" x2="78" y2="92"/>
+    <path d="M36,14 Q60,4 84,14 Q92,22 84,30 Q60,20 36,30 Q28,22 36,14" stroke-width="2.5" fill="none"/>
+    <circle cx="84" cy="14" r="5" fill="#5A4A42" opacity="0.7"/>
+    <line class="arr" x1="84" y1="14" x2="98" y2="8"/>
+    <path class="arr" d="M94,6 L102,6 L98,14"/>
+  </svg>`,
+  goblet:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="20" r="8"/>
+    <line x1="60" y1="28" x2="60" y2="54"/>
+    <line x1="60" y1="38" x2="40" y2="50"/><line x1="40" y1="50" x2="44" y2="56"/>
+    <line x1="60" y1="38" x2="80" y2="50"/><line x1="80" y1="50" x2="76" y2="56"/>
+    <circle cx="60" cy="56" r="7" fill="#5A4A42" opacity="0.5"/>
+    <line x1="60" y1="54" x2="34" y2="70"/><circle class="jt" cx="34" cy="70" r="3.5"/>
+    <line x1="34" y1="70" x2="26" y2="92"/>
+    <line x1="60" y1="54" x2="86" y2="70"/><circle class="jt" cx="86" cy="70" r="3.5"/>
+    <line x1="86" y1="70" x2="94" y2="92"/>
+  </svg>`,
+  carry:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="60" cy="12" r="8"/>
+    <line x1="60" y1="20" x2="60" y2="52"/>
+    <line x1="60" y1="52" x2="46" y2="72"/><line x1="46" y1="72" x2="44" y2="92"/>
+    <line x1="60" y1="52" x2="74" y2="70"/><line x1="74" y1="70" x2="76" y2="92"/>
+    <line x1="60" y1="30" x2="30" y2="52"/>
+    <line x1="30" y1="52" x2="28" y2="66"/>
+    <circle cx="28" cy="70" r="6" fill="#5A4A42" opacity="0.5"/>
+    <line x1="60" y1="30" x2="90" y2="52"/>
+    <line x1="90" y1="52" x2="92" y2="66"/>
+    <circle cx="92" cy="70" r="6" fill="#5A4A42" opacity="0.5"/>
+    <line class="arr" x1="60" y1="72" x2="80" y2="72"/>
+    <path class="arr" d="M76,68 L84,72 L76,76"/>
+  </svg>`,
+  windmill:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="92" x2="115" y2="92"/>
+    <circle class="head" cx="44" cy="18" r="8"/>
+    <line x1="44" y1="26" x2="58" y2="58"/>
+    <line x1="50" y1="38" x2="26" y2="50"/>
+    <line x1="50" y1="38" x2="74" y2="10"/>
+    <circle cx="74" cy="10" r="6" fill="#5A4A42" opacity="0.6"/>
+    <line x1="58" y1="58" x2="46" y2="76"/><line x1="46" y1="76" x2="44" y2="92"/>
+    <line x1="58" y1="58" x2="76" y2="70"/><line x1="76" y1="70" x2="80" y2="92"/>
+    <line x1="26" y1="50" x2="14" y2="68"/>
+  </svg>`,
+  russiantwist:`<svg class="ex-svg" viewBox="0 0 120 100">
+    <line class="floor" x1="5" y1="86" x2="115" y2="86"/>
+    <circle class="head" cx="60" cy="36" r="8"/>
+    <line x1="60" y1="44" x2="60" y2="68"/>
+    <line x1="60" y1="68" x2="40" y2="86"/>
+    <line x1="60" y1="68" x2="80" y2="86"/>
+    <line x1="60" y1="52" x2="32" y2="40"/><circle class="jt" cx="32" cy="40" r="3.5"/>
+    <line x1="32" y1="40" x2="24" y2="28"/>
+    <circle cx="24" cy="24" r="5" fill="#5A4A42" opacity="0.6"/>
+    <path class="arr" d="M30,60 Q22,50 28,42" fill="none"/>
+    <path class="arr" d="M24,46 L28,38 L34,44"/>
+  </svg>`
 };
 
 // ── WORKOUT CATEGORIES ────────────────────────────────────────
@@ -333,7 +736,7 @@ const CATEGORIES=[
     workouts:[
       {id:101,label:"Г1",title:"Крака & Седалище",subtitle:"С гири · Долна част",emoji:"🏋️",color:"#C85A3A",glow:"rgba(200,90,58,.2)",short:"Г1",exercises:[
         {name:"Goblet squat",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Дръж гирата вертикално пред гърдите с двете ръце. Клякай дълбоко, лактите бутат коленете навън в долната точка.",tip:"Гирата пред гърдите помага да поддържаш гърба изправен."},
-        {name:"Romanian deadlift",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Гирите пред бедрата. Наведи се напред от ханша, като гирите се плъзгат по краката надолу. Изправи се назад, стягайки седалището.",tip:"Коленете са леко свити, гърбът е прав. Усети разтягането в хамстрингите."},
+        {name:"Romanian deadlift",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Гирите пред бедрата. Наведи се напред от ханша (бедрата назад, гърбът прав), гирите се плъзгат по краката надолу. Изправи се и стегни седалището.",tip:"Коленете са леко свити, гърбът е прав. Усети разтягането в хамстрингите."},
         {name:"Реверсивни изпади",sets:3,reps:"12 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"Дръж гирите настрани. Направи крачка назад и клекни. Предното коляно над глезена. Върни се.",tip:"Реверсивният изпад е по-щадящ за коленете от напредния."},
         {name:"Hip thrust с гира",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазово дъно"],what:"Легни по гръб, постави гирата на бедрата. Вдигни бедрата нагоре, стегни седалището горе. Задръж 2 сек.",tip:"Гирата увеличава натоварването значително. Започни с лека тежест."},
         {name:"Sumo squat с гира",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Вътрешни бедра","Седалище","Квадрицепс"],what:"Широка стойка, дръж гирата вертикално между краката. Клякай надолу, гирата слиза между краката.",tip:"Гирата добавя натоварване, но и помага за баланса."},
@@ -343,12 +746,12 @@ const CATEGORIES=[
         {name:"Floor press",sets:4,reps:"12 повт.",svg:S.floorpress,muscles:["Гърди","Трицепс","Предни рамене"],what:"Легни по гръб, гирите на нивото на гърдите. Избутай нагоре докато ръцете са изправени. Бавно спусни.",tip:"Floor press е по-безопасен от пейка след раждане — ограничава амплитудата."},
         {name:"Dumbbell flyes",sets:3,reps:"12 повт.",svg:S.floorpress,muscles:["Гърди","Предни рамене"],what:"Легни по гръб, гирите нагоре. Бавно отвори ръцете встрани (леко свити лакти) до леко разтягане в гърдите. Върни.",tip:"Много бавно — 4 сек. надолу. Усети гърдите, не раменете."},
         {name:"Tricep overhead extension",sets:3,reps:"15 повт.",svg:S.curl,muscles:["Трицепс"],what:"Застани или седни. Дръж гирата с двете ръце над главата. Свий лактите — гирата слиза зад главата. Изправи.",tip:"Лактите остават неподвижни — само предмишниците се движат."},
-        {name:"Tricep kickback",sets:3,reps:"12 повт. / ръка",svg:S.row,muscles:["Трицепс"],what:"Наведи се напред, горната ръка успоредна с пода. Изправи лакътя назад докато ръката е права. Бавно върни.",tip:"Стегни трицепса в изправената позиция — задръж 1 сек."},
+        {name:"Tricep kickback",sets:3,reps:"12 повт. / ръка",svg:S.row,muscles:["Трицепс"],what:"Наведи се напред, мишницата успоредна с пода. Изправи лакътя назад докато ръката е права. Бавно върни.",tip:"Стегни трицепса в изправената позиция — задръж 1 сек."},
         {name:"Close grip floor press",sets:3,reps:"10 повт.",svg:S.floorpress,muscles:["Трицепс","Гърди"],what:"Floor press, но с гирите по-близо — лактите покрай тялото при спускането.",tip:"Вариантът акцентира повече на трицепса."},
         {name:"Разтягане на гърдите",sets:2,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Предни рамене"],what:"Ръцете зад гърба, открий гърдите нагоре. Дишай дълбоко.",tip:"Задължително след натоварване на гърдите."}
       ]},
       {id:103,label:"Г3",title:"Гръб & Бицепс",subtitle:"С гири · Горна задна",emoji:"🦾",color:"#3A7A5A",glow:"rgba(58,122,90,.2)",short:"Г3",exercises:[
-        {name:"Single arm row",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс","Задни рамене"],what:"Лявата ръка и коляно на пейка/стол. Дясната ръка дърпа гирата нагоре покрай тялото. Лакътят минава над гърба.",tip:"Дърпай с лакъта, не с ръката — така ангажираш гърба."},
+        {name:"Single arm row",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс","Задни рамене"],what:"Лявата ръка и коляно на пейка/стол. Дясната ръка дърпа гирата нагоре покрай тялото. Лакътят се движи над нивото на гърба.",tip:"Дърпай с лакъта, не с ръката — така ангажираш гърба."},
         {name:"Bent over row",sets:3,reps:"12 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведи се напред от ханша (~45°), гирите пред краката. Дърпай двете гири нагоре покрай тялото.",tip:"Гърбът е прав, погледът напред-надолу. Не се изправяй при движението."},
         {name:"Bicep curl",sets:4,reps:"15 повт.",svg:S.curl,muscles:["Бицепс","Предмишница"],what:"Застани изправена. Завърти дланите нагоре. Огъни лактите и вдигни гирите към раменете. Бавно спусни.",tip:"Лактите покрай тялото — не ги движи напред."},
         {name:"Hammer curl",sets:3,reps:"12 повт.",svg:S.curl,muscles:["Бицепс","Брахиалис","Предмишница"],what:"Дланите встрани (неутрален хват). Огъни лактите и вдигни гирите. Бавно спусни.",tip:"Hammer curl укрепва допълнителни мускули освен бицепса."},
@@ -373,7 +776,7 @@ const CATEGORIES=[
       ]},
       {id:106,label:"Г6",title:"Full Body (Комбо)",subtitle:"С гири · Комбинирани движения",emoji:"⚡",color:"#2A7A8A",glow:"rgba(42,122,138,.2)",short:"Г6",exercises:[
         {name:"Squat to press",sets:4,reps:"12 повт.",svg:S.squatarms,muscles:["Крака","Рамене","Core"],what:"Гирите на раменете. Клякай надолу, при качването нагоре — избутай гирите над главата. При следващото клякане — свали.",tip:"Комбинираното движение е много ефективно за изгаряне и кардио."},
-        {name:"Romanian deadlift",sets:3,reps:"15 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Гирите пред бедрата, наведи се напред от ханша. Изправи се, стягайки седалището.",tip:"Усети хамстрингите при спускането надолу."},
+        {name:"Romanian deadlift",sets:3,reps:"15 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Гирите пред бедрата, наведи се напред от ханша (бедрата назад, гърбът прав). Изправи се и стегни седалището.",tip:"Усети хамстрингите при спускането надолу."},
         {name:"Bent over row",sets:3,reps:"12 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведен ~45°. Дърпай гирите нагоре покрай тялото.",tip:"Гърбът остава прав — не се изправяй при движението."},
         {name:"Lateral raise",sets:3,reps:"15 повт.",svg:S.lateral,muscles:["Рамене"],what:"Вдигни гирите встрани до нивото на раменете. Бавно спусни.",tip:"Много лека тежест за lateral raise."},
         {name:"Реверсивен изпад с curl",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Крака","Бицепс","Баланс"],what:"При всяко клякане в изпада — огъни лактите (bicep curl). Изправи се и спусни ръцете.",tip:"Комбо упражнение — ефективно и за крака, и за ръце."},
@@ -381,7 +784,7 @@ const CATEGORIES=[
       ]},
       {id:107,label:"Г7",title:"Крака (По-интензивно)",subtitle:"С гири · Долна Интензивна",emoji:"🔥",color:"#8A3A5A",glow:"rgba(138,58,90,.2)",short:"Г7",exercises:[
         {name:"Goblet squat (дълбоко)",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Goblet squat с пауза в долната точка — задръж 2 сек. С по-тежка гира от Г1.",tip:"Паузата в долната позиция е много по-предизвикателна."},
-        {name:"Sumo deadlift",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Вътрешни бедра","Седалище","Долен гръб"],what:"Широка стойка, гирата между краката. Вземи гирата и се изправи, стягайки седалището и вътрешните бедра.",tip:"Sumo deadlift е отличен за вътрешните бедра."},
+        {name:"Sumo deadlift",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Вътрешни бедра","Седалище","Долен гръб"],what:"Широка стойка, гирата между краката. Вземи гирата и се изправи, като стегнеш седалището и вътрешните бедра.",tip:"Sumo deadlift е отличен за вътрешните бедра."},
         {name:"Split squat с гири",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"В изпад (задният крак на стол/диван по желание). Дръж гирите настрани. Клякай надолу и нагоре.",tip:"Задният крак на повърхност значително увеличава натоварването."},
         {name:"Hip thrust с гира (тежко)",sets:4,reps:"15 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг"],what:"По-тежка гира на бедрата. Вдигни бедрата, задръж 3 сек. горе.",tip:"3-секундната пауза горе е ключова за максимална активация на седалището."},
         {name:"Calf raise с гири",sets:3,reps:"20 повт.",svg:S.march,muscles:["Прасец","Солеус"],what:"Дръж гирите настрани. Вдигни се на пръсти, задръж 1 сек. горе, бавно слез.",tip:"Прасецът се нуждае от много повторения."},
@@ -399,7 +802,7 @@ const CATEGORIES=[
         {name:"Light deadlift (много повт.)",sets:3,reps:"20 повт.",svg:S.deadlift,muscles:["Гръб","Крака","Циркулация"],what:"Много лека гира. Бавен Romanian deadlift с акцент на движението, не теглото.",tip:"Много повторения с лека тежест ускоряват кръвообращението и възстановяването."},
         {name:"Light bent over row",sets:3,reps:"20 повт.",svg:S.row,muscles:["Гръб","Рамене"],what:"Много лека гира, бавни движения. Усети движението на лопатките.",tip:"Леката работа след тежки дни ускорява възстановяването."},
         {name:"Light lateral raise",sets:3,reps:"20 повт.",svg:S.lateral,muscles:["Рамене"],what:"Много лека гира. Бавно вдигане и спускане на ръцете встрани.",tip:"Активира раменете без натоварване."},
-        {name:"Arm circles с гири",sets:2,reps:"30 сек. / посока",svg:S.lateral,muscles:["Рамене","Мобилност"],what:"Много леки гири. Правете кръгове с ръцете напред и назад. Бавно.",tip:"Мобилизира раменните стави след натоварване."},
+        {name:"Arm circles с гири",sets:2,reps:"30 сек. / посока",svg:S.lateral,muscles:["Рамене","Мобилност"],what:"Много леки гири. Прави кръгове с ръцете напред и назад. Бавно.",tip:"Мобилизира раменните стави след натоварване."},
         {name:"Разтягане с гира",sets:2,reps:"45 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Странично"],what:"Гирата в едната ръка, наклони се странично. Задръж разтягането.",tip:"Страничното разтягане с тежест е много ефективно."},
         {name:"Саваса",sets:1,reps:"5 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация след тренировката.",tip:"Дори при лека тренировка — релаксацията е важна."}
       ]}
@@ -409,7 +812,7 @@ const CATEGORIES=[
     id:'kettlebell', label:'С пудовка', emoji:'⚫',
     workouts:[
       {id:201,label:"П1",title:"Крака & Сила",subtitle:"С пудовка · Долна база",emoji:"⚫",color:"#2A4A7A",glow:"rgba(42,74,122,.2)",short:"П1",exercises:[
-        {name:"KB Deadlift",sets:4,reps:"15 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Гръб"],what:"Пудовката между краката. Наведи се от ханша, хвани дръжката, изправи се стягайки седалището. Пудовката близо до краката.",tip:"Основата на KB тренировките. Научи правилния хип хиндж преди swing-а."},
+        {name:"KB Deadlift",sets:4,reps:"15 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Гръб"],what:"Пудовката между краката. Наведи се от ханша (бедрата назад, гърбът прав), хвани дръжката и се изправи, като стегнеш седалището. Дръж пудовката близо до краката.",tip:"Основата на KB тренировките. Научи правилното навеждане от ханша преди да преминеш към замаха."},
         {name:"KB Goblet squat",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Дръж пудовката вертикално пред гърдите за дръжката. Клякай дълбоко, лактите бутат коленете навън.",tip:"Пудовката пред гърдите е по-естествена и удобна от гирите."},
         {name:"KB Sumo squat",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Вътрешни бедра","Седалище"],what:"Широка стойка, пудовката между краката. Клякай надолу, пудовката слиза.",tip:"Дръж пудовката за двата рога (horns) — по-удобно при широка стойка."},
         {name:"KB Hip hinge (RDL)",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Долен гръб"],what:"Пудовката в едната или двете ръце. Бавен Romanian deadlift — усети хамстрингите.",tip:"Бавното темпо е ключово за хамстрингите."},
@@ -417,15 +820,15 @@ const CATEGORIES=[
         {name:"Разтягане на хип флексорите",sets:2,reps:"45 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"В изпад, едно коляно на пода. Бутни бедрата напред.",tip:"Задължително след KB долна тренировка."}
       ]},
       {id:202,label:"П2",title:"Гръб & Core",subtitle:"С пудовка · Гръб и стабилност",emoji:"🔵",color:"#5A2A7A",glow:"rgba(90,42,122,.2)",short:"П2",exercises:[
-        {name:"KB Single arm row",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс","Core"],what:"Лявата ръка на стол. Пудовката в дясната, дърпай нагоре покрай тялото. Лакътят минава над гърба.",tip:"Пудовката е по-неудобна от гирите за row — по-добра хватка е за дръжката."},
-        {name:"KB Deadlift (двустранно)",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Гръб","Седалище"],what:"Пудовката между краката. Хип хиндж, изправи се стягайки задните мускули.",tip:"С пудовка позицията е малко по-широка от с гира."},
+        {name:"KB Single arm row",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс","Core"],what:"Лявата ръка на стол. Пудовката в дясната, дърпай нагоре покрай тялото. Лакътят се движи над нивото на гърба.",tip:"Пудовката е по-неудобна от гирите за row — по-добра хватка е за дръжката."},
+        {name:"KB Deadlift (двустранно)",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Гръб","Седалище"],what:"Пудовката между краката. Наведи се от ханша (бедрата назад), хвани дръжката и се изправи, като стегнеш задните мускули.",tip:"С пудовка позицията е малко по-широка от с гира."},
         {name:"KB Halo",sets:3,reps:"10 повт. / посока",svg:S.halo,muscles:["Рамене","Core","Мобилност"],what:"Дръж пудовката обърната (дъното нагоре) с двете ръце. Бавно я движи около главата. Редувай посоки.",tip:"Halo е отлично за мобилност на раменете и активация на Core."},
         {name:"KB Suitcase carry",sets:3,reps:"30 м. / ръка",svg:S.carry,muscles:["Core","Обдуктори"],what:"Пудовката в едната ръка, ходи изправена. Тялото вертикално.",tip:"Много по-трудно от giri — пудовката е по-неудобна форма."},
         {name:"KB Deadbug",sets:3,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Дръж пудовката с двете ръце нагоре. Спускай противоположен крак. Пудовката неподвижна.",tip:"Добавената тежест увеличава значително предизвикателността."},
         {name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Рамене"],what:"Child's Pose за освобождаване на натоварения гръб.",tip:"Дишай дълбоко."}
       ]},
       {id:203,label:"П3",title:"Рамене & Горна Част",subtitle:"С пудовка · Горна",emoji:"🟣",color:"#2A6A4A",glow:"rgba(42,106,74,.2)",short:"П3",exercises:[
-        {name:"KB Press (single)",sets:4,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"Пудовката на рамото в rack позиция (дъното нагоре). Натисни нагоре над главата. Бавно спусни.",tip:"Rack позицията с пудовка е уникална — по-стабилна от гира."},
+        {name:"KB Press (едноръчно)",sets:4,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"Пудовката на рамото в позиция за почивка — опира на предмишницата, дъното нагоре. Натисни нагоре над главата. Бавно спусни.",tip:"Тази позиция на рамото е специфична за пудовката и е по-стабилна от гира."},
         {name:"KB Halo",sets:3,reps:"10 повт. / посока",svg:S.halo,muscles:["Рамене","Горен гръб","Мобилност"],what:"Пудовката обърната (дъното нагоре). Бавно движи около главата.",tip:"Отлично за мобилност на раменете."},
         {name:"KB Upright row",sets:3,reps:"12 повт.",svg:S.curl,muscles:["Рамене","Горен трапец"],what:"Пудовката пред бедрата. Дърпай нагоре покрай тялото до нивото на брадичката.",tip:"Лактите водят движението. Лека пудовка."},
         {name:"KB Floor press",sets:3,reps:"12 повт. / ръка",svg:S.floorpress,muscles:["Гърди","Трицепс"],what:"Легни по гръб, пудовката на рамото. Натисни нагоре. Бавно спусни.",tip:"Single arm floor press активира повече Core от двустранния."},
@@ -433,10 +836,10 @@ const CATEGORIES=[
         {name:"Разтягане на раменете",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Рамене","Гърди"],what:"Ръцете зад гърба, открий гърдите нагоре.",tip:"Задължително след натоварване на раменете."}
       ]},
       {id:204,label:"П4",title:"Full Body (Свинг)",subtitle:"С пудовка · Хип хиндж & Мощност",emoji:"🌀",color:"#7A4A2A",glow:"rgba(122,74,42,.2)",short:"П4",exercises:[
-        {name:"KB Swing (модифициран)",sets:5,reps:"15 повт.",svg:S.swing,muscles:["Седалище","Хамстринг","Core","Рамене"],what:"Пудовката пред краката. Наведи се, хвани, люшни назад между краката. С взривно изправяне избутай пудовката напред до нивото на раменете. Кръстът работи, не ръцете.",tip:"Swing-ът е крал на KB упражненията. Започни с лека пудовка и правилна техника."},
+        {name:"KB Замах (Swing)",sets:5,reps:"15 повт.",svg:S.swing,muscles:["Седалище","Хамстринг","Core","Рамене"],what:"Пудовката пред краката. Наведи се от ханша, хвани дръжката и я люшни назад между краката. С бързо и взривно изправяне на бедрата избутай пудовката напред до нивото на раменете. Силата идва от бедрата, не от ръцете.",tip:"Замахът с пудовка е едно от най-ефективните упражнения. Започни с лека тежест и се фокусирай върху правилното движение от ханша."},
         {name:"KB Goblet squat",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Пудовката пред гърдите. Дълбоко клякане.",tip:"Комбинирай с Swing за пълен Full Body ефект."},
-        {name:"KB Clean (опростен)",sets:3,reps:"8 повт. / ръка",svg:S.swing,muscles:["Цяло тяло","Координация"],what:"Люшни пудовката и я вдигни в rack позиция на рамото. Контролирано спусни.",tip:"Опростена версия — практикувай бавно преди да добавяш скорост."},
-        {name:"KB Press",sets:3,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"От rack позиция натисни нагоре над главата.",tip:"Rack позицията е специфична за пудовката."},
+        {name:"KB Вдигане на рамо (Clean)",sets:3,reps:"8 повт. / ръка",svg:S.swing,muscles:["Цяло тяло","Координация"],what:"Люшни пудовката от ханша и я вдигни нагоре до рамото — пудовката опира на предмишницата, дъното нагоре. Контролирано спусни обратно.",tip:"Опростено вдигане — практикувай бавно и плавно, преди да добавяш скорост."},
+        {name:"KB Press",sets:3,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"От позицията на рамото (пудовката опира на предмишницата) натисни нагоре над главата.",tip:"Позицията на рамото е специфична за пудовката — отнема малко практика."},
         {name:"KB Row",sets:3,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведи се, дърпай пудовката нагоре.",tip:"Добра форма — гърбът прав."},
         {name:"Саваса",sets:1,reps:"5 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация след Full Body KB тренировка.",tip:"Swing тренировката е интензивна — релаксацията е задължителна."}
       ]},
@@ -444,23 +847,23 @@ const CATEGORIES=[
         {name:"KB Deadbug",sets:4,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Дръж пудовката нагоре с двете ръце. Бавно спускай противоположен крак.",tip:"Пудовката добавя предизвикателство — много бавно."},
         {name:"KB Farmer carry (двустранно)",sets:3,reps:"40 м.",svg:S.carry,muscles:["Core","Трапец","Предмишница"],what:"Пудовки в двете ръце. Ходи изправена, Core стегнат.",tip:"Двустранното носене е по-лесно от едностранното — добро начало."},
         {name:"KB Windmill (лек)",sets:3,reps:"8 повт. / страна",svg:S.windmill,muscles:["Странично Core","Тазобедрени","Рамене"],what:"Пудовката в горната ръка, краката широко. Наведи се странично към долния крак, поглеждай нагоре към пудовката.",tip:"Започни без тежест за правилна техника. Много лека пудовка."},
-        {name:"KB Страничен планк",sets:3,reps:"25 сек. / страна",svg:S.sideplank,muscles:["Кос корем","Рамене"],what:"В страничен планк, поставени пудовка на горното бедро. Задръж позицията.",tip:"Добавената тежест прави страничния планк значително по-предизвикателен."},
+        {name:"KB Страничен планк",sets:3,reps:"25 сек. / страна",svg:S.sideplank,muscles:["Кос корем","Рамене"],what:"В страничен планк, постави пудовката на горното бедро. Задръж позицията.",tip:"Добавената тежест прави страничния планк значително по-предизвикателен."},
         {name:"KB Halo",sets:3,reps:"8 повт. / посока",svg:S.halo,muscles:["Рамене","Core","Мобилност"],what:"Бавни кръгове около главата с пудовката обърната.",tip:"Halo е едновременно Core и мобилност."},
         {name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш"],what:"Освободи натоварения Core с дълбоко дишане в Child's Pose.",tip:"Дишай в гърба."}
       ]},
       {id:206,label:"П6",title:"Долна Част",subtitle:"С пудовка · Крака",emoji:"🟠",color:"#2A5A6A",glow:"rgba(42,90,106,.2)",short:"П6",exercises:[
         {name:"KB Goblet squat (дълбоко)",sets:4,reps:"15 повт.",svg:S.goblet,muscles:["Бедра","Седалище","Core"],what:"Пудовката пред гърдите. Клякай максимално дълбоко, пауза 2 сек. долу.",tip:"Дълбокото клякане е по-ефективно за вътрешните бедра."},
-        {name:"KB Romanian deadlift",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Пудовката в двете ръце. Бавен хип хиндж надолу, изправи се стягайки задните мускули.",tip:"Фокус върху хамстрингите при спускане."},
-        {name:"KB Sumo deadlift",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Вътрешни бедра","Седалище"],what:"Широка стойка, пудовката между краката. Хвани, изправи се стягайки вътрешните бедра.",tip:"Широката стойка акцентира вътрешните бедра."},
+        {name:"KB Romanian deadlift",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Хамстринг","Седалище","Долен гръб"],what:"Пудовката в двете ръце. Бавно се наведи напред от ханша (бедрата назад, гърбът прав). Изправи се и стегни задните мускули.",tip:"Фокус върху хамстрингите при спускане."},
+        {name:"KB Sumo deadlift",sets:3,reps:"12 повт.",svg:S.deadlift,muscles:["Вътрешни бедра","Седалище"],what:"Широка стойка, пудовката между краката. Хвани дръжката и се изправи, като стегнеш вътрешните бедра.",tip:"Широката стойка акцентира вътрешните бедра."},
         {name:"KB Hip thrust",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг"],what:"Пудовката на бедрата. Вдигни, задръж 2 сек. горе.",tip:"Пудовката е по-неудобна от гирата за hip thrust — използвай кърпа под нея."},
         {name:"KB Lunge",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"Пудовката в едната или двете ръце. Реверсивен изпад.",tip:"Пудовката наблизо до тялото — не я дръж далеч."},
         {name:"Фигура 4",sets:2,reps:"50 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени"],what:"Задължително разтягане след KB крака.",tip:"Пудовката натоварва задните мускули много — не пропускай разтягането."}
       ]},
       {id:207,label:"П7",title:"Горна Част",subtitle:"С пудовка · Горна",emoji:"🔶",color:"#6A2A4A",glow:"rgba(106,42,74,.2)",short:"П7",exercises:[
-        {name:"KB Press (двустранно)",sets:4,reps:"10 повт.",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"Двете пудовки в rack позиция. Натисни нагоре едновременно.",tip:"Двустранният press е по-стабилен — добре за начало."},
+        {name:"KB Press (двустранно)",sets:4,reps:"10 повт.",svg:S.ohpress,muscles:["Рамене","Трицепс"],what:"Двете пудовки на раменете (опират на предмишниците, дъната нагоре). Натисни нагоре едновременно.",tip:"Двустранният натиск е по-стабилен — добро начало за тази позиция."},
         {name:"KB Row (двустранно)",sets:4,reps:"12 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наведи се напред, двете пудовки висят. Дърпай двете нагоре едновременно.",tip:"Лопатките се свиват в горната точка."},
         {name:"KB Halo",sets:3,reps:"10 повт. / посока",svg:S.halo,muscles:["Рамене","Горен гръб"],what:"Пудовката обърната, бавни кръгове около главата.",tip:"Добра загрявка за раменете."},
-        {name:"KB Single arm press",sets:3,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Core"],what:"От rack позиция натисни нагоре. Обратната ръка е до тялото.",tip:"Едностранният press активира повече Core."},
+        {name:"KB Едноръчен натиск",sets:3,reps:"10 повт. / ръка",svg:S.ohpress,muscles:["Рамене","Core"],what:"Пудовката на рамото (опира на предмишницата). Натисни нагоре над главата. Обратната ръка е до тялото.",tip:"Едностранният натиск активира повече мускулите на корема за стабилизация."},
         {name:"KB Curl",sets:3,reps:"12 повт.",svg:S.curl,muscles:["Бицепс"],what:"Дръж пудовката за дъното. Огъни лактите и вдигни. Бавно спусни.",tip:"Хватката за дъното е по-неудобна — добре тренира хвата."},
         {name:"Разтягане на гърдите и раменете",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Гърди","Рамене"],what:"Ръцете зад гърба, открий гърдите нагоре.",tip:"Задължително след горна KB тренировка."}
       ]},
@@ -473,9 +876,9 @@ const CATEGORIES=[
         {name:"Саваса",sets:1,reps:"5–7 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация след мобилност тренировка.",tip:"Мобилността изисква нервна система да е спокойна."}
       ]},
       {id:209,label:"П9",title:"Активно Възстановяване",subtitle:"С пудовка · Много лека",emoji:"🌅",color:"#5A4A2A",glow:"rgba(90,74,42,.2)",short:"П9",exercises:[
-        {name:"KB Light deadlift",sets:3,reps:"20 повт.",svg:S.deadlift,muscles:["Гръб","Крака","Циркулация"],what:"Много лека пудовка. Бавен хип хиндж с акцент на движението.",tip:"Лекото движение ускорява кръвообращението и ускорява възстановяването."},
+        {name:"KB Light deadlift",sets:3,reps:"20 повт.",svg:S.deadlift,muscles:["Гръб","Крака","Циркулация"],what:"Много лека пудовка. Бавно навеждане от ханша (бедрата назад, гърбът прав) с акцент на движението, не теглото.",tip:"Лекото движение ускорява кръвообращението и подпомага възстановяването."},
         {name:"KB Halo (много бавно)",sets:3,reps:"6 повт. / посока",svg:S.halo,muscles:["Рамене","Мобилност"],what:"Много бавни кръгове, усещай всяка точка.",tip:"Бавният halo е успокояващ и мобилизиращ."},
-        {name:"KB Light swing (хип хиндж)",sets:3,reps:"15 повт.",svg:S.swing,muscles:["Седалище","Хамстринг","Циркулация"],what:"Много лека пудовка. Фокус върху правилния хип хиндж — не мощността.",tip:"Лекият swing поддържа техниката без натоварване."},
+        {name:"KB Лек замах (техника)",sets:3,reps:"15 повт.",svg:S.swing,muscles:["Седалище","Хамстринг","Циркулация"],what:"Много лека пудовка. Бавен и контролиран замах — фокус върху правилното навеждане от ханша и изправяне на бедрата, не върху мощността.",tip:"Лекият замах поддържа техниката и активира кръвообращението без натоварване."},
         {name:"KB Farmer carry (лек)",sets:3,reps:"30 м.",svg:S.carry,muscles:["Core","Трапец"],what:"Много лека пудовка. Ходи бавно и изправено.",tip:"Farmer carry с лека тежест е приятна и функционална активност."},
         {name:"Разтягане на гръб и бедра",sets:2,reps:"50 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш"],what:"Child's Pose след леката тренировка.",tip:"Дишай дълбоко и отпусни напълно."},
         {name:"Саваса",sets:1,reps:"5–7 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Пълна релаксация. Нека тялото абсорбира тренировката.",tip:"Дори при лека тренировка — релаксацията е инвестиция."}
