@@ -6,8 +6,141 @@
 <title>Моят Тренировъчен План</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
 <style>
+/* ── THEMES ──────────────────────────────────────────────── */
+:root{
+  /* Tropical Sunrise */
+  --bg:#CBF3F0;
+  --bg2:#E8F9F8;
+  --surface:#fff;
+  --accent:#2EC4B6;
+  --accent2:#FF9F1C;
+  --accent3:#FFBF69;
+  --accent-glow:rgba(46,196,182,.2);
+  --text:#1A3A38;
+  --text2:#3A7A76;
+  --text3:#5ABAB6;
+  --border:#A8E4E0;
+  --border2:#CBF3F0;
+  --stat1:linear-gradient(135deg,#FF9F1C,#E8900A);
+  --stat2:linear-gradient(135deg,#FFBF69,#FF9F1C);
+  --stat2-text:#7A4010;
+  --stat3:linear-gradient(135deg,#2EC4B6,#20A89C);
+  --pill:linear-gradient(135deg,#FF9F1C,#FFBF69);
+  --h1-grad:linear-gradient(135deg,#FF9F1C,#2EC4B6);
+  --divider:linear-gradient(90deg,#FF9F1C,#2EC4B6);
+  --cal-bg:#2EC4B6;
+  --tips-bg:linear-gradient(135deg,#FFF5E6,#FFE8C8);
+  --tips-border:#FF9F1C;
+  --tips-text:#9A5010;
+  --svg-stroke:#2EC4B6;
+  --svg-head:#FF9F1C;
+  --svg-arr:#FFBF69;
+  --tab-active-bg:#2EC4B6;
+  --tab-active-shadow:rgba(46,196,182,.4);
+  --card-hover-bg:#E8F9F8;
+  --ex-bg:#CBF3F0;
+  --desc-tip-bg:#CBF3F0;
+  --desc-tip-border:#2EC4B6;
+  --desc-what-color:#1A5A56;
+  --section-line-color:#2EC4B6;
+  --panel-hover:#F0FBFA;
+}
+[data-theme="berry"]{
+  --bg:#F5F0FF;
+  --bg2:#EDE6FF;
+  --surface:#fff;
+  --accent:#7C3AED;
+  --accent2:#F472B6;
+  --accent3:#FBCFE8;
+  --accent-glow:rgba(124,58,237,.18);
+  --text:#2D1B69;
+  --text2:#6D28D9;
+  --text3:#8B5CF6;
+  --border:#DDD6FE;
+  --border2:#EDE9FE;
+  --stat1:linear-gradient(135deg,#F472B6,#EC4899);
+  --stat2:linear-gradient(135deg,#C084FC,#A855F7);
+  --stat2-text:#fff;
+  --stat3:linear-gradient(135deg,#7C3AED,#6D28D9);
+  --pill:linear-gradient(135deg,#F472B6,#A855F7);
+  --h1-grad:linear-gradient(135deg,#F472B6,#7C3AED);
+  --divider:linear-gradient(90deg,#F472B6,#7C3AED);
+  --cal-bg:#7C3AED;
+  --tips-bg:linear-gradient(135deg,#FDF4FF,#FAE8FF);
+  --tips-border:#D946EF;
+  --tips-text:#701A75;
+  --svg-stroke:#A855F7;
+  --svg-head:#F472B6;
+  --svg-arr:#C084FC;
+  --tab-active-bg:#7C3AED;
+  --tab-active-shadow:rgba(124,58,237,.35);
+  --card-hover-bg:#EDE9FE;
+  --ex-bg:#F5F3FF;
+  --desc-tip-bg:#F5F3FF;
+  --desc-tip-border:#A855F7;
+  --desc-what-color:#4C1D95;
+  --section-line-color:#7C3AED;
+  --panel-hover:#FAF5FF;
+}
+[data-theme="forest"]{
+  --bg:#FFECD1;
+  --bg2:#FFE0B8;
+  --surface:#fff;
+  --accent:#15616D;
+  --accent2:#FF7D00;
+  --accent3:#78290F;
+  --accent-glow:rgba(21,97,109,.18);
+  --text:#001524;
+  --text2:#15616D;
+  --text3:#1E7A88;
+  --border:#B8DDE2;
+  --border2:#D8EEF0;
+  --stat1:linear-gradient(135deg,#FF7D00,#E06A00);
+  --stat2:linear-gradient(135deg,#FFECD1,#FFD9A8);
+  --stat2-text:#78290F;
+  --stat3:linear-gradient(135deg,#15616D,#001524);
+  --pill:linear-gradient(135deg,#FF7D00,#15616D);
+  --h1-grad:linear-gradient(135deg,#FF7D00,#15616D);
+  --divider:linear-gradient(90deg,#FF7D00,#15616D);
+  --cal-bg:#001524;
+  --tips-bg:linear-gradient(135deg,#FFF5E6,#FFECD1);
+  --tips-border:#FF7D00;
+  --tips-text:#78290F;
+  --svg-stroke:#15616D;
+  --svg-head:#FF7D00;
+  --svg-arr:#78290F;
+  --tab-active-bg:#15616D;
+  --tab-active-shadow:rgba(21,97,109,.35);
+  --card-hover-bg:#FFE0B8;
+  --ex-bg:#FFF5E6;
+  --desc-tip-bg:#FFF5E6;
+  --desc-tip-border:#FF7D00;
+  --desc-what-color:#001524;
+  --section-line-color:#15616D;
+  --panel-hover:#FFF5E6;
+}
+
+/* ── THEME SWITCHER ── */
+.theme-switcher{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:20px;
+}
+.theme-label{font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase;}
+.theme-select{
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
+  padding:6px 32px 6px 12px;border-radius:100px;
+  border:2px solid var(--accent);background:var(--surface);
+  color:var(--accent);cursor:pointer;appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%232EC4B6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+  transition:all .2s;box-shadow:0 2px 8px var(--accent-glow);
+}
+.theme-select:hover{background-color:var(--bg2);}
+.theme-dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+/* ── BASE ── */
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#F7F3EE;color:#2A2420;font-family:'Nunito',sans-serif;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;transition:background .4s,color .4s;}
 .app{max-width:880px;margin:0 auto;padding:28px 16px 72px;animation:fadeUp .6s cubic-bezier(.16,1,.3,1) both;}
 
 /* ── HEADER ── */
@@ -15,69 +148,36 @@ body{background:#F7F3EE;color:#2A2420;font-family:'Nunito',sans-serif;min-height
 .header-pill{
   display:inline-flex;align-items:center;gap:8px;
   font-size:12px;font-weight:700;letter-spacing:1px;
-  color:#fff;background:linear-gradient(135deg,#FF6B9D,#FF9B4A);
+  color:#fff;background:var(--pill);
   padding:7px 18px;border-radius:100px;margin-bottom:18px;
-  box-shadow:0 4px 16px rgba(255,107,157,.35);
+  box-shadow:0 4px 16px var(--accent-glow);
 }
-h1{
-  font-family:'Nunito',sans-serif;font-size:clamp(36px,7vw,72px);
-  font-weight:900;line-height:.95;letter-spacing:-1.5px;
-  color:#2A2420;
-}
-h1 span{
-  background:linear-gradient(135deg,#FF6B9D,#FF9B4A);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.header-sub{font-size:14px;color:#8A7A72;margin-top:10px;font-weight:600;}
-
-/* ── NOTE ── */
-.note{
-  background:linear-gradient(135deg,#FFF8E1,#FFF3CD);
-  border:2px solid #FFD54F;border-radius:18px;
-  padding:14px 18px;margin-bottom:28px;
-  font-size:13px;color:#7A6020;font-weight:600;line-height:1.6;
-}
-.note strong{color:#E67E00;}
+h1{font-family:'Nunito',sans-serif;font-size:clamp(36px,7vw,72px);font-weight:900;line-height:.95;letter-spacing:-1.5px;color:var(--text);}
+h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.header-sub{font-size:14px;color:var(--text2);margin-top:10px;font-weight:600;}
 
 /* ── STATS ── */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
-.stat-card{
-  border-radius:20px;padding:18px 14px;text-align:center;
-  box-shadow:0 4px 20px rgba(0,0,0,.08);position:relative;overflow:hidden;
-}
-.stat-card:nth-child(1){background:linear-gradient(135deg,#FF6B9D,#FF4D8D);}
-.stat-card:nth-child(2){background:linear-gradient(135deg,#FF9B4A,#FF7B1A);}
-.stat-card:nth-child(3){background:linear-gradient(135deg,#7C6FD4,#5A4FBB);}
-.stat-card::after{
-  content:'';position:absolute;right:-10px;bottom:-10px;
-  width:60px;height:60px;border-radius:50%;
-  background:rgba(255,255,255,.12);
-}
+.stat-card{border-radius:20px;padding:18px 14px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08);position:relative;overflow:hidden;}
+.stat-card:nth-child(1){background:var(--stat1);}
+.stat-card:nth-child(2){background:var(--stat2);}
+.stat-card:nth-child(2) .stat-num{color:var(--stat2-text);}
+.stat-card:nth-child(2) .stat-label{color:var(--stat2-text);opacity:.7;}
+.stat-card:nth-child(3){background:var(--stat3);}
+.stat-card::after{content:'';position:absolute;right:-10px;bottom:-10px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.12);}
 .stat-icon{font-size:20px;margin-bottom:4px;}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:#fff;line-height:1;letter-spacing:1px;}
-.stat-label{font-size:10px;color:rgba(255,255,255,.8);letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-top:2px;}
+.stat-label{font-size:10px;color:rgba(255,255,255,.85);letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-top:2px;}
 
 /* ── SECTION TITLE ── */
-.section-title{
-  font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
-  color:#B0A49C;margin-bottom:14px;
-  display:flex;align-items:center;gap:12px;
-}
-.section-title::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,#E8E0D6,transparent);border-radius:2px;}
+.section-title{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.section-title::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;}
 
 /* ── CATEGORY TABS ── */
 .cat-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
-.cat-tab{
-  padding:10px 20px;border-radius:100px;border:2.5px solid #E8DED4;
-  background:#fff;cursor:pointer;font-size:13px;font-weight:800;
-  color:#8A7A72;transition:all .2s;display:flex;align-items:center;gap:7px;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-.cat-tab:hover{border-color:#C8B8B0;color:#2A2420;transform:translateY(-1px);}
-.cat-tab.active{
-  background:linear-gradient(135deg,#FF6B9D,#FF9B4A);color:#fff;
-  border-color:transparent;box-shadow:0 6px 20px rgba(255,107,157,.35);
-}
+.cat-tab{padding:10px 20px;border-radius:100px;border:2px solid var(--accent);background:var(--surface);cursor:pointer;font-size:13px;font-weight:800;color:var(--text2);transition:all .2s;display:flex;align-items:center;gap:7px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.cat-tab:hover{background:var(--bg2);color:var(--text);transform:translateY(-1px);}
+.cat-tab.active{background:var(--tab-active-bg);color:#fff;border-color:transparent;box-shadow:0 6px 20px var(--tab-active-shadow);}
 .cat-tab .tab-arrow{font-size:10px;transition:transform .3s;opacity:.7;}
 .cat-tab.open .tab-arrow{transform:rotate(180deg);}
 
@@ -86,171 +186,109 @@ h1 span{
 .workout-grid-body.open{max-height:1000px;margin-bottom:22px;}
 .workout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:6px;}
 @media(max-width:500px){.workout-grid{grid-template-columns:repeat(2,1fr);}}
-
-.workout-card{
-  border-radius:20px;padding:18px 14px 16px;cursor:pointer;
-  transition:all .25s cubic-bezier(.16,1,.3,1);text-align:center;
-  position:relative;overflow:hidden;
-  box-shadow:0 4px 16px rgba(0,0,0,.1);
-  background:var(--grad,linear-gradient(135deg,#E8E0D6,#D8D0C6));
-  color:#fff;
-}
+.workout-card{border-radius:20px;padding:18px 14px 16px;cursor:pointer;transition:all .25s cubic-bezier(.16,1,.3,1);text-align:center;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08);background:var(--grad,var(--accent));color:#fff;}
 .workout-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 32px rgba(0,0,0,.18);}
-.workout-card.active{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 32px var(--glow,rgba(0,0,0,.15)),0 0 0 3px #fff,0 0 0 5px var(--c,#ccc);}
-.workout-card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,transparent 50%);
-  border-radius:20px;pointer-events:none;
-}
+.workout-card.active{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 24px rgba(0,0,0,.14),0 0 0 3px #fff,0 0 0 5px rgba(180,80,80,.35);}
+.workout-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.4) 0%,transparent 60%);border-radius:20px;pointer-events:none;}
 .wc-emoji{font-size:30px;margin-bottom:8px;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));}
-.wc-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:3px;font-weight:700;}
-.wc-title{font-size:13px;font-weight:900;color:#fff;line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,.2);}
-.wc-sub{font-size:10px;color:rgba(255,255,255,.75);margin-top:3px;line-height:1.3;font-weight:600;}
-.wc-badge{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#fff;opacity:0;box-shadow:0 0 0 2px rgba(255,255,255,.4);}
+.wc-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(80,40,40,.55);margin-bottom:3px;font-weight:700;}
+.wc-title{font-size:13px;font-weight:900;color:#5A2A2A;line-height:1.2;}
+.wc-sub{font-size:10px;color:rgba(80,40,40,.5);margin-top:3px;line-height:1.3;font-weight:600;}
+.wc-badge{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#C84040;opacity:0;box-shadow:0 0 0 2px rgba(200,64,64,.3);}
 .workout-card.active .wc-badge{opacity:1;}
 
 /* ── EXERCISE PANEL ── */
-.day-panel{
-  background:#fff;border-radius:24px;overflow:hidden;margin-bottom:22px;
-  box-shadow:0 4px 24px rgba(0,0,0,.08);
-}
-.day-header{
-  padding:20px 22px 16px;display:flex;align-items:center;gap:14px;
-  cursor:pointer;user-select:none;transition:background .2s;
-}
-.day-header:hover{background:#FAFAF8;}
+.day-panel{background:var(--surface);border-radius:24px;overflow:hidden;margin-bottom:22px;box-shadow:0 4px 24px var(--accent-glow);}
+.day-header{padding:20px 22px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none;transition:background .2s;}
+.day-header:hover{background:var(--panel-hover);}
 .day-emoji{font-size:36px;line-height:1;flex-shrink:0;}
 .day-meta{flex:1;min-width:0;}
-.day-label{font-size:10px;letter-spacing:2px;color:#B0A49C;margin-bottom:3px;text-transform:uppercase;font-weight:700;}
+.day-label{font-size:10px;letter-spacing:2px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;font-weight:700;}
 .day-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;line-height:1;letter-spacing:-.5px;}
-.day-subtitle{font-size:12px;color:#8A7A72;margin-top:3px;font-weight:600;}
+.day-subtitle{font-size:12px;color:var(--text2);margin-top:3px;font-weight:600;}
 .day-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
 .progress-ring{position:relative;width:52px;height:52px;}
 .progress-ring svg{transform:rotate(-90deg);}
-.progress-ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;color:#2A2420;}
-.panel-arrow{font-size:16px;color:#C0B4AC;transition:transform .3s,color .3s;flex-shrink:0;font-weight:900;}
-.panel-arrow.open{transform:rotate(180deg);color:#2A2420;}
-
-.mark-btn{
-  font-size:11px;font-weight:800;letter-spacing:.5px;
-  padding:8px 16px;border-radius:100px;border:2.5px solid;
-  cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;
-}
-
+.progress-ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--text);}
+.panel-arrow{font-size:16px;color:var(--accent);transition:transform .3s,color .3s;flex-shrink:0;font-weight:900;}
+.panel-arrow.open{transform:rotate(180deg);color:var(--text);}
+.mark-btn{font-size:11px;font-weight:800;letter-spacing:.5px;padding:8px 16px;border-radius:100px;border:2.5px solid;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;}
 .day-panel-body{max-height:0;overflow:hidden;transition:max-height .5s ease;}
 .day-panel-body.open{max-height:5000px;}
-.panel-divider{height:2px;background:linear-gradient(90deg,var(--accent-color,#FF6B9D),transparent);margin:0;}
+.panel-divider{height:2px;background:var(--divider);margin:0;}
 .panel-inner-top{padding:12px 22px 6px;display:flex;justify-content:flex-end;}
 
 /* ── EXERCISES ── */
 .exercise-list{padding:8px 14px 18px;display:grid;gap:8px;}
-.exercise-card{
-  background:#F7F3EE;border:2px solid #EDE6DC;border-radius:16px;
-  overflow:hidden;transition:all .2s;position:relative;
-}
-.exercise-card::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
-  border-radius:0 3px 3px 0;opacity:0;transition:opacity .2s;
-}
+.exercise-card{background:var(--ex-bg);border:2px solid var(--border);border-radius:16px;overflow:hidden;transition:all .2s;position:relative;}
+.exercise-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 3px 3px 0;opacity:0;transition:opacity .2s;}
 .exercise-card.done::before{opacity:1;}
-.exercise-card:hover{border-color:#D8CEC4;background:#F2EDE6;}
+.exercise-card:hover{border-color:var(--accent);background:var(--card-hover-bg);}
 .exercise-top{padding:13px 15px;display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;cursor:pointer;user-select:none;}
-.exercise-name{font-weight:800;font-size:14px;color:#2A2420;margin-bottom:4px;transition:all .2s;}
-.exercise-card.done .exercise-name{text-decoration:line-through;color:#C0B4AC;}
+.exercise-name{font-weight:800;font-size:14px;color:var(--text);margin-bottom:4px;transition:all .2s;}
+.exercise-card.done .exercise-name{text-decoration:line-through;color:var(--border);}
 .exercise-details{display:flex;gap:6px;flex-wrap:wrap;}
-.badge{
-  font-size:11px;padding:3px 10px;border-radius:100px;
-  background:#fff;color:#8A7A72;font-weight:700;
-  border:1.5px solid #E8DED4;
-}
-.expand-btn{
-  width:30px;height:30px;border-radius:50%;border:2px solid #E8DED4;
-  background:#fff;color:#B0A49C;font-size:13px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;font-weight:700;
-}
-.expand-btn:hover{border-color:#C8BEB4;color:#5A4A42;}
-.expand-btn.open{transform:rotate(180deg);color:#2A2420;border-color:#B0A49C;}
-.check-btn{
-  width:30px;height:30px;border-radius:50%;border:2.5px solid #E8DED4;
-  background:#fff;color:transparent;font-size:13px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;font-weight:900;
-}
+.badge{font-size:11px;padding:3px 10px;border-radius:100px;background:var(--surface);color:var(--accent);font-weight:700;border:1.5px solid var(--border);}
+.expand-btn{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);background:var(--surface);color:var(--accent);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;font-weight:700;}
+.expand-btn:hover{border-color:var(--accent);color:var(--text);}
+.expand-btn.open{transform:rotate(180deg);color:var(--text);border-color:var(--accent);}
+.check-btn{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--border);background:var(--surface);color:transparent;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;font-weight:900;}
 .exercise-card.done .check-btn{border-color:transparent;color:#fff;}
-
 .exercise-desc{max-height:0;overflow:hidden;transition:max-height .4s ease;}
 .exercise-desc.open{max-height:600px;}
-.exercise-desc-inner{padding:12px 15px 16px;border-top:2px solid #EDE6DC;}
+.exercise-desc-inner{padding:12px 15px 16px;border-top:2px solid var(--border2);}
 .desc-layout{display:flex;gap:14px;align-items:flex-start;}
-.ex-svg-wrap{
-  flex-shrink:0;width:82px;height:72px;
-  background:#fff;border:2px solid #EDE6DC;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;padding:5px;
-}
+.ex-svg-wrap{flex-shrink:0;width:82px;height:72px;background:var(--surface);border:2px solid var(--border2);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:5px;}
 .ex-svg{width:100%;height:100%;}
-.ex-svg line,.ex-svg path,.ex-svg polyline{stroke:#5A4A42;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none;}
-.ex-svg circle.head{fill:#5A4A42;stroke:none;}
-.ex-svg circle.jt{fill:#F7F3EE;stroke:#5A4A42;stroke-width:2;}
-.ex-svg line.floor{stroke:#C8BEB4;stroke-width:1.5;stroke-dasharray:4,3;}
-.ex-svg line.arr{stroke:#A09288;stroke-width:1.5;stroke-dasharray:3,2;}
-.ex-svg path.arr{stroke:#A09288;stroke-width:1.5;fill:none;}
-.ex-svg rect{fill:#5A4A42;}
+.ex-svg line,.ex-svg path,.ex-svg polyline{stroke:var(--svg-stroke);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+.ex-svg circle.head{fill:var(--svg-head);stroke:none;}
+.ex-svg circle.jt{fill:var(--surface);stroke:var(--svg-stroke);stroke-width:2;}
+.ex-svg line.floor{stroke:var(--border);stroke-width:1.5;stroke-dasharray:4,3;}
+.ex-svg line.arr{stroke:var(--svg-arr);stroke-width:1.5;stroke-dasharray:3,2;}
+.ex-svg path.arr{stroke:var(--svg-arr);stroke-width:1.5;fill:none;}
+.ex-svg rect{fill:var(--svg-head);}
 .desc-text{flex:1;}
-.desc-what{font-size:13px;color:#5A4A44;line-height:1.65;margin-bottom:8px;font-weight:600;}
-.desc-tip{font-size:12px;color:#8A7A6E;font-style:italic;line-height:1.5;padding:8px 12px;background:#FFF8F0;border-radius:10px;border-left:3px solid #FFD54F;margin-bottom:8px;font-weight:600;}
+.desc-what{font-size:13px;color:var(--desc-what-color);line-height:1.65;margin-bottom:8px;font-weight:600;}
+.desc-tip{font-size:12px;font-style:italic;line-height:1.5;padding:8px 12px;color:var(--text2);background:var(--desc-tip-bg);border-radius:10px;border-left:3px solid var(--desc-tip-border);margin-bottom:8px;font-weight:600;}
 .desc-tip::before{content:"💡 ";}
 .desc-muscles{display:flex;gap:5px;flex-wrap:wrap;}
-.muscle-tag{font-size:10px;padding:3px 8px;border-radius:100px;background:#fff;border:1.5px solid #E0D8CE;color:#8A7A72;font-weight:700;}
+.muscle-tag{font-size:10px;padding:3px 8px;border-radius:100px;background:var(--surface);border:1.5px solid var(--border);color:var(--accent);font-weight:600;}
 
 /* ── CALENDAR ── */
-.cal-box{
-  background:#fff;border-radius:24px;padding:20px 22px;margin-bottom:18px;
-  box-shadow:0 4px 24px rgba(0,0,0,.08);
-}
+.cal-box{background:var(--cal-bg);border-radius:24px;padding:20px 22px;margin-bottom:18px;box-shadow:0 4px 24px rgba(0,0,0,.1);}
 .cal-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;}
-.cal-toggle-title{font-size:20px;font-weight:900;color:#2A2420;letter-spacing:-.5px;}
-.cal-toggle-arrow{font-size:18px;color:#C0B4AC;transition:transform .3s;font-weight:900;}
-.cal-toggle-arrow.open{transform:rotate(180deg);color:#2A2420;}
+.cal-toggle-title{font-size:20px;font-weight:900;color:#fff;letter-spacing:-.5px;}
+.cal-toggle-arrow{font-size:18px;color:rgba(255,255,255,.8);transition:transform .3s;font-weight:900;}
+.cal-toggle-arrow.open{transform:rotate(180deg);color:#fff;}
 .cal-body{overflow:hidden;max-height:0;transition:max-height .4s ease,margin-top .4s ease;margin-top:0;}
 .cal-body.open{max-height:700px;margin-top:18px;}
 .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.cal-nav-btn{
-  width:34px;height:34px;border-radius:50%;border:2px solid #E8DED4;
-  background:#F7F3EE;cursor:pointer;font-size:16px;color:#8A7A72;
-  display:flex;align-items:center;justify-content:center;transition:all .2s;font-weight:700;
-}
-.cal-nav-btn:hover{background:#EDE6DC;border-color:#C8BEB4;}
-.cal-nav-month{font-size:14px;color:#8A7A72;font-weight:700;}
+.cal-nav-btn{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.4);background:rgba(255,255,255,.2);cursor:pointer;font-size:16px;color:#fff;display:flex;align-items:center;justify-content:center;transition:all .2s;font-weight:700;}
+.cal-nav-btn:hover{background:rgba(255,255,255,.35);border-color:rgba(255,255,255,.6);}
+.cal-nav-month{font-size:14px;color:rgba(255,255,255,.85);font-weight:700;}
 .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:5px;}
-.cal-wd{font-size:10px;font-weight:800;letter-spacing:.5px;color:#C0B4AC;text-align:center;padding:3px 0;text-transform:uppercase;}
+.cal-wd{font-size:10px;font-weight:800;letter-spacing:.5px;color:rgba(255,255,255,.7);text-align:center;padding:3px 0;text-transform:uppercase;}
 .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
-.cal-cell{
-  aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;color:#8A7A72;
-  background:#F7F3EE;border:2px solid transparent;min-height:34px;
-  transition:all .2s;
-}
-.cal-cell.empty{background:transparent;}
-.cal-cell.today{border-color:#FF6B9D;border-style:dashed;}
-.cal-cell.future{color:#C8C0B8;}
+.cal-cell{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(255,255,255,.9);background:rgba(255,255,255,.2);border:2px solid transparent;min-height:34px;transition:all .2s;}
+.cal-cell.empty{background:transparent;border-color:transparent;}
+.cal-cell.today{border-color:rgba(255,255,255,.9);border-style:dashed;border-width:2px;}
+.cal-cell.future{color:rgba(255,255,255,.4);background:rgba(255,255,255,.08);}
 .cal-cell.has-entry{color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(0,0,0,.15);}
 .cal-day-num{font-size:11px;font-weight:800;line-height:1;}
 .cal-day-dot{font-size:8px;font-weight:800;margin-top:1px;}
-.cal-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:2px solid #F0E8E0;}
-.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:#8A7A72;font-weight:700;}
+.cal-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:2px solid rgba(255,255,255,.25);}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.85);font-weight:700;}
 .leg-dot{width:10px;height:10px;border-radius:4px;flex-shrink:0;}
 
 /* ── SETS SELECT ── */
-.sets-select{font-size:11px;font-weight:700;padding:3px 18px 3px 8px;border-radius:8px;border:1.5px solid #E8DED4;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23A09288'/%3E%3C/svg%3E") no-repeat right 5px center;color:#5A4A42;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .2s;}
-.sets-select:hover{border-color:#C8BEB4;}
+.sets-select{font-size:11px;font-weight:700;padding:3px 18px 3px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%232EC4B6'/%3E%3C/svg%3E") no-repeat right 5px center;color:var(--accent);cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .2s;}
+.sets-select:hover{border-color:var(--accent);}
+
 /* ── TIPS ── */
-.tips-box{
-  background:linear-gradient(135deg,#FFF8E1,#FFF3CD);
-  border:2px solid #FFD54F;border-radius:20px;padding:18px 20px;
-}
-.tips-title{font-size:11px;font-weight:800;letter-spacing:2px;color:#C09000;text-transform:uppercase;margin-bottom:12px;}
+.tips-box{background:var(--tips-bg);border:2px solid var(--tips-border);border-radius:20px;padding:18px 20px;}
+.tips-title{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;}
 .tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.tip-item{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:#7A6020;line-height:1.5;font-weight:600;}
+.tip-item{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--tips-text);line-height:1.5;font-weight:600;}
 .tip-icon{font-size:15px;flex-shrink:0;margin-top:1px;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -266,14 +304,21 @@ h1 span{
 <div class="app">
 
 <div class="header">
-  <div class="header-pill">🌸 Следродилна програма</div>
-  <h1>МОЯТ<br><span>ТРЕНИРОВЪЧЕН</span><br>ПЛАН</h1>
-  <p class="header-sub">По твой график · Тонус · Без оборудване</p>
+  <div class="header-pill">🏋️ Тренировъчен план</div>
+  <h1>МОЯ<br><span>ТРЕНИРОВЪЧЕН</span><br>ПЛАН</h1>
+  <p class="header-sub">По твой график · Сила · Форма</p>
 </div>
 
-<div class="note">
-  <strong>⚠️ Следродилна адаптация:</strong> Без ударно натоварване, с акцент върху тазово дъно, безопасна коремна активация и разтягане. При упражнения с гири и пудовка — започни с лека тежест.
+<div class="theme-switcher">
+  <span class="theme-label">🎨 Тема:</span>
+  <select class="theme-select" id="themeSelect" onchange="applyTheme(this.value)">
+    <option value="tropical">🌅 Tropical Sunrise</option>
+    <option value="berry">🫐 Berry Bliss</option>
+    <option value="forest">🌊 Deep Ocean</option>
+  </select>
 </div>
+
+
 
 <div class="stats-row">
   <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-num" id="statTotal">0</div><div class="stat-label">Тренировки</div></div>
@@ -300,7 +345,7 @@ h1 span{
     <div class="day-right">
       <div class="progress-ring">
         <svg width="52" height="52" viewBox="0 0 56 56">
-          <circle cx="28" cy="28" r="22" fill="none" stroke="#EDE6DC" stroke-width="5"/>
+          <circle cx="28" cy="28" r="22" fill="none" stroke="#CBF3F0" stroke-width="5"/>
           <circle id="progressCircle" cx="28" cy="28" r="22" fill="none" stroke="#FF6B9D" stroke-width="5" stroke-linecap="round" stroke-dasharray="138.23" stroke-dashoffset="138.23" style="transition:stroke-dashoffset .5s ease;"/>
         </svg>
         <div class="progress-ring-text" id="progressText">0%</div>
@@ -339,12 +384,12 @@ h1 span{
 </div>
 
 <div class="tips-box">
-  <div class="tips-title">Съвети за следродилно възстановяване</div>
+  <div class="tips-title">Съвети за по-добри резултати</div>
   <div class="tips-grid">
-    <div class="tip-item"><span class="tip-icon">🌬️</span> Издишвай при усилие на всяко упражнение</div>
-    <div class="tip-item"><span class="tip-icon">🏋️</span> С гири/пудовка — започни с 1–2 кг и увеличавай бавно</div>
-    <div class="tip-item"><span class="tip-icon">💧</span> Пий достатъчно вода, особено ако кърмиш</div>
-    <div class="tip-item"><span class="tip-icon">😴</span> Сънят е тренировка — ключов за възстановяването</div>
+    <div class="tip-item"><span class="tip-icon">🌬️</span> Издишвай при усилие — никога не задържай дъха</div>
+    <div class="tip-item"><span class="tip-icon">🏋️</span> С гири/пудовка — започни с лека тежест и увеличавай постепенно</div>
+    <div class="tip-item"><span class="tip-icon">💧</span> Пий достатъчно вода преди, по време и след тренировка</div>
+    <div class="tip-item"><span class="tip-icon">😴</span> Сънят е ключов — тялото се укрепва по време на почивка</div>
   </div>
 </div>
 </div>
@@ -391,45 +436,51 @@ const S={
 
 // Gradients for workout cards
 const GRADIENTS={
-  '#E8605A':'linear-gradient(135deg,#FF7B6B,#E8605A)',
-  '#3BAE94':'linear-gradient(135deg,#4DC9AC,#3BAE94)',
-  '#C466C8':'linear-gradient(135deg,#D980DC,#C466C8)',
-  '#7C6FD4':'linear-gradient(135deg,#9285E8,#7C6FD4)',
-  '#4A90D9':'linear-gradient(135deg,#5FA8F0,#4A90D9)',
-  '#D4763B':'linear-gradient(135deg,#E8904F,#D4763B)',
-  '#5D9E6E':'linear-gradient(135deg,#72B884,#5D9E6E)',
-  '#B5507A':'linear-gradient(135deg,#C9688F,#B5507A)',
-  '#C49B2E':'linear-gradient(135deg,#D8B040,#C49B2E)',
-  '#C85A3A':'linear-gradient(135deg,#DC7050,#C85A3A)',
-  '#5A3A8A':'linear-gradient(135deg,#7050A0,#5A3A8A)',
-  '#3A7A5A':'linear-gradient(135deg,#509270,#3A7A5A)',
-  '#6A5AAA':'linear-gradient(135deg,#8070C0,#6A5AAA)',
-  '#AA6A2A':'linear-gradient(135deg,#C08040,#AA6A2A)',
-  '#2A7A8A':'linear-gradient(135deg,#4090A0,#2A7A8A)',
-  '#8A3A5A':'linear-gradient(135deg,#A05070,#8A3A5A)',
-  '#4A6A2A':'linear-gradient(135deg,#608040,#4A6A2A)',
-  '#6A4A3A':'linear-gradient(135deg,#806050,#6A4A3A)',
-  '#2A4A7A':'linear-gradient(135deg,#406090,#2A4A7A)',
-  '#5A2A7A':'linear-gradient(135deg,#704090,#5A2A7A)',
-  '#2A6A4A':'linear-gradient(135deg,#408060,#2A6A4A)',
-  '#7A4A2A':'linear-gradient(135deg,#906040,#7A4A2A)',
-  '#4A2A6A':'linear-gradient(135deg,#604080,#4A2A6A)',
-  '#2A5A6A':'linear-gradient(135deg,#407080,#2A5A6A)',
-  '#6A2A4A':'linear-gradient(135deg,#804060,#6A2A4A)',
-  '#3A5A2A':'linear-gradient(135deg,#507040,#3A5A2A)',
-  '#5A4A2A':'linear-gradient(135deg,#706040,#5A4A2A)',
-  '#D4449A':'linear-gradient(135deg,#E860B0,#D4449A)',
-  '#9B48D4':'linear-gradient(135deg,#B060E8,#9B48D4)',
-  '#D44490':'linear-gradient(135deg,#E860A8,#D44490)',
+  '#E8605A':'linear-gradient(135deg,#FFD6E0,#FFBDCA)',
+  '#3BAE94':'linear-gradient(135deg,#FFDEC8,#FFCBB0)',
+  '#C466C8':'linear-gradient(135deg,#FFF0D6,#FFE4B8)',
+  '#7C6FD4':'linear-gradient(135deg,#FFD6E8,#FFC4D8)',
+  '#4A90D9':'linear-gradient(135deg,#FFE8CC,#FFD4A8)',
+  '#D4763B':'linear-gradient(135deg,#FFDAD6,#FFC8C2)',
+  '#5D9E6E':'linear-gradient(135deg,#FFF0E0,#FFE2C8)',
+  '#B5507A':'linear-gradient(135deg,#FFCCD6,#FFB8C8)',
+  '#C49B2E':'linear-gradient(135deg,#FFE4D0,#FFD0B8)',
+  '#E07840':'linear-gradient(135deg,#FFD6E0,#FFBDCA)',
+  '#7B5AC8':'linear-gradient(135deg,#FFDEC8,#FFCBB0)',
+  '#2E9E74':'linear-gradient(135deg,#FFF0D6,#FFE4B8)',
+  '#8B72D4':'linear-gradient(135deg,#FFD6E8,#FFC4D8)',
+  '#C89030':'linear-gradient(135deg,#FFE8CC,#FFD4A8)',
+  '#3A9EAE':'linear-gradient(135deg,#FFDAD6,#FFC8C2)',
+  '#C84878':'linear-gradient(135deg,#FFF0E0,#FFE2C8)',
+  '#6A9E2A':'linear-gradient(135deg,#FFCCD6,#FFB8C8)',
+  '#A07848':'linear-gradient(135deg,#FFE4D0,#FFD0B8)',
+  '#4A78CA':'linear-gradient(135deg,#FFD6E0,#FFBDCA)',
+  '#8A4ACA':'linear-gradient(135deg,#FFDEC8,#FFCBB0)',
+  '#2A8A6A':'linear-gradient(135deg,#FFF0D6,#FFE4B8)',
+  '#CA7840':'linear-gradient(135deg,#FFD6E8,#FFC4D8)',
+  '#7A4ACA':'linear-gradient(135deg,#FFE8CC,#FFD4A8)',
+  '#3A8AAE':'linear-gradient(135deg,#FFDAD6,#FFC8C2)',
+  '#CA4878':'linear-gradient(135deg,#FFF0E0,#FFE2C8)',
+  '#5A9A3A':'linear-gradient(135deg,#FFCCD6,#FFB8C8)',
+  '#AA8848':'linear-gradient(135deg,#FFE4D0,#FFD0B8)',
+  '#D4449A':'linear-gradient(135deg,#FFD6E0,#FFBDCA)',
+  '#B840C8':'linear-gradient(135deg,#FFDEC8,#FFCBB0)',
+  '#8B48D4':'linear-gradient(135deg,#FFF0D6,#FFE4B8)',
+  '#5848D4':'linear-gradient(135deg,#FFD6E8,#FFC4D8)',
+  '#4878D4':'linear-gradient(135deg,#FFE8CC,#FFD4A8)',
+  '#48A8D4':'linear-gradient(135deg,#FFDAD6,#FFC8C2)',
+  '#48D4A8':'linear-gradient(135deg,#FFF0E0,#FFE2C8)',
+  '#48D468':'linear-gradient(135deg,#FFCCD6,#FFB8C8)',
+  '#D4A448':'linear-gradient(135deg,#FFE4D0,#FFD0B8)',
 };
 
 const CATEGORIES=[
   {id:'free',label:'Свободни',emoji:'🏠',workouts:[
     {id:1,label:"ТРЕНИРОВКА 1",title:"Крака & Тазово Дъно",subtitle:"Долна · Стабилизация",emoji:"🦵",color:"#E8605A",glow:"rgba(232,96,90,.35)",short:"Т1",exercises:[{name:"Широко клякане (Сумо)",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Бедра","Седалище","Тазово дъно"],what:"Застани с крака по-широко от раменете, пръстите под 45° навън. Бавно слизай докато бедрата са успоредни с пода, след което се върни с контрол.",tip:"Стегни тазовото дъно при качването нагоре. Гръбначният стълб остава изправен."},{name:"Глутеус мост",sets:4,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазово дъно"],what:"Легни по гръб, колена свити. Вдигни бедрата докато тялото образува права линия от рамене до колена. Задръж 2 сек. горе.",tip:"Идеално след раждане — активира тазовото дъно без натиск."},{name:"Clamshell",sets:3,reps:"15 повт. / страна",svg:S.clam,muscles:["Тазобедрени стабилизатори","Глутеус медиус"],what:"Легни настрани с наведени колена. Бавно повдигни горното коляно нагоре като отваряща се мида. Върни бавно.",tip:"Бедрата да не се завъртат назад. 3 сек. нагоре, 3 сек. надолу."},{name:"Wall Sit",sets:3,reps:"30 сек.",svg:S.wallsit,muscles:["Квадрицепс","Седалище"],what:"Гръб към стена, плъзни се надолу докато коленете са под ~90°. Задръж и дишай.",tip:"Не е нужно точно 90° — дори 100° е ок."},{name:"Разтягане на хип флексорите",sets:2,reps:"40 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"В изпад, едно коляно на пода, бутни бедрата напред. Дишай дълбоко.",tip:"След раждане хип флексорите са стегнати от седенето. Не пропускай."},{name:"Дълбок клон",sets:2,reps:"45 сек.",svg:S.deepsquat,muscles:["Вътрешни бедра","Тазово дъно","Долен гръб"],what:"Клекни дълбоко, петите на пода, лактите бутат коленете навън. Задръж и дишай.",tip:"Ако петите се вдигат — постави свита кърпа под тях."}]},
     {id:2,label:"ТРЕНИРОВКА 2",title:"Горна Част & Мобилност",subtitle:"Ръце, Гръб · Постура",emoji:"🌿",color:"#3BAE94",glow:"rgba(59,174,148,.35)",short:"Т2",exercises:[{name:"Лицеви опори на колене",sets:3,reps:"12 повт.",svg:S.pushupknee,muscles:["Гърди","Трицепс","Предни рамене"],what:"Колена на пода, ръце на ширина на раменете. Права линия от колена до глава. Бавно слизай и се избутай нагоре.",tip:"Не прескачай към пълни лицеви опори, докато не усетиш стабилност в корема."},{name:"Cat-Cow",sets:3,reps:"10 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб","Корем"],what:"На четири крака. Вдишвай и изпускай гърба надолу (Крава). Издишвай и закръгляй гърба нагоре (Котка).",tip:"Едно от най-добрите упражнения след раждане."},{name:"Bird-Dog",sets:3,reps:"10 повт. / страна",svg:S.birddog,muscles:["Дълбок корем","Долен гръб","Тазови стабилизатори"],what:"На четири крака. Протегни дясната ръка напред и левия крак назад. Задръж 3 сек., върни. Редувай.",tip:"Бедрата да не се накланят. Дишай равномерно."},{name:"Superman",sets:3,reps:"12 повт.",svg:S.superman,muscles:["Долен гръб","Седалище","Задни рамене"],what:"Легни по корем, ръце напред. Вдигни едновременно ръцете и краката, задръж 2 сек., върни.",tip:"Укрепва гърба, отслабен от носенето на бебето."},{name:"Разтягане на гърдите",sets:2,reps:"45 сек.",svg:S.chest,muscles:["Гърди","Предни рамене"],what:"Заключи ръцете зад гърба, открий гърдите напред и нагоре. Задръж и дишай.",tip:"Кърменето и носенето стягат гърдите. Прави го и по всяко друго време."},{name:"Шийна мобилност",sets:2,reps:"8 кръга / посока",svg:S.neck,muscles:["Врат","Горен трапец"],what:"Бавни кръгове с глава, после кръгови движения с рамене.",tip:"Гледането надолу при кърмене натоварва врата. Истинско облекчение."}]},
-    {id:3,label:"ТРЕНИРОВКА 3",title:"Дълбок Корем & Разтягане",subtitle:"Следродилна активация",emoji:"🌸",color:"#C466C8",glow:"rgba(196,102,200,.35)",short:"Т3",exercises:[{name:"Диафрагмено дишане",sets:3,reps:"8 вдишвания",svg:S.breathing,muscles:["Диафрагма","Дълбок корем","Тазово дъно"],what:"Легни по гръб, ръка на корема. Вдишвай — коремът се повдига. Издишвай напълно. Усети тазовото дъно при издишване.",tip:"Основното упражнение след раждане. Прави го всеки ден."},{name:"Dead Bug",sets:3,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Легни по гръб, ръцете нагоре, колената на 90°. Бавно спускай десния крак и лявата ръка. Редувай.",tip:"Кръстът трябва да остава притиснат към пода."},{name:"Тазови накланяния",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно","Долен гръб"],what:"Легни по гръб. При издишване натисни кръста към пода. При вдишване отпусни.",tip:"Деликатно активира дълбоките мускули."},{name:"Разтягане на хамстрингите",sets:2,reps:"40 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб"],what:"Легни по гръб, вдигни крак с кърпа. Опитай да изправиш коляното до лек стрейч.",tip:"Само леко усещане — без болка."},{name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш","Рамене"],what:"От четири крака, седни назад към петите, ръцете напред. Дишай дълбоко.",tip:"Ако петите не стигат до седалището — постави възглавница."},{name:"Лежащо усукване",sets:2,reps:"45 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Хип флексори"],what:"Прекарай коляното към противоположната страна, погледни в обратна посока. Дишай.",tip:"При болка в симфизата — само леко движение."}]},
+    {id:3,label:"ТРЕНИРОВКА 3",title:"Дълбок Корем & Разтягане",subtitle:"Core · Разтягане",emoji:"🌸",color:"#C466C8",glow:"rgba(196,102,200,.35)",short:"Т3",exercises:[{name:"Диафрагмено дишане",sets:3,reps:"8 вдишвания",svg:S.breathing,muscles:["Диафрагма","Дълбок корем","Тазово дъно"],what:"Легни по гръб, ръка на корема. Вдишвай — коремът се повдига. Издишвай напълно. Усети тазовото дъно при издишване.",tip:"Основното упражнение след раждане. Прави го всеки ден."},{name:"Dead Bug",sets:3,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"Легни по гръб, ръцете нагоре, колената на 90°. Бавно спускай десния крак и лявата ръка. Редувай.",tip:"Кръстът трябва да остава притиснат към пода."},{name:"Тазови накланяния",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно","Долен гръб"],what:"Легни по гръб. При издишване натисни кръста към пода. При вдишване отпусни.",tip:"Деликатно активира дълбоките мускули."},{name:"Разтягане на хамстрингите",sets:2,reps:"40 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб"],what:"Легни по гръб, вдигни крак с кърпа. Опитай да изправиш коляното до лек стрейч.",tip:"Само леко усещане — без болка."},{name:"Поза на детето",sets:2,reps:"60 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш","Рамене"],what:"От четири крака, седни назад към петите, ръцете напред. Дишай дълбоко.",tip:"Ако петите не стигат до седалището — постави възглавница."},{name:"Лежащо усукване",sets:2,reps:"45 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Хип флексори"],what:"Прекарай коляното към противоположната страна, погледни в обратна посока. Дишай.",tip:"При болка в симфизата — само леко движение."}]},
     {id:4,label:"ТРЕНИРОВКА 4",title:"Пълно Тяло & Поток",subtitle:"Лек Full Body · Укрепване",emoji:"✨",color:"#7C6FD4",glow:"rgba(124,111,212,.35)",short:"Т4",exercises:[{name:"Маршируване на място",sets:3,reps:"45 сек.",svg:S.march,muscles:["Крака","Корем","Кардио (безударно)"],what:"Вдигай коленете редуващо се до нивото на бедрото. Ръцете се движат в ритъм.",tip:"Безударно кардио — идеално след раждане."},{name:"Клякане с вдигане на ръце",sets:3,reps:"15 повт.",svg:S.squatarms,muscles:["Крака","Рамене","Корем"],what:"При качването от клякане вдигни двете ръце над главата.",tip:"Издишвай при качването и вдигането."},{name:"Страничен планк на коляно",sets:3,reps:"25 сек. / страна",svg:S.sideplank,muscles:["Кос корем","Тазови стабилизатори"],what:"Легни настрани, долното коляно свито, горният крак прав. Вдигни бедрата.",tip:"По-безопасна от пълния страничен планк след раждане."},{name:"Бавни лицеви опори на колене",sets:3,reps:"10 повт.",svg:S.slowpush,muscles:["Гърди","Трицепс","Корем"],what:"4 сек. надолу, 2 сек. нагоре. Ексцентричният темп гради сила.",tip:"Бавното темпо е по-ефективно от бързите повторения."},{name:"Фигура 4",sets:2,reps:"50 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени"],what:"Легни по гръб, кръстосай глезена върху другото коляно. Дръпни към гърдите.",tip:"Облекчава пириформис — честа болка след раждане."},{name:"Саваса",sets:1,reps:"3–5 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Легни по гръб, затвори очи, отпусни всяка част от тялото. Дишай бавно.",tip:"Не е лукс — е необходимост."}]},
-    {id:5,label:"ТРЕНИРОВКА 5",title:"Тазово Дъно & Дъх",subtitle:"Дълбока активация · Леко",emoji:"🌊",color:"#4A90D9",glow:"rgba(74,144,217,.35)",short:"Т5",exercises:[{name:"Диафрагмено дишане (задълбочено)",sets:4,reps:"10 вдишвания",svg:S.breathing,muscles:["Диафрагма","Тазово дъно","Дълбок корем"],what:"Едната ръка на корема, другата на гърдите. Само долната ръка се повдига. 5 сек. вдишване, 5 сек. издишване.",tip:"Активира парасимпатиковата система. Прави бавно."},{name:"Глутеус мост с пауза",sets:4,reps:"12 повт. (5 сек. пауза)",svg:S.bridge,muscles:["Седалище","Тазово дъно","Хамстринг"],what:"Глутеус мост с 5-секундна пауза горе. Стегни тазовото дъно при всяка пауза.",tip:"Паузата активира тазовото дъно по-дълбоко от бързите повторения."},{name:"Clamshell с пауза",sets:3,reps:"12 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Тазобедрени стабилизатори"],what:"Clamshell с 3-секундна пауза в горната точка. Контролирано спускане.",tip:"Паузата значително увеличава ефекта."},{name:"Тазови накланяния с дишане",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно"],what:"При вдишване изпъни кръста. При издишване натисни към пода и стегни корема.",tip:"Свързването на дишането с движението е основата на следродилното възстановяване."},{name:"Dead Bug (бавен)",sets:3,reps:"6 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"4 сек. спускане, 2 сек. пауза, 4 сек. връщане. Кръстът притиснат към пода.",tip:"Бавното темпо прави Dead Bug значително по-ефективен."},{name:"Поза на детето с дъх",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Долен гръб","Тазово дъно"],what:"В Child's Pose дишай дълбоко в гърба. Ребрата се разширяват настрани.",tip:"Деликатно разтяга тазовото дъно."}]},
+    {id:5,label:"ТРЕНИРОВКА 5",title:"Тазово Дъно & Дъх",subtitle:"Дълбока активация",emoji:"🌊",color:"#4A90D9",glow:"rgba(74,144,217,.35)",short:"Т5",exercises:[{name:"Диафрагмено дишане (задълбочено)",sets:4,reps:"10 вдишвания",svg:S.breathing,muscles:["Диафрагма","Тазово дъно","Дълбок корем"],what:"Едната ръка на корема, другата на гърдите. Само долната ръка се повдига. 5 сек. вдишване, 5 сек. издишване.",tip:"Активира парасимпатиковата система. Прави бавно."},{name:"Глутеус мост с пауза",sets:4,reps:"12 повт. (5 сек. пауза)",svg:S.bridge,muscles:["Седалище","Тазово дъно","Хамстринг"],what:"Глутеус мост с 5-секундна пауза горе. Стегни тазовото дъно при всяка пауза.",tip:"Паузата активира тазовото дъно по-дълбоко от бързите повторения."},{name:"Clamshell с пауза",sets:3,reps:"12 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Тазобедрени стабилизатори"],what:"Clamshell с 3-секундна пауза в горната точка. Контролирано спускане.",tip:"Паузата значително увеличава ефекта."},{name:"Тазови накланяния с дишане",sets:3,reps:"15 повт.",svg:S.pelvictilt,muscles:["Долен корем","Тазово дъно"],what:"При вдишване изпъни кръста. При издишване натисни към пода и стегни корема.",tip:"Свързването на дишането с движението е основата на следродилното възстановяване."},{name:"Dead Bug (бавен)",sets:3,reps:"6 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Тазово дъно"],what:"4 сек. спускане, 2 сек. пауза, 4 сек. връщане. Кръстът притиснат към пода.",tip:"Бавното темпо прави Dead Bug значително по-ефективен."},{name:"Поза на детето с дъх",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Долен гръб","Тазово дъно"],what:"В Child's Pose дишай дълбоко в гърба. Ребрата се разширяват настрани.",tip:"Деликатно разтяга тазовото дъно."}]},
     {id:6,label:"ТРЕНИРОВКА 6",title:"Гръб & Стойка",subtitle:"Постурална корекция",emoji:"🏹",color:"#D4763B",glow:"rgba(212,118,59,.35)",short:"Т6",exercises:[{name:"Cat-Cow (много бавно)",sets:4,reps:"12 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб"],what:"4 секунди за всяка позиция. Усети всяко прешленче как се движи.",tip:"Бавното темпо прави тази версия значително по-ефективна."},{name:"Superman с редуване",sets:4,reps:"10 повт. / страна",svg:S.superman,muscles:["Долен гръб","Седалище"],what:"Редувай: само дясна ръка + ляв крак. Задръж 3 сек. Тялото остава стабилно.",tip:"По-контролирана и по-щадяща версия за кръста."},{name:"Bird-Dog с удължена пауза",sets:3,reps:"8 повт. / страна",svg:S.birddog,muscles:["Дълбок корем","Долен гръб","Тазови стабилизатори"],what:"Протегни ръка и противоположен крак. Задръж 5 сек. Стегни корема.",tip:"5-секундната пауза е ключова — именно тогава стабилизаторите работят."},{name:"Разтягане на гърдите",sets:3,reps:"50 сек.",svg:S.chest,muscles:["Гърди","Предни рамене","Горен гръб"],what:"Ръцете зад гърба, открий гърдите. С всяко издишване се разтвори повече.",tip:"Коригира позата, огъната от кърмене и носене."},{name:"Шийна мобилност",sets:3,reps:"10 кръга / посока",svg:S.neck,muscles:["Врат","Горен трапец","Рамене"],what:"Бавни кръгове с глава, после кръгови движения с рамене.",tip:"Истинско облекчение за натоварения врат."},{name:"Лежащо усукване",sets:2,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","ИТ-лента"],what:"Прекарай коляното встрани, погледни обратно. Само гравитацията работи.",tip:"Ротационното разтягане е особено важно след раждане."}]},
     {id:7,label:"ТРЕНИРОВКА 7",title:"Крака & Баланс",subtitle:"Стабилизация · Координация",emoji:"🌿",color:"#5D9E6E",glow:"rgba(93,158,110,.35)",short:"Т7",exercises:[{name:"Плитко клякане на един крак",sets:3,reps:"10 повт. / крак",svg:S.sumo,muscles:["Квадрицепс","Седалище","Баланс"],what:"До стена за опора. Вдигни единия крак и клякай само на другия — само до 45°.",tip:"Едностранното клякане е по-ефективно за стабилизаторите."},{name:"Глутеус мост с единия крак",sets:3,reps:"12 повт. / крак",svg:S.bridge,muscles:["Седалище","Хамстринг","Тазови стабилизатори"],what:"В горната позиция на глутеус мост вдигни единия крак и задръж 2 сек.",tip:"Удвоява натоварването. Следи тазът да не се накланя."},{name:"Странични изпади",sets:3,reps:"12 повт. / страна",svg:S.lunge,muscles:["Вътрешни бедра","Квадрицепс","Седалище"],what:"Крачка встрани, свий коляното на изпадащия крак. Другият крак прав.",tip:"Отлично за вътрешните бедра — рядко натоварвана зона."},{name:"Clamshell стоящ",sets:3,reps:"15 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Баланс"],what:"До стена. Свий коляното и го повдигни встрани. Задръж 2 сек.",tip:"Добавя баланс — по-функционална версия."},{name:"Wall Sit с движение на пети",sets:3,reps:"40 сек.",svg:S.wallsit,muscles:["Квадрицепс","Прасец","Баланс"],what:"В Wall Sit редувай вдигане на петите — лява, дясна, заедно.",tip:"Добавянето на прасеца прави упражнението по-предизвикателно."},{name:"Разтягане на хип флексорите",sets:2,reps:"50 сек. / страна",svg:S.lunge,muscles:["Хип флексори","Предно бедро"],what:"Изпад, едно коляно на пода, бутни бедрата напред. Вдигни ръцете за по-дълбок стрейч.",tip:"Дишай дълбоко в разтягането."}]},
     {id:8,label:"ТРЕНИРОВКА 8",title:"Мобилност & Гъвкавост",subtitle:"Пълно тяло · Разтягане",emoji:"🌸",color:"#B5507A",glow:"rgba(181,80,122,.35)",short:"Т8",exercises:[{name:"Cat-Cow с ротация",sets:3,reps:"8 повт. / страна",svg:S.catcow,muscles:["Гръбначен стълб","Гръден кош","Рамене"],what:"Cat-Cow с добавена ротация — пусни едната ръка зад врата и завърти лакътя нагоре.",tip:"Торакалната ротация е особено важна след раждане."},{name:"Лежащо усукване (задълбочено)",sets:3,reps:"60 сек. / страна",svg:S.twist,muscles:["Гръбначен стълб","Пириформис","ИТ-лента"],what:"С всяко издишване позволи на тялото да се усучи малко повече.",tip:"Не форсирай — дишай и изчакай тялото да се отпусне."},{name:"Разтягане на хамстрингите",sets:3,reps:"50 сек. / крак",svg:S.hamstring,muscles:["Хамстринг","Долен гръб","Прасец"],what:"Легни, вдигни крак с кърпа. Леко дърпай стъпалото към теб.",tip:"Мускулът се нуждае от 30+ сек. за да се отпусне реално."},{name:"Фигура 4 (задълбочена)",sets:3,reps:"60 сек. / страна",svg:S.figure4,muscles:["Пириформис","Дълбоки тазобедрени"],what:"С всяко издишване дръпни малко повече към гърдите.",tip:"Особено полезно при дискомфорт в седалището или ишиас."},{name:"Поза на детето — широка",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Вътрешни бедра","Долен гръб","Ханш"],what:"Child's Pose с крака по-широко от раменете.",tip:"Отваря вътрешните бедра значително повече."},{name:"Саваса (тяло сканиране)",sets:1,reps:"5–7 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Бавно пренасяй вниманието от пръстите нагоре и отпускай всяка част.",tip:"Body scan успокоява нервната система по-дълбоко от обикновената релаксация."}]},
@@ -684,6 +735,25 @@ function renderCalendar(){
 
 let calOpen=false;
 function toggleCalendar(){calOpen=!calOpen;document.getElementById('calBody').classList.toggle('open',calOpen);document.getElementById('calArrow').classList.toggle('open',calOpen);}
+
+// ── THEME SWITCHER ───────────────────────────────────────────
+const THEME_MAP={'tropical':null,'berry':'berry','forest':'forest'};
+function applyTheme(name){
+  document.documentElement.removeAttribute('data-theme');
+  if(THEME_MAP[name]) document.documentElement.setAttribute('data-theme',THEME_MAP[name]);
+  try{localStorage.setItem('app_theme',name);}catch(e){}
+  const colors={'tropical':'%232EC4B6','berry':'%237C3AED','forest':'%2315616D'};
+  const sel=document.getElementById('themeSelect');
+  if(sel) sel.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${colors[name]}'/%3E%3C/svg%3E")`;
+}
+(function(){
+  try{
+    const saved=localStorage.getItem('app_theme')||'tropical';
+    const sel=document.getElementById('themeSelect');
+    if(sel) sel.value=saved;
+    applyTheme(saved);
+  }catch(e){}
+})();
 
 renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();renderCalendar();renderStats();
 </script>
