@@ -395,6 +395,24 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .act-location-input:focus{border-color:var(--accent);}
 .act-location-input::placeholder{color:var(--text3);font-weight:600;}
 .act-location-input:disabled{background:var(--bg);color:var(--text2);cursor:default;}
+.date-sel-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 22px 0;flex-wrap:wrap;
+}
+.date-sel-label{font-size:11px;font-weight:800;color:var(--text3);letter-spacing:.5px;white-space:nowrap;}
+.date-sel-input{
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
+  padding:5px 10px;border-radius:10px;
+  border:2px solid var(--border);background:var(--surface);
+  color:var(--accent);cursor:pointer;outline:none;
+  transition:border-color .2s;
+}
+.date-sel-input:focus{border-color:var(--accent);}
+.date-sel-today{
+  font-size:11px;font-weight:800;color:var(--accent2);
+  cursor:pointer;text-decoration:underline;text-underline-offset:2px;
+}
+.date-sel-today:hover{opacity:.7;}
 .act-complete-btn{
   width:100%;padding:15px;border-radius:100px;border:none;cursor:pointer;
   font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
@@ -611,6 +629,11 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   </div>
   <div class="panel-divider" id="panelDivider"></div>
   <div class="day-panel-body" id="dayPanelBody">
+    <div class="date-sel-row">
+      <span class="date-sel-label">📅 Записване за:</span>
+      <input type="date" class="date-sel-input" id="logDateInput" onchange="onLogDateChange()">
+      <span class="date-sel-today" id="logDateToday" onclick="resetLogDate()" style="display:none">↩ Днес</span>
+    </div>
     <div class="panel-inner-top">
       <button class="mark-btn" id="markBtn" onclick="event.stopPropagation();toggleMarkToday()">Завършена тренировка!</button>
     </div>
@@ -989,6 +1012,40 @@ function closePopup(e){
 let activeCat=CATEGORIES[0],activeDay=CATEGORIES[0].workouts[0];
 let completed={},expanded={},exerciseSets={};
 let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
+let selectedDate=null; // null = today
+
+function getSelectedKey(){
+  if(!selectedDate) return todayKey();
+  return selectedDate;
+}
+function getSelectedDateObj(){
+  if(!selectedDate){const d=new Date();d.setHours(0,0,0,0);return d;}
+  const p=selectedDate.split('-');
+  return new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));
+}
+function initDateInput(){
+  const inp=document.getElementById('logDateInput');
+  if(!inp) return;
+  const t=new Date();
+  const todayStr=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+  inp.max=todayStr;
+  inp.value=selectedDate||todayStr;
+  document.getElementById('logDateToday').style.display=selectedDate?'inline':'none';
+}
+function onLogDateChange(){
+  const inp=document.getElementById('logDateInput');
+  const todayStr=todayKey();
+  selectedDate=inp.value===todayStr?null:inp.value;
+  document.getElementById('logDateToday').style.display=selectedDate?'inline':'none';
+  renderMarkBtn();
+  if(activeCat.isActivities) renderDayPanel();
+}
+function resetLogDate(){
+  selectedDate=null;
+  initDateInput();
+  renderMarkBtn();
+  if(activeCat.isActivities) renderDayPanel();
+}
 
 const LOG_KEY='workout_log_v3';
 function loadLog(){try{return JSON.parse(localStorage.getItem(LOG_KEY)||'{}');}catch(e){return {};}}
@@ -1219,8 +1276,8 @@ function renderProgress(){
 }
 
 let exercisesOpen=false;
-function toggleExercises(){exercisesOpen=!exercisesOpen;document.getElementById('dayPanelBody').classList.toggle('open',exercisesOpen);document.getElementById('panelArrow').classList.toggle('open',exercisesOpen);}
-function openExercises(){exercisesOpen=true;document.getElementById('dayPanelBody').classList.add('open');document.getElementById('panelArrow').classList.add('open');}
+function toggleExercises(){exercisesOpen=!exercisesOpen;document.getElementById('dayPanelBody').classList.toggle('open',exercisesOpen);document.getElementById('panelArrow').classList.toggle('open',exercisesOpen);if(exercisesOpen)initDateInput();}
+function openExercises(){exercisesOpen=true;document.getElementById('dayPanelBody').classList.add('open');document.getElementById('panelArrow').classList.add('open');initDateInput();}
 
 let gridOpen=false;
 function toggleGrid(cat){
@@ -1257,7 +1314,7 @@ function renderWorkoutGrid(){
 }
 
 function toggleMarkToday(){
-  const log=loadLog(),k=todayKey();
+  const log=loadLog(),k=getSelectedKey();
   const wasMarked=log[k]&&log[k].id===activeDay.id;
   if(wasMarked){
     delete log[k];
@@ -1279,9 +1336,10 @@ function renderMarkBtn(){
   const btn=document.getElementById('markBtn');
   if(activeCat.isActivities){btn.style.display='none';return;}
   btn.style.display='';
-  const log=loadLog(),k=todayKey();
+  const log=loadLog(),k=getSelectedKey();
   const marked=log[k]&&log[k].id===activeDay.id;
-  btn.textContent=marked?'✓ Записана':'Завършена тренировка!';
+  const isToday=!selectedDate;
+  btn.textContent=marked?'✓ Записана':(isToday?'Завършена тренировка!':'Запиши за избраната дата');
   btn.style.color=marked?'#fff':activeDay.color;
   btn.style.borderColor=marked?'transparent':activeDay.color;
   btn.style.background=marked?activeDay.color:'transparent';
@@ -1305,7 +1363,7 @@ function renderDayPanel(){
 
   // ── ACTIVITY MODE ──
   if(activeCat.isActivities){
-    const log=loadLog(),k=todayKey();
+    const log=loadLog(),k=getSelectedKey();
     const saved=log[k]&&log[k].id===d.id;
     const savedVal=saved?log[k].metricValue:'';
     list.innerHTML=`
