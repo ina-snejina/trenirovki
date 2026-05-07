@@ -394,7 +394,45 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .jb-lbl{font-size:9px;font-weight:700;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;margin-top:1px;display:block;}
 
 @media(max-width:400px){.journey-bottom{grid-template-columns:repeat(2,1fr);}}
-/* ── ACTIVITY PANEL ── */
+/* ── SUGGESTIONS SECTION ── */
+.sugg-card{background:var(--surface);border-radius:20px;margin-bottom:20px;box-shadow:0 2px 12px var(--accent-glow);overflow:hidden;}
+.sugg-toggle{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;user-select:none;transition:background .2s;}
+.sugg-toggle:hover{background:var(--panel-hover);}
+.sugg-toggle-left{display:flex;align-items:center;gap:10px;}
+.sugg-toggle-icon{font-size:20px;}
+.sugg-toggle-title{font-size:15px;font-weight:900;color:var(--text);letter-spacing:-.3px;}
+.sugg-toggle-sub{font-size:11px;font-weight:600;color:var(--text3);margin-top:1px;}
+.sugg-arrow{font-size:14px;color:var(--text3);transition:transform .3s;font-weight:900;}
+.sugg-arrow.open{transform:rotate(180deg);color:var(--accent);}
+.sugg-body{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+.sugg-body.open{max-height:2000px;}
+.sugg-tabs{display:flex;gap:8px;padding:0 16px 14px;}
+.sugg-tab{padding:7px 16px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;border:2px solid var(--border);background:var(--surface);color:var(--text2);transition:all .2s;}
+.sugg-tab.active{background:var(--tab-active-bg);color:#fff;border-color:transparent;}
+.sugg-panel{display:none;padding:0 16px 16px;}
+.sugg-panel.active{display:block;}
+.sugg-list{display:grid;gap:8px;}
+.sugg-item{background:var(--bg);border:1.5px solid var(--border2);border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;}
+.sugg-item-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.sugg-item-name{font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.sugg-item-desc{font-size:11px;font-weight:600;color:var(--text2);line-height:1.5;}
+.sugg-item-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px;}
+.sugg-tag{font-size:10px;padding:2px 8px;border-radius:100px;background:var(--surface);border:1.5px solid var(--border);color:var(--text3);font-weight:700;}
+.sugg-tag.easy{color:#3BAE94;border-color:#3BAE94;}
+.sugg-tag.med{color:#FF9F1C;border-color:#FF9F1C;}
+.sugg-group-title{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin:14px 0 8px;padding-left:2px;}
+.sugg-group-title:first-child{margin-top:0;}
+.sugg-item-name-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:3px;}
+.sugg-item-name{font-size:13px;font-weight:800;color:var(--text);}
+.sugg-maps-link{
+  font-size:10px;font-weight:700;color:var(--accent);
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+  padding:2px 8px;border-radius:100px;
+  border:1.5px solid var(--border);background:var(--surface);
+  transition:all .2s;
+}
+.sugg-maps-link:hover{background:var(--accent);color:#fff;border-color:transparent;}
+/* ACTIVITY PANEL */
 .act-panel{padding:20px 22px 24px;}
 .act-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
 .act-big-emoji{font-size:48px;line-height:1;flex-shrink:0;}
@@ -698,6 +736,45 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
     </div>
     <div class="cal-days" id="calDays"></div>
     <div class="cal-legend" id="calLegend"></div>
+  </div>
+</div>
+
+<div class="section-title">Идеи за движение</div>
+<div class="sugg-card">
+  <div class="sugg-toggle" onclick="toggleSugg()">
+    <div class="sugg-toggle-left">
+      <span class="sugg-toggle-icon">📍</span>
+      <div>
+        <div class="sugg-toggle-title">Паркове и пътеки в и около София</div>
+        <div class="sugg-toggle-sub">32 паркове · 10 планински маршрута</div>
+      </div>
+    </div>
+    <div class="sugg-arrow" id="suggArrow">▾</div>
+  </div>
+  <div class="sugg-body" id="suggBody">
+    <div class="sugg-tabs">
+      <div class="sugg-tab active" onclick="switchSuggTab('parks',this)">🌳 Паркове в София</div>
+      <div class="sugg-tab" onclick="switchSuggTab('trails',this)">🏔️ Планински пътеки</div>
+    </div>
+
+    <div class="sugg-panel active" id="suggParks">
+      <div id="parksList"></div>
+    </div>
+
+    <div class="sugg-panel" id="suggTrails">
+      <div class="sugg-list">
+        <div class="sugg-item"><span class="sugg-item-icon">💧</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Боянски водопад — Витоша</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B8+%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Две опции: дълга и полегата пътека (~5 км) или кратка и стръмна по коритото на Боянска река. Краят си струва!</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесна/средна</span><span class="sugg-tag">Бояна</span><span class="sugg-tag">~3–5 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🪨</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Златни мостове → Камен дел</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BB%D0%B0%D1%82%D0%BD%D0%B8+%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B5+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Полегата и добре маркирана пътека, идеална за начинаещи. Спираща дъха гледка към София от Камен дел.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">~4–5 км</span><span class="sugg-tag">2–3 ч.</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🔵</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">НОП — Нископланинска обиколна пътека</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%9E%D0%9F+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Обиколна пътека около Витоша — лека, подходяща за всеки, с излизане от множество квартали (Бояна, Симеоново, Драгалевци).</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">сегменти 2–8 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">⛪</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Боянско езеро → Драгалевски манастир</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%BE+%D0%B5%D0%B7%D0%B5%D1%80%D0%BE" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Приятна горска пътека, свързваща Бояна и Драгалевци. Може да се изминава и в обратна посока. Подходяща за деца.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Бояна / Драгалевци</span><span class="sugg-tag">~4 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌅</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Панорамна пътека над Панчарево</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D0%B0+%D0%BF%D1%8A%D1%82%D0%B5%D0%BA%D0%B0+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Тръгва от с. Герман или от Банята в Панчарево. Горска пътека с гледки към езерото. Лека и приятна за уикенд излет.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Панчарево</span><span class="sugg-tag">~3.5 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌊</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Камбаните → Зли камък (Панчарево)</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B8%D1%82%D0%B5+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Много лек и живописен семеен маршрут в покрайнините на София. Гори, поляни, гледки към Витоша.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Панчарево</span><span class="sugg-tag">семеен</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🏞️</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Лозенска планина — от с. Лозен</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Кръгов маршрут с плавни пътеки и красиви гледки към София. Идеален за следобед с финал по залез.</div><div class="sugg-item-tags"><span class="sugg-tag med">средно</span><span class="sugg-tag">Лозен</span><span class="sugg-tag">~8–10 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌄</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Люлин — Бонсови поляни</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D0%BD%D1%81%D0%BE%D0%B2%D0%B8+%D0%BF%D0%BE%D0%BB%D1%8F%D0%BD%D0%B8+%D0%9B%D1%8E%D0%BB%D0%B8%D0%BD" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Отправна точка с паркинг или автобус 103 от Овча купел. Тихо и непретенциозно място за разходка сред природата.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Люлин</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">⛰️</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Витоша — хижа Алеко → плато Торфено бранище</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D1%85%D0%B8%D0%B6%D0%B0+%D0%90%D0%BB%D0%B5%D0%BA%D0%BE+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">От хижа Алеко (кабинков лифт от Симеоново) по червена маркировка до плато. Панорамни гледки, 3–4 часа преход.</div><div class="sugg-item-tags"><span class="sugg-tag med">средно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">3–4 ч.</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌿</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Планината Плана</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%BB%D0%B0%D0%BD%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Ниска планина с усещане за безкраен простор — любима за семейни излети. По-далеч от центъра, но уникално тиха.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Плана</span><span class="sugg-tag">семеен</span></div></div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1181,6 +1258,85 @@ function renderJourney(){
 }
 
 function renderStats(){const log=loadLog();document.getElementById('statTotal').textContent=Object.keys(log).length;document.getElementById('statStreak').textContent=getStreak();document.getElementById('statMonth').textContent=getMonthCount();renderProgress();}
+
+// ── PARKS & TRAILS DATA ─────────────────────────────────────
+const PARKS_DATA=[
+  {group:'🏙️ Големи градски паркове',items:[
+    {name:'Борисова градина',desc:'Най-големият класически парк в София — езерото Ариана, велоалеи, тенис кортове, огромни зелени площи.',tags:['лесно','Изток']},
+    {name:'Южен парк',desc:'Любим за разходки, спорт, пикници и събития — широки поляни и алеи.',tags:['лесно','Юг']},
+    {name:'Западен парк',desc:'Един от най-големите паркове в западната част на града.',tags:['лесно','Запад']},
+    {name:'Северен парк',desc:'Голям парк в район Надежда — спортни и детски зони.',tags:['лесно','Надежда']},
+    {name:'Източен парк',desc:'Зелената зона между Младост и Дружба.',tags:['лесно','Младост']},
+    {name:'Ловен парк',desc:'Естествено продължение на Борисовата градина към Витоша.',tags:['лесно','Юг']},
+    {name:'Парк Възраждане',desc:'Модерен парк с аквапарк и спортни пространства.',tags:['лесно','Запад']},
+    {name:'Парк Гео Милев',desc:'Популярен квартален парк с много зеленина.',tags:['лесно','Изток']},
+    {name:'Парк Заимов',desc:'Централен парк около театър „София".',tags:['лесно','Оборище']},
+    {name:'Парк Хиподрума',desc:'Просторен парк в централна Sofia с широки алеи.',tags:['лесно','Хиподрума']},
+    {name:'Парк Овча купел',desc:'Обширна зеленина, фонтани и добре поддържани тревни площи.',tags:['лесно','Овча купел']},
+    {name:'Парк Студентски',desc:'Зелена зона около Студентски град — удобен за разходка и бягане.',tags:['лесно','Студентски град']},
+    {name:'Парк Дружба',desc:'Тих квартален парк с маркирани маршрути за разходка.',tags:['лесно','Дружба']},
+    {name:'Парк 100 години София',desc:'Просторен парк в Младост — идеален за семейни излети.',tags:['лесно','Младост']},
+  ]},
+  {group:'🌸 Централни градини',items:[
+    {name:'Княжеска градина',desc:'В сърцето на центъра — красива историческа градина, идеална за кратка разходка.',tags:['лесно','Център']},
+    {name:'Парк НДК',desc:'Около Националния дворец на културата — широки площи, фонтани, оживено.',tags:['лесно','Център']},
+    {name:'Градска градина (City Garden)',desc:'Най-старата градина в София — пред Народния театър. Исторически чар.',tags:['лесно','Център']},
+    {name:'Докторска градина',desc:'Една от най-приятните централни градини.',tags:['лесно','Център']},
+    {name:'Кристална градина',desc:'Малък, но много популярен парк до „Александър Невски".',tags:['лесно','Център']},
+    {name:'Градина при Александър Невски',desc:'Площадът и градината около катедралата.',tags:['лесно','Център']},
+    {name:'Градина при Софийски университет',desc:'Тихо кътче в самия център, любимо на студентите.',tags:['лесно','Център']},
+    {name:'Банска градина',desc:'Около Централната минерална баня — историческо и спокойно място.',tags:['лесно','Център']},
+  ]},
+  {group:'🌿 Ботанически и специални паркове',items:[
+    {name:'Ботаническа градина на БАН',desc:'Ботаническата градина край Околовръстното — разнообразна флора, тихи алеи.',tags:['лесно','Запад']},
+    {name:'Университетска ботаническа градина',desc:'Малка, но много приятна ботаническа градина в центъра.',tags:['лесно','Център']},
+    {name:'Парк Врана',desc:'Голям исторически парк с дворец и огромни зелени площи.',tags:['лесно','Изток']},
+    {name:'Парк Камбаните',desc:'Парк и културен комплекс в подножието на Витоша.',tags:['лесно','Витоша']},
+  ]},
+  {group:'🚶 Алеи и речни пътеки',items:[
+    {name:'Алеите покрай Перловска река',desc:'Приятни алеи покрай реката — добри за бягане и разходка.',tags:['лесно','Изток']},
+    {name:'Алеите покрай Владайска река',desc:'Тихи горски алеи в южната част на града.',tags:['лесно','Юг']},
+    {name:'Южната дъга (НДК–Витошка)',desc:'Пешеходен маршрут около НДК и бул. Витоша.',tags:['лесно','Център']},
+    {name:'Квартални градини (Младост, Дружба, Люлин, Надежда)',desc:'Всяко голямо жилищно ядро предлага зелени площи между блоковете — достъпни за ежедневна разходка.',tags:['лесно','целия град']},
+  ]},
+];
+
+function renderParks(){
+  const container=document.getElementById('parksList');
+  if(!container) return;
+  container.innerHTML=PARKS_DATA.map(group=>`
+    <div class="sugg-group-title">${group.group}</div>
+    <div class="sugg-list" style="margin-bottom:14px;">
+      ${group.items.map(p=>{
+        const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' София');
+        const tags=p.tags.map(t=>`<span class="sugg-tag easy">${t}</span>`).join('');
+        return `<div class="sugg-item">
+          <span class="sugg-item-icon">🌳</span>
+          <div style="flex:1;min-width:0;">
+            <div class="sugg-item-name-row">
+              <div class="sugg-item-name">${p.name}</div>
+              <a class="sugg-maps-link" href="${mapsUrl}" target="_blank" rel="noopener">🗺️ Карта</a>
+            </div>
+            <div class="sugg-item-desc">${p.desc}</div>
+            <div class="sugg-item-tags">${tags}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+let suggOpen=false;
+function toggleSugg(){
+  suggOpen=!suggOpen;
+  document.getElementById('suggBody').classList.toggle('open',suggOpen);
+  document.getElementById('suggArrow').classList.toggle('open',suggOpen);
+}
+function switchSuggTab(tab,el){
+  document.querySelectorAll('.sugg-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sugg-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('sugg'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
+}
 
 let dotsOpen=false;
 function toggleDots(){
@@ -1787,7 +1943,7 @@ function applyTheme(name){
   }catch(e){}
 })();
 
-renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();renderCalendar();renderStats();
+renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();renderCalendar();renderStats();renderParks();
 </script>
 </body>
 </html>
