@@ -200,6 +200,10 @@ h1{font-family:'Nunito',sans-serif;font-size:clamp(36px,7vw,72px);font-weight:90
 h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .header-sub{font-size:14px;color:var(--text2);margin-top:10px;font-weight:600;}
 
+.header-moto{
+  font-size:13px;color:var(--text3);margin-top:8px;font-weight:600;
+  font-style:italic;letter-spacing:.2px;
+}
 /* ── STATS ── */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
 .stat-card{border-radius:20px;padding:18px 14px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08);position:relative;overflow:hidden;}
@@ -573,9 +577,10 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 <div class="app">
 
 <div class="header">
-  <div class="header-pill">🏋️ Тренировъчен план</div>
+  <div class="header-pill">Всяко движение се брои</div>
   <h1>МОЕТО АКТИВНО<br>ЕЖЕДНЕВИЕ</h1>
-  <p class="header-sub">По твой график · Сила · Форма</p>
+  <p class="header-sub">Всяко движение се брои</p>
+  <p class="header-moto">Не е важно какво правиш — важно е да се движиш.</p>
 </div>
 
 <div class="theme-switcher">
@@ -592,8 +597,8 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 
 
 <div class="stats-row">
-  <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-num" id="statTotal">0</div><div class="stat-label">Тренировки</div></div>
-  <div class="stat-card"><div class="stat-icon">🔥</div><div class="stat-num" id="statStreak">0</div><div class="stat-label">Серия (дни)</div></div>
+  <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-num" id="statTotal">0</div><div class="stat-label">Активни дни</div></div>
+  <div class="stat-card"><div class="stat-icon">🔥</div><div class="stat-num" id="statStreak">0</div><div class="stat-label">Дни в движение</div></div>
   <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-num" id="statMonth">0</div><div class="stat-label">Този месец</div></div>
 </div>
 
@@ -698,12 +703,12 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 </div>
 
 <div class="tips-box">
-  <div class="tips-title">Съвети за по-добри резултати</div>
+  <div class="tips-title">Философията на движението</div>
   <div class="tips-grid">
-    <div class="tip-item"><span class="tip-icon">🌬️</span> Издишвай при усилие — никога не задържай дъха</div>
-    <div class="tip-item"><span class="tip-icon">🏋️</span> С гири/пудовка — започни с лека тежест и увеличавай постепенно</div>
-    <div class="tip-item"><span class="tip-icon">💧</span> Пий достатъчно вода преди, по време и след тренировка</div>
-    <div class="tip-item"><span class="tip-icon">😴</span> Сънят е ключов — тялото се укрепва по време на почивка</div>
+    <div class="tip-item"><span class="tip-icon">🚶</span> Разходката в парка е също толкова ценна, колкото тренировката в залата</div>
+    <div class="tip-item"><span class="tip-icon">🎯</span> Постоянството бие интензивността — 20 мин. всеки ден > 2 часа веднъж</div>
+    <div class="tip-item"><span class="tip-icon">✅</span> Всеки активен ден се брои — без значение дали е йога, поход или скачане на въже</div>
+    <div class="tip-item"><span class="tip-icon">🌱</span> Движението не е наказание — то е грижа към себе си</div>
   </div>
 </div>
 </div>
@@ -712,8 +717,8 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
   <div class="popup-card" onclick="event.stopPropagation()">
     <span class="popup-emoji">🏆</span>
-    <div class="popup-title">Тренировката е завършена!</div>
-    <div class="popup-sub">Записана в календара · Продължавай така!</div>
+    <div class="popup-title" id="popupTitle">Тренировката е завършена! 🏆</div>
+    <div class="popup-sub" id="popupSub">Записана в календара · Продължавай така!</div>
     <div class="popup-quote-wrap">
       <div class="popup-quote" id="popupQuote"></div>
       <div class="popup-author" id="popupAuthor"></div>
@@ -1032,6 +1037,10 @@ function getNextQuote(){
 
 function showCompletionPopup(){
   const q=getNextQuote();
+  const isAct=activeCat&&activeCat.isActivities;
+  const titles=['Активният ден е записан! 🌿','Движението е записано! ✅','Браво — пак се движи! 💫'];
+  document.getElementById('popupTitle').textContent=isAct?titles[Math.floor(Math.random()*titles.length)]:'Тренировката е завършена! 🏆';
+  document.getElementById('popupSub').textContent=isAct?'Всяко движение се брои — продължавай!':'Записана в календара · Продължавай така!';
   document.getElementById('popupQuote').textContent='\u201c'+q.q+'\u201d';
   const authorEl=document.getElementById('popupAuthor');
   authorEl.textContent=q.a?'\u2014 '+q.a:'';
@@ -1210,25 +1219,25 @@ function renderProgress(){
   // ── MESSAGES ──
   const getMsg=()=>{
     if(total===0) return 'Започни днес — първата тренировка е най-важна.';
-    if(total===1) return 'Началото е направено — продължавай!';
-    if(total<10)  return 'Вече имаш '+total+' тренировки — навикът се изгражда!';
-    if(total<30)  return 'Страхотно! '+total+' тренировки — виждат се първите промени!';
-    if(total<60)  return 'Впечатляващо! '+total+' тренировки — вече си в истинска форма!';
-    if(total<90)  return 'Невероятно! '+total+' тренировки — трансформацията е факт! 🏆';
-    if(total<120) return 'Ти си пример за другите! '+total+' тренировки! 🌟';
-    if(total<150) return 'Здравето е твой начин на живот! '+total+' тренировки! 💫';
-    if(total<180) return 'Неспирна отдаденост! '+total+' тренировки! 🔥';
-    if(total<210) return 'Истинска спортна легенда! '+total+' тренировки! ⚡';
-    if(total<240) return 'Две години постоянство — невероятно! '+total+' тренировки! 🏅';
-    return 'Абсолютна легенда! '+total+' тренировки! 🦁';
+    if(total===1) return 'Първият активен ден — началото е направено!';
+    if(total<10)  return 'Вече имаш '+total+' активни дни — навикът се изгражда!';
+    if(total<30)  return 'Страхотно! '+total+' активни дни — виждат се първите промени!';
+    if(total<60)  return 'Впечатляващо! '+total+' активни дни — вече си в истинска форма!';
+    if(total<90)  return 'Невероятно! '+total+' активни дни — трансформацията е факт! 🏆';
+    if(total<120) return 'Ти си пример за другите! '+total+' активни дни! 🌟';
+    if(total<150) return 'Здравето е твой начин на живот! '+total+' активни дни! 💫';
+    if(total<180) return 'Неспирна отдаденост! '+total+' активни дни! 🔥';
+    if(total<210) return 'Истинска спортна легенда! '+total+' активни дни! ⚡';
+    if(total<240) return 'Две години в движение — невероятно! '+total+' активни дни! 🏅';
+    return 'Абсолютна легенда! '+total+' активни дни! 🦁';
   };
 
   const getSub=()=>{
-    if(total<10)  return 'До: 💪 Навик (10 тренировки)';
-    if(total<30)  return 'До: 🔥 1 месец (30 тренировки)';
-    if(total<60)  return 'До: 💪 Форма (60 тренировки)';
-    if(total<90)  return 'До: 🏆 Трансформация (90 тренировки)';
-    return 'До следваща цел: '+nextM+' тренировки · '+(nextM-total)+' остават';
+    if(total<10)  return 'До: 💪 Навик (10 активни дни)';
+    if(total<30)  return 'До: 🔥 1 месец (30 активни дни)';
+    if(total<60)  return 'До: 💪 Форма (60 активни дни)';
+    if(total<90)  return 'До: 🏆 Трансформация (90 активни дни)';
+    return 'До следваща цел: '+nextM+' активни дни · '+(nextM-total)+' остават';
   };
 
   const msgEl=document.getElementById('pgcMsg');
@@ -1358,8 +1367,10 @@ function toggleMarkToday(){
     if(activeCat.isActivities){
       const inp=document.getElementById('actInput');
       const loc=document.getElementById('actLocation');
+      const nam=document.getElementById('actName');
       if(inp&&inp.value){entry.metricValue=inp.value;entry.metricUnit=activeDay.metricUnit;}
       if(loc&&loc.value.trim()) entry.location=loc.value.trim();
+      if(nam&&nam.value.trim()) entry.activityName=nam.value.trim();
     }
     log[k]=entry;
     showCompletionPopup();
@@ -1420,6 +1431,11 @@ function renderDayPanel(){
             <span class="act-metric-unit">${d.metricUnit}</span>
           </div>
         </div>
+        ${d.id===509?`
+        <div class="act-location-row">
+          <div class="act-metric-label">✏️ Какво беше активността?</div>
+          <input class="act-location-input" id="actName" type="text" maxlength="80" placeholder="напр. Танци, Тенис, Каране на кънки..." value="${saved&&log[k].activityName?log[k].activityName:''}" ${saved?'disabled':''}>
+        </div>`:''}
         <div class="act-location-row">
           <div class="act-metric-label">📍 Място / Маршрут</div>
           <input class="act-location-input" id="actLocation" type="text" maxlength="80" placeholder="напр. Витоша, Борисова градина..." value="${saved&&log[k].location?log[k].location:''}" ${saved?'disabled':''}>
@@ -1501,7 +1517,7 @@ function renderCalendar(){
     if(entry){
       const entryGrad=GRADIENTS[entry.color]||entry.color;
       cell.style.background=entryGrad;
-      const tip=[entry.label||entry.short];
+      const tip=[entry.activityName||(entry.label||entry.short)];
       if(entry.metricValue) tip.push(entry.metricValue+' '+(entry.metricUnit||''));
       if(entry.location) tip.push('📍 '+entry.location);
       cell.title=tip.join(' · ');
@@ -1560,7 +1576,7 @@ function generatePDF(){
     const details=entries.slice(0,5).map(([date,e])=>{
       const d=new Date(date);
       const ds=d.toLocaleDateString('bg-BG',{day:'numeric'});
-      let s=ds+'. '+e.short;
+      let s=ds+'. '+(e.activityName||e.short);
       if(e.metricValue) s+=` ${e.metricValue}${e.metricUnit||''}`;
       if(e.location) s+=` (${e.location})`;
       return s;
@@ -1707,8 +1723,8 @@ body{font-family:'Nunito',sans-serif;color:${C.text};background:#fff;font-size:1
 </div>
 
 <div class="stats-row">
-  <div class="stat-box"><div class="stat-num">${total}</div><div class="stat-lbl">Тренировки</div></div>
-  <div class="stat-box"><div class="stat-num">${streak}</div><div class="stat-lbl">Серия (дни)</div></div>
+  <div class="stat-box"><div class="stat-num">${total}</div><div class="stat-lbl">Активни дни</div></div>
+  <div class="stat-box"><div class="stat-num">${streak}</div><div class="stat-lbl">Дни в движение</div></div>
   <div class="stat-box"><div class="stat-num">${monthCount}</div><div class="stat-lbl">Този месец</div></div>
 </div>
 
