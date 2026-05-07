@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Моят Тренировъчен План</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<title>Моето Активно Ежедневие</title>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
 <style>
 /* ── THEMES ──────────────────────────────────────────────── */
 :root{
@@ -119,6 +119,43 @@
   --section-line-color:#15616D;
   --panel-hover:#FFF5E6;
 }
+[data-theme="minimal"]{
+  --bg:#FAFAF8;
+  --bg2:#F5F0E8;
+  --surface:#FFFFFF;
+  --accent:#1C1C1C;
+  --accent2:#C8A96E;
+  --accent3:#EDE8DE;
+  --accent-glow:rgba(28,28,28,.05);
+  --text:#1C1C1C;
+  --text2:#6B6B6B;
+  --text3:#ABABAB;
+  --border:#E8E4DC;
+  --border2:#F0EDE6;
+  --stat1:linear-gradient(135deg,#2C2C2C,#1C1C1C);
+  --stat2:linear-gradient(135deg,#F0EBE0,#E8E2D4);
+  --stat2-text:#3C3020;
+  --stat3:linear-gradient(135deg,#4C4C4C,#2C2C2C);
+  --pill:linear-gradient(135deg,#2C2C2C,#4C4C4C);
+  --h1-grad:linear-gradient(135deg,#1C1C1C,#6B6B6B);
+  --divider:linear-gradient(90deg,#1C1C1C,#E8E4DC);
+  --cal-bg:#1C1C1C;
+  --tips-bg:linear-gradient(135deg,#FDFBF7,#F5F0E8);
+  --tips-border:#E0D8C8;
+  --tips-text:#5A5040;
+  --svg-stroke:#3C3C3C;
+  --svg-head:#1C1C1C;
+  --svg-arr:#BCBCBC;
+  --tab-active-bg:#1C1C1C;
+  --tab-active-shadow:rgba(28,28,28,.15);
+  --card-hover-bg:#F5F0E8;
+  --ex-bg:#FDFBF8;
+  --desc-tip-bg:#F8F4EE;
+  --desc-tip-border:#C8A96E;
+  --desc-what-color:#3C3C3C;
+  --section-line-color:#C8C4BC;
+  --panel-hover:#FAFAF8;
+}
 
 .pdf-btn{
   font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
@@ -159,22 +196,19 @@ body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-
   padding:7px 18px;border-radius:100px;margin-bottom:18px;
   box-shadow:0 4px 16px var(--accent-glow);
 }
-h1{font-family:'Nunito',sans-serif;font-size:clamp(36px,7vw,72px);font-weight:900;line-height:.95;letter-spacing:-1.5px;color:var(--text);}
+h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,6.5vw,66px);font-weight:400;line-height:1.05;letter-spacing:-.5px;color:var(--text);}
 h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .header-sub{font-size:14px;color:var(--text2);margin-top:10px;font-weight:600;}
 
 /* ── STATS ── */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
 .stat-card{border-radius:20px;padding:18px 14px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08);position:relative;overflow:hidden;}
-.stat-card:nth-child(1){background:var(--stat1);}
+.stat-card:nth-child(1){background:var(--stat2);}
 .stat-card:nth-child(2){background:var(--stat2);}
-.stat-card:nth-child(2) .stat-num{color:var(--stat2-text);}
-.stat-card:nth-child(2) .stat-label{color:var(--stat2-text);opacity:.7;}
-.stat-card:nth-child(3){background:var(--stat3);}
-.stat-card::after{content:'';position:absolute;right:-10px;bottom:-10px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.12);}
+.stat-card:nth-child(3){background:var(--stat2);}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--stat2-text);line-height:1;letter-spacing:1px;}
+.stat-label{font-size:10px;color:var(--stat2-text);opacity:.7;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-top:2px;}.stat-card::after{content:'';position:absolute;right:-10px;bottom:-10px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.08);}
 .stat-icon{font-size:20px;margin-bottom:4px;}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:#fff;line-height:1;letter-spacing:1px;}
-.stat-label{font-size:10px;color:rgba(255,255,255,.85);letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-top:2px;}
 
 /* ── SECTION TITLE ── */
 .section-title{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
@@ -540,7 +574,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 
 <div class="header">
   <div class="header-pill">🏋️ Тренировъчен план</div>
-  <h1>МОЯТ<br>ТРЕНИРОВЪЧЕН<br>ПЛАН</h1>
+  <h1>МОЕТО АКТИВНО<br>ЕЖЕДНЕВИЕ</h1>
   <p class="header-sub">По твой график · Сила · Форма</p>
 </div>
 
@@ -550,6 +584,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
     <option value="tropical">🌅 Tropical Sunrise</option>
     <option value="berry">🫐 Berry Bliss</option>
     <option value="forest">🌊 Deep Ocean</option>
+    <option value="minimal">🤍 Minimal White</option>
   </select>
   <button class="pdf-btn" onclick="generatePDF()" title="Свали PDF">📄 PDF</button>
 </div>
@@ -1496,7 +1531,7 @@ function generatePDF(){
     border:   st.getPropertyValue('--border').trim(),
     border2:  st.getPropertyValue('--border2').trim(),
   };
-  const themeNames={'tropical':'🌅 Tropical Sunrise','berry':'🫐 Berry Bliss','forest':'🌊 Deep Ocean'};
+  const themeNames={'tropical':'🌅 Tropical Sunrise','berry':'🫐 Berry Bliss','forest':'🌊 Deep Ocean','minimal':'🤍 Minimal White'};
   const themeName=themeNames[localStorage.getItem('app_theme')||'tropical'];
   const log=loadLog();
   const total=Object.keys(log).length;
@@ -1608,7 +1643,7 @@ function generatePDF(){
   }).join('');
 
   const html=`<!DOCTYPE html><html lang="bg"><head><meta charset="UTF-8">
-<title>Моят Тренировъчен План — ${dateStr}</title>
+<title>Моето Активно Ежедневие — ${dateStr}</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap');
 @page{size:A4;margin:16mm 18mm;}
@@ -1666,7 +1701,7 @@ body{font-family:'Nunito',sans-serif;color:${C.text};background:#fff;font-size:1
 
 <div class="cover">
   <div class="cover-label">Тренировъчен план</div>
-  <div class="cover-title">МОЯТ<br>ТРЕНИРОВЪЧЕН<br>ПЛАН</div>
+  <div class="cover-title">МОЕТО<br>АКТИВНО<br>ЕЖЕДНЕВИЕ</div>
   <div class="cover-meta">Генериран на ${dateStr}</div>
   <div class="cover-theme">${themeName}</div>
 </div>
@@ -1709,7 +1744,7 @@ ${sortedLog.length>0?`
 <div class="section-break"></div>
 ${catsHTML}
 
-<div class="pdf-footer">Моят Тренировъчен План · ${dateStr} · ${themeName}</div>
+<div class="pdf-footer">Моето Активно Ежедневие · ${dateStr} · ${themeName}</div>
 </body></html>`;
 
   const w=window.open('','_blank','width=900,height=700');
@@ -1719,12 +1754,12 @@ ${catsHTML}
 }
 
 // ── THEME SWITCHER ───────────────────────────────────────────
-const THEME_MAP={'tropical':null,'berry':'berry','forest':'forest'};
+const THEME_MAP={'tropical':null,'berry':'berry','forest':'forest','minimal':'minimal'};
 function applyTheme(name){
   document.documentElement.removeAttribute('data-theme');
   if(THEME_MAP[name]) document.documentElement.setAttribute('data-theme',THEME_MAP[name]);
   try{localStorage.setItem('app_theme',name);}catch(e){}
-  const colors={'tropical':'%232EC4B6','berry':'%237C3AED','forest':'%2315616D'};
+  const colors={'tropical':'%232EC4B6','berry':'%237C3AED','forest':'%2315616D','minimal':'%231C1C1C'};
   const sel=document.getElementById('themeSelect');
   if(sel) sel.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${colors[name]}'/%3E%3C/svg%3E")`;
 }
