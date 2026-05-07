@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Моето Активно Ежедневие</title>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
 <style>
 /* ── THEMES ──────────────────────────────────────────────── */
 :root{
@@ -196,7 +196,7 @@ body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-
   padding:7px 18px;border-radius:100px;margin-bottom:18px;
   box-shadow:0 4px 16px var(--accent-glow);
 }
-h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,6.5vw,66px);font-weight:400;line-height:1.05;letter-spacing:-.5px;color:var(--text);}
+h1{font-family:'Nunito',sans-serif;font-size:clamp(36px,7vw,72px);font-weight:900;line-height:.95;letter-spacing:-1.5px;color:var(--text);}
 h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .header-sub{font-size:14px;color:var(--text2);margin-top:10px;font-weight:600;}
 
@@ -579,7 +579,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 </div>
 
 <div class="theme-switcher">
-  <span class="theme-label">🎨 Тема:</span>
+  <span class="theme-label">Тема:</span>
   <select class="theme-select" id="themeSelect" onchange="applyTheme(this.value)">
     <option value="tropical">🌅 Tropical Sunrise</option>
     <option value="berry">🫐 Berry Bliss</option>
@@ -1328,7 +1328,7 @@ function renderCatTabs(){
     const isActive=cat.id===activeCat.id;
     const btn=document.createElement('button');
     btn.className='cat-tab'+(isActive?' active':'')+(isActive&&gridOpen?' open':'');
-    btn.innerHTML=`${cat.emoji} ${cat.label} <span class="tab-arrow">▾</span>`;
+    btn.innerHTML=`${cat.label} <span class="tab-arrow">▾</span>`;
     btn.onclick=()=>toggleGrid(cat);
     tabs.appendChild(btn);
   });
