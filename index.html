@@ -120,7 +120,14 @@
   --panel-hover:#FFF5E6;
 }
 
-/* ── THEME SWITCHER ── */
+.pdf-btn{
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:100px;
+  border:2px solid var(--accent);background:var(--surface);
+  color:var(--accent);cursor:pointer;transition:all .2s;
+  box-shadow:0 2px 8px var(--accent-glow);white-space:nowrap;
+}
+.pdf-btn:hover{background:var(--accent);color:#fff;}
 .theme-switcher{
   display:flex;align-items:center;justify-content:center;gap:10px;
   margin-bottom:20px;
@@ -349,7 +356,55 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .jb-lbl{font-size:9px;font-weight:700;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;margin-top:1px;display:block;}
 
 @media(max-width:400px){.journey-bottom{grid-template-columns:repeat(2,1fr);}}
-/* ── PROGRESS COMPACT ── */
+/* ── ACTIVITY PANEL ── */
+.act-panel{padding:20px 22px 24px;}
+.act-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.act-big-emoji{font-size:48px;line-height:1;flex-shrink:0;}
+.act-title-wrap .act-name{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--text);letter-spacing:-.5px;margin-bottom:4px;}
+.act-title-wrap .act-desc{font-size:13px;color:var(--text2);font-weight:600;line-height:1.5;}
+.act-metric-row{
+  background:var(--bg);border-radius:16px;border:2px solid var(--border2);
+  padding:16px 18px;margin-bottom:18px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.act-metric-label{font-size:13px;font-weight:800;color:var(--text2);}
+.act-metric-input-wrap{display:flex;align-items:center;gap:8px;}
+.act-metric-input{
+  font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;
+  width:90px;padding:6px 10px;border-radius:12px;
+  border:2px solid var(--border);background:var(--surface);
+  color:var(--text);text-align:center;outline:none;
+  transition:border-color .2s;
+  -moz-appearance:textfield;appearance:textfield;
+}
+.act-metric-input::-webkit-outer-spin-button,
+.act-metric-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+.act-metric-input:focus{border-color:var(--accent);}
+.act-metric-unit{font-size:14px;font-weight:800;color:var(--text3);}
+.act-optional{font-size:11px;color:var(--text3);font-weight:600;font-style:italic;}
+.act-location-row{
+  margin-bottom:16px;
+  display:flex;flex-direction:column;gap:7px;
+}
+.act-location-input{
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;
+  width:100%;padding:9px 14px;border-radius:12px;
+  border:2px solid var(--border);background:var(--surface);
+  color:var(--text);outline:none;transition:border-color .2s;
+}
+.act-location-input:focus{border-color:var(--accent);}
+.act-location-input::placeholder{color:var(--text3);font-weight:600;}
+.act-location-input:disabled{background:var(--bg);color:var(--text2);cursor:default;}
+.act-complete-btn{
+  width:100%;padding:15px;border-radius:100px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;
+  letter-spacing:.5px;transition:all .2s;color:#fff;
+  background:var(--tab-active-bg);
+  box-shadow:0 4px 16px var(--tab-active-shadow);
+}
+.act-complete-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--tab-active-shadow);}
+.act-complete-btn.done{background:var(--bg);color:var(--accent);border:2px solid var(--accent);box-shadow:none;}
+/* PROGRESS COMPACT */
 .pgc-card{
   background:var(--surface);border-radius:20px;padding:18px 20px;
   box-shadow:0 2px 12px var(--accent-glow);margin-bottom:28px;
@@ -379,6 +434,28 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   margin-top:0;
 }
 .heatmap-dropdown.open{max-height:400px;margin-top:10px;}
+.pgc-milestones{display:flex;align-items:center;margin:12px 0 4px;gap:0;}
+.pgc-ms{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;}
+.pgc-ms-badge{
+  font-size:11px;font-weight:800;color:var(--surface);
+  background:var(--accent);
+  padding:3px 8px;border-radius:100px;white-space:nowrap;
+}
+.pgc-ms-desc{font-size:10px;font-weight:700;color:var(--text3);text-align:center;line-height:1.3;white-space:nowrap;}
+.pgc-ms-line{flex:1;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.35;min-width:10px;}
+.pgc-streak-block{
+  display:flex;flex-direction:column;gap:8px;
+  margin:12px 0 4px;padding:12px 16px;
+  background:var(--bg);border-radius:14px;
+  border:2px solid var(--border2);
+}
+.pgc-streak-row{display:flex;align-items:center;gap:12px;}
+.pgc-streak-num{
+  font-family:'Bebas Neue',sans-serif;font-size:52px;
+  line-height:1;color:var(--accent);letter-spacing:-1px;
+}
+.pgc-streak-label{font-size:13px;font-weight:800;color:var(--text2);line-height:1.3;}
+.pgc-streak-msg{font-size:13px;font-weight:700;color:var(--text);font-style:italic;}
 .pgc-dots-toggle{
   margin-top:10px;font-size:11px;font-weight:800;color:var(--text3);
   cursor:pointer;user-select:none;letter-spacing:.5px;
@@ -456,6 +533,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
     <option value="berry">🫐 Berry Bliss</option>
     <option value="forest">🌊 Deep Ocean</option>
   </select>
+  <button class="pdf-btn" onclick="generatePDF()" title="Свали PDF">📄 PDF</button>
 </div>
 
 
@@ -466,48 +544,8 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-num" id="statMonth">0</div><div class="stat-label">Този месец</div></div>
 </div>
 
-<div class="section-title">Пътят към формата</div>
-<div class="journey-card">
-  <div class="journey-intro">
-    С постоянство от <strong>3–4 тренировки седмично</strong>, ето какво те очаква:
-  </div>
-  <div class="milestones">
-    <div class="milestone" id="ms1">
-      <div class="ms-badge">4 седм.</div>
-      <div class="ms-desc">Чувстваш<br>разликата</div>
-    </div>
-    <div class="ms-line"><div class="ms-line-fill" id="msLine1"></div></div>
-    <div class="milestone" id="ms2">
-      <div class="ms-badge">8 седм.</div>
-      <div class="ms-desc">Виждаш<br>резултати</div>
-    </div>
-    <div class="ms-line"><div class="ms-line-fill" id="msLine2"></div></div>
-    <div class="milestone" id="ms3">
-      <div class="ms-badge">12 седм.</div>
-      <div class="ms-desc">Всички го<br>забелязват</div>
-    </div>
-  </div>
-  <div class="heatmap-toggle" onclick="toggleHeatmap()">
-    <span id="heatmapToggleLabel">Последните 12 седмици ▾</span>
-  </div>
-  <div class="heatmap-dropdown" id="heatmapDropdown">
-    <div class="heatmap-header">
-      <span class="heatmap-legend"><span class="hm-dot hm-none"></span> без тренировка &nbsp; <span class="hm-dot hm-done"></span> тренировка</span>
-    </div>
-    <div class="heatmap-wd-row">
-      <span>П</span><span>В</span><span>С</span><span>Ч</span><span>П</span><span>С</span><span>Н</span>
-    </div>
-    <div class="heatmap" id="heatmap"></div>
-    <div class="journey-bottom">
-      <div class="jb-stat"><span class="jb-icon">🔥</span><span class="jb-num" id="jStreak">0</span><span class="jb-lbl">дни серия</span></div>
-      <div class="jb-stat"><span class="jb-icon">✅</span><span class="jb-num" id="jTotal">0</span><span class="jb-lbl">тренировки</span></div>
-      <div class="jb-stat"><span class="jb-icon">📅</span><span class="jb-num" id="jWeeks">0</span><span class="jb-lbl">активни седм.</span></div>
-      <div class="jb-stat"><span class="jb-icon">🎯</span><span class="jb-num" id="jProgress">0%</span><span class="jb-lbl">към 12 седм.</span></div>
-    </div>
-  </div>
-</div>
 
-<div class="section-title">Пътят към здравето</div>
+<div class="section-title">Пътят към здравето и мечтаната фигура</div>
 <div class="pgc-card">
   <div class="pgc-top">
     <div>
@@ -520,6 +558,22 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
     </div>
   </div>
   <div class="pgc-bar-track"><div class="pgc-bar-fill" id="pgcBar"></div></div>
+  <div id="pgcMilestonesBlock">
+    <div class="pgc-milestones">
+      <div class="pgc-ms"><span class="pgc-ms-badge" id="pgcMs1">4 седм.</span><span class="pgc-ms-desc">Чувстваш разликата</span></div>
+      <div class="pgc-ms-line"></div>
+      <div class="pgc-ms"><span class="pgc-ms-badge" id="pgcMs2">8 седм.</span><span class="pgc-ms-desc">Виждаш резултати</span></div>
+      <div class="pgc-ms-line"></div>
+      <div class="pgc-ms"><span class="pgc-ms-badge" id="pgcMs3">12 седм.</span><span class="pgc-ms-desc">Всички го забелязват</span></div>
+    </div>
+  </div>
+  <div class="pgc-streak-block" id="pgcStreakBlock" style="display:none">
+    <div class="pgc-streak-row">
+      <div class="pgc-streak-num" id="pgcStreakNum">0</div>
+      <div class="pgc-streak-label">седмици<br>подред 🔥</div>
+    </div>
+    <div class="pgc-streak-msg" id="pgcStreakMsg"></div>
+  </div>
   <div class="pgc-dots-toggle" onclick="toggleDots()">
     <span id="pgcDotsLabel">Последните 8 седмици ▾</span>
   </div>
@@ -788,6 +842,17 @@ const CATEGORIES=[
       {name:"Clamshell (Разтваряне от лег)",sets:4,reps:"20 повт. / страна",svg:S.clam,muscles:["Външна страна на бедрата","Глутеус"],what:"Легни настрани, ластик над коленете. Разтвори бедрата максимално нагоре — като мида. Задръж в горната точка.",tip:"Ефективно срещу бричовете и портокаловата кожа."},
       {name:"Ритник назад + коляно напред",sets:3,reps:"12 повт. / крак",svg:S.march,muscles:["Седалище","Задно бедро","Баланс"],what:"Ластик над коляното. Ритник назад с леко присвит крак, след това изнеси коляното напред. Може да ползваш опора за баланс.",tip:"Финално упражнение — натоварва седалището, задното бедро и баланса."}
     ]}
+  ]},
+  {id:'other',label:'Други',emoji:'🌿',isActivities:true,workouts:[
+    {id:501,label:"Д1",title:"Скачане на въже",emoji:"🪢",color:"#E8605A",glow:"rgba(232,96,90,.3)",short:"СВ",metric:'duration',metricLabel:"Времетраене",metricUnit:"мин.",desc:"Кардио тренировка с въже — ефективна и забавна."},
+    {id:502,label:"Д2",title:"Поход в планината",emoji:"🏔️",color:"#3BAE94",glow:"rgba(59,174,148,.3)",short:"ПП",metric:'distance',metricLabel:"Разстояние",metricUnit:"км",desc:"Укрепва крака и сърцето, зарежда с енергия."},
+    {id:503,label:"Д3",title:"Разходка в парка",emoji:"🌿",color:"#5D9E6E",glow:"rgba(93,158,110,.3)",short:"РП",metric:'distance',metricLabel:"Разстояние",metricUnit:"км",desc:"Активно възстановяване — движение без натоварване."},
+    {id:504,label:"Д4",title:"Бягане",emoji:"🏃",color:"#FF9B4A",glow:"rgba(255,155,74,.3)",short:"Бяг",metric:'distance',metricLabel:"Разстояние",metricUnit:"км",desc:"Кардио и издръжливост — основа на всяка форма."},
+    {id:505,label:"Д5",title:"Колоездене",emoji:"🚴",color:"#4A90D9",glow:"rgba(74,144,217,.3)",short:"Кол",metric:'distance',metricLabel:"Разстояние",metricUnit:"км",desc:"Нисковъздействащо кардио — щади ставите."},
+    {id:506,label:"Д6",title:"Плуване",emoji:"🏊",color:"#2EC4B6",glow:"rgba(46,196,182,.3)",short:"Плув",metric:'duration',metricLabel:"Времетраене",metricUnit:"мин.",desc:"Пълно натоварване на тялото без ударен товар."},
+    {id:507,label:"Д7",title:"Йога / Медитация",emoji:"🧘",color:"#7C6FD4",glow:"rgba(124,111,212,.3)",short:"Йог",metric:'duration',metricLabel:"Времетраене",metricUnit:"мин.",desc:"Гъвкавост, баланс и спокойствие на ума."},
+    {id:508,label:"Д8",title:"Стречинг",emoji:"🤸",color:"#B5507A",glow:"rgba(181,80,122,.3)",short:"Стр",metric:'duration',metricLabel:"Времетраене",metricUnit:"мин.",desc:"Подобрява гъвкавостта и намалява риска от травми."},
+    {id:509,label:"Д9",title:"Друга активност",emoji:"⭐",color:"#C49B2E",glow:"rgba(196,155,46,.3)",short:"Акт",metric:'duration',metricLabel:"Времетраене",metricUnit:"мин.",desc:"Всяко движение се брои — запиши го!"},
   ]}
 ];
 
@@ -1083,7 +1148,59 @@ function renderProgress(){
   const bar=document.getElementById('pgcBar');
   if(bar) setTimeout(()=>bar.style.width=pct+'%',80);
 
-  // Dot strip — last 56 days
+  // ── MILESTONES vs WEEK STREAK ──
+  // Calculate active weeks (weeks with ≥1 workout) and consecutive week streak
+  const today2=new Date();today2.setHours(0,0,0,0);
+  function getWeekKey(date){
+    const d=new Date(date);
+    const day=(d.getDay()+6)%7;
+    d.setDate(d.getDate()-day);
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+  const weekSet=new Set(Object.keys(log).map(k=>getWeekKey(new Date(k))));
+  const totalWeeks=weekSet.size;
+
+  // Consecutive week streak (backwards from current week)
+  let weekStreak=0;
+  for(let w=0;w<200;w++){
+    const d=new Date(today2);
+    d.setDate(today2.getDate()-(today2.getDay()+6)%7-w*7);
+    if(weekSet.has(getWeekKey(d))) weekStreak++;
+    else if(w>0) break;
+  }
+
+  const milestonesBlock=document.getElementById('pgcMilestonesBlock');
+  const streakBlock=document.getElementById('pgcStreakBlock');
+
+  if(totalWeeks>=12 && milestonesBlock && streakBlock){
+    milestonesBlock.style.display='none';
+    streakBlock.style.display='flex';
+    document.getElementById('pgcStreakNum').textContent=weekStreak;
+
+    const STREAK_MSGS=[
+      [1,  'Добро начало — продължавай всяка седмица!'],
+      [4,  'Вече е навик — тялото ти се е адаптирало!'],
+      [8,  'Невероятно постоянство — резултатите са видими!'],
+      [12, 'Трансформацията е в ход — всички го забелязват!'],
+      [16, 'Ти си пример за другите — не спирай!'],
+      [20, 'Здравето е начин на живот за теб — браво!'],
+      [26, 'Половин година подред — абсолютна шампионка! 🏆'],
+      [39, 'Три четвърти от годината — легенда! 🌟'],
+      [52, 'Цяла година подред — невероятно! 🦁'],
+    ];
+    let msg='Продължавай така!';
+    for(const[w,m]of STREAK_MSGS){if(weekStreak>=w)msg=m;}
+    document.getElementById('pgcStreakMsg').textContent='"'+msg+'"';
+  } else if(milestonesBlock){
+    milestonesBlock.style.display='block';
+    if(streakBlock) streakBlock.style.display='none';
+    // Light up achieved milestones
+    const weeksArr=[4,8,12];
+    weeksArr.forEach((w,i)=>{
+      const el=document.getElementById('pgcMs'+(i+1));
+      if(el) el.style.background=totalWeeks>=w?'var(--accent2)':'var(--accent)';
+    });
+  }
   const dots=document.getElementById('pgcDots');
   if(!dots) return;
   dots.innerHTML='';
@@ -1142,15 +1259,27 @@ function renderWorkoutGrid(){
 function toggleMarkToday(){
   const log=loadLog(),k=todayKey();
   const wasMarked=log[k]&&log[k].id===activeDay.id;
-  if(wasMarked){delete log[k];}
-  else{
-    log[k]={id:activeDay.id,short:activeDay.short,color:activeDay.color,label:activeDay.label};
+  if(wasMarked){
+    delete log[k];
+  } else {
+    const entry={id:activeDay.id,short:activeDay.short,color:activeDay.color,label:activeDay.label};
+    if(activeCat.isActivities){
+      const inp=document.getElementById('actInput');
+      const loc=document.getElementById('actLocation');
+      if(inp&&inp.value){entry.metricValue=inp.value;entry.metricUnit=activeDay.metricUnit;}
+      if(loc&&loc.value.trim()) entry.location=loc.value.trim();
+    }
+    log[k]=entry;
     showCompletionPopup();
   }
-  saveLog(log);renderMarkBtn();renderCalendar();renderStats();renderJourney();
+  saveLog(log);renderMarkBtn();renderCalendar();renderStats();
+  if(activeCat.isActivities) renderDayPanel();
 }
 function renderMarkBtn(){
-  const btn=document.getElementById('markBtn'),log=loadLog(),k=todayKey();
+  const btn=document.getElementById('markBtn');
+  if(activeCat.isActivities){btn.style.display='none';return;}
+  btn.style.display='';
+  const log=loadLog(),k=todayKey();
   const marked=log[k]&&log[k].id===activeDay.id;
   btn.textContent=marked?'✓ Записана':'Завършена тренировка!';
   btn.style.color=marked?'#fff':activeDay.color;
@@ -1168,11 +1297,49 @@ function renderDayPanel(){
   document.getElementById('dayEmoji').textContent=d.emoji;
   document.getElementById('dayLabel').textContent=d.label;
   const dt=document.getElementById('dayTitle');dt.textContent=d.title;dt.style.color=d.color;
-  document.getElementById('daySubtitle').textContent=d.subtitle;
+  document.getElementById('daySubtitle').textContent=d.subtitle||d.desc||'';
   if(!accentEl){accentEl=document.createElement('style');document.head.appendChild(accentEl);}
   accentEl.textContent=`.exercise-card.done::before{background:${d.color}}.exercise-card.done .check-btn{background:${d.color};border-color:transparent;color:#fff}`;
   document.getElementById('progressCircle').setAttribute('stroke',d.color);
   const list=document.getElementById('exerciseList');list.innerHTML='';
+
+  // ── ACTIVITY MODE ──
+  if(activeCat.isActivities){
+    const log=loadLog(),k=todayKey();
+    const saved=log[k]&&log[k].id===d.id;
+    const savedVal=saved?log[k].metricValue:'';
+    list.innerHTML=`
+      <div class="act-panel">
+        <div class="act-header">
+          <span class="act-big-emoji">${d.emoji}</span>
+          <div class="act-title-wrap">
+            <div class="act-name">${d.title}</div>
+            <div class="act-desc">${d.desc}</div>
+          </div>
+        </div>
+        <div class="act-metric-row">
+          <div>
+            <div class="act-metric-label">${d.metricLabel}</div>
+            <div class="act-optional">(по желание)</div>
+          </div>
+          <div class="act-metric-input-wrap">
+            <input class="act-metric-input" id="actInput" type="number" min="0" step="${d.metricUnit==='км'?'0.1':'1'}" placeholder="—" value="${savedVal}" ${saved?'disabled':''}>
+            <span class="act-metric-unit">${d.metricUnit}</span>
+          </div>
+        </div>
+        <div class="act-location-row">
+          <div class="act-metric-label">📍 Място / Маршрут</div>
+          <input class="act-location-input" id="actLocation" type="text" maxlength="80" placeholder="напр. Витоша, Борисова градина..." value="${saved&&log[k].location?log[k].location:''}" ${saved?'disabled':''}>
+        </div>
+        <button class="act-complete-btn${saved?' done':''}" onclick="toggleMarkToday()">
+          ${saved?'✓ Записана активност':'Завършена активност! 🌿'}
+        </button>
+      </div>`;
+    // hide progress ring — not relevant for activities
+    document.getElementById('progressCircle').style.strokeDashoffset=138.23;
+    document.getElementById('progressText').textContent='';
+    return;
+  }
   d.exercises.forEach(ex=>{
     const key=d.id+'-'+ex.name,done=!!completed[key],open=!!expanded[key];
     const currentSets=exerciseSets[key]||ex.sets;
@@ -1241,7 +1408,10 @@ function renderCalendar(){
     if(entry){
       const entryGrad=GRADIENTS[entry.color]||entry.color;
       cell.style.background=entryGrad;
-      cell.title=entry.label;
+      const tip=[entry.label||entry.short];
+      if(entry.metricValue) tip.push(entry.metricValue+' '+(entry.metricUnit||''));
+      if(entry.location) tip.push('📍 '+entry.location);
+      cell.title=tip.join(' · ');
     }
     cell.innerHTML=`<div class="cal-day-num">${day}</div>${entry?`<div class="cal-day-dot">${entry.short}</div>`:''}`;
     grid.appendChild(cell);
@@ -1252,6 +1422,243 @@ function renderCalendar(){
 
 let calOpen=false;
 function toggleCalendar(){calOpen=!calOpen;document.getElementById('calBody').classList.toggle('open',calOpen);document.getElementById('calArrow').classList.toggle('open',calOpen);}
+
+// ── PDF GENERATION ───────────────────────────────────────────
+function generatePDF(){
+  const st=getComputedStyle(document.documentElement);
+  const C={
+    accent:   st.getPropertyValue('--accent').trim(),
+    accent2:  st.getPropertyValue('--accent2').trim(),
+    accent3:  st.getPropertyValue('--accent3').trim(),
+    bg:       st.getPropertyValue('--bg').trim(),
+    surface:  st.getPropertyValue('--surface').trim(),
+    text:     st.getPropertyValue('--text').trim(),
+    text2:    st.getPropertyValue('--text2').trim(),
+    text3:    st.getPropertyValue('--text3').trim(),
+    border:   st.getPropertyValue('--border').trim(),
+    border2:  st.getPropertyValue('--border2').trim(),
+  };
+  const themeNames={'tropical':'🌅 Tropical Sunrise','berry':'🫐 Berry Bliss','forest':'🌊 Deep Ocean'};
+  const themeName=themeNames[localStorage.getItem('app_theme')||'tropical'];
+  const log=loadLog();
+  const total=Object.keys(log).length;
+  const streak=getStreak();
+  const monthCount=getMonthCount();
+  const now=new Date();
+  const dateStr=now.toLocaleDateString('bg-BG',{day:'numeric',month:'long',year:'numeric'});
+
+  // All log entries sorted
+  const sortedLog=Object.entries(log).sort((a,b)=>a[0].localeCompare(b[0]));
+
+  // Group by month
+  const byMonth={};
+  sortedLog.forEach(([date,entry])=>{
+    const m=date.slice(0,7); // "2024-05"
+    if(!byMonth[m]) byMonth[m]=[];
+    byMonth[m].push([date,entry]);
+  });
+  const BG_MONTHS=['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември'];
+
+  // Monthly summary rows
+  const monthSummaryRows=Object.entries(byMonth).sort((a,b)=>a[0].localeCompare(b[0])).map(([m,entries])=>{
+    const [year,mo]=m.split('-');
+    const label=BG_MONTHS[parseInt(mo)-1]+' '+year;
+    const count=entries.length;
+    const details=entries.slice(0,5).map(([date,e])=>{
+      const d=new Date(date);
+      const ds=d.toLocaleDateString('bg-BG',{day:'numeric'});
+      let s=ds+'. '+e.short;
+      if(e.metricValue) s+=` ${e.metricValue}${e.metricUnit||''}`;
+      if(e.location) s+=` (${e.location})`;
+      return s;
+    }).join(', ')+(entries.length>5?` +${entries.length-5} още`:'');
+    return `<tr><td style="font-weight:800;color:${C.text};white-space:nowrap">${label}</td>
+      <td style="text-align:center;font-weight:900;color:${C.accent};font-size:13pt;">${count}</td>
+      <td style="color:${C.text2};font-size:8pt;">${details}</td></tr>`;
+  }).join('');
+
+  // Yearly heatmap (last 52 weeks) — build as HTML table
+  const heatToday=new Date(); heatToday.setHours(0,0,0,0);
+  const logKeys=new Set(Object.keys(log));
+  function heatKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  let heatCells='';
+  for(let d=0;d<7;d++){
+    heatCells+=`<tr>`;
+    for(let w=52;w>=0;w--){
+      const cd=new Date(heatToday);
+      const dayOff=(heatToday.getDay()+6)%7;
+      cd.setDate(heatToday.getDate()-dayOff+d-w*7);
+      const isFut=cd>heatToday;
+      const hasW=!isFut&&logKeys.has(heatKey(cd));
+      const isToday=cd.getTime()===heatToday.getTime();
+      const bg=hasW?C.accent:isFut?'transparent':C.border;
+      const border=isToday?`2px solid ${C.accent2}`:`1px solid ${C.border2}`;
+      heatCells+=`<td style="width:10px;height:10px;background:${bg};border:${border};border-radius:2px;"></td>`;
+    }
+    heatCells+=`</tr>`;
+  }
+  const MILESTONES=[10,30,60,90];
+  const nextIdx=Math.max(0,MILESTONES.findIndex(m=>m>total));
+  const prevM=nextIdx>0?MILESTONES[nextIdx-1]:0;
+  const nextM=MILESTONES[Math.min(nextIdx,3)];
+  const pct=Math.min(100,Math.round((total-prevM)/(nextM-prevM)*100))||0;
+  const MLABELS=['Начало 🌱','1 месец 💪','Форма 🔥','Трансформация 🏆'];
+
+  // Build workout rows HTML per category
+  function buildCatHTML(cat){
+    return cat.workouts.map(w=>{
+      if(cat.isActivities){
+        return `<div class="w-card">
+          <div class="w-head"><span class="w-emoji">${w.emoji}</span>
+            <div><div class="w-title">${w.title}</div>
+            <div class="w-sub">${w.metricLabel} (${w.metricUnit})</div></div>
+          </div>
+          <div class="w-desc">${w.desc}</div>
+        </div>`;
+      }
+      const exRows=w.exercises.map(e=>`
+        <tr><td class="ex-name">${e.name}</td>
+            <td class="ex-detail">${e.reps}</td>
+            <td class="ex-detail">${e.sets} серии</td></tr>`).join('');
+      return `<div class="w-card">
+        <div class="w-head"><span class="w-emoji">${w.emoji}</span>
+          <div><div class="w-title">${w.title}</div>
+          <div class="w-sub">${w.subtitle||''}</div></div>
+          <div class="w-badge">${w.short}</div>
+        </div>
+        <table class="ex-table">${exRows}</table>
+      </div>`;
+    }).join('');
+  }
+
+  const catsHTML=CATEGORIES.map(cat=>`
+    <div class="cat-section">
+      <div class="cat-title">${cat.emoji} ${cat.label}</div>
+      <div class="w-grid">${buildCatHTML(cat)}</div>
+    </div>`).join('');
+
+  // Log table rows
+  const logRows=sortedLog.map(([date,entry])=>{
+    const d=new Date(date);
+    const ds=d.toLocaleDateString('bg-BG',{day:'numeric',month:'short'});
+    const metricStr=entry.metricValue?` · ${entry.metricValue} ${entry.metricUnit||''}` : '';
+    return `<tr>
+      <td style="color:${C.text2}">${ds}</td>
+      <td><span class="log-dot" style="background:${entry.color}"></span>${entry.label||entry.short}</td>
+      <td style="color:${C.text3}">${metricStr}</td>
+    </tr>`;
+  }).join('');
+
+  const html=`<!DOCTYPE html><html lang="bg"><head><meta charset="UTF-8">
+<title>Моят Тренировъчен План — ${dateStr}</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap');
+@page{size:A4;margin:16mm 18mm;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;color:${C.text};background:#fff;font-size:11pt;line-height:1.5;}
+
+/* COVER */
+.cover{min-height:220px;background:linear-gradient(135deg,${C.bg},${C.accent3}55);border-radius:16px;padding:32px 36px;margin-bottom:24px;position:relative;overflow:hidden;border:2px solid ${C.border};}
+.cover::after{content:'';position:absolute;right:-30px;bottom:-30px;width:160px;height:160px;border-radius:50%;background:${C.accent}22;}
+.cover-label{font-size:9pt;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:${C.accent};margin-bottom:8px;}
+.cover-title{font-family:'Nunito',sans-serif;font-size:32pt;font-weight:900;color:${C.text};line-height:1;letter-spacing:-1px;margin-bottom:8px;}
+.cover-meta{font-size:10pt;color:${C.text2};font-weight:600;}
+.cover-theme{display:inline-block;background:${C.accent};color:#fff;font-size:9pt;font-weight:700;padding:3px 12px;border-radius:100px;margin-top:10px;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.stat-box{background:${C.bg};border:1.5px solid ${C.border};border-radius:12px;padding:14px 16px;text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:36pt;color:${C.accent};line-height:1;}
+.stat-lbl{font-size:8.5pt;font-weight:700;color:${C.text2};text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+/* PROGRESS */
+.prog-card{background:${C.bg};border:1.5px solid ${C.border};border-radius:12px;padding:16px 18px;margin-bottom:20px;}
+.prog-title{font-size:9pt;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:${C.accent};margin-bottom:12px;}
+.prog-bar-track{height:8px;background:${C.border};border-radius:100px;overflow:hidden;margin-bottom:10px;}
+.prog-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,${C.accent},${C.accent2});width:${pct}%;}
+.milestones{display:flex;justify-content:space-between;font-size:8.5pt;color:${C.text2};font-weight:700;}
+.ms-active{color:${C.accent};}
+
+/* LOG */
+.log-card{background:${C.bg};border:1.5px solid ${C.border};border-radius:12px;padding:16px 18px;margin-bottom:20px;}
+.log-table{width:100%;border-collapse:collapse;font-size:9.5pt;}
+.log-table td{padding:5px 8px;border-bottom:1px solid ${C.border2};}
+.log-dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+
+/* CATEGORIES */
+.section-break{page-break-before:always;}
+.cat-section{margin-bottom:28px;}
+.cat-title{font-family:'Nunito',sans-serif;font-size:16pt;font-weight:900;color:${C.text};margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid ${C.accent};letter-spacing:-.5px;}
+.w-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.w-card{background:${C.bg};border:1.5px solid ${C.border};border-radius:12px;padding:14px 14px 12px;break-inside:avoid;}
+.w-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.w-emoji{font-size:20pt;line-height:1;flex-shrink:0;}
+.w-title{font-size:10.5pt;font-weight:900;color:${C.text};line-height:1.2;}
+.w-sub{font-size:8pt;color:${C.text2};font-weight:600;margin-top:2px;}
+.w-badge{margin-left:auto;font-size:8pt;font-weight:800;background:${C.accent};color:#fff;padding:2px 8px;border-radius:100px;flex-shrink:0;}
+.w-desc{font-size:9pt;color:${C.text2};font-weight:600;}
+.ex-table{width:100%;border-collapse:collapse;font-size:8.5pt;}
+.ex-table tr:not(:last-child) td{border-bottom:1px solid ${C.border2};}
+.ex-name{padding:3.5px 0;color:${C.text};font-weight:700;}
+.ex-detail{padding:3.5px 0;color:${C.text2};text-align:right;font-weight:600;white-space:nowrap;}
+
+/* FOOTER */
+.pdf-footer{text-align:center;font-size:8pt;color:${C.text3};margin-top:32px;padding-top:12px;border-top:1.5px solid ${C.border2};}
+</style></head><body>
+
+<div class="cover">
+  <div class="cover-label">Тренировъчен план</div>
+  <div class="cover-title">МОЯТ<br>ТРЕНИРОВЪЧЕН<br>ПЛАН</div>
+  <div class="cover-meta">Генериран на ${dateStr}</div>
+  <div class="cover-theme">${themeName}</div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-box"><div class="stat-num">${total}</div><div class="stat-lbl">Тренировки</div></div>
+  <div class="stat-box"><div class="stat-num">${streak}</div><div class="stat-lbl">Серия (дни)</div></div>
+  <div class="stat-box"><div class="stat-num">${monthCount}</div><div class="stat-lbl">Този месец</div></div>
+</div>
+
+<div class="prog-card">
+  <div class="prog-title">Пътят към здравето и мечтаната фигура</div>
+  <div class="prog-bar-track"><div class="prog-bar-fill"></div></div>
+  <div class="milestones">
+    ${MILESTONES.map((m,i)=>`<span class="${total>=m?'ms-active':''}">${MLABELS[i].replace(/\s\S+$/,'')} (${m})</span>`).join('')}
+  </div>
+  <div style="margin-top:10px;font-size:9pt;color:${C.text2};font-weight:600;">Прогрес: ${total} / ${nextM} тренировки · ${pct}% към следваща цел</div>
+</div>
+
+${sortedLog.length>0?`
+<div class="log-card">
+  <div class="prog-title">Активност по месеци</div>
+  <table class="log-table" style="margin-bottom:18px;">
+    <thead><tr>
+      <th style="text-align:left;color:${C.text3};font-size:8pt;padding-bottom:6px;">Месец</th>
+      <th style="text-align:center;color:${C.text3};font-size:8pt;padding-bottom:6px;">Тренировки</th>
+      <th style="text-align:left;color:${C.text3};font-size:8pt;padding-bottom:6px;">Видове</th>
+    </tr></thead>
+    <tbody>${monthSummaryRows}</tbody>
+  </table>
+  <div class="prog-title" style="margin-bottom:10px;">Последните 52 седмици</div>
+  <div style="font-size:8pt;color:${C.text3};margin-bottom:6px;">Пон → Нед · всяка клетка = 1 ден</div>
+  <table style="border-collapse:separate;border-spacing:2px;">${heatCells}</table>
+  <div style="margin-top:8px;display:flex;align-items:center;gap:8px;font-size:8pt;color:${C.text2};">
+    <span style="display:inline-block;width:10px;height:10px;background:${C.border};border-radius:2px;border:1px solid ${C.border2}"></span> без тренировка &nbsp;
+    <span style="display:inline-block;width:10px;height:10px;background:${C.accent};border-radius:2px;"></span> с тренировка
+  </div>
+</div>`:''}
+
+<div class="section-break"></div>
+${catsHTML}
+
+<div class="pdf-footer">Моят Тренировъчен План · ${dateStr} · ${themeName}</div>
+</body></html>`;
+
+  const w=window.open('','_blank','width=900,height=700');
+  w.document.write(html);
+  w.document.close();
+  w.onload=()=>{ w.focus(); w.print(); };
+}
 
 // ── THEME SWITCHER ───────────────────────────────────────────
 const THEME_MAP={'tropical':null,'berry':'berry','forest':'forest'};
@@ -1272,7 +1679,7 @@ function applyTheme(name){
   }catch(e){}
 })();
 
-renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();renderCalendar();renderStats();renderJourney();
+renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();renderCalendar();renderStats();
 </script>
 </body>
 </html>
