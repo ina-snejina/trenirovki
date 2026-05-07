@@ -405,7 +405,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .sugg-arrow{font-size:14px;color:var(--text3);transition:transform .3s;font-weight:900;}
 .sugg-arrow.open{transform:rotate(180deg);color:var(--accent);}
 .sugg-body{max-height:0;overflow:hidden;transition:max-height .5s ease;}
-.sugg-body.open{max-height:2000px;}
+.sugg-body.open{max-height:6000px;}
 .sugg-tabs{display:flex;gap:8px;padding:0 16px 14px;}
 .sugg-tab{padding:7px 16px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;border:2px solid var(--border);background:var(--surface);color:var(--text2);transition:all .2s;}
 .sugg-tab.active{background:var(--tab-active-bg);color:#fff;border-color:transparent;}
@@ -420,6 +420,14 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .sugg-tag{font-size:10px;padding:2px 8px;border-radius:100px;background:var(--surface);border:1.5px solid var(--border);color:var(--text3);font-weight:700;}
 .sugg-tag.easy{color:#3BAE94;border-color:#3BAE94;}
 .sugg-tag.med{color:#FF9F1C;border-color:#FF9F1C;}
+.park-group{border:1.5px solid var(--border2);border-radius:12px;overflow:hidden;margin-bottom:8px;}
+.park-group-toggle{display:flex;align-items:center;gap:8px;padding:11px 14px;cursor:pointer;user-select:none;background:var(--bg);transition:background .2s;}
+.park-group-toggle:hover{background:var(--bg2);}
+.park-group-label{font-size:12px;font-weight:800;color:var(--text);flex:1;}
+.park-group-meta{font-size:10px;font-weight:700;color:var(--text3);}
+.park-group-arrow{font-size:11px;color:var(--text3);transition:color .2s;flex-shrink:0;}
+.park-group-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 8px;}
+.park-group-body.open{max-height:2000px;}
 .sugg-group-title{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin:14px 0 8px;padding-left:2px;}
 .sugg-group-title:first-child{margin-top:0;}
 .sugg-item-name-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:3px;}
@@ -640,7 +648,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 </div>
 
 
-<div class="section-title">Пътят към здравето и мечтаната фигура</div>
+<div class="section-title">Пътят към енергични и здрави дух и тяло</div>
 <div class="pgc-card">
   <div class="pgc-top">
     <div>
@@ -1304,25 +1312,43 @@ const PARKS_DATA=[
 function renderParks(){
   const container=document.getElementById('parksList');
   if(!container) return;
-  container.innerHTML=PARKS_DATA.map(group=>`
-    <div class="sugg-group-title">${group.group}</div>
-    <div class="sugg-list" style="margin-bottom:14px;">
-      ${group.items.map(p=>{
-        const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' София');
-        const tags=p.tags.map(t=>`<span class="sugg-tag easy">${t}</span>`).join('');
-        return `<div class="sugg-item">
-          <span class="sugg-item-icon">🌳</span>
-          <div style="flex:1;min-width:0;">
-            <div class="sugg-item-name-row">
-              <div class="sugg-item-name">${p.name}</div>
-              <a class="sugg-maps-link" href="${mapsUrl}" target="_blank" rel="noopener">🗺️ Карта</a>
-            </div>
-            <div class="sugg-item-desc">${p.desc}</div>
-            <div class="sugg-item-tags">${tags}</div>
-          </div>
-        </div>`;
-      }).join('')}
-    </div>`).join('');
+  let html='';
+  PARKS_DATA.forEach(function(group,gi){
+    const gid='parkGroup'+gi;
+    const count=group.items.length;
+    html+='<div class="park-group">';
+    html+='<div class="park-group-toggle" onclick="toggleParkGroup(\''+gid+'\')">';
+    html+='<span class="park-group-label">'+group.group+'</span>';
+    html+='<span class="park-group-meta">'+count+' места</span>';
+    html+='<span class="park-group-arrow" id="'+gid+'Arrow">▾</span>';
+    html+='</div>';
+    html+='<div class="park-group-body" id="'+gid+'">';
+    html+='<div class="sugg-list" style="padding:8px 0 4px;">';
+    group.items.forEach(function(p){
+      const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' \u0421\u043e\u0444\u0438\u044f');
+      const tags=p.tags.map(function(t){return '<span class="sugg-tag easy">'+t+'</span>';}).join('');
+      html+='<div class="sugg-item">';
+      html+='<span class="sugg-item-icon">\uD83C\uDF33</span>';
+      html+='<div style="flex:1;min-width:0;">';
+      html+='<div class="sugg-item-name-row">';
+      html+='<div class="sugg-item-name">'+p.name+'</div>';
+      html+='<a class="sugg-maps-link" href="'+mapsUrl+'" target="_blank" rel="noopener">🗺️ Карта</a>';
+      html+='</div>';
+      html+='<div class="sugg-item-desc">'+p.desc+'</div>';
+      html+='<div class="sugg-item-tags">'+tags+'</div>';
+      html+='</div></div>';
+    });
+    html+='</div></div></div>';
+  });
+  container.innerHTML=html;
+}
+
+function toggleParkGroup(id){
+  const body=document.getElementById(id);
+  const arrow=document.getElementById(id+'Arrow');
+  if(!body) return;
+  const isOpen=body.classList.toggle('open');
+  if(arrow) arrow.textContent=isOpen?'\u25B4':'\u25BE';
 }
 
 let suggOpen=false;
@@ -1884,7 +1910,7 @@ body{font-family:'Nunito',sans-serif;color:${C.text};background:#fff;font-size:1
 </div>
 
 <div class="prog-card">
-  <div class="prog-title">Пътят към здравето и мечтаната фигура</div>
+  <div class="prog-title">Пътят към енергични и здрави дух и тяло</div>
   <div class="prog-bar-track"><div class="prog-bar-fill"></div></div>
   <div class="milestones">
     ${MILESTONES.map((m,i)=>`<span class="${total>=m?'ms-active':''}">${MLABELS[i].replace(/\s\S+$/,'')} (${m})</span>`).join('')}
