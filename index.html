@@ -218,7 +218,34 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .section-title{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
 .section-title::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--accent),transparent);border-radius:2px;}
 
-/* ── CATEGORY TABS ── */
+/* ── 2-LEVEL NAVIGATION ── */
+.main-tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.main-tab{
+  padding:11px 20px;border-radius:100px;border:2px solid var(--border);
+  background:var(--surface);cursor:pointer;font-size:13px;font-weight:800;
+  color:var(--text2);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.main-tab:hover{background:var(--bg2);color:var(--text);}
+.main-tab.active{
+  background:var(--tab-active-bg);color:#fff;
+  border-color:transparent;box-shadow:0 6px 20px var(--tab-active-shadow);
+}
+.sub-tabs{
+  display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;
+  padding:10px 14px;background:var(--bg);border-radius:14px;
+  border:1.5px solid var(--border2);
+}
+.sub-tab{
+  padding:7px 14px;border-radius:100px;border:1.5px solid transparent;
+  background:transparent;cursor:pointer;font-size:12px;font-weight:800;
+  color:var(--text2);transition:all .2s;
+}
+.sub-tab:hover{background:var(--surface);color:var(--text);}
+.sub-tab.active{
+  background:var(--surface);color:var(--accent);
+  border-color:var(--accent);
+}
+/* ── CATEGORY TABS (legacy, now hidden) ── */
 .cat-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
 .cat-tab{padding:10px 20px;border-radius:100px;border:2px solid var(--accent);background:var(--surface);cursor:pointer;font-size:13px;font-weight:800;color:var(--text2);transition:all .2s;display:flex;align-items:center;gap:7px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .cat-tab:hover{background:var(--bg2);color:var(--text);transform:translateY(-1px);}
@@ -702,7 +729,8 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 </div>
 
 <div class="section-title">Избери тренировка</div>
-<div class="cat-tabs" id="catTabs"></div>
+<div class="main-tabs" id="mainTabs"></div>
+<div class="sub-tabs" id="subTabs" style="display:none"></div>
 <div class="workout-grid-body" id="workoutGridBody">
   <div style="height:6px"></div>
   <div class="workout-grid" id="workoutGrid"></div>
@@ -1067,7 +1095,7 @@ const CATEGORIES=[
       {name:"Ритник назад + коляно напред",sets:3,reps:"12 повт. / крак",svg:S.march,muscles:["Седалище","Задно бедро","Баланс"],what:"Ластик над коляното. Ритник назад с леко присвит крак, след това изнеси коляното напред. Може да ползваш опора за баланс.",tip:"Финално упражнение — натоварва седалището, задното бедро и баланса."}
     ]}
   ]},
-  {id:'other',label:'Други',emoji:'🌿',isActivities:true,workouts:[
+  {id:'other',label:'Разходки, походи и тренировки в зала',emoji:'🌿',isActivities:true,workouts:[
     {id:501,label:"Д1",title:"Скачане на въже",emoji:"🪢",color:"#E8605A",glow:"rgba(232,96,90,.3)",short:"СВ",metric:'duration',metricLabel:"Времетраене",metricUnit:"мин.",desc:"Кардио тренировка с въже — ефективна и забавна."},
     {id:502,label:"Д2",title:"Поход в планината",emoji:"🏔️",color:"#3BAE94",glow:"rgba(59,174,148,.3)",short:"ПП",metric:'distance',metricLabel:"Разстояние",metricUnit:"км",desc:"Укрепва крака и сърцето, зарежда с енергия."},
     {id:503,label:"Д3",title:"Разходка в парка",emoji:"🌿",color:"#5D9E6E",glow:"rgba(93,158,110,.3)",short:"РП",metric:'distance',metricLabel:"Разстояние",metricUnit:"км",desc:"Активно възстановяване — движение без натоварване."},
@@ -1643,6 +1671,35 @@ function toggleExercises(){exercisesOpen=!exercisesOpen;document.getElementById(
 function openExercises(){exercisesOpen=true;document.getElementById('dayPanelBody').classList.add('open');document.getElementById('panelArrow').classList.add('open');initDateInput();}
 
 let gridOpen=false;
+// ── 2-LEVEL NAVIGATION ──────────────────────────────────────
+const HOME_CATS=['free','dumbbell','kettlebell','booty'];
+const OUTDOOR_CAT='other';
+
+function isHomeCat(cat){return HOME_CATS.includes(cat.id);}
+
+function selectMainTab(id){
+  const cat=id==='home'
+    ? CATEGORIES.find(c=>c.id===activeCat.id&&isHomeCat(activeCat)) || CATEGORIES.find(c=>c.id==='free')
+    : CATEGORIES.find(c=>c.id===OUTDOOR_CAT);
+  if(cat.id!==activeCat.id){
+    activeCat=cat;activeDay=cat.workouts[0];
+    completed={};expanded={};exerciseSets={};
+    renderDayPanel();renderMarkBtn();
+  }
+  gridOpen=true;
+  document.getElementById('workoutGridBody').classList.add('open');
+  renderCatTabs();renderWorkoutGrid();
+}
+
+function selectSubTab(cat){
+  const same=cat.id===activeCat.id;
+  activeCat=cat;
+  if(!same){activeDay=cat.workouts[0];completed={};expanded={};exerciseSets={};renderDayPanel();renderMarkBtn();}
+  gridOpen=true;
+  document.getElementById('workoutGridBody').classList.add('open');
+  renderCatTabs();renderWorkoutGrid();
+}
+
 function toggleGrid(cat){
   const same=cat.id===activeCat.id;
   if(same){gridOpen=!gridOpen;}
@@ -1650,17 +1707,41 @@ function toggleGrid(cat){
   document.getElementById('workoutGridBody').classList.toggle('open',gridOpen);
   renderCatTabs();renderWorkoutGrid();
 }
+
 function renderCatTabs(){
-  const tabs=document.getElementById('catTabs');tabs.innerHTML='';
-  CATEGORIES.forEach(cat=>{
-    const isActive=cat.id===activeCat.id;
+  const mainTabs=document.getElementById('mainTabs');
+  const subTabs=document.getElementById('subTabs');
+  if(!mainTabs) return;
+
+  const isHome=isHomeCat(activeCat);
+
+  // Main tabs
+  mainTabs.innerHTML='';
+  [{id:'home',label:'Тренировки вкъщи'},{id:'outdoor',label:'Разходки, походи & зала'}].forEach(m=>{
+    const active=m.id==='home'?isHome:!isHome;
     const btn=document.createElement('button');
-    btn.className='cat-tab'+(isActive?' active':'')+(isActive&&gridOpen?' open':'');
-    btn.innerHTML=`${cat.label} <span class="tab-arrow">▾</span>`;
-    btn.onclick=()=>toggleGrid(cat);
-    tabs.appendChild(btn);
+    btn.className='main-tab'+(active?' active':'');
+    btn.textContent=m.label;
+    btn.onclick=()=>selectMainTab(m.id);
+    mainTabs.appendChild(btn);
   });
+
+  // Sub tabs (only for home)
+  if(isHome){
+    subTabs.style.display='flex';
+    subTabs.innerHTML='';
+    CATEGORIES.filter(c=>isHomeCat(c)).forEach(cat=>{
+      const btn=document.createElement('button');
+      btn.className='sub-tab'+(cat.id===activeCat.id?' active':'');
+      btn.textContent=cat.label;
+      btn.onclick=()=>selectSubTab(cat);
+      subTabs.appendChild(btn);
+    });
+  } else {
+    subTabs.style.display='none';
+  }
 }
+
 function renderWorkoutGrid(){
   const grid=document.getElementById('workoutGrid');grid.innerHTML='';
   activeCat.workouts.forEach(d=>{
@@ -1670,7 +1751,7 @@ function renderWorkoutGrid(){
     card.style.setProperty('--c',d.color);
     card.style.setProperty('--glow',d.glow);
     card.style.setProperty('--grad',grad);
-    card.innerHTML=`<span class="wc-emoji">${d.emoji}</span><div class="wc-label">${d.label}</div><div class="wc-title">${d.title}</div><div class="wc-sub">${d.subtitle}</div><div class="wc-badge"></div>`;
+    card.innerHTML=`<span class="wc-emoji">${d.emoji}</span><div class="wc-label">${d.label}</div><div class="wc-title">${d.title}</div><div class="wc-sub">${d.subtitle||d.desc||''}</div><div class="wc-badge"></div>`;
     card.onclick=()=>{activeDay=d;completed={};expanded={};exerciseSets={};renderWorkoutGrid();renderDayPanel();renderMarkBtn();openExercises();gridOpen=false;document.getElementById('workoutGridBody').classList.remove('open');renderCatTabs();};
     grid.appendChild(card);
   });
