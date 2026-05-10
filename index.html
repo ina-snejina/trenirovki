@@ -349,6 +349,9 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .cal-day-num{font-size:11px;font-weight:800;line-height:1;}
 .cal-legend{display:none;}
 .cal-day-dot{font-size:7px;font-weight:700;margin-top:1px;opacity:.95;line-height:1.2;text-align:center;overflow:hidden;max-width:100%;white-space:nowrap;text-overflow:ellipsis;}
+.cal-multi-dots{display:flex;justify-content:center;gap:2px;margin-top:2px;flex-wrap:wrap;}
+.cal-mini-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.cal-cell.has-multi{background:var(--surface)!important;border:2px solid var(--border);}
 .cal-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:2px solid rgba(255,255,255,.25);}
 .leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.85);font-weight:700;}
 .leg-dot{width:10px;height:10px;border-radius:4px;flex-shrink:0;}
@@ -483,6 +486,16 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   transition:all .2s;
 }
 .sugg-maps-link:hover{background:var(--accent);color:#fff;border-color:transparent;}
+.visit-btn{
+  margin-top:7px;font-family:'Nunito',sans-serif;
+  font-size:10px;font-weight:800;padding:4px 12px;border-radius:100px;
+  border:1.5px solid var(--border);background:var(--surface);
+  color:var(--text3);cursor:pointer;transition:all .2s;letter-spacing:.3px;
+  display:inline-block;
+}
+.visit-btn:hover{border-color:var(--accent);color:var(--accent);}
+.visit-btn.visited{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 2px 8px var(--accent-glow);}
+.sugg-item.item-visited{background:var(--bg2);opacity:.85;}
 /* ACTIVITY PANEL */
 .act-panel{padding:20px 22px 24px;}
 .act-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
@@ -1246,9 +1259,12 @@ function getNextQuote(){
 function showCompletionPopup(){
   const q=getNextQuote();
   const isAct=activeCat&&activeCat.isActivities;
+  const isPlace=typeof _currentPlaceVisit!=='undefined'&&_currentPlaceVisit;
   const titles=['Активният ден е записан! 🌿','Движението е записано! ✅','Браво — пак се движи! 💫'];
-  document.getElementById('popupTitle').textContent=isAct?titles[Math.floor(Math.random()*titles.length)]:'Тренировката е завършена! 🏆';
-  document.getElementById('popupSub').textContent=isAct?'Всяко движение се брои — продължавай!':'Записана в календара · Продължавай така!';
+  const placeTitles=['Посещението е записано! 📍','Разходката е отбелязана! 🗺️','Чудесно — излезе навън! 🌿'];
+  document.getElementById('popupTitle').textContent=isPlace?placeTitles[Math.floor(Math.random()*placeTitles.length)]:isAct?titles[Math.floor(Math.random()*titles.length)]:'Тренировката е завършена! 🏆';
+  document.getElementById('popupSub').textContent=isPlace?'Записано в календара · Продължавай да изследваш!':isAct?'Всяко движение се брои — продължавай!':'Записана в календара · Продължавай така!';
+  _currentPlaceVisit=false;
   document.getElementById('popupQuote').textContent='\u201c'+q.q+'\u201d';
   const authorEl=document.getElementById('popupAuthor');
   authorEl.textContent=q.a?'\u2014 '+q.a:'';
@@ -1291,14 +1307,27 @@ function onLogDateChange(){
   document.getElementById('logDateToday').style.display=selectedDate?'inline':'none';
   renderMarkBtn();
   if(activeCat.isActivities) renderDayPanel();
+  updateVisitBtns();
 }
 function resetLogDate(){
   selectedDate=null;
   initDateInput();
   renderMarkBtn();
   if(activeCat.isActivities) renderDayPanel();
+  updateVisitBtns();
 }
 
+// ── MULTI-ENTRY LOG HELPERS ─────────────────────────────────
+function getDayEntries(log,k){
+  const e=log[k];
+  if(!e) return [];
+  if(Array.isArray(e)) return e;
+  return [e]; // backward compat
+}
+function setDayEntries(log,k,entries){
+  if(entries.length===0) delete log[k];
+  else log[k]=entries.length===1?entries[0]:entries; // keep single-entry as object for compat
+}
 const LOG_KEY='workout_log_v3';
 function loadLog(){try{return JSON.parse(localStorage.getItem(LOG_KEY)||'{}');}catch(e){return {};}}
 function saveLog(l){try{localStorage.setItem(LOG_KEY,JSON.stringify(l));}catch(e){}}
@@ -1324,7 +1353,7 @@ function getStreak(){
   }
   return count;
 }
-function getMonthCount(){const log=loadLog(),now=new Date();const p=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-';return Object.keys(log).filter(k=>k.startsWith(p)).length;}
+function getMonthCount(){const log=loadLog(),now=new Date();const p=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-';return Object.keys(log).filter(function(k){return k.startsWith(p)&&getDayEntries(log,k).length>0;}).length;}
 function renderJourney(){
   const log=loadLog();
   const today=new Date(); today.setHours(0,0,0,0);
@@ -1362,7 +1391,7 @@ function renderJourney(){
       // Format date for tooltip
       const dd=d.getDate().toString().padStart(2,'0');
       const mm=(d.getMonth()+1).toString().padStart(2,'0');
-      cell.title=`${dd}.${mm} · ${entry.label||entry.short}`;
+      cell.title=(entry.title||entry.label||entry.short)||'';
     }
     hm.appendChild(cell);
   }
@@ -1484,6 +1513,7 @@ function renderParks(){
     html+='</div></div></div>';
   });
   container.innerHTML=html;
+  setTimeout(addVisitedButtons,50);
 }
 
 function toggleParkGroup(id){
@@ -1492,10 +1522,12 @@ function toggleParkGroup(id){
   if(!body) return;
   const isOpen=body.classList.toggle('open');
   if(arrow) arrow.textContent=isOpen?'\u25B4':'\u25BE';
+  if(isOpen) setTimeout(addVisitedButtons,80);
 }
 
 // ── CALENDAR TOOLTIP ────────────────────────────────────────
 let calTtPinned=false;
+let _currentPlaceVisit=false;
 function positionCalTooltip(cell){
   const tt=document.getElementById('calTooltip');
   const r=cell.getBoundingClientRect();
@@ -1536,11 +1568,59 @@ document.addEventListener('click',function(){
   if(calTtPinned){calTtPinned=false;document.getElementById('calTooltip').classList.remove('visible');}
 });
 
+// ── VISIT TODAY (calendar-integrated) ───────────────────────
+function placeShort(name){return name.substring(0,6).replace(/\s/g,'');}
+function togglePlaceVisit(name,type){
+  const log=loadLog(), k=getSelectedKey();
+  const entries=getDayEntries(log,k);
+  const existIdx=entries.findIndex(function(e){return e.placeId===name;});
+  const short=placeShort(name);
+  const colors={park:'#5D9E6E',trail:'#3BAE94',hood:'#4A90D9'};
+  const color=colors[type]||'#5D9E6E';
+  if(existIdx>=0){
+    entries.splice(existIdx,1);
+  } else {
+    entries.push({id:'place_'+short,placeId:name,short:short,
+                  color:color,label:name,title:name,isPlace:true,placeType:type});
+    _currentPlaceVisit=true;showCompletionPopup();
+  }
+  setDayEntries(log,k,entries);
+  saveLog(log);renderCalendar();renderStats();updateVisitBtns();
+}
+function updateVisitBtns(){
+  const log=loadLog(), k=getSelectedKey();
+  document.querySelectorAll('.visit-btn').forEach(function(btn){
+    const name=btn.dataset.place;
+    const dayE=getDayEntries(log,k);
+    const isLogged=dayE.some(function(e){return e.placeId===name;});
+    btn.textContent=isLogged?'✓ Посетено':'Посетих днес!';
+    btn.classList.toggle('visited',isLogged);
+  });
+}
+function addVisitedButtons(){
+  document.querySelectorAll('.sugg-item').forEach(function(item){
+    if(item.querySelector('.visit-btn')) return;
+    const nameEl=item.querySelector('.sugg-item-name');
+    if(!nameEl) return;
+    const name=nameEl.textContent.trim();
+    // Determine type from parent panel
+    const panel=item.closest('.sugg-panel');
+    const type=panel&&panel.id==='suggTrails'?'trail':panel&&panel.id==='suggHoods'?'hood':'park';
+    const btn=document.createElement('button');
+    btn.className='visit-btn';
+    btn.dataset.place=name;
+    btn.onclick=function(e){e.stopPropagation();togglePlaceVisit(name,type);};
+    item.appendChild(btn);
+  });
+  updateVisitBtns();
+}
+
 let suggOpen=false;
 function toggleSugg(){
   suggOpen=!suggOpen;
   document.getElementById('suggBody').classList.toggle('open',suggOpen);
   document.getElementById('suggArrow').classList.toggle('open',suggOpen);
+  if(suggOpen) setTimeout(addVisitedButtons,50);
 }
 function switchSuggTab(tab,el){
   // Update tab buttons
@@ -1605,7 +1685,7 @@ function toggleHeatmap(){
 
 function renderProgress(){
   const log=loadLog();
-  const total=Object.keys(log).length;
+  const total=Object.keys(log).filter(function(k){return getDayEntries(log,k).length>0;}).length;
 
   // ── INFINITE MILESTONES (every 30 after 90) ──
   const FIXED_MILESTONES=[10,30,60,90];
@@ -1818,11 +1898,12 @@ function renderWorkoutGrid(){
 
 function toggleMarkToday(){
   const log=loadLog(),k=getSelectedKey();
-  const wasMarked=log[k]&&log[k].id===activeDay.id;
-  if(wasMarked){
-    delete log[k];
+  const entries=getDayEntries(log,k);
+  const existIdx=entries.findIndex(function(e){return e.id===activeDay.id;});
+  if(existIdx>=0){
+    entries.splice(existIdx,1);
   } else {
-    const entry={id:activeDay.id,short:activeDay.short,color:activeDay.color,label:activeDay.label};
+    const entry={id:activeDay.id,short:activeDay.short,color:activeDay.color,label:activeDay.label,title:activeDay.title||activeDay.label};
     if(activeCat.isActivities){
       const inp=document.getElementById('actInput');
       const loc=document.getElementById('actLocation');
@@ -1831,9 +1912,10 @@ function toggleMarkToday(){
       if(loc&&loc.value.trim()) entry.location=loc.value.trim();
       if(nam&&nam.value.trim()) entry.activityName=nam.value.trim();
     }
-    log[k]=entry;
+    entries.push(entry);
     showCompletionPopup();
   }
+  setDayEntries(log,k,entries);
   saveLog(log);renderMarkBtn();renderCalendar();renderStats();
   if(activeCat.isActivities) renderDayPanel();
 }
@@ -1842,7 +1924,8 @@ function renderMarkBtn(){
   if(activeCat.isActivities){btn.style.display='none';return;}
   btn.style.display='';
   const log=loadLog(),k=getSelectedKey();
-  const marked=log[k]&&log[k].id===activeDay.id;
+  const entries=getDayEntries(log,k);
+  const marked=entries.some(function(e){return e.id===activeDay.id;});
   const isToday=!selectedDate;
   btn.textContent=marked?'✓ Записана':(isToday?'Завършена тренировка!':'Запиши за избраната дата');
   btn.style.color=marked?'#fff':activeDay.color;
@@ -1869,8 +1952,10 @@ function renderDayPanel(){
   // ── ACTIVITY MODE ──
   if(activeCat.isActivities){
     const log=loadLog(),k=getSelectedKey();
-    const saved=log[k]&&log[k].id===d.id;
-    const savedVal=saved?log[k].metricValue:'';
+    const dayEntries=getDayEntries(log,k);
+    const savedEntry=dayEntries.find(function(e){return e.id===d.id;});
+    const saved=!!savedEntry;
+    const savedVal=savedEntry?savedEntry.metricValue||'':'';
     list.innerHTML=`
       <div class="act-panel">
         <div class="act-header">
@@ -1897,7 +1982,7 @@ function renderDayPanel(){
         </div>`:''}
         <div class="act-location-row">
           <div class="act-metric-label">📍 Място / Маршрут</div>
-          <input class="act-location-input" id="actLocation" type="text" maxlength="80" placeholder="напр. Витоша, Борисова градина..." value="${saved&&log[k].location?log[k].location:''}" ${saved?'disabled':''}>
+          <input class="act-location-input" id="actLocation" type="text" maxlength="80" placeholder="напр. Витоша, Борисова градина..." value="${savedEntry&&savedEntry.location?savedEntry.location:''}" ${saved?'disabled':''}>
         </div>
         <button class="act-complete-btn${saved?' done':''}" onclick="toggleMarkToday()">
           ${saved?'✓ Записана активност':'Завършена активност! 🌿'}
@@ -1969,25 +2054,38 @@ function renderCalendar(){
   for(let i=0;i<startOffset;i++){const e=document.createElement('div');e.className='cal-cell empty';grid.appendChild(e);}
   for(let day=1;day<=daysInMonth;day++){
     const d=new Date(calYear,calMonth,day);d.setHours(0,0,0,0);
-    const k=dKey(d),entry=log[k];
+    const k=dKey(d);
+    const dayEnts=getDayEntries(log,k);
     const isToday=d.getTime()===today.getTime(),isFuture=d>today;
     const cell=document.createElement('div');
-    cell.className='cal-cell'+(isToday?' today':'')+(isFuture?' future':'')+(entry?' has-entry':'');
-    if(entry){
-      const entryGrad=GRADIENTS[entry.color]||entry.color;
-      cell.style.background=entryGrad;
-      // Store entry data for tooltip
-      cell.dataset.name=entry.activityName||(entry.label||entry.short)||'';
-      cell.dataset.short=entry.short||'';
-      cell.dataset.metric=entry.metricValue?(entry.metricValue+' '+(entry.metricUnit||'')):'';
-      cell.dataset.location=entry.location||'';
-      cell.dataset.date=`${day} ${BG_MONTHS[calMonth]}`;
-      cell.dataset.color=entry.color||'';
+    const hasEntry=!isFuture&&dayEnts.length>0;
+    cell.className='cal-cell'+(isToday?' today':'')+(isFuture?' future':'')+(hasEntry?' has-entry':'')+(hasEntry&&dayEnts.length>1?' has-multi':'');
+    if(hasEntry){
+      if(dayEnts.length===1){
+        cell.style.background=GRADIENTS[dayEnts[0].color]||dayEnts[0].color;
+      }
+      const names=dayEnts.map(function(e){return e.activityName||(e.title||e.label||e.short)||'';}).join(' · ');
+      const metrics=dayEnts.filter(function(e){return e.metricValue;}).map(function(e){return e.metricValue+' '+(e.metricUnit||'');}).join(', ');
+      const locs=dayEnts.filter(function(e){return e.location;}).map(function(e){return e.location;}).join(', ');
+      cell.dataset.name=names;
+      cell.dataset.metric=metrics;
+      cell.dataset.location=locs;
+      cell.dataset.date=day+' '+BG_MONTHS[calMonth];
       cell.addEventListener('mouseenter',showCalTooltip);
       cell.addEventListener('mouseleave',hideCalTooltip);
       cell.addEventListener('click',function(e){e.stopPropagation();toggleCalTooltip(this);});
+      if(dayEnts.length>1){
+        const dots=dayEnts.slice(0,4).map(function(e){
+          const c=(GRADIENTS[e.color]||e.color||'#ccc').replace(/linear-gradient\([^,]+,\s*/,'').replace(/\s*,.*/,'');
+          return '<span class="cal-mini-dot" style="background:'+c+'"></span>';
+        }).join('');
+        cell.innerHTML='<div class="cal-day-num">'+day+'</div><div class="cal-multi-dots">'+dots+'</div>';
+      } else {
+        cell.innerHTML='<div class="cal-day-num">'+day+'</div>';
+      }
+    } else {
+      cell.innerHTML='<div class="cal-day-num">'+day+'</div>';
     }
-    cell.innerHTML='<div class="cal-day-num">'+day+'</div>'+(entry?'<div class="cal-day-dot">'+((entry.activityName||(entry.label||'')).split(' ').slice(0,2).join(' ').substring(0,12))+'</div>':'');
     grid.appendChild(cell);
   }
   const leg=document.getElementById('calLegend');leg.innerHTML='';
@@ -2014,7 +2112,7 @@ function generatePDF(){
   const themeNames={'tropical':'🌅 Tropical Sunrise','berry':'🫐 Berry Bliss','forest':'🌊 Deep Ocean','minimal':'🤍 Minimal White'};
   const themeName=themeNames[localStorage.getItem('app_theme')||'tropical'];
   const log=loadLog();
-  const total=Object.keys(log).length;
+  const total=Object.keys(log).filter(function(k){return getDayEntries(log,k).length>0;}).length;
   const streak=getStreak();
   const monthCount=getMonthCount();
   const now=new Date();
