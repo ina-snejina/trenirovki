@@ -673,31 +673,73 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 }
 .popup-close:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--tab-active-shadow);}
 @keyframes popBounce{from{transform:scale(0) rotate(-10deg)}to{transform:scale(1) rotate(0)}}
+
+/* ── MULTI-PAGE NAV ── */
+.page-screen{animation:fadeUp .4s cubic-bezier(.16,1,.3,1) both;}
+.home-nav{display:flex;flex-direction:column;gap:14px;padding:8px 0 40px;}
+.home-nav-btn{width:100%;padding:20px 22px;border-radius:12px;border:1.5px solid var(--border2);cursor:pointer;background:var(--surface);text-align:center;display:block;box-shadow:0 2px 12px var(--accent-glow);transition:all .2s cubic-bezier(.16,1,.3,1);}
+.home-nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--accent-glow);border-color:var(--accent);}
+.home-nav-text{display:flex;flex-direction:column;gap:4px;align-items:center;}
+.home-nav-title{font-size:17px;font-weight:900;color:var(--text);display:block;letter-spacing:-.3px;}
+.home-nav-sub{font-size:12px;font-weight:600;color:var(--text3);display:block;}
+.page-nav-bar{display:flex;align-items:center;gap:14px;padding:10px 0 20px;border-bottom:2px solid var(--border2);margin-bottom:22px;}
+.page-back-btn{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;padding:8px 16px;border-radius:100px;border:2px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s;flex-shrink:0;}
+.page-back-btn:hover{border-color:var(--accent);color:var(--accent);}
+.page-nav-title{font-size:17px;font-weight:900;color:var(--text);letter-spacing:-.3px;}
+.theme-footer{padding:28px 0 8px;border-top:1.5px solid var(--border2);margin-top:20px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app" id="appRoot">
 
-<div class="header">
+<!-- ══ HOME PAGE ══ -->
+<div class="page-screen" id="pageHome">
+  <div class="header">
   <div class="header-pill">Всяко движение се брои</div>
   <h1>МОЕТО АКТИВНО<br>ЕЖЕДНЕВИЕ</h1>
   <p class="header-moto">„Активният живот не добавя само години към живота, а живот към годините."</p>
 </div>
 
-<div class="theme-switcher">
-  <span class="theme-label">Тема:</span>
-  <select class="theme-select" id="themeSelect" onchange="applyTheme(this.value)">
-    <option value="tropical">🌅 Tropical Sunrise</option>
-    <option value="berry">🫐 Berry Bliss</option>
-    <option value="forest">🌊 Deep Ocean</option>
-    <option value="minimal">🤍 Minimal White</option>
-  </select>
-  <button class="pdf-btn" onclick="generatePDF()" title="Свали PDF">📄 PDF</button>
+  <div class="home-nav">
+    <button class="home-nav-btn" onclick="navigateTo('workouts')">
+      <div class="home-nav-text">
+        <span class="home-nav-title">Тренировки вкъщи</span>
+        <span class="home-nav-sub">54 тренировки с упражнения</span>
+      </div>
+    </button>
+    <button class="home-nav-btn" onclick="navigateTo('city')">
+      <div class="home-nav-text">
+        <span class="home-nav-title">Идеи в града</span>
+        <span class="home-nav-sub">Паркове, квартали и забележителности</span>
+      </div>
+    </button>
+    <button class="home-nav-btn" onclick="navigateTo('outdoors')">
+      <div class="home-nav-text">
+        <span class="home-nav-title">Паркове и излети</span>
+        <span class="home-nav-sub">Планински пътечки и разходки</span>
+      </div>
+    </button>
+  </div>
+
+  <div class="theme-footer">
+    <span class="theme-label">Тема:</span>
+    <select class="theme-select" id="themeSelect" onchange="applyTheme(this.value)">
+      <option value="tropical">🌅 Tropical Sunrise</option>
+      <option value="berry">🫐 Berry Bliss</option>
+      <option value="forest">🌊 Deep Ocean</option>
+      <option value="minimal">🤍 Minimal White</option>
+    </select>
+    <button class="pdf-btn" onclick="generatePDF()" title="Свали PDF">📄 PDF</button>
+  </div>
 </div>
 
-
-
-<div class="stats-row">
+<!-- ══ WORKOUTS PAGE ══ -->
+<div class="page-screen" id="pageWorkouts" style="display:none">
+  <div class="page-nav-bar">
+    <button class="page-back-btn" onclick="navigateTo('home')">← Назад</button>
+    <span class="page-nav-title">Тренировки вкъщи</span>
+  </div>
+  <div class="stats-row">
   <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-num" id="statTotal">0</div><div class="stat-label">Активни дни</div></div>
   <div class="stat-card"><div class="stat-icon">🔥</div><div class="stat-num" id="statStreak">0</div><div class="stat-label">Дни в движение</div></div>
   <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-num" id="statMonth">0</div><div class="stat-label">Този месец</div></div>
@@ -741,7 +783,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   </div>
 </div>
 
-<div class="section-title">Избери тренировка</div>
+  <div class="section-title">Избери тренировка</div>
 <div class="main-tabs" id="mainTabs"></div>
 <div class="sub-tabs" id="subTabs" style="display:none"></div>
 <div class="workout-grid-body" id="workoutGridBody">
@@ -804,8 +846,46 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   </div>
 </div>
 
-<div class="section-title">Идеи за движение</div>
-<div class="sugg-card">
+  <div class="section-title">Календар</div>
+  <div class="cal-box">
+  <div class="cal-toggle" onclick="toggleCalendar()">
+    <div class="cal-toggle-title" id="calMonthTitle"></div>
+    <div id="calArrow" class="cal-toggle-arrow">▾</div>
+  </div>
+  <div class="cal-body" id="calBody">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="changeMonth(-1);event.stopPropagation()">‹</button>
+      <div class="cal-nav-month" id="calMonthSub"></div>
+      <button class="cal-nav-btn" onclick="changeMonth(1);event.stopPropagation()">›</button>
+    </div>
+    <div class="cal-weekdays">
+      <div class="cal-wd">П</div><div class="cal-wd">В</div><div class="cal-wd">С</div>
+      <div class="cal-wd">Ч</div><div class="cal-wd">П</div><div class="cal-wd">С</div><div class="cal-wd">Н</div>
+    </div>
+    <div class="cal-days" id="calDays"></div>
+    <div class="cal-legend" id="calLegend"></div>
+  </div>
+</div>
+
+  <div class="tips-box">
+  <div class="tips-title">Философията на движението</div>
+  <div class="tips-grid">
+    <div class="tip-item"><span class="tip-icon">🚶</span> Разходката в парка е също толкова ценна, колкото тренировката в залата</div>
+    <div class="tip-item"><span class="tip-icon">🎯</span> Постоянството бие интензивността — 20 мин. всеки ден > 2 часа веднъж</div>
+    <div class="tip-item"><span class="tip-icon">✅</span> Всеки активен ден се брои — без значение дали е йога, поход или скачане на въже</div>
+    <div class="tip-item"><span class="tip-icon">🌱</span> Движението не е наказание — то е грижа към себе си</div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ══ CITY IDEAS PAGE ══ -->
+<div class="page-screen" id="pageCity" style="display:none">
+  <div class="page-nav-bar">
+    <button class="page-back-btn" onclick="navigateTo('home')">← Назад</button>
+    <span class="page-nav-title">Идеи в града</span>
+  </div>
+  <div class="sugg-card" style="box-shadow:none;border-radius:0;margin-bottom:0">
   <div class="sugg-toggle" onclick="toggleSugg()">
     <div class="sugg-toggle-left">
       <span class="sugg-toggle-icon">📍</span>
@@ -819,8 +899,8 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   <div class="sugg-body" id="suggBody">
     <div class="sugg-tabs">
       <div class="sugg-tab active" onclick="switchSuggTab('Parks',this)">🌳 Паркове и градинки в София</div>
-      <div class="sugg-tab" onclick="switchSuggTab('Trails',this)">🏔️ Планински пътечки и походи</div>
       <div class="sugg-tab" onclick="switchSuggTab('Hoods',this)">🏘️ Кварталите на София</div>
+      <div class="sugg-tab" onclick="switchSuggTab('Landmarks',this)">🏛️ Забележителности</div>
     </div>
 
     <div class="sugg-panel active" id="suggParks" style="display:block">
@@ -859,17 +939,64 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
       </div>
       <div style="text-align:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border2);"><a href="https://sosofia.com/kvartali/" target="_blank" rel="noopener" style="font-size:10px;color:var(--text3);font-weight:600;">Източник: soSofia.com ↗</a></div>
     </div>
+
+    <div class="sugg-panel" id="suggLandmarks" style="display:none">
+      <div class="sugg-list">
+        <div class="sugg-group-title">⛪ Духовни и исторически обекти</div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Катедрала „Александър Невски"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9D%D0%B5%D0%B2%D1%81%D0%BA%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Символ на София — православна катедрала от 1912 г., изградена в памет на руските воини от Освободителната война.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">безплатно</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Ротондата „Св. Георги"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%BE%D1%82%D0%BE%D0%BD%D0%B4%D0%B0+%D0%A1%D0%B2+%D0%93%D0%B5%D0%BE%D1%80%D0%B3%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Най-старата запазена сграда в София — римска ротонда от IV в., скрита в двора на Президентството.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">IV в.</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Боянската църква</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B0+%D1%86%D1%8A%D1%80%D0%BA%D0%B2%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Средновековна църква от X–XIII в. с уникални стенописи — ЮНЕСКО обект. В подножието на Витоша.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Бояна</span><span class="sugg-tag easy">ЮНЕСКО</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Катедрала „Св. Неделя"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%B2+%D0%9D%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">В сърцето на центъра — катедрала с история от над 1000 години, оцеляла след атентата от 1925 г.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Баня Баши джамия</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B0%D0%BD%D1%8F+%D0%91%D0%B0%D1%88%D0%B8+%D0%B4%D0%B6%D0%B0%D0%BC%D0%B8%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Действаща джамия от 1576 г. — един от малкото запазени османски паметници в България.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">XVI в.</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Софийска синагога</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%BE%D1%84%D0%B8%D0%B9%D1%81%D0%BA%D0%B0+%D1%81%D0%B8%D0%BD%D0%B0%D0%B3%D0%BE%D0%B3%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Третата по-голямата синагога в Европа — изградена 1909 г. в мавритански стил, с 1200 места.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">1909 г.</span></div></div></div>
+
+        <div class="sugg-group-title">🏛️ Национални институции и площади</div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Народен театър „Иван Вазов"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%B0%D1%80%D0%BE%D0%B4%D0%B5%D0%BD+%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Емблематичната неокласическа сграда пред Градската градина — сърцето на театралния живот на столицата.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Пл. „Независимост" (Президентство, НС)</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4+%D0%9D%D0%B5%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Централният площад на властта — Президентство, Министерски съвет, Народно събрание. Смяна на гарда всеки час.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">безплатно</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">НДК и пл. „България"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%94%D0%9A+%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Националният дворец на културата — най-голямата многофункционална сграда на Балканите, с красив площад и фонтани.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Юг</span></div></div></div>
+
+        <div class="sugg-group-title">🏺 Музеи и галерии</div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Национален исторически музей</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%B5%D0%BD+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8+%D0%BC%D1%83%D0%B7%D0%B5%D0%B9+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Най-богатият музей на Балканите — над 650 000 експоната. В двореца на Бояна.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Бояна</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Софийски исторически музей (Минерална баня)</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%BE%D1%84%D0%B8%D0%B9%D1%81%D0%BA%D0%B8+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8+%D0%BC%D1%83%D0%B7%D0%B5%D0%B9" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">В сградата на Централната минерална баня — история на София от 7000 години.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Национална художествена галерия</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%BD%D0%B0+%D1%85%D1%83%D0%B4%D0%BE%D0%B6%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%B0+%D0%B3%D0%B0%D0%BB%D0%B5%D1%80%D0%B8%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">В бившия Царски дворец — най-значимата колекция от българско изкуство.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Античен форум Сердика</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BD%D1%82%D0%B8%D1%87%D0%B5%D0%BD+%D1%84%D0%BE%D1%80%D1%83%D0%BC+%D0%A1%D0%B5%D1%80%D0%B4%D0%B8%D0%BA%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Римски руини от II–IV в. под метростанция Сердика — безплатен и уникален за разглеждане.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">безплатно</span></div></div></div>
+
+        <div class="sugg-group-title">🌆 Улици и градски символи</div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Бул. Витоша (пешеходна зона)</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%B1%D1%83%D0%BB+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Главната пешеходна улица на София — магазини, кафенета, уличен живот с гледка към Витоша в края.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">пешеходна</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Орлов мост</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9E%D1%80%D0%BB%D0%BE%D0%B2+%D0%BC%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Мост с четири орела от 1891 г. — символ на Sofia, отправна точка към Борисова градина.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Изток</span></div></div></div>
+        <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Паметникът на Св. София</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B0%D0%BC%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%D1%8A%D1%82+%D0%BD%D0%B0+%D0%A1%D0%B2+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Символната статуя на богинята покровителка на града — замени статуята на Ленин през 2001 г.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
+      </div>
+    </div>
+
   </div>
 </div>
+</div>
 
-<div class="tips-box">
-  <div class="tips-title">Философията на движението</div>
-  <div class="tips-grid">
-    <div class="tip-item"><span class="tip-icon">🚶</span> Разходката в парка е също толкова ценна, колкото тренировката в залата</div>
-    <div class="tip-item"><span class="tip-icon">🎯</span> Постоянството бие интензивността — 20 мин. всеки ден > 2 часа веднъж</div>
-    <div class="tip-item"><span class="tip-icon">✅</span> Всеки активен ден се брои — без значение дали е йога, поход или скачане на въже</div>
-    <div class="tip-item"><span class="tip-icon">🌱</span> Движението не е наказание — то е грижа към себе си</div>
+<!-- ══ OUTDOORS PAGE ══ -->
+<div class="page-screen" id="pageOutdoors" style="display:none">
+  <div class="page-nav-bar">
+    <button class="page-back-btn" onclick="navigateTo('home')">← Назад</button>
+    <span class="page-nav-title">Паркове и излети</span>
   </div>
+  <div class="section-title" style="padding:0 4px">Планински пътечки и походи</div>
+  <div class="sugg-list" style="padding:0 0 20px">
+      <div class="sugg-list">
+        <div class="sugg-item"><span class="sugg-item-icon">💧</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Боянски водопад — Витоша</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B8+%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Две опции: дълга и полегата пътека (~5 км) или кратка и стръмна по коритото на Боянска река. Краят си струва!</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесна/средна</span><span class="sugg-tag">Бояна</span><span class="sugg-tag">~3–5 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🪨</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Златни мостове → Камен дел</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BB%D0%B0%D1%82%D0%BD%D0%B8+%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B5+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Полегата и добре маркирана пътека, идеална за начинаещи. Спираща дъха гледка към София от Камен дел.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">~4–5 км</span><span class="sugg-tag">2–3 ч.</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🔵</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">НОП — Нископланинска обиколна пътека</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%9E%D0%9F+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Обиколна пътека около Витоша — лека, подходяща за всеки, с излизане от множество квартали (Бояна, Симеоново, Драгалевци).</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">сегменти 2–8 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">⛪</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Боянско езеро → Драгалевски манастир</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%BE+%D0%B5%D0%B7%D0%B5%D1%80%D0%BE" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Приятна горска пътека, свързваща Бояна и Драгалевци. Може да се изминава и в обратна посока. Подходяща за деца.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Бояна / Драгалевци</span><span class="sugg-tag">~4 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌅</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Панорамна пътека над Панчарево</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D0%B0+%D0%BF%D1%8A%D1%82%D0%B5%D0%BA%D0%B0+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Тръгва от с. Герман или от Банята в Панчарево. Горска пътека с гледки към езерото. Лека и приятна за уикенд излет.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Панчарево</span><span class="sugg-tag">~3.5 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌊</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Камбаните → Зли камък (Панчарево)</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B8%D1%82%D0%B5+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Много лек и живописен семеен маршрут в покрайнините на София. Гори, поляни, гледки към Витоша.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Панчарево</span><span class="sugg-tag">семеен</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🏞️</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Лозенска планина — от с. Лозен</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Кръгов маршрут с плавни пътеки и красиви гледки към София. Идеален за следобед с финал по залез.</div><div class="sugg-item-tags"><span class="sugg-tag med">средно</span><span class="sugg-tag">Лозен</span><span class="sugg-tag">~8–10 км</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌄</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Люлин — Бонсови поляни</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D0%BD%D1%81%D0%BE%D0%B2%D0%B8+%D0%BF%D0%BE%D0%BB%D1%8F%D0%BD%D0%B8+%D0%9B%D1%8E%D0%BB%D0%B8%D0%BD" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Отправна точка с паркинг или автобус 103 от Овча купел. Тихо и непретенциозно място за разходка сред природата.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Люлин</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">⛰️</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Витоша — хижа Алеко → плато Торфено бранище</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D1%85%D0%B8%D0%B6%D0%B0+%D0%90%D0%BB%D0%B5%D0%BA%D0%BE+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">От хижа Алеко (кабинков лифт от Симеоново) по червена маркировка до плато. Панорамни гледки, 3–4 часа преход.</div><div class="sugg-item-tags"><span class="sugg-tag med">средно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">3–4 ч.</span></div></div></div>
+        <div class="sugg-item"><span class="sugg-item-icon">🌿</span><div><div class="sugg-item-name-row"><div class="sugg-item-name">Планината Плана</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%BB%D0%B0%D0%BD%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F" target="_blank" rel="noopener">🗺️ Карта</a></div><div class="sugg-item-desc">Ниска планина с усещане за безкраен простор — любима за семейни излети. По-далеч от центъра, но уникално тиха.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Плана</span><span class="sugg-tag">семеен</span></div></div></div>
+    </div>
+      </div>
+  <div class="section-title" style="padding:0 4px;margin-top:10px">Разходки, походи и тренировки в зала</div>
+  <div id="outdoorsActivityPanel"></div>
+</div>
+
 </div>
 </div>
 
@@ -1605,7 +1732,7 @@ function addVisitedButtons(){
     const name=nameEl.textContent.trim();
     // Determine type from parent panel
     const panel=item.closest('.sugg-panel');
-    const type=panel&&panel.id==='suggTrails'?'trail':panel&&panel.id==='suggHoods'?'hood':'park';
+    const type=panel&&panel.id==='suggTrails'?'trail':panel&&panel.id==='suggHoods'?'hood':panel&&panel.id==='suggLandmarks'?'landmark':'park';
     const btn=document.createElement('button');
     btn.className='visit-btn';
     btn.dataset.place=name;
@@ -1627,7 +1754,7 @@ function switchSuggTab(tab,el){
   document.querySelectorAll('.sugg-tab').forEach(function(t){t.classList.remove('active');});
   el.classList.add('active');
   // Show/hide panels via direct style
-  ['Parks','Trails','Hoods'].forEach(function(id){
+  ['Parks','Trails','Hoods','Landmarks'].forEach(function(id){
     var p=document.getElementById('sugg'+id);
     if(p) p.style.display=(id===tab)?'block':'none';
   });
@@ -2328,7 +2455,7 @@ ${catsHTML}
   const w=window.open('','_blank','width=900,height=700');
   w.document.write(html);
   w.document.close();
-  w.onload=()=>{ w.focus(); w.print(); };
+  w.onload=function(){ w.focus(); w.print(); };
 }
 
 // ── THEME SWITCHER ───────────────────────────────────────────
@@ -2337,9 +2464,6 @@ function applyTheme(name){
   document.documentElement.removeAttribute('data-theme');
   if(THEME_MAP[name]) document.documentElement.setAttribute('data-theme',THEME_MAP[name]);
   try{localStorage.setItem('app_theme',name);}catch(e){}
-  const colors={'tropical':'%232EC4B6','berry':'%237C3AED','forest':'%2315616D','minimal':'%231C1C1C'};
-  const sel=document.getElementById('themeSelect');
-  if(sel) sel.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${colors[name]}'/%3E%3C/svg%3E")`;
 }
 (function(){
   try{
@@ -2349,6 +2473,20 @@ function applyTheme(name){
     applyTheme(saved);
   }catch(e){}
 })();
+
+// ── PAGE NAVIGATION ──────────────────────────────────────────
+const PAGES=['pageHome','pageWorkouts','pageCity','pageOutdoors'];
+function navigateTo(page){
+  const ids={home:'pageHome',workouts:'pageWorkouts',city:'pageCity',outdoors:'pageOutdoors'};
+  const targetId=ids[page]||page;
+  PAGES.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.style.display=id===targetId?'block':'none';
+  });
+  window.scrollTo(0,0);
+  if(page==='workouts'){setTimeout(function(){renderStats();renderCalendar();renderCatTabs();renderWorkoutGrid();},50);}
+  if(page==='city'||page==='outdoors'){setTimeout(addVisitedButtons,100);}
+}
 
 renderCatTabs();renderWorkoutGrid();renderDayPanel();renderMarkBtn();renderCalendar();renderStats();renderParks();
 </script>
