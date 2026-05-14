@@ -1412,6 +1412,8 @@ function renderCalendar(){
   var subEl=document.getElementById('calMonthSub');
   var grid=document.getElementById('calDays');
   if(!grid)return;
+  var b=document.getElementById('calBody');if(b)b.classList.toggle('open',calOpen);
+  var a=document.getElementById('calArrow');if(a)a.classList.toggle('open',calOpen);
   var label=BG_MONTHS[calMonth]+' '+calYear;
   if(titleEl)titleEl.textContent=label;
   if(subEl)subEl.textContent=label;
