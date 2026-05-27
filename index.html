@@ -1649,41 +1649,27 @@ function toggleParkGroup(id){
 function renderHoods(){
   var container=document.getElementById('hoodsList');
   if(!container)return;
-  var sorted=HOODS_DATA.slice().sort(function(a,b){return a.name.localeCompare(b.name,'bg');});
-  var html='<div class="hood-grid">';
-  sorted.forEach(function(h){
-    var idx=HOODS_DATA.indexOf(h);
-    html+='<div class="hood-card" data-idx="'+idx+'" onclick="showHoodDetail('+idx+')">'
-      +'<div class="hood-card-img-placeholder"></div>'
-      +'<div class="hood-card-label">'+h.name+'</div>'
-      +'</div>';
-  });
-  html+='</div><div id="hoodDetail"></div>';
-  container.innerHTML=html;
-}
-
-function showHoodDetail(idx){
-  var h=HOODS_DATA[idx];
   var log=loadLog(),k=getSelectedKey();
   var dayEnts=getDayEntries(log,k);
-  var isLogged=dayEnts.some(function(e){return e.placeId===h.name;});
-  var url='https://www.google.com/maps/search/?api=1&query='+h.maps;
-  var tags=h.tags.map(function(t){return '<span class="sugg-tag easy">'+t+'</span>';}).join('');
-  document.querySelectorAll('.hood-card').forEach(function(c){
-    c.classList.toggle('active',parseInt(c.dataset.idx)===idx);
+  var sorted=HOODS_DATA.slice().sort(function(a,b){return a.name.localeCompare(b.name,'bg');});
+  var html='<div class="sugg-list">';
+  sorted.forEach(function(h){
+    var url='https://www.google.com/maps/search/?api=1&query='+h.maps;
+    var tags=h.tags.map(function(t){return '<span class="sugg-tag easy">'+t+'</span>';}).join('');
+    var isLogged=dayEnts.some(function(e){return e.placeId===h.name;});
+    html+='<div class="sugg-item">'
+      +'<div class="sugg-item-name-row">'
+        +'<div class="sugg-item-name">'+h.name+'</div>'
+        +'<a class="sugg-maps-link" href="'+url+'" target="_blank" rel="noopener">Карта</a>'
+      +'</div>'
+      +'<div style="font-size:11px;font-weight:700;color:var(--text3);margin-bottom:4px;">'+h.symbol+'</div>'
+      +'<div class="sugg-item-desc">'+h.desc+'</div>'
+      +'<div class="sugg-item-tags">'+tags+'</div>'
+      +'<button class="visit-btn'+(isLogged?' visited':'')+'" data-place="'+h.name+'" data-type="hood" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">'+(isLogged?'Посетено':'Посетих днес!')+'</button>'
+      +'</div>';
   });
-  var det=document.getElementById('hoodDetail');
-  if(!det)return;
-  det.innerHTML='<div class="hood-detail">'
-    +'<div class="hood-detail-name">'+h.name+'</div>'
-    +'<div class="hood-detail-symbol">'+h.symbol+'</div>'
-    +'<div class="hood-detail-desc">'+h.desc+'</div>'
-    +'<div class="sugg-item-tags" style="margin-bottom:14px;">'+tags+'</div>'
-    +'<div class="hood-detail-actions">'
-    +'<button class="visit-btn'+(isLogged?' visited':'')+'" data-place="'+h.name+'" data-type="hood" onclick="togglePlaceVisit(this.dataset.place,this.dataset.type);showHoodDetail('+idx+')">'+(isLogged?'Посетено':'Посетих днес!')+'</button>'
-    +'<a class="sugg-maps-link" href="'+url+'" target="_blank" rel="noopener" style="margin-left:8px;">Карта</a>'
-    +'</div></div>';
-  setTimeout(function(){det.scrollIntoView({behavior:'smooth',block:'nearest'});},50);
+  html+='</div>';
+  container.innerHTML=html;
 }
 
 
