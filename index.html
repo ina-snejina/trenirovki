@@ -564,27 +564,46 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 
 /* MULTI-PAGE NAV */
 .page-screen{animation:fadeUp .4s cubic-bezier(.16,1,.3,1) both;}
-.home-nav{display:flex;flex-direction:column;gap:14px;padding:8px 0 40px;}
-.home-nav-btn{width:100%;padding:20px 22px;border-radius:12px;border:1.5px solid var(--border2);cursor:pointer;background:var(--surface);text-align:center;display:block;box-shadow:0 2px 12px var(--accent-glow);transition:all .2s cubic-bezier(.16,1,.3,1);}
+.home-nav{padding:0 0 8px;}
+.home-nav-btn{
+  width:100%;padding:22px 4px 22px;
+  background:transparent;border:none;border-bottom:1px solid #E0E0E0;
+  text-align:left;cursor:pointer;display:block;
+  transition:all .2s ease;border-radius:0;
+}
+.home-nav-btn:first-child{border-top:1px solid #E0E0E0;}
+.home-nav-btn:hover{background:transparent;transform:none;box-shadow:none;}
+.home-nav-btn:hover .home-nav-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;
+  color:#111111;display:block;
+  line-height:1.15;margin-bottom:5px;
+  transition:letter-spacing .2s ease;
+}
 .home-nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--accent-glow);border-color:var(--accent);}
 .home-nav-text{display:flex;flex-direction:column;gap:4px;align-items:center;}
-.home-nav-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:900;color:var(--text);display:block;letter-spacing:-.3px;}
-.home-nav-sub{font-size:12px;font-weight:600;color:var(--text3);display:block;}
+.home-nav-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;
+  color:#111111;display:block;
+  line-height:1.15;margin-bottom:5px;
+  transition:letter-spacing .2s ease;
+}
+.home-nav-sub{
+  font-size:11px;font-weight:400;
+  color:#888888;display:block;
+  letter-spacing:.5px;
+  font-family:'Lato',sans-serif;
+}
 .page-nav-bar{display:flex;align-items:center;gap:14px;padding:10px 0 20px;border-bottom:2px solid var(--border2);margin-bottom:22px;}
 .page-back-btn{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;padding:8px 16px;border-radius:100px;border:2px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s;flex-shrink:0;}
 .page-back-btn:hover{border-color:var(--accent);color:var(--accent);}
 .page-nav-title{font-size:17px;font-weight:900;color:var(--text);letter-spacing:-.3px;}
 .theme-footer{padding:28px 0 8px;border-top:1.5px solid var(--border2);margin-top:20px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
 
-.home-cal-btn{
-  width:100%;margin-top:6px;padding:14px 20px;
-  border-radius:12px;border:2px dashed var(--border);
-  background:transparent;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:all .2s;
-}
+.home-cal-btn{width:100%;padding:18px 4px;background:transparent;border:none;border-bottom:1px solid #E0E0E0;text-align:right;cursor:pointer;display:block;transition:all .2s ease;border-radius:0;}
 .home-cal-btn:hover{border-color:var(--accent);background:var(--bg2);}
-.home-cal-title{font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:800;color:var(--text);letter-spacing:-.2px;}
+.home-cal-title{font-family:'Lato',sans-serif;font-size:12px;font-weight:400;color:#888888;letter-spacing:1.5px;text-transform:uppercase;}
 .home-cal-sub{font-size:11px;font-weight:600;color:var(--text3);}
 
 .page-sub-tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--border2);}
@@ -639,7 +658,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 </div>      <div class="home-scroll-hint">↓</div>
     </div>
   </div><div class="home-nav-section">
-<div class="home-nav"><button class="home-nav-btn" onclick="navigateTo('workouts')"><div class="home-nav-text"><span class="home-nav-title">Тренировки вкъщи</span><span class="home-nav-sub">54 тренировки с упражнения</span></div></button><button class="home-nav-btn" onclick="navigateTo('city')"><div class="home-nav-text"><span class="home-nav-title">Идеи в града</span><span class="home-nav-sub">Паркове, квартали и забележителности</span></div></button><button class="home-nav-btn" onclick="navigateTo('outdoors')"><div class="home-nav-text"><span class="home-nav-title">Паркове и излети</span><span class="home-nav-sub">Планински пътечки и разходки</span></div></button><button class="home-cal-btn" onclick="navigateTo('calendar')"><span class="home-cal-title">Моят календар</span><span class="home-cal-sub">Всички активности на едно място</span></button></div><div class="theme-footer"><button class="pdf-btn" onclick="generatePDF()" title="Свали PDF">PDF</button></div>
+<div class="home-nav"><button class="home-nav-btn" onclick="navigateTo('workouts')"><div class="home-nav-text"><span class="home-nav-title">Тренировки вкъщи</span><span class="home-nav-sub">54 тренировки с упражнения</span></div></button><button class="home-nav-btn" onclick="navigateTo('city')"><div class="home-nav-text"><span class="home-nav-title">Идеи в града</span><span class="home-nav-sub">Паркове, квартали и забележителности</span></div></button><button class="home-nav-btn" onclick="navigateTo('outdoors')"><div class="home-nav-text"><span class="home-nav-title">Паркове и излети</span><span class="home-nav-sub">Планински пътечки и разходки</span></div></button><button class="home-cal-btn" onclick="navigateTo('calendar')"><span class="home-cal-title">Моят календар</span></button></div><div class="theme-footer"><button class="pdf-btn" onclick="generatePDF()" title="Свали PDF">PDF</button></div>
 </div>
   </div><!-- WORKOUTS PAGE -->
 <div class="page-screen" id="pageWorkouts" style="display:none"><div class="page-nav-bar"><button class="page-back-btn" onclick="navigateTo('home')">← Назад</button><span class="page-nav-title">Тренировки вкъщи</span></div>
