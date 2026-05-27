@@ -647,6 +647,41 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .city-hero-wrap{width:calc(100% + 32px);margin:-4px -16px 20px;overflow:hidden;}
 .city-hero-img{width:100%;height:auto;display:block;will-change:transform;}
 #pageCity{overflow-y:auto;height:100vh;}
+
+.hood-typo-list{padding:8px 0;}
+.hood-typo-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;
+  border-bottom:1px solid #E0E0E0;
+  gap:12px;
+}
+.hood-typo-row:first-child{border-top:1px solid #E0E0E0;}
+.hood-typo-main{flex:1;min-width:0;}
+.hood-typo-title{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;
+  color:#111111;line-height:1.2;
+  margin-bottom:3px;
+}
+.hood-typo-sub{
+  display:block;
+  font-size:11px;font-weight:400;
+  color:#888888;letter-spacing:.3px;
+  font-family:'Lato',sans-serif;
+}
+.hood-typo-actions{
+  display:flex;align-items:center;gap:10px;
+  flex-shrink:0;
+}
+
+.typo-group-header{
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:#999999;font-family:'Lato',sans-serif;font-weight:700;
+  padding:20px 0 6px;
+  border-bottom:2px solid #111111;
+  margin-bottom:0;
+}
 </style>
 </head>
 <body>
@@ -688,27 +723,146 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   <div class="sugg-panel" id="suggHoods" style="display:block;padding:0 0 16px">
     <div id="hoodsList"></div>
   </div>
-  <div class="sugg-panel" id="suggLandmarks" style="display:none">
-    <div class="sugg-list">
-      <div class="sugg-group-title">Духовни и исторически обекти</div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Катедрала „Александър Невски"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9D%D0%B5%D0%B2%D1%81%D0%BA%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Символ на София — православна катедрала от 1912 г.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Ротондата „Св. Георги"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%BE%D1%82%D0%BE%D0%BD%D0%B4%D0%B0+%D0%A1%D0%B2+%D0%93%D0%B5%D0%BE%D1%80%D0%B3%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Най-старата запазена сграда в София — римска ротонда от IV в.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Боянската църква</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B0+%D1%86%D1%8A%D1%80%D0%BA%D0%B2%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Средновековна църква — ЮНЕСКО обект в подножието на Витоша.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Бояна</span><span class="sugg-tag easy">ЮНЕСКО</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Катедрала „Св. Неделя"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%B2+%D0%9D%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">В сърцето на центъра — история от над 1000 години.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Баня Баши джамия</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B0%D0%BD%D1%8F+%D0%91%D0%B0%D1%88%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Действаща джамия от 1576 г. — османски паметник.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Софийска синагога</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%BE%D1%84%D0%B8%D0%B9%D1%81%D0%BA%D0%B0+%D1%81%D0%B8%D0%BD%D0%B0%D0%B3%D0%BE%D0%B3%D0%B0" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Третата по-голяма синагога в Европа — изградена 1909 г.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
-      <div class="sugg-group-title">Национални институции</div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Народен театър „Иван Вазов"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%B0%D1%80%D0%BE%D0%B4%D0%B5%D0%BD+%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Емблематичната неокласическа сграда пред Градската градина.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">НДК и пл. „България"</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%94%D0%9A+%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Националният дворец на културата — най-голямата сграда на Балканите.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Юг</span></div></div></div>
-      <div class="sugg-group-title">Музеи и галерии</div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Национален исторически музей</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%B5%D0%BD+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8+%D0%BC%D1%83%D0%B7%D0%B5%D0%B9+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Най-богатият музей на Балканите — над 650 000 експоната.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Бояна</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Античен форум Сердика</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A4%D0%BE%D1%80%D1%83%D0%BC+%D0%A1%D0%B5%D1%80%D0%B4%D0%B8%D0%BA%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Римски руини от II–IV в. под метростанция Сердика — безплатно!</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">безплатно</span></div></div></div>
-      <div class="sugg-group-title">Улици и символи</div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Бул. Витоша (пешеходна зона)</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%B1%D1%83%D0%BB+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Главната пешеходна улица — магазини, кафенета, гледка към Витоша.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Център</span><span class="sugg-tag easy">пешеходна</span></div></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Орлов мост</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9E%D1%80%D0%BB%D0%BE%D0%B2+%D0%BC%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Мост с четири орела от 1891 г. — символ на Sofia.</div><div class="sugg-item-tags"><span class="sugg-tag easy">Изток</span></div></div></div>
-    </div>
+  <div class="sugg-panel" <div id="suggLandmarks" style="display:none">
+<div class="hood-typo-list">
+<div class="typo-group-header">Духовни и исторически обекти</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Катедрала „Александър Невски"</span>
+    <span class="hood-typo-sub">Символ на София — православна катедрала от 1912 г.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Катедрала „Александър Невски"" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9D%D0%B5%D0%B2%D1%81%D0%BA%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
   </div>
 </div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Ротондата „Св. Георги"</span>
+    <span class="hood-typo-sub">Най-старата запазена сграда в София — римска ротонда от IV в.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Ротондата „Св. Георги"" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A0%D0%BE%D1%82%D0%BE%D0%BD%D0%B4%D0%B0+%D0%A1%D0%B2+%D0%93%D0%B5%D0%BE%D1%80%D0%B3%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Боянската църква</span>
+    <span class="hood-typo-sub">Средновековна църква — ЮНЕСКО обект в подножието на Витоша.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Боянската църква" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B0+%D1%86%D1%8A%D1%80%D0%BA%D0%B2%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Катедрала „Св. Неделя"</span>
+    <span class="hood-typo-sub">В сърцето на центъра — история от над 1000 години.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Катедрала „Св. Неделя"" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%B2+%D0%9D%D0%B5%D0%B4%D0%B5%D0%BB%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Баня Баши джамия</span>
+    <span class="hood-typo-sub">Действаща джамия от 1576 г. — османски паметник.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Баня Баши джамия" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%B0%D0%BD%D1%8F+%D0%91%D0%B0%D1%88%D0%B8+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Софийска синагога</span>
+    <span class="hood-typo-sub">Третата по-голяма синагога в Европа — изградена 1909 г.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Софийска синагога" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D0%BE%D1%84%D0%B8%D0%B9%D1%81%D0%BA%D0%B0+%D1%81%D0%B8%D0%BD%D0%B0%D0%B3%D0%BE%D0%B3%D0%B0" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="typo-group-header">Национални институции</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Народен театър „Иван Вазов"</span>
+    <span class="hood-typo-sub">Емблематичната неокласическа сграда пред Градската градина.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Народен театър „Иван Вазов"" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%B0%D1%80%D0%BE%D0%B4%D0%B5%D0%BD+%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">НДК и пл. „България"</span>
+    <span class="hood-typo-sub">Националният дворец на културата — най-голямата сграда на Балканите.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="НДК и пл. „България"" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%94%D0%9A+%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4+%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="typo-group-header">Музеи и галерии</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Национален исторически музей</span>
+    <span class="hood-typo-sub">Най-богатият музей на Балканите — над 650 000 експоната.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Национален исторически музей" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%B5%D0%BD+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8+%D0%BC%D1%83%D0%B7%D0%B5%D0%B9+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Античен форум Сердика</span>
+    <span class="hood-typo-sub">Римски руини от II–IV в. под метростанция Сердика — безплатно!</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Античен форум Сердика" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%A4%D0%BE%D1%80%D1%83%D0%BC+%D0%A1%D0%B5%D1%80%D0%B4%D0%B8%D0%BA%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="typo-group-header">Улици и символи</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Бул. Витоша (пешеходна зона)</span>
+    <span class="hood-typo-sub">Главната пешеходна улица — магазини, кафенета, гледка към Витоша.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Бул. Витоша (пешеходна зона)" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%B1%D1%83%D0%BB+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Орлов мост</span>
+    <span class="hood-typo-sub">Мост с четири орела от 1891 г. — символ на Sofia.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Орлов мост" data-type="landmark" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих днес!</button>
+    
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9E%D1%80%D0%BB%D0%BE%D0%B2+%D0%BC%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+</div>
+</div></div>
 
 <!-- ══ OUTDOORS PAGE ══ -->
 <div class="page-screen" id="pageOutdoors" style="display:none">
@@ -721,17 +875,80 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
     <button class="page-sub-tab" onclick="switchSuggTabOutdoors('Trails',this)">Планински пътечки и походи</button>
   </div>
   <div class="sugg-panel" id="suggParks" style="display:block;padding:0 0 16px"><div id="parksList"></div></div>
-  <div class="sugg-panel" id="suggTrails" style="display:none">
-    <div class="sugg-list">
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Боянски водопад — Витоша</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B8+%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Две опции: дълга полегата пътека или кратка и стръмна. Краят си струва!</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесна/средна</span><span class="sugg-tag">Бояна</span><span class="sugg-tag">~3–5 км</span></div><button class="visit-btn" data-place="Боянски водопад — Витоша" onclick="event.stopPropagation();togglePlaceVisit('Боянски водопад — Витоша','trail')">Посетих днес!</button></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Златни мостове — Камен дел</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BB%D0%B0%D1%82%D0%BD%D0%B8+%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B5+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Полегата и добре маркирана пътека — идеална за начинаещи.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">~4–5 км</span></div><button class="visit-btn" data-place="Златни мостове — Камен дел" onclick="event.stopPropagation();togglePlaceVisit('Златни мостове — Камен дел','trail')">Посетих днес!</button></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">НОП — Нископланинска обиколна пътека</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%9E%D0%9F+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Обиколна пътека около Витоша — лека, с излизане от множество квартали.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Витоша</span></div><button class="visit-btn" data-place="НОП — Нископланинска обиколна пътека" onclick="event.stopPropagation();togglePlaceVisit('НОП — Нископланинска обиколна пътека','trail')">Посетих днес!</button></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Панорамна пътека над Панчарево</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D0%B0+%D0%BF%D1%8A%D1%82%D0%B5%D0%BA%D0%B0+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Горска пътека с гледки към езерото.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Панчарево</span><span class="sugg-tag">~3.5 км</span></div><button class="visit-btn" data-place="Панорамна пътека над Панчарево" onclick="event.stopPropagation();togglePlaceVisit('Панорамна пътека над Панчарево','trail')">Посетих днес!</button></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Лозенска планина — от с. Лозен</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Кръгов маршрут с красиви гледки към София — идеален за следобед по залез.</div><div class="sugg-item-tags"><span class="sugg-tag med">средно</span><span class="sugg-tag">Лозен</span><span class="sugg-tag">~8–10 км</span></div><button class="visit-btn" data-place="Лозенска планина — от с. Лозен" onclick="event.stopPropagation();togglePlaceVisit('Лозенска планина — от с. Лозен','trail')">Посетих днес!</button></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Витоша — хижа Алеко — плато</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D1%85%D0%B8%D0%B6%D0%B0+%D0%90%D0%BB%D0%B5%D0%BA%D0%BE+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">От хижа Алеко по червена маркировка до платото — панорамни гледки.</div><div class="sugg-item-tags"><span class="sugg-tag med">средно</span><span class="sugg-tag">Витоша</span><span class="sugg-tag">3–4 ч.</span></div><button class="visit-btn" data-place="Витоша — хижа Алеко — плато" onclick="event.stopPropagation();togglePlaceVisit('Витоша — хижа Алеко — плато','trail')">Посетих днес!</button></div></div>
-      <div class="sugg-item"><div style="flex:1;min-width:0;"><div class="sugg-item-name-row"><div class="sugg-item-name">Планината Плана</div><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%BB%D0%B0%D0%BD%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a></div><div class="sugg-item-desc">Ниска планина с усещане за безкраен простор — любима за семейни излети.</div><div class="sugg-item-tags"><span class="sugg-tag easy">лесно</span><span class="sugg-tag">Плана</span></div><button class="visit-btn" data-place="Планината Плана" onclick="event.stopPropagation();togglePlaceVisit('Планината Плана','trail')">Посетих днес!</button></div></div>
-    </div>
+  <div class="sugg-panel" <div <div id="suggTrails" style="display:none">
+<div class="hood-typo-list">
+<div class="typo-group-header">Планински пътечки и походи</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Боянски водопад — Витоша</span>
+    <span class="hood-typo-sub">Две опции: дълга полегата или кратка и стръмна. — лесна/средна · ~3–5 км</span>
   </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Боянски водопад — Витоша" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button>
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B8+%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Златни мостове — Камен дел</span>
+    <span class="hood-typo-sub">Полегата и добре маркирана пътека. — лесно · ~4–5 км</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Златни мостове — Камен дел" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button>
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BB%D0%B0%D1%82%D0%BD%D0%B8+%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B5" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">НОП — Нископланинска обиколна пътека</span>
+    <span class="hood-typo-sub">Обиколна пътека около Витоша — лека, с излизане от множество квартали. — лесно</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="НОП — Нископланинска обиколна пътека" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button>
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%9E%D0%9F+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Панорамна пътека над Панчарево</span>
+    <span class="hood-typo-sub">Горска пътека с гледки към езерото. — лесно · ~3.5 км</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Панорамна пътека над Панчарево" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button>
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D0%B0+%D0%BF%D1%8A%D1%82%D0%B5%D0%BA%D0%B0+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Лозенска планина — от с. Лозен</span>
+    <span class="hood-typo-sub">Кръгов маршрут с красиви гледки към София. — средно · ~8–10 км</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Лозенска планина — от с. Лозен" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button>
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Витоша — хижа Алеко — плато</span>
+    <span class="hood-typo-sub">От хижа Алеко по червена маркировка до платото. — средно · 3–4 ч.</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Витоша — хижа Алеко — плато" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button>
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D1%85%D0%B8%D0%B6%D0%B0+%D0%90%D0%BB%D0%B5%D0%BA%D0%BE+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+<div class="hood-typo-row">
+  <div class="hood-typo-main">
+    <span class="hood-typo-title">Планината Плана</span>
+    <span class="hood-typo-sub">Ниска планина с усещане за безкраен простор. — лесно · семейна</span>
+  </div>
+  <div class="hood-typo-actions">
+    <button class="visit-btn" data-place="Планината Плана" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button>
+    <a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%BB%D0%B0%D0%BD%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a>
+  </div>
+</div>
+</div>
 </div>
 
 <!-- ══ CALENDAR PAGE ══ -->
@@ -1629,39 +1846,28 @@ function renderParks(){
   if(!container)return;
   var log=loadLog(),k=getSelectedKey();
   var dayEnts=getDayEntries(log,k);
-  var html='';
-  PARKS_DATA.forEach(function(group,gi){
-    var gid='parkGroup'+gi;
-    html+='<div class="park-group">';
-    html+='<div class="park-group-toggle" data-gid="'+gid+'" onclick="toggleParkGroup(this.dataset.gid)">';
-    html+='<span class="park-group-label">'+group.group+'</span>';
-    html+='<span class="park-group-meta">'+group.items.length+' места</span>';
-    html+='<span class="park-group-arrow" id="'+gid+'Arrow">▾</span></div>';
-    html+='<div class="park-group-body" id="'+gid+'"><div class="sugg-list" style="padding:8px 0 4px;">';
+  var html='<div class="hood-typo-list">';
+  PARKS_DATA.forEach(function(group){
+    html+='<div class="typo-group-header">'+group.group+'</div>';
     group.items.forEach(function(p){
       var url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' София');
-      var tags=p.tags.map(function(t){return '<span class="sugg-tag easy">'+t+'</span>';}).join('');
       var isLogged=dayEnts.some(function(e){return e.placeId===p.name;});
-      html+='<div class="sugg-item">'
-        +'<div class="sugg-item-name-row"><div class="sugg-item-name">'+p.name+'</div>'
-        +'<a class="sugg-maps-link" href="'+url+'" target="_blank" rel="noopener">Карта</a></div>'
-        +'<div class="sugg-item-desc">'+p.desc+'</div>'
-        +'<div class="sugg-item-tags">'+tags+'</div>'
-        +'<button class="visit-btn'+(isLogged?' visited':'')+'" data-place="'+p.name+'" data-type="park" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">'+(isLogged?'Посетено':'Посетих днес!')+'</button>'
+      html+='<div class="hood-typo-row">'
+        +'<div class="hood-typo-main">'
+          +'<span class="hood-typo-title">'+p.name+'</span>'
+          +'<span class="hood-typo-sub">'+p.desc+'</span>'
+        +'</div>'
+        +'<div class="hood-typo-actions">'
+          +'<button class="visit-btn'+(isLogged?' visited':'')+'" data-place="'+p.name+'" data-type="park" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">'+(isLogged?'✓':'Посетих')+'</button>'
+          +'<a class="sugg-maps-link" href="'+url+'" target="_blank" rel="noopener">Карта</a>'
+        +'</div>'
         +'</div>';
     });
-    html+='</div></div></div>';
   });
+  html+='</div>';
   container.innerHTML=html;
 }
 
-function toggleParkGroup(id){
-  var body=document.getElementById(id);
-  var arrow=document.getElementById(id+'Arrow');
-  if(!body)return;
-  var isOpen=body.classList.toggle('open');
-  if(arrow)arrow.textContent=isOpen?'▴':'▾';
-}
 
 
 // ── HOODS ────────────────────────────────────────────────────
@@ -1671,20 +1877,19 @@ function renderHoods(){
   var log=loadLog(),k=getSelectedKey();
   var dayEnts=getDayEntries(log,k);
   var sorted=HOODS_DATA.slice().sort(function(a,b){return a.name.localeCompare(b.name,'bg');});
-  var html='<div class="sugg-list">';
+  var html='<div class="hood-typo-list">';
   sorted.forEach(function(h){
     var url='https://www.google.com/maps/search/?api=1&query='+h.maps;
-    var tags=h.tags.map(function(t){return '<span class="sugg-tag easy">'+t+'</span>';}).join('');
     var isLogged=dayEnts.some(function(e){return e.placeId===h.name;});
-    html+='<div class="sugg-item">'
-      +'<div class="sugg-item-name-row">'
-        +'<div class="sugg-item-name">'+h.name+'</div>'
+    html+='<div class="hood-typo-row">'
+      +'<div class="hood-typo-main">'
+        +'<span class="hood-typo-title">'+h.name+'</span>'
+        +'<span class="hood-typo-sub">'+h.symbol+'</span>'
+      +'</div>'
+      +'<div class="hood-typo-actions">'
+        +'<button class="visit-btn'+(isLogged?' visited':'')+'" data-place="'+h.name+'" data-type="hood" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">'+(isLogged?'✓':'Посетих')+'</button>'
         +'<a class="sugg-maps-link" href="'+url+'" target="_blank" rel="noopener">Карта</a>'
       +'</div>'
-      +'<div style="font-size:11px;font-weight:700;color:var(--text3);margin-bottom:4px;">'+h.symbol+'</div>'
-      +'<div class="sugg-item-desc">'+h.desc+'</div>'
-      +'<div class="sugg-item-tags">'+tags+'</div>'
-      +'<button class="visit-btn'+(isLogged?' visited':'')+'" data-place="'+h.name+'" data-type="hood" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">'+(isLogged?'Посетено':'Посетих днес!')+'</button>'
       +'</div>';
   });
   html+='</div>';
