@@ -69,8 +69,8 @@
 
 /* BASE */
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;transition:background .4s,color .4s;}
-.app{max-width:880px;margin:0 auto;padding:28px 16px 72px;animation:fadeUp .6s cubic-bezier(.16,1,.3,1) both;}
+body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;transition:background .4s,color .4s;}
+.app{max-width:880px;margin:0 auto;padding:0 16px 72px;animation:fadeUp .6s cubic-bezier(.16,1,.3,1) forwards;}
 
 /* HEADER */
 .header{text-align:center;margin-bottom:32px;}
@@ -563,7 +563,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 @keyframes popBounce{from{transform:scale(0) rotate(-10deg)}to{transform:scale(1) rotate(0)}}
 
 /* MULTI-PAGE NAV */
-.page-screen{animation:fadeUp .4s cubic-bezier(.16,1,.3,1) both;}
+.page-screen{animation:fadeUp .3s cubic-bezier(.16,1,.3,1) forwards;}
 .home-nav{padding:0 0 8px;}
 .home-nav-btn{
   width:100%;padding:22px 4px 22px;
@@ -595,15 +595,15 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   letter-spacing:.5px;
   font-family:'Lato',sans-serif;
 }
-.page-nav-bar{display:flex;align-items:center;gap:14px;padding:10px 0 20px;border-bottom:2px solid var(--border2);margin-bottom:22px;}
+.page-nav-bar{display:flex;align-items:center;gap:14px;padding:20px 0 18px;border-bottom:2px solid var(--border2);margin-bottom:22px;}
 .page-back-btn{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;padding:8px 16px;border-radius:100px;border:2px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s;flex-shrink:0;}
 .page-back-btn:hover{border-color:var(--accent);color:var(--accent);}
 .page-nav-title{font-size:17px;font-weight:900;color:var(--text);letter-spacing:-.3px;}
 .theme-footer{padding:28px 0 8px;border-top:1.5px solid var(--border2);margin-top:20px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
 
-.home-cal-btn{width:100%;padding:18px 4px;background:transparent;border:none;border-bottom:1px solid #E0E0E0;text-align:right;cursor:pointer;display:block;transition:all .2s ease;border-radius:0;}
+.home-cal-btn{width:100%;padding:16px 0;background:transparent;border:none;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;text-align:center;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:8px;}
 .home-cal-btn:hover{border-color:var(--accent);background:var(--bg2);}
-.home-cal-title{font-family:'Lato',sans-serif;font-size:12px;font-weight:400;color:#888888;letter-spacing:1.5px;text-transform:uppercase;}
+.home-cal-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#111111;letter-spacing:0;}
 .home-cal-sub{font-size:11px;font-weight:600;color:var(--text3);}
 
 .page-sub-tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--border2);}
@@ -634,7 +634,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 .hood-detail-actions{display:flex;gap:10px;align-items:center;}
 
 /* Home snap scroll */
-#pageHome{overflow-y:auto;height:100vh;}
+#pageHome{}
 .home-snap-hero{position:relative;}
 .home-hero-img-full{width:100%;height:auto;display:block;}
 .home-hero-title-overlay{position:relative;z-index:2;padding:24px 20px 8px;background:transparent;margin-top:0;}
@@ -646,7 +646,8 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 /* City parallax image */
 .city-hero-wrap{width:calc(100% + 32px);margin:-4px -16px 20px;overflow:hidden;}
 .city-hero-img{width:100%;height:auto;display:block;will-change:transform;}
-#pageCity{overflow-y:auto;height:100vh;}
+#pageCity{}
+#pageCalendar{background:#ffffff;color:#111111;}
 
 .hood-typo-list{padding:8px 0;}
 .hood-typo-row{
@@ -682,7 +683,25 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   border-bottom:2px solid #111111;
   margin-bottom:0;
 }
-</style>
+
+/* Calendar page */
+.sc1,.sc2,.sc3{background:#111;color:#fff;}
+.cal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 0 10px;}
+.cal-month-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#111;}
+.cal-nav-btn{background:none;border:1px solid #E0E0E0;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:16px;color:#111;}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px;}
+.cal-wd{text-align:center;font-size:10px;font-weight:700;color:#888;padding:4px 0;letter-spacing:1px;text-transform:uppercase;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;border-radius:8px;color:#111;background:#F5F5F5;}
+.cal-cell.empty{background:transparent;}
+.cal-cell.today{background:#111;color:#fff;font-weight:900;}
+.cal-cell.future{color:#ccc;background:#fafafa;}
+.cal-cell.has-entry{background:#111;color:#fff;}
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px;}
+.tip-item{background:#F5F5F5;border-radius:12px;padding:14px;font-size:12px;line-height:1.5;color:#444;}
+
+.page-screen > * {}
+.page-inner{max-width:880px;margin:0 auto;padding:28px 16px 72px;}</style>
 </head>
 <body>
 <div class="app" id="appRoot"><!-- HOME PAGE -->
@@ -862,7 +881,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   </div>
 </div>
 </div>
-</div></div>
+</div></div></div>
 
 <!-- ══ OUTDOORS PAGE ══ -->
 <div class="page-screen" id="pageOutdoors" style="display:none">
@@ -950,6 +969,9 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 
 <!-- ══ CALENDAR PAGE ══ -->
 <div class="page-screen" id="pageCalendar" style="display:none">
@@ -996,9 +1018,6 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
   </div>
 </div>
 
-</div>
-
-<!-- ── CALENDAR TOOLTIP ── -->
 <div class="cal-tooltip" id="calTooltip">
   <div class="cal-tt-date" id="calTtDate"></div>
   <div class="cal-tt-name" id="calTtName"></div>
@@ -1006,6 +1025,9 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 </div>
 
 <!-- ── COMPLETION POPUP ── -->
+
+</div>
+
 <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
   <div class="popup-card" onclick="event.stopPropagation()">
     <div class="popup-title" id="popupTitle">Тренировката е завършена!</div>
@@ -1571,8 +1593,6 @@ function renderCalendar(){
   if(!grid)return;
   var b=document.getElementById('calBody');if(b)b.classList.toggle('open',calOpen);
   var a=document.getElementById('calArrow');if(a)a.classList.toggle('open',calOpen);
-  var b=document.getElementById('calBody');if(b)b.classList.toggle('open',calOpen);
-  var a=document.getElementById('calArrow');if(a)a.classList.toggle('open',calOpen);
   var label=BG_MONTHS[calMonth]+' '+calYear;
   if(titleEl)titleEl.textContent=label;
   if(subEl)subEl.textContent=label;
@@ -1968,10 +1988,26 @@ function navigateTo(page){
   var targetId=ids[page]||page;
   PAGES.forEach(function(id){
     var el=document.getElementById(id);
-    if(el)el.style.display=id===targetId?'block':'none';
+    if(el){
+      el.style.display=id===targetId?'block':'none';
+      if(id===targetId){
+        el.style.animation='none';
+        el.offsetHeight;
+        el.style.animation='';
+      }
+    }
   });
-  window.scrollTo(0,0);
-  if(page==='workouts'){setTimeout(function(){
+  // Immediate scroll reset — multiple methods for cross-browser compatibility
+  try{window.scrollTo(0,0);}catch(e){}
+  try{document.documentElement.scrollTop=0;}catch(e){}
+  try{document.body.scrollTop=0;}catch(e){}
+  // Delayed backup scroll
+  setTimeout(function(){
+    try{window.scrollTo(0,0);}catch(e){}
+    try{document.documentElement.scrollTop=0;}catch(e){}
+  },20);
+
+  if(page==='workouts'){setTimeout(function(){window.scrollTo(0,0);
     renderCatTabs();
     var gb=document.getElementById('workoutGridBody');
     if(gb){gb.classList.add('open');gridOpen=true;}
@@ -1980,9 +2016,12 @@ function navigateTo(page){
     renderMarkBtn();
     initDateInput();
   },50);}
-  if(page==='calendar'){setTimeout(function(){renderStats();renderProgress();renderCalendar();},50);}
-  if(page==='city'){setTimeout(function(){renderHoods();updateVisitBtns();initCityParallax();},80);}
-  if(page==='outdoors'){renderParks();}
+  if(page==='calendar'){setTimeout(function(){
+    renderStats();renderProgress();renderCalendar();
+    window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;
+  },50);}
+  if(page==='city'){setTimeout(function(){renderHoods();updateVisitBtns();initCityParallax();window.scrollTo(0,0);},80);}
+  if(page==='outdoors'){renderParks();window.scrollTo(0,0);}
 }
 
 // ── THEME
