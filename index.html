@@ -630,7 +630,7 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
 }
 .list-card-body{display:flex;flex-direction:column;gap:2px;text-align:right;flex:1;}
 .list-card-title{font-size:15px;font-weight:800;color:#111111;font-family:'Nunito',sans-serif;}
-.list-card-sub{font-size:11px;color:#888888;}
+.list-card-sub{font-size:11px;color:#888888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
 .list-card-actions{display:flex;gap:8px;align-items:center;margin-top:6px;justify-content:flex-end;}
 .list-group-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
   color:#888888;font-family:'Nunito',sans-serif;font-weight:700;
@@ -678,8 +678,8 @@ h1 span{background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill
     <button class="page-sub-tab active" onclick="switchSuggTabOutdoors('Parks',this)">Паркове и градинки в София</button>
     <button class="page-sub-tab" onclick="switchSuggTabOutdoors('Trails',this)">Планински пътечки и походи</button>
   </div>
-  <div class="sugg-panel" id="suggParks" style="display:block;padding:0 0 16px"><div id="parksList"></div></div>
-  <div class="sugg-panel" <div id="suggTrails" style="display:none"><div style="padding:8px 0;"><div class="list-group-title">Планински пътечки и походи</div><div class="list-card"><div class="list-card-num">01</div><div class="list-card-body"><div class="list-card-title">Боянски водопад — Витоша</div><div class="list-card-sub">лесна/средна · ~3–5 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Боянски водопад — Витоша" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B8+%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">02</div><div class="list-card-body"><div class="list-card-title">Златни мостове</div><div class="list-card-sub">лесно · ~4–5 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Златни мостове" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BB%D0%B0%D1%82%D0%BD%D0%B8+%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B5" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">03</div><div class="list-card-body"><div class="list-card-title">НОП — Нископланинска обиколна пътека</div><div class="list-card-sub">лесно · обиколна</div><div class="list-card-actions"><button class="visit-btn" data-place="НОП — Нископланинска обиколна пътека" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%9E%D0%9F+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">04</div><div class="list-card-body"><div class="list-card-title">Панорамна пътека над Панчарево</div><div class="list-card-sub">лесно · ~3.5 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Панорамна пътека над Панчарево" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D0%B0+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">05</div><div class="list-card-body"><div class="list-card-title">Лозенска планина — от с. Лозен</div><div class="list-card-sub">средно · ~8–10 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Лозенска планина — от с. Лозен" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">06</div><div class="list-card-body"><div class="list-card-title">Витоша — хижа Алеко — плато</div><div class="list-card-sub">средно · 3–4 ч.</div><div class="list-card-actions"><button class="visit-btn" data-place="Витоша — хижа Алеко — плато" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D0%B5%D0%BA%D0%BE+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">07</div><div class="list-card-body"><div class="list-card-title">Планината Плана</div><div class="list-card-sub">лесно · семейна</div><div class="list-card-actions"><button class="visit-btn" data-place="Планината Плана" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%BB%D0%B0%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div></div></div></div></div>
+  <div class="sugg-panel" id="suggParks" style="display:block;padding:0 16px 16px"><div id="parksList"></div></div>
+  <div class="sugg-panel" id="suggTrails" style="display:none"><div style="padding:8px 0;"><div class="list-group-title">Планински пътечки и походи</div><div class="list-card"><div class="list-card-num">01</div><div class="list-card-body"><div class="list-card-title">Боянски водопад — Витоша</div><div class="list-card-sub">лесна/средна · ~3–5 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Боянски водопад — Витоша" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%91%D0%BE%D1%8F%D0%BD%D1%81%D0%BA%D0%B8+%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">02</div><div class="list-card-body"><div class="list-card-title">Златни мостове</div><div class="list-card-sub">лесно · ~4–5 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Златни мостове" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%BB%D0%B0%D1%82%D0%BD%D0%B8+%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B5" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">03</div><div class="list-card-body"><div class="list-card-title">НОП — Нископланинска обиколна пътека</div><div class="list-card-sub">лесно · обиколна</div><div class="list-card-actions"><button class="visit-btn" data-place="НОП — Нископланинска обиколна пътека" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9D%D0%9E%D0%9F+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">04</div><div class="list-card-body"><div class="list-card-title">Панорамна пътека над Панчарево</div><div class="list-card-sub">лесно · ~3.5 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Панорамна пътека над Панчарево" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D0%B0+%D0%9F%D0%B0%D0%BD%D1%87%D0%B0%D1%80%D0%B5%D0%B2%D0%BE" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">05</div><div class="list-card-body"><div class="list-card-title">Лозенска планина — от с. Лозен</div><div class="list-card-sub">средно · ~8–10 км</div><div class="list-card-actions"><button class="visit-btn" data-place="Лозенска планина — от с. Лозен" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B0+%D0%BF%D0%BB%D0%B0%D0%BD%D0%B8%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">06</div><div class="list-card-body"><div class="list-card-title">Витоша — хижа Алеко — плато</div><div class="list-card-sub">средно · 3–4 ч.</div><div class="list-card-actions"><button class="visit-btn" data-place="Витоша — хижа Алеко — плато" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D0%B5%D0%BA%D0%BE+%D0%92%D0%B8%D1%82%D0%BE%D1%88%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div><div class="list-card"><div class="list-card-num">07</div><div class="list-card-body"><div class="list-card-title">Планината Плана</div><div class="list-card-sub">лесно · семейна</div><div class="list-card-actions"><button class="visit-btn" data-place="Планината Плана" data-type="trail" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">Посетих</button><a class="sugg-maps-link" href="https://www.google.com/maps/search/?api=1&query=%D0%9F%D0%BB%D0%B0%D0%BD%D0%B0" target="_blank" rel="noopener">Карта</a></div></div></div></div></div></div></div>
 
 <!-- ══ CALENDAR PAGE ══ -->
 <div class="page-screen" id="pageCalendar" style="display:none">
@@ -754,199 +754,172 @@ const GRADIENTS={
 // ── CATEGORIES ───────────────────────────────────────────────
 const CATEGORIES=[
   {id:'free',label:'Свободни',workouts:[
-    {id:1,label:"Т1",title:"Пълно тяло А",subtitle:"Без оборудване · Суперсет",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т1",exercises:[
-      {name:"Изправен кранч (Standing crunch)",sets:3,reps:"45 сек.",svg:S.march,muscles:["Корем","Баланс"],what:"Застани изправена. Вдигни коляното нагоре и го срещни с противоположния лакът. Редувай страни без прибързване.",tip:"Не дърпай врата. Движението идва от корема."},
-      {name:"Реверанс изпад (Curtsy lunge)",sets:3,reps:"12 повт. / крак",svg:S.lunge,muscles:["Седалище","Вътрешни бедра"],what:"Пренеси тежестта и направи диагонална крачка назад зад опорния крак. Клякай докато бедрото е успоредно на пода.",tip:"Коляното на предния крак да не излиза пред пръстите."},
-      {name:"Добро утро (Good morning)",sets:3,reps:"15 повт.",svg:S.deadlift,muscles:["Задни бедра","Долен гръб"],what:"Ръцете зад главата. Наведи се напред от ханша с прав гръб. Усети разтягане. Изправи се.",tip:"Движението е от ханша, не от гърба. Коленете леко свити."},
-      {name:"Глутеус мост (Glute bridge)",sets:3,reps:"20 повт.",svg:S.bridge,muscles:["Седалище","Задни бедра","Core"],what:"Легни по гръб, колена свити. Вдигни бедрата нагоре до права линия рамене-колена. Стегни. Задръж 2 сек.",tip:"Не прегъвай кръста. Активирай корема."},
-      {name:"Лицеви опори на колене",sets:3,reps:"12 повт.",svg:S.pushupknee,muscles:["Гърди","Трицепс","Core"],what:"Колена на пода. Права линия. Бавно слизай до 2 пръста от пода. Избутай нагоре.",tip:"4 секунди надолу, 2 нагоре."}
+    {id:1,label:"Т1",title:"Стартова кондиция",subtitle:"Без оборудване · 3 серии",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т1",exercises:[
+      {name:"Класически клек",sets:3,reps:"12 повт.",muscles:["Крака","Седалище"],what:"Представи си, че сядаш на невидим стол зад теб. Дръж гърба изправен.",tip:"Тежестта е в петите."},
+      {name:"Лицеви опори на стена",sets:3,reps:"12 повт.",muscles:["Гърди","Рамене"],what:"Застани срещу стената, подпри се с ръце и приближавай гърдите си към нея.",tip:"По-лесно и безопасно от тези на земя."},
+      {name:"Повдигане на таза от лег (Глутеус мост)",sets:3,reps:"12 повт.",muscles:["Седалище","Корем"],what:"Легни по гръб с навити колене и вдигай дупето нагоре, докато тялото стане права линия.",tip:"Стегни седалището горе."},
+      {name:"Маршируване на място",sets:3,reps:"30 сек.",muscles:["Крака","Кардио"],what:"Просто вдигай коленете високо едно след друго, все едно вървиш устремено.",tip:"Дръж темпо и дишай спокойно."}
     ]},
-    {id:2,label:"Т2",title:"Горна + Core",subtitle:"Без оборудване · Суперсет",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т2",exercises:[
-      {name:"Инчуорм + лицева опора",sets:3,reps:"10 повт.",svg:S.pushupknee,muscles:["Гърди","Core","Задни бедра"],what:"От изправена, наведи се и постави ръцете на пода. Изходи до планк, лицева опора, върни се.",tip:"Едно от най-функционалните упражнения."},
-      {name:"Трицеп потапяне (Tricep dip)",sets:3,reps:"15 повт.",svg:S.floorpress,muscles:["Трицепс","Рамене"],what:"На ръба на стол, ръцете встрани. Спусни тялото надолу, лактите назад. Избутай нагоре.",tip:"Колкото по-далеч са краката — по-трудно."},
-      {name:"Планк с рамо тап",sets:3,reps:"20 повт.",svg:S.sideplank,muscles:["Core","Рамене"],what:"В позиция за лицева опора. Повдигни ръката и докосни противоположното рамо. Редувай.",tip:"Бедрата остават неподвижни."},
-      {name:"Велосипед кранч",sets:3,reps:"45 сек.",svg:S.twist,muscles:["Прав корем","Кос корем"],what:"Легни по гръб, ръцете зад главата. Редувай: дясното коляно към левия лакът с ротация на торса.",tip:"Ротацията идва от торса — не от лакъта."},
-      {name:"Половин Пилатес Суперман",sets:3,reps:"12 повт. / страна",svg:S.superman,muscles:["Долен гръб","Седалище"],what:"Легни по корем. Вдигни едната ръка и противоположния крак. Задръж 2 сек.",tip:"По-контролирана версия на класическия супермен."}
+    {id:2,label:"Т2",title:"Стабилност и баланс",subtitle:"Без оборудване · 3 серии",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Т2",exercises:[
+      {name:"Обратни напади",sets:3,reps:"10 крачки общо",muscles:["Крака","Седалище"],what:"Направи голяма крачка назад с единия крак и леко спусни коляното към пода, после се върни. Редувай.",tip:"Дръж тялото изправено."},
+      {name:"Докосване на раменете от планк на колене",sets:3,reps:"12 докосвания",muscles:["Корем","Рамене"],what:"Позиция за лицева опора на колене. Вдигни лявата ръка и докосни дясното рамо, после обратното.",tip:"Стягай корема, не люлей таза."},
+      {name:"Упражнение „Куче-птица“",sets:3,reps:"10 повт.",muscles:["Гръб","Седалище","Корем"],what:"На четири крака. Вдигни едновременно дясната ръка напред и левия крак назад. Смени страните.",tip:"Дръж ханша стабилен."},
+      {name:"Странично повдигане на крака от лег",sets:3,reps:"12 на крак",muscles:["Седалище","Отвеждащи"],what:"Легни настрани и бавно вдигай горния крак нагоре, после го спусни.",tip:"Контролирай движението."}
     ]},
-    {id:3,label:"Т3",title:"Долна половина",subtitle:"Без оборудване · Крака",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т3",exercises:[
-      {name:"Клек + кръстосан кранч",sets:3,reps:"15 повт.",svg:S.squatarms,muscles:["Бедра","Седалище","Корем"],what:"Клекни до паралел, изправи се и срещни коляното с противоположния лакът.",tip:"Издишвай при изправяне."},
-      {name:"Обратен изпад (Reverse lunge)",sets:3,reps:"12 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище"],what:"Направи крачка назад, задното коляно почти докосва пода. Избутай се с предния крак.",tip:"По-щадящ за коленете от напредния изпад."},
-      {name:"Пулсиращ тесен клек",sets:3,reps:"25 пулса",svg:S.deepsquat,muscles:["Квадрицепс","Вътрешни бедра"],what:"Клекни и стой в долната позиция. Правй малки пулсиращи движения без да се изправяш.",tip:"Поддържа напрежението в мускула."},
-      {name:"Мост на един крак",sets:3,reps:"12 повт. / крак",svg:S.bridge,muscles:["Седалище","Задни бедра"],what:"В позиция за глутеус мост, изпъни единия крак. Вдигни бедрата. Тазът да не се накланя.",tip:"Удвоява интензивността на обикновения мост."},
-      {name:"Страничен изпад (Side lunge)",sets:3,reps:"12 повт. / страна",svg:S.lunge,muscles:["Вътрешни бедра","Седалище"],what:"Широка крачка встрани. Свий коляното на изпадащия крак, другият е прав.",tip:"Отлично за вътрешните бедра."}
+    {id:3,label:"Т3",title:"Сила за цялото тяло",subtitle:"Без оборудване · 3 серии",color:"#333333",glow:"rgba(0,0,0,.10)",short:"Т3",exercises:[
+      {name:"Широк клек (Сумо клек)",sets:3,reps:"12 повт.",muscles:["Крака","Вътрешни бедра"],what:"Разкрачи краката по-широко от раменете, пръстите сочат леко настрани. Клекни надолу.",tip:"Натоварва вътрешната част на бедрата."},
+      {name:"Котешки гръб (Котка-крава)",sets:3,reps:"10 повт.",muscles:["Гръб","Корем"],what:"На четири крака. Извий гърба нагоре като уплашена котка (издишай), после го отпусни надолу (вдишай).",tip:"Движи се бавно."},
+      {name:"Повдигане на краката от лег",sets:3,reps:"10 повт.",muscles:["Корем"],what:"Легни по гръб, сложи ръце под дупето за опора и бавно вдигай изпънатите крака нагоре, после ги спускай.",tip:"Не докосвай пода с краката."},
+      {name:"„Супермен“",sets:3,reps:"10 повт.",muscles:["Гръб","Седалище"],what:"Легни по корем. Вдигни едновременно ръцете и краката леко във въздуха, задръж за секунда и отпусни.",tip:"Не пресилвай кръста."}
     ]},
-    {id:4,label:"Т4",title:"Core Focus",subtitle:"Без оборудване · Корем",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т4",exercises:[
-      {name:"Dead bug",sets:3,reps:"10 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем","Стабилизатори"],what:"Легни по гръб, ръцете нагоре, колената под 90°. Бавно спускай дясната ръка и левия крак. Кръстът притиснат.",tip:"4 сек. за спускане. Не задържай дъха."},
-      {name:"Велосипед кранч",sets:3,reps:"45 сек.",svg:S.twist,muscles:["Прав корем","Кос корем"],what:"Легни по гръб. Редувай: дясното коляно към левия лакът. Противоположният крак се изпъва.",tip:"Ротацията идва от торса."},
-      {name:"Rolling plank",sets:3,reps:"30 сек.",svg:S.sideplank,muscles:["Core","Рамене","Бедра"],what:"Страничен планк дясно (5 сек.) → преден планк (5 сек.) → страничен ляво (5 сек.). Повтори.",tip:"Плавните преходи активират различни части на core."},
-      {name:"Бърд дог (Bird dog)",sets:3,reps:"10 повт. / страна",svg:S.birddog,muscles:["Core","Долен гръб"],what:"На четири крака. Протегни дясната ръка и левия крак. Задръж 3 сек. Смени.",tip:"Бедрата остават хоризонтални."},
-      {name:"Страничен планк",sets:3,reps:"30 сек. / страна",svg:S.sideplank,muscles:["Кос корем","Бедра"],what:"Опри се на лакът. Вдигни бедрата. Тялото е права линия. Задръж.",tip:"Стегни корема и задните мускули."}
+    {id:4,label:"Т4",title:"Леко кардио и тонус",subtitle:"Без оборудване · 3 серии",color:"#444444",glow:"rgba(0,0,0,.08)",short:"Т4",exercises:[
+      {name:"Клек с повдигане на пръсти",sets:3,reps:"12 повт.",muscles:["Крака","Прасци"],what:"Направи стандартен клек и при изправянето се вдигни високо на пръсти.",tip:"Страхотно за прасците."},
+      {name:"Лицеви опори на дивана",sets:3,reps:"10 повт.",muscles:["Гърди","Рамене"],what:"Сложи ръце на ръба на стабилен диван или легло и изпълнявай леки лицеви опори.",tip:"По-висока опора = по-лесно."},
+      {name:"Руски усуквания на стол/под",sets:3,reps:"16 усуквания",muscles:["Корем","Коси мускули"],what:"Седни на пода или стол, наклони се леко назад и върти горната част на тялото наляво и надясно.",tip:"Дръж корема стегнат."},
+      {name:"Странични стъпки",sets:3,reps:"30 сек.",muscles:["Крака","Кардио"],what:"Прави бързи крачки наляво и надясно в леко приклекнало положение.",tip:"Дръж ниско темпо."}
     ]},
-    {id:5,label:"Т5",title:"Кардио без скок",subtitle:"Без оборудване · Low Impact",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т5",exercises:[
-      {name:"Маршируване с ръце",sets:3,reps:"60 сек.",svg:S.march,muscles:["Крака","Рамене","Кардио"],what:"Марширувай на място, вдигайки колената до нивото на бедрото. Ръцете се движат активно.",tip:"По-високи колена = повече интензивност."},
-      {name:"Изправен кранч с ротация",sets:3,reps:"45 сек.",svg:S.twist,muscles:["Кос корем","Баланс"],what:"Ръцете зад главата. Вдигни коляното и усучи торса да се среща с него. Редувай.",tip:"Контролирано и ритмично."},
-      {name:"Инчуорм (Plank walkout)",sets:3,reps:"10 повт.",svg:S.pushupknee,muscles:["Core","Рамене","Задни бедра"],what:"Наведи се и постави ръцете на пода. Изходи до планк. Задръж 1 сек. Върни се.",tip:"Бавно и контролирано."},
-      {name:"Реверанс изпад с пулс",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Седалище","Вътрешни бедра"],what:"В позиция за реверанс изпад — 2 малки пулса преди да се изправиш.",tip:"Пулсовете поддържат напрежението."},
-      {name:"Клек с вдигане на ръце",sets:3,reps:"20 повт.",svg:S.squatarms,muscles:["Бедра","Рамене","Core"],what:"При качването от клякане вдигни двете ръце над главата. При спускане — свали ги.",tip:"Координацията добавя кардио без скачане."}
+    {id:5,label:"Т5",title:"Здрав гръб и корем",subtitle:"Без оборудване · 3 серии",color:"#555555",glow:"rgba(0,0,0,.10)",short:"Т5",exercises:[
+      {name:"Добро утро (Навеждане напред)",sets:3,reps:"12 повт.",muscles:["Гръб","Задни бедра"],what:"Сложи ръце зад главата, заключи гърба прав и се наведи напред от ханша, докато усетиш разтягане.",tip:"Гърбът остава прав през цялото време."},
+      {name:"Планк на колене (Задържане)",sets:3,reps:"20-30 сек.",muscles:["Корем","Рамене"],what:"Застани на лакти и колене. Дръж тялото право като дъска и стегни корема.",tip:"Не позволявай на кръста да пропада."},
+      {name:"Пулсиращ клек",sets:3,reps:"10 повт.",muscles:["Крака","Седалище"],what:"Спусни се в клек, направи две малки пулсирания най-долу и тогава се изправи напълно.",tip:"Контролирай долната фаза."},
+      {name:"Издърпване на лакти по корем",sets:3,reps:"12 повт.",muscles:["Гръб","Лопатки"],what:"Легни по корем с ръце напред. Вдигни леко гърдите и издърпай лактите назад към ребрата.",tip:"Стегни лопатките."}
     ]},
-    {id:6,label:"Т6",title:"Задна верига",subtitle:"Без оборудване · Гръб и Седалище",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т6",exercises:[
-      {name:"Добро утро + обратна крачка",sets:3,reps:"10 повт. / крак",svg:S.deadlift,muscles:["Задни бедра","Седалище","Долен гръб"],what:"Направи добро утро, при изправяне направи обратна крачка и задръж равновесие 2 сек.",tip:"Активира цялата задна верига."},
-      {name:"Глутеус мост с пулс",sets:4,reps:"15 повт. + 10 пулса",svg:S.bridge,muscles:["Седалище","Задни бедра"],what:"Изпълни глутеус мост. В горната позиция направи 10 пулса преди да слезеш.",tip:"Пулсирането горе е ключово за максимална контракция."},
-      {name:"Суперман с бавно спускане",sets:3,reps:"12 повт.",svg:S.superman,muscles:["Долен гръб","Седалище"],what:"Легни по корем. Вдигни ръцете и краката. Задръж 2 сек. Бавно спусни за 4 секунди.",tip:"Ексцентричното спускане гради сила ефективно."},
-      {name:"Ритник от четири крака",sets:3,reps:"15 повт. / крак",svg:S.birddog,muscles:["Седалище","Задни бедра"],what:"На четири крака. Вдигни крака назад и нагоре. Стегни. Бавно върни без да докосваш пода.",tip:"Не прегъвай кръста при вдигане."},
-      {name:"Пожарна хидрантка",sets:3,reps:"20 повт. / страна",svg:S.clam,muscles:["Глутеус медиус","Тазобедрени стабилизатори"],what:"На четири крака. Вдигни коляното встрани до нивото на бедрото. Задръж 2 сек.",tip:"Изолира страничната част на седалището."}
+    {id:6,label:"Т6",title:"Бедра и коси коремни мускули",subtitle:"Без оборудване · 3 серии",color:"#111111",glow:"rgba(0,0,0,.08)",short:"Т6",exercises:[
+      {name:"Странични напади",sets:3,reps:"12 крачки общо",muscles:["Крака","Вътрешни бедра"],what:"От стоеж направи голяма крачка встрани с десния крак, клекни върху него, левият остава изпънат.",tip:"Смени крака след всяко повторение."},
+      {name:"Докосване на глезените от лег",sets:3,reps:"20 докосвания",muscles:["Коси мускули","Корем"],what:"Легни по гръб с навити колене. Вдигни леко раменете и посягай с лявата ръка към лявата пета, после дясната.",tip:"Малки контролирани движения."},
+      {name:"Махове назад на четири крака",sets:3,reps:"12 на крак",muscles:["Седалище"],what:"На колене и длани. Вдигни единия крак назад и нагоре, сгънат на 90 градуса.",tip:"Сякаш искаш да стъпиш на тавана."},
+      {name:"Повдигане на ръце встрани без тежест",sets:3,reps:"15 повт.",muscles:["Рамене"],what:"Изправен, бавно вдигай ръцете встрани до нивото на раменете, после ги спускай.",tip:"Бавно и съзнателно стягай мускулите."}
     ]},
-    {id:7,label:"Т7",title:"Push Focus",subtitle:"Без оборудване · Горна тяло",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т7",exercises:[
-      {name:"Бавни лицеви опори",sets:4,reps:"8 повт.",svg:S.slowpush,muscles:["Гърди","Трицепс","Core"],what:"4 секунди надолу, 2 секунди нагоре. Лактите под 45°.",tip:"8 бавни > 20 бързи повторения."},
-      {name:"Пайк лицеви опори",sets:3,reps:"10 повт.",svg:S.pushupknee,muscles:["Предни рамене","Трицепс"],what:"В позиция обърнато V. Свий лактите и спусни главата между ръцете.",tip:"Отличен заместител на overhead press."},
-      {name:"Трицеп потапяне",sets:3,reps:"15 повт.",svg:S.floorpress,muscles:["Трицепс","Рамене"],what:"На ръба на стол. Спусни тялото, лактите назад и покрай тялото.",tip:"Лактите назад — така изолираш трицепса."},
-      {name:"Страничен планк с снижване",sets:3,reps:"12 повт. / страна",svg:S.sideplank,muscles:["Кос корем","Рамене"],what:"В страничен планк, бавно снижи бедрата почти до пода. Вдигни обратно.",tip:"Добавя динамичен елемент към статичния планк."},
-      {name:"Суперман ред",sets:3,reps:"12 повт.",svg:S.superman,muscles:["Горен гръб","Задни рамене"],what:"Легни по корем с ръце напред. Вдигни ги, сгъни лактите назад като гребане.",tip:"Имитира движение за ред — чудесно за гърба."}
+    {id:7,label:"Т7",title:"Координация и сила",subtitle:"Без оборудване · 3 серии",color:"#222222",glow:"rgba(0,0,0,.10)",short:"Т7",exercises:[
+      {name:"Клек със задържане",sets:3,reps:"10 повт.",muscles:["Крака","Седалище"],what:"Спусни се в клек, задръж позицията долу за 3 секунди и тогава се изправи експлозивно.",tip:"Дръж гърба прав при задържането."},
+      {name:"Коремни преси „Пеперуда“",sets:3,reps:"10 повт.",muscles:["Корем"],what:"Легни по гръб, събери стъпалата едно към друго, коленете падат встрани. Вдигай горната част на гърба.",tip:"Движението е плавно."},
+      {name:"Спускане за трицепс на стол",sets:3,reps:"8-10 повт.",muscles:["Трицепс","Рамене"],what:"Седни на ръба на стабилен стол, длани до дупето. Измести дупето напред и сгъни лактите за спускане.",tip:"Избутай обратно нагоре контролирано."},
+      {name:"Катерач на стена",sets:3,reps:"30 сек.",muscles:["Корем","Кардио"],what:"Подпри се на стената под наклон (като за лицева опора) и движи коленете бързо към гърдите.",tip:"Дръж корема стегнат."}
     ]},
-    {id:8,label:"Т8",title:"Глутеус Burn",subtitle:"Без оборудване · Седалище",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т8",exercises:[
-      {name:"Сумо клек с пулс",sets:4,reps:"15 повт. + 10 пулса",svg:S.sumo,muscles:["Вътрешни бедра","Седалище"],what:"Широка стойка с пръсти навън. Клекни и направи 10 пулса преди да се изправиш.",tip:"Пулсовете поддържат Time Under Tension."},
-      {name:"Реверанс изпад (Curtsy lunge)",sets:3,reps:"15 повт. / крак",svg:S.lunge,muscles:["Седалище","Вътрешни бедра"],what:"Диагонална крачка назад зад опорния крак. Натискай с пета.",tip:"Насочен директно към глутеуса."},
-      {name:"Мост с пулс и разтваряне",sets:4,reps:"15 повт.",svg:S.bridge,muscles:["Седалище","Вътрешни бедра"],what:"Глутеус мост, горе разтвори коленете встрани и стегни. Върни и слез.",tip:"Активира глутеус максимус и медиус едновременно."},
-      {name:"Ритник от четири крака",sets:3,reps:"20 повт. / крак",svg:S.birddog,muscles:["Седалище","Задни бедра"],what:"На четири крака. Вдигни крака назад. Без пауза на пода между повторенията.",tip:"Постоянно напрежение = по-добри резултати."},
-      {name:"Пожарна хидрантка с пулс",sets:3,reps:"15 + 5 пулса / страна",svg:S.clam,muscles:["Глутеус медиус"],what:"Вдигни коляното встрани. В горна позиция направи 5 малки пулса.",tip:"Пълно движение + пулс = максимална активация."}
+    {id:8,label:"Т8",title:"Енергия за деня",subtitle:"Без оборудване · 3 серии",color:"#333333",glow:"rgba(0,0,0,.08)",short:"Т8",exercises:[
+      {name:"Поочередни напади напред",sets:3,reps:"12 крачки общо",muscles:["Крака","Седалище"],what:"Направи крачка напред, спусни таза надолу, отблъсни се с предния крак и се върни. Смени крака.",tip:"Предното коляно не излиза пред пръстите."},
+      {name:"V-образно удържане на стол",sets:3,reps:"20 сек.",muscles:["Корем"],what:"Седни на стол, хвани седалката отстрани, повдигни леко коленете към гърдите и се наклони назад.",tip:"Дръж корема стегнат."},
+      {name:"Гребане без тежест (Контракция)",sets:3,reps:"15 повт.",muscles:["Гръб","Лопатки"],what:"Наклони се напред с прав гръб. Представи си, че дърпаш нещо тежко от пода към корема. Свий лопатките.",tip:"Силна контракция най-горе."},
+      {name:"Подскачане без отскок (Загряващи стъпки)",sets:3,reps:"30 сек.",muscles:["Крака","Кардио"],what:"Вместо да скачаш, разтваряй бързо десния крак встрани с вдигане на ръце над глава, после левия.",tip:"Нискоударно, щадящо ставите."}
     ]},
-    {id:9,label:"Т9",title:"Активно Възстановяване",subtitle:"Без оборудване · Мобилност",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Т9",exercises:[
-      {name:"Cat-Cow (бавно)",sets:3,reps:"10 цикъла",svg:S.catcow,muscles:["Гръбначен стълб","Долен гръб"],what:"На четири крака. 4 сек. вдишване — гърбът надолу. 4 сек. издишване — гърбът нагоре.",tip:"Синхронизира дишането с движението."},
-      {name:"Бърд дог (бавен)",sets:3,reps:"8 повт. / страна",svg:S.birddog,muscles:["Core","Долен гръб"],what:"На четири крака. Бавно протегни ръка и крак. Задръж 5 сек. Смени.",tip:"5-секундната пауза активира стабилизаторите."},
-      {name:"Поза на детето",sets:2,reps:"90 сек.",svg:S.childpose,muscles:["Долен гръб","Ханш"],what:"От четири крака, седни назад към петите. Ръцете напред. Дишай дълбоко.",tip:"Широката позиция отваря вътрешните бедра."},
-      {name:"Фигура 4",sets:2,reps:"60 сек. / страна",svg:S.figure4,muscles:["Пириформис","Тазобедрени"],what:"Легни по гръб. Кръстосай глезена върху коляното на другия крак. Дръпни към гърдите.",tip:"Облекчава пириформис — натоварен от седене."},
-      {name:"Саваса",sets:1,reps:"5–7 мин.",svg:S.savasana,muscles:["Цяло тяло","Нервна система"],what:"Легни по гръб, затвори очи. Отпусни всяка мускула съзнателно.",tip:"Не е лукс — е необходимост."}
-    ]},
+    {id:9,label:"Т9",title:"Релакс и възстановяване",subtitle:"Без оборудване · 3 серии",color:"#444444",glow:"rgba(0,0,0,.10)",short:"Т9",exercises:[
+      {name:"Разтягане на тазобедрените сгъвачи",sets:3,reps:"20 сек. на крак",muscles:["Ханш","Крака"],what:"Позиция за напад, но пусни задното коляно на пода. Избутай таза леко напред до приятно разтягане.",tip:"Дишай спокойно."},
+      {name:"Поза „Дете“",sets:3,reps:"30 сек.",muscles:["Гръб","Ханш"],what:"Коленичи, седни върху петите, протегни ръцете далеч напред по пода и отпусни челото надолу.",tip:"Дишай дълбоко."},
+      {name:"Страничен планк на коляно",sets:3,reps:"15 сек. на страна",muscles:["Корем","Коси мускули"],what:"Легни настрани, подпри се на лакът и долно коляно. Повдигни таза, така че тялото да е право.",tip:"Дръж тялото в линия."},
+      {name:"Кръгове с рамене и врат",sets:3,reps:"5 бавни кръга",muscles:["Врат","Рамене"],what:"Завърши с бавно въртене на раменете назад и леки полукръгове с главата.",tip:"Освободи напрежението бавно."}
+    ]}
   ]},
   {id:'dumbbell',label:'С гири',workouts:[
-    {id:101,label:"Г1",title:"Крака и Седалище",subtitle:"С гири · Долна тяло",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г1",exercises:[
-      {name:"Клек с гири",sets:4,reps:"15 повт.",svg:S.squatarms,muscles:["Квадрицепс","Седалище"],what:"Дръж гирите до раменете. Клекни до паралел с прав гръб.",tip:"Тежестта на петите."},
-      {name:"Изпад с гири",sets:3,reps:"12 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"Гирите покрай тялото. Направи изпад напред.",tip:"Коляното над глезена."},
-      {name:"Румънска мъртва тяга",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Задни бедра","Долен гръб"],what:"Гирите пред тялото. Наведи се от ханша с прав гръб.",tip:"Чувствай разтягане в задните бедра."},
-      {name:"Сумо клек с гира",sets:3,reps:"15 повт.",svg:S.sumo,muscles:["Вътрешни бедра","Седалище"],what:"Широка стойка, дръж гирата с две ръце между краката. Клекни дълбоко.",tip:"Гирата не трябва да докосва пода."},
-      {name:"Хип тръст с гира",sets:4,reps:"15 повт.",svg:S.bridge,muscles:["Седалище","Задни бедра"],what:"Опри се на пейка. Постави гира на бедрата. Вдигни таза нагоре.",tip:"Максимална контракция в горна позиция."}
+    {id:101,label:"Г1",title:"Стартова кондиция с тежести",subtitle:"С гири · 3 серии",color:"#111111",glow:"rgba(0,0,0,.10)",short:"Г1",exercises:[
+      {name:"Клек с гири до тялото",sets:3,reps:"12 повт.",muscles:["Крака","Седалище"],what:"Хвани двете гири и ги остави да висят свободно от двете страни на тялото. Клякаш назад, сякаш сядаш на стол, и се изправяш.",tip:"Дръж гърба изправен."},
+      {name:"Раменна преса от седеж",sets:3,reps:"12 повт.",muscles:["Рамене","Трицепс"],what:"Седни на стол (за да пазиш кръста). Вдигни гирите до нивото на ушите и ги избутай право нагоре над главата.",tip:"Не удряй гирите една в друга."},
+      {name:"Глутеус мост с гира на таза",sets:3,reps:"12 повт.",muscles:["Седалище","Корем"],what:"Легни по гръб с навити колене. Постави гира върху таза, придържай я с ръце и повдигай дупето нагоре.",tip:"Стегни седалището горе."},
+      {name:"Фермерско ходене",sets:3,reps:"30 сек.",muscles:["Хват","Корем","Стойка"],what:"Хвани две тежки гири, изпъни раменете назад и върви с нормално темпо из стаята.",tip:"Дръж раменете назад и корема стегнат."}
     ]},
-    {id:102,label:"Г2",title:"Гърди и Трицепс",subtitle:"С гири · Горна тяло",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г2",exercises:[
-      {name:"Лицева опора с гири",sets:4,reps:"12 повт.",svg:S.slowpush,muscles:["Гърди","Трицепс"],what:"Ръцете на гирите. По-голям обхват на движение от стандартните лицеви опори.",tip:"Лактите под 45° — не встрани."},
-      {name:"Натискане с гири (Dumbbell press)",sets:4,reps:"12 повт.",svg:S.press,muscles:["Гърди","Рамене","Трицепс"],what:"Легни по гръб. Гирите на нивото на гърдите. Избутай нагоре.",tip:"Лактите слизат малко под нивото на рамената."},
-      {name:"Разтваряне с гири (Fly)",sets:3,reps:"15 повт.",svg:S.chest,muscles:["Гърди"],what:"Легни по гръб. Гирите над гърдите с леко свити лакти. Разтвори надолу.",tip:"Усети разтягане в гърдите в долна позиция."},
-      {name:"Трицеп разгъване над глава",sets:3,reps:"15 повт.",svg:S.press,muscles:["Трицепс"],what:"Дръж гира с две ръце над главата. Свий лактите назад, гирата зад главата. Изправи.",tip:"Лактите гледат напред — не встрани."},
-      {name:"Натискане с гири (Incline)",sets:3,reps:"12 повт.",svg:S.press,muscles:["Горни гърди","Рамене"],what:"С повдигнат наклон на тялото. Гирите на нивото на горните гърди. Избутай.",tip:"По-стръмен наклон = повече горни гърди."}
+    {id:102,label:"Г2",title:"Баланс и гръб",subtitle:"С гири · 3 серии",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г2",exercises:[
+      {name:"Обратни напади с гири",sets:3,reps:"10 крачки общо",muscles:["Крака","Седалище"],what:"Държиш двете гири отстрани на тялото. Голяма крачка назад, спускаш таза, после се отблъскваш напред. Редувай.",tip:"Дръж тялото изправено."},
+      {name:"Гребане с гири от наклон",sets:3,reps:"12 повт.",muscles:["Гръб","Бицепс"],what:"Наклони се напред с изправен гръб. Спусни ръцете с гирите надолу и ги дърпай към корема, свивайки лопатките.",tip:"Свий лопатките силно нагоре."},
+      {name:"Мъртва тяга с две гири",sets:3,reps:"12 повт.",muscles:["Задни бедра","Седалище","Гръб"],what:"Изправен, гръб прав, леко свити колене. Навеждай се напред, плъзгайки гирите близо до пищялите. Изправи се чрез стягане на дупето.",tip:"Не заоблай гърба."},
+      {name:"Куче-птица (без тежест)",sets:3,reps:"10 повт.",muscles:["Гръб","Седалище","Корем"],what:"Оставяш гирите. На четири крака вдигаш едновременно дясна ръка напред и ляв крак назад.",tip:"За баланс и здрав кръст."}
     ]},
-    {id:103,label:"Г3",title:"Гръб и Бицепс",subtitle:"С гири · Горна тяло",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г3",exercises:[
-      {name:"Ред с гира (Dumbbell row)",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Широчен мускул","Бицепс","Средна гръб"],what:"Опри едната ръка и коляно на пейка. Дръпни гирата до ребрата.",tip:"Лакътят покрай тялото — не встрани."},
-      {name:"Бицепс сгъване с гири",sets:4,reps:"12 повт.",svg:S.curl,muscles:["Бицепс"],what:"Ръцете покрай тялото, дланите напред. Сгъни лактите и вдигни гирите.",tip:"Лактите покрай тялото — не се движат."},
-      {name:"Наклонен ред (Bent-over row)",sets:4,reps:"12 повт.",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наклони торса напред. Дръпни гирите до корема.",tip:"Гърбът прав — не се закръгляй."},
-      {name:"Хамър сгъване",sets:3,reps:"15 повт.",svg:S.curl,muscles:["Бицепс","Предмишница"],what:"Дланите гледат навътре. Сгъни лакътя вертикално.",tip:"Удебелява средната глава на бицепса."},
-      {name:"Face pull с гири",sets:3,reps:"15 повт.",svg:S.row,muscles:["Задни рамене","Ромбоиди"],what:"Наклони торса. Дръпни гирите към лицето с лактите нагоре.",tip:"Мисли за «разтваряне» на лактите назад."}
+    {id:103,label:"Г3",title:"Сила за цялото тяло",subtitle:"С гири · 3 серии",color:"#333333",glow:"rgba(0,0,0,.10)",short:"Г3",exercises:[
+      {name:"Гоблет клек (с една гира пред гърди)",sets:3,reps:"12 повт.",muscles:["Крака","Корем"],what:"Хвани една гира вертикално с две ръце пред гърдите (като голяма купа). Направи дълбок стабилен клек.",tip:"Дръж лактите близо до тялото."},
+      {name:"Подова преса за гърди",sets:3,reps:"12 повт.",muscles:["Гърди","Трицепс"],what:"Легни по гръб с навити колене. Вдигни гирите нагоре и бавно спускай лактите встрани, докато докоснат пода, после избутай.",tip:"Контролирай спускането."},
+      {name:"Бицепсово сгъване",sets:3,reps:"12 повт.",muscles:["Бицепс"],what:"Изправен, ръцете с гирите до тялото, длани напред. Сгъни лактите и вдигни гирите към раменете.",tip:"Не люлей тялото."},
+      {name:"Супермен (без тежест)",sets:3,reps:"10 повт.",muscles:["Гръб","Седалище"],what:"Легни по корем без уреди. Вдигни едновременно ръцете и краката леко във въздуха.",tip:"За заздравяване на целия гръб."}
     ]},
-    {id:104,label:"Г4",title:"Рамене и Трапец",subtitle:"С гири · Горна тяло",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г4",exercises:[
-      {name:"Военна преса с гири",sets:4,reps:"12 повт.",svg:S.press,muscles:["Рамене","Трицепс"],what:"Прав или седнал. Гирите на нивото на раменете. Избутай над главата.",tip:"Не прегъвай кръста."},
-      {name:"Страничен повдигане (Lateral raise)",sets:4,reps:"15 повт.",svg:S.press,muscles:["Странични рамене"],what:"Гирите покрай тялото. Повдигни настрани до нивото на раменете.",tip:"Малко свити лакти — не скованост."},
-      {name:"Предно повдигане (Front raise)",sets:3,reps:"15 повт.",svg:S.press,muscles:["Предни рамене"],what:"Повдигни гирите напред до нивото на раменете.",tip:"Без инерция от тялото."},
-      {name:"Шраг (Shrug)",sets:4,reps:"20 повт.",svg:S.row,muscles:["Трапец"],what:"Гирите покрай тялото. Повдигни раменете нагоре към ушите. Задръж.",tip:"Не завъртай раменете."},
-      {name:"Обратно разтваряне (Reverse fly)",sets:3,reps:"15 повт.",svg:S.chest,muscles:["Задни рамене","Ромбоиди"],what:"Наклони торса. Разтвори гирите назад и нагоре.",tip:"Усети стягане между лопатките."}
+    {id:104,label:"Г4",title:"Тон и издръжливост",subtitle:"С гири · 3 серии",color:"#444444",glow:"rgba(0,0,0,.08)",short:"Г4",exercises:[
+      {name:"Тръстър (Клек с раменна преса)",sets:3,reps:"10 повт.",muscles:["Крака","Рамене"],what:"Вдигни гирите на раменете. Направи клек и при изправянето използвай инерцията, за да избуташ гирите над главата.",tip:"Едно плавно движение."},
+      {name:"Пулоувър от лег",sets:3,reps:"12 повт.",muscles:["Гръб","Гърди"],what:"Легни по гръб. Хвани една гира с две ръце над гърдите с почти изпънати ръце. Спусни я зад главата до разтягане и върни.",tip:"Контролирай движението."},
+      {name:"Руски усуквания с гира",sets:3,reps:"16 усуквания",muscles:["Корем","Коси мускули"],what:"Седни на пода, вземи по-лека гира с две ръце пред корема. Наклони се леко назад и пренасяй гирата наляво и надясно.",tip:"Докосвай леко пода."},
+      {name:"Странично повдигане на крака (без тежест)",sets:3,reps:"12 на крак",muscles:["Седалище","Отвеждащи"],what:"Легни настрани без уреди и бавно вдигай горния крак.",tip:"За външната част на дупето."}
     ]},
-    {id:105,label:"Г5",title:"Пълно тяло",subtitle:"С гири · Комплексна",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г5",exercises:[
-      {name:"Тяга с преса (Clean & Press)",sets:4,reps:"10 повт.",svg:S.press,muscles:["Цяло тяло"],what:"Вдигни гирите от пода до раменете, после над главата.",tip:"Взрив при вдигане до рамене."},
-      {name:"Реверанс изпад с преса",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Крака","Рамене"],what:"Изпад напред + военна преса едновременно.",tip:"Координацията е ключова."},
-      {name:"Ред в планк",sets:3,reps:"10 повт. / ръка",svg:S.row,muscles:["Гръб","Core"],what:"В планк с гири. Дръпни едната гира до ребрата.",tip:"Хората бедра не се въртят."},
-      {name:"Клек с бицепс сгъване",sets:4,reps:"12 повт.",svg:S.squatarms,muscles:["Крака","Бицепс"],what:"При изправяне от клякане — сгъни бицепса.",tip:"Функционална комбинация."},
-      {name:"Турски изставане (Turkish get-up)",sets:2,reps:"5 повт. / страна",svg:S.press,muscles:["Цяло тяло","Рамене"],what:"От легнало, вдигни гирата над главата и се изправи стъпка по стъпка.",tip:"Бавно — не бързай. Безопасността е приоритет."}
+    {id:105,label:"Г5",title:"Горна част и корем",subtitle:"С гири · 3 серии",color:"#555555",glow:"rgba(0,0,0,.10)",short:"Г5",exercises:[
+      {name:"Добро утро с гира пред гърди",sets:3,reps:"12 повт.",muscles:["Гръб","Задни бедра"],what:"Прегърни една гира пред гърдите. Заключи гърба прав и се наведи напред от ханша, бутайки дупето назад.",tip:"Ще усетиш задното бедро."},
+      {name:"Трицепс екстензия зад глава",sets:3,reps:"12 повт.",muscles:["Трицепс"],what:"Седни на стол. Хвани една гира с двете ръце, вдигни я над главата и бавно я спусни зад врата, сгъвайки само лактите.",tip:"Дръж лактите близо до главата."},
+      {name:"Гребане с една ръка на стол",sets:3,reps:"12 на ръка",muscles:["Гръб","Бицепс"],what:"Подпри едното коляно и същата ръка на стол. С другата ръка дърпай гирата нагоре към хълбока.",tip:"Свий лопатката горе."},
+      {name:"Планк на колене (без тежест)",sets:3,reps:"20-30 сек.",muscles:["Корем"],what:"Застани на лакти и колене. Стегни корема като стомана и задръж позицията права като дъска.",tip:"Не пускай кръста надолу."}
     ]},
-    {id:106,label:"Г6",title:"Крака и Задна верига",subtitle:"С гири · Долна тяло",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г6",exercises:[
-      {name:"Гоблет клек",sets:4,reps:"15 повт.",svg:S.squatarms,muscles:["Квадрицепс","Седалище","Core"],what:"Дръж гира вертикално пред гърдите. Клекни дълбоко с прав гръб.",tip:"Отлично за начинаещи — задържа торса изправен."},
-      {name:"Стъпало (Step-up) с гири",sets:3,reps:"12 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище","Баланс"],what:"Стъпи на стол с гири в ръцете. Избутай се нагоре само с предния крак.",tip:"Не се отблъсквай от задния крак."},
-      {name:"Румънска мъртва тяга на един крак",sets:3,reps:"10 повт. / крак",svg:S.deadlift,muscles:["Задни бедра","Седалище","Баланс"],what:"На единия крак, наведи се от ханша. Другият крак излиза назад.",tip:"Бавно и контролирано — балансът е всичко."},
-      {name:"Клек встрани (Side squat)",sets:3,reps:"12 повт. / страна",svg:S.sumo,muscles:["Вътрешни бедра","Седалище"],what:"Широка крачка встрани и клекни на натоварения крак.",tip:"Гирата помага за баланс."},
-      {name:"Мъртва тяга с гири",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Задни бедра","Долен гръб","Седалище"],what:"Гирите пред тялото. Сгъни коленете, хвани и вдигни с прав гръб.",tip:"Гирите близо до тялото по цялото движение."}
+    {id:106,label:"Г6",title:"Бедра и рамена",subtitle:"С гири · 3 серии",color:"#111111",glow:"rgba(0,0,0,.08)",short:"Г6",exercises:[
+      {name:"Широк сумо клек с гира",sets:3,reps:"12 повт.",muscles:["Крака","Вътрешни бедра"],what:"Разкрачи краката по-широко. Хвани една гира с две ръце, остави я да виси между краката и клекни дълбоко.",tip:"Гръбът остава прав."},
+      {name:"Странично повдигане за рамена",sets:3,reps:"12 повт.",muscles:["Рамене"],what:"Изправен стоеж. Вземи две по-леки гири и ги вдигни бавно встрани с леко сгънати лакти до успоредно на пода.",tip:"Бавно и контролирано."},
+      {name:"Румънска тяга на един крак",sets:3,reps:"8 на крак",muscles:["Задни бедра","Седалище","Баланс"],what:"Хвани гира в дясната ръка. Наведи се напред, вдигайки десния крак право назад за баланс. Левият остава на пода.",tip:"Дръж гърба прав."},
+      {name:"Докосване на глезените (без тежест)",sets:3,reps:"20 общо",muscles:["Коси мускули","Корем"],what:"Легни по гръб без тежести и посягай последователно с лява ръка към лява пета и дясна към дясна.",tip:"Малки контролирани движения."}
     ]},
-    {id:107,label:"Г7",title:"Core и Стабилност",subtitle:"С гири · Корем",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г7",exercises:[
-      {name:"Дървосекач (Woodchop)",sets:3,reps:"15 повт. / страна",svg:S.twist,muscles:["Кос корем","Рамене"],what:"Дръж гира с две ръце. Ротационно движение от рамо до противоположното коляно.",tip:"Ротацията идва от торса."},
-      {name:"Руски завои (Russian twist)",sets:4,reps:"20 повт.",svg:S.twist,muscles:["Кос корем"],what:"Легни назад на 45°. Гира в ръцете. Завъртай от страна на страна.",tip:"Краката могат да са вдигнати за по-трудно."},
-      {name:"Планк с тяга",sets:3,reps:"10 повт. / ръка",svg:S.row,muscles:["Core","Гръб"],what:"В планк. Дръпни гирата до ребрата. Хълбоците стабилни.",tip:"Колкото по-бавно — толкова по-ефективно."},
-      {name:"Притискане на гира (Farmers carry)",sets:3,reps:"30 м / страна",svg:S.march,muscles:["Core","Трапец"],what:"Дръж гира в едната ръка. Ходи стабилно без да се накланяш.",tip:"Изключителна тренировка за core и постура."},
-      {name:"Мъртва буба с гира",sets:3,reps:"10 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем"],what:"В позиция мъртва буба. Дръж гира с противоположна ръка и крак.",tip:"Гърбът притиснат към пода."}
+    {id:107,label:"Г7",title:"Оформяне и сила",subtitle:"С гири · 3 серии",color:"#222222",glow:"rgba(0,0,0,.10)",short:"Г7",exercises:[
+      {name:"Клек със задържане и гири",sets:3,reps:"10 повт.",muscles:["Крака","Седалище"],what:"Държиш двете гири отстрани, спускаш се в клек, броиш до 3 най-долу и се изправяш.",tip:"Дръж гърба прав."},
+      {name:"Повдигане на гири пред тялото",sets:3,reps:"12 повт.",muscles:["Рамене"],what:"От изправен стоеж вдигаш гирите бавно една след друга право напред пред очите.",tip:"За предната част на рамото."},
+      {name:"Сгъване за бицепс тип „Чук“",sets:3,reps:"12 повт.",muscles:["Бицепс","Предмишници"],what:"Като класическото бицепсово сгъване, но дланите сочат една към друга (като дръжка на чук).",tip:"Не люлей тялото."},
+      {name:"Повдигане на краката (без тежест)",sets:3,reps:"10 повт.",muscles:["Корем"],what:"Легни по гръб, сложи ръце под дупето и вдигай изпънатите крака нагоре.",tip:"За долната част на корема."}
     ]},
-    {id:108,label:"Г8",title:"Горна тяло + Core",subtitle:"С гири · Функционална",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г8",exercises:[
-      {name:"Лежанка с гири (DB Bench press)",sets:4,reps:"12 повт.",svg:S.floorpress,muscles:["Гърди","Трицепс"],what:"Легни по гръб. Натискане с гири.",tip:"Пълен обхват на движение."},
-      {name:"Наклонен ред едноръчен",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс"],what:"Опри се на пейка. Дръпни гирата до ребрата.",tip:"Лакът покрай тялото."},
-      {name:"Пейка за рамене",sets:3,reps:"12 повт.",svg:S.press,muscles:["Рамене","Трицепс"],what:"Седнал. Гирите на рамената. Избутай над главата.",tip:"Не прегъвай кръста."},
-      {name:"Завои в планк с гира",sets:3,reps:"10 повт. / страна",svg:S.twist,muscles:["Core","Рамене"],what:"В планк. Вземи гирата с едната ръка и я преместй под тялото.",tip:"Хълбоците не се въртят."},
-      {name:"Румънска тяга + ред",sets:3,reps:"10 повт.",svg:S.row,muscles:["Задни бедра","Гръб"],what:"Румънска тяга, после директно ред в наклонено положение.",tip:"Две упражнения в едно."}
+    {id:108,label:"Г8",title:"Енергия за напреднали начинаещи",subtitle:"С гири · 3 серии",color:"#333333",glow:"rgba(0,0,0,.08)",short:"Г8",exercises:[
+      {name:"Напади напред с гири",sets:3,reps:"12 крачки общо",muscles:["Крака","Седалище"],what:"Крачка напред с гири в ръце, спускаш коляното почти до пода и се отблъскваш силно назад.",tip:"Контролирай движението."},
+      {name:"Повдигане за трапец (Шръгс)",sets:3,reps:"15 повт.",muscles:["Трапец","Рамене"],what:"Вземи най-тежките гири и вдигай раменете право нагоре към ушите, задръж секунда и отпусни.",tip:"Само раменете се движат."},
+      {name:"Коремна преса с изтласкване на гира",sets:3,reps:"10 повт.",muscles:["Корем","Рамене"],what:"Легни по гръб, хвани лека гира пред гърдите. При изправянето до седнало положение избутай гирата над главата.",tip:"Плавно движение."},
+      {name:"Странични стъпки (без тежест)",sets:3,reps:"30 сек.",muscles:["Крака","Кардио"],what:"Остави тежестите и прави бързи крачки наляво-надясно в полуклек.",tip:"За финално изгаряне."}
     ]},
-    {id:109,label:"Г9",title:"Активно Възстановяване",subtitle:"С гири · Мобилност",color:"#222222",glow:"rgba(0,0,0,.08)",short:"Г9",exercises:[
-      {name:"Турски изставане (лек)",sets:2,reps:"5 повт. / страна",svg:S.press,muscles:["Цяло тяло"],what:"С лека гира. Бавно изпълнение. Всяка позиция задържана.",tip:"Мобилност и стабилност в едно."},
-      {name:"Гоблет клек (дълбок)",sets:3,reps:"10 повт. задържано",svg:S.squatarms,muscles:["Ханш","Крака"],what:"Клекни дълбоко и задръж 5-10 сек.",tip:"Отлична мобилност на ханша."},
-      {name:"Хало около главата",sets:3,reps:"10 кръга / посока",svg:S.press,muscles:["Рамене","Стабилизатори"],what:"Дръж гирата пред гърдите и я прекарай около главата бавно.",tip:"Гирата покрай главата — не встрани."},
-      {name:"Разтягане с гира (Windmill)",sets:2,reps:"8 повт. / страна",svg:S.twist,muscles:["Кос корем","Рамене"],what:"Гирата над главата. Наведи се встрани без да я спускаш.",tip:"Гледай гирата постоянно."},
-      {name:"Мъртва буба с лека гира",sets:2,reps:"8 повт. / страна",svg:S.deadbug,muscles:["Core"],what:"Леко изпълнение за Core активация.",tip:"Идеално за края на тренировка."}
-    ]},
+    {id:109,label:"Г9",title:"Възстановяване и балансиране",subtitle:"С гири · 3 серии",color:"#444444",glow:"rgba(0,0,0,.10)",short:"Г9",exercises:[
+      {name:"Повдигане за прасци с гири",sets:3,reps:"15 повт.",muscles:["Прасци"],what:"Вземи две гири, стъпи стабилно и се вдигай максимално високо на пръсти, после бавно спускай петите.",tip:"Бавно спускане."},
+      {name:"Поза „Дете“ (без тежест)",sets:3,reps:"30 сек.",muscles:["Гръб","Ханш"],what:"Почивка на пода, седнал върху петите с протегнати напред ръце за пълно отпускане на гърба.",tip:"Дишай дълбоко."},
+      {name:"Страничен планк на коляно (без тежест)",sets:3,reps:"15 сек. на страна",muscles:["Корем","Коси мускули"],what:"Подпираш се на лакът и коляно и удържаш странично тялото в права линия.",tip:"Дръж тялото в линия."},
+      {name:"Разтягане на тазобедрените сгъвачи",sets:3,reps:"20 сек. на крак",muscles:["Ханш","Крака"],what:"Дълбок напад на земя с отпуснато задно коляно за освобождаване на напрежението в таза.",tip:"Дишай спокойно."}
+    ]}
   ]},
   {id:'kettlebell',label:'С пудовка',workouts:[
-    {id:201,label:"П1",title:"Крака и Сила",subtitle:"С пудовка · Долна тяло",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П1",exercises:[
-      {name:"Суинг (Kettlebell Swing)",sets:5,reps:"20 повт.",svg:S.deadlift,muscles:["Задни бедра","Седалище","Core"],what:"Пудовката между краката. Наведи се от ханша и я замахни напред до нивото на рамената.",tip:"Движението е от ханша — не е клек."},
-      {name:"Гоблет клек с пудовка",sets:4,reps:"15 повт.",svg:S.squatarms,muscles:["Квадрицепс","Седалище"],what:"Дръж пудовката пред гърдите с двете ръце. Клекни дълбоко.",tip:"Идеален за активиране преди по-тежки упражнения."},
-      {name:"Румънска мъртва тяга",sets:4,reps:"12 повт.",svg:S.deadlift,muscles:["Задни бедра","Долен гръб"],what:"Пудовката пред тялото. Наведи от ханша с прав гръб.",tip:"Чувствай разтягане в задните бедра."},
-      {name:"Изпад с пудовка",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище"],what:"Пудовката в едната ръка. Изпад напред.",tip:"Прав гръб и стабилен корем."},
-      {name:"Едноръчен суинг",sets:3,reps:"15 повт. / ръка",svg:S.deadlift,muscles:["Задни бедра","Core"],what:"Суинг с една ръка. Свободната ръка е встрани.",tip:"Контролирай ротацията на торса."}
+    {id:201,label:"П1",title:"Стартова кондиция",subtitle:"С пудовка · 3 серии",color:"#111111",glow:"rgba(0,0,0,.10)",short:"П1",exercises:[
+      {name:"Slingshot (Прехвърляне около таза)",sets:3,reps:"15-20 завъртания",muscles:["Корем","Хват"],what:"Изправен, прехвърляй пудовката от ръка в ръка около кръста в кръг. Едната посока, после другата.",tip:"6 или 12 кг."},
+      {name:"Two Handed Swing (Суинг с две ръце)",sets:3,reps:"15-20 повт.",muscles:["Седалище","Задни бедра","Гръб"],what:"Хвани с две ръце, засили назад между краката, после експлозивно избутай ханша напред до нивото на гърдите.",tip:"Движението идва от дупето, не от ръцете. 12 кг."},
+      {name:"Goblet Squat (Гоблет клек)",sets:3,reps:"12 повт.",muscles:["Крака","Корем"],what:"Хвани пудовката за рогата близо до гърдите. Дълбок контролиран клек назад с прав гръб.",tip:"12 кг."},
+      {name:"Single Arm Deadlift (Тяга с една ръка)",sets:3,reps:"12 повт.",muscles:["Гръб","Седалище"],what:"Пудовката е на пода между краката. Навеждаш се с прав гръб, хващаш с една ръка и се изправяш, стягайки дупето.",tip:"Дръж раменете и таза равни. 12 кг."}
     ]},
-    {id:202,label:"П2",title:"Рамене и Горна тяло",subtitle:"С пудовка · Горна тяло",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П2",exercises:[
-      {name:"Военна преса с пудовка",sets:4,reps:"10 повт. / ръка",svg:S.press,muscles:["Рамене","Трицепс","Core"],what:"Пудовката върху предмишницата. Избутай над главата.",tip:"Бицепсът докосва ухото в горна позиция."},
-      {name:"Хало (Kettlebell Halo)",sets:3,reps:"10 кръга / посока",svg:S.press,muscles:["Рамене","Трапец"],what:"Пудовката около главата бавно и контролирано.",tip:"Гръбначакът прав — не се навеждай."},
-      {name:"Clean & Press",sets:4,reps:"8 повт. / ръка",svg:S.press,muscles:["Рамене","Крака","Core"],what:"Вдигни пудовката от пода до рамото (clean) и избутай над главата.",tip:"Техниката е ключова — учи се бавно."},
-      {name:"Ред с пудовка",sets:4,reps:"12 повт. / ръка",svg:S.row,muscles:["Гръб","Бицепс"],what:"Наклони торса. Дръпни пудовката до ребрата.",tip:"Лакътят покрай тялото."},
-      {name:"Windmill",sets:3,reps:"8 повт. / страна",svg:S.twist,muscles:["Кос корем","Рамене","Ханш"],what:"Пудовката над главата. Наведи се встрани без да я спускаш.",tip:"Гледай пудовката постоянно."}
+    {id:202,label:"П2",title:"Стабилност и гръб",subtitle:"С пудовка · 3 серии",color:"#222222",glow:"rgba(0,0,0,.08)",short:"П2",exercises:[
+      {name:"Halo (Въртене около главата)",sets:3,reps:"10 въртения общо",muscles:["Рамене","Корем"],what:"Обърни пудовката с дъното нагоре, хвани дръжката и прави бавни контролирани кръгове около главата.",tip:"За мобилност и сила в раменете. 4 или 6 кг."},
+      {name:"Good Morning (Добро утро)",sets:3,reps:"12 повт.",muscles:["Гръб","Задни бедра"],what:"Пудовката пред гърдите. Колене леко свити, гръб прав, наведи се напред от ханша до разтягане зад бедрата.",tip:"6 кг."},
+      {name:"Racked Squat (Клек с пудовка на гърди)",sets:3,reps:"12 повт.",muscles:["Крака","Корем"],what:"Намести пудовката върху предмишницата и бицепса (Rack позиция). Дръж я плътно до гърдите и прави клекове.",tip:"6 или 12 кг."},
+      {name:"Single Arm Row (Гребане с една ръка)",sets:3,reps:"12 на ръка",muscles:["Гръб","Бицепс"],what:"Наведи се с прав гръб, подпри се с една ръка на коляното, а с другата дърпай пудовката нагоре към хълбока.",tip:"12 кг."}
     ]},
-    {id:203,label:"П3",title:"Core и Стабилност",subtitle:"С пудовка · Корем",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П3",exercises:[
-      {name:"Turkish Get-Up",sets:3,reps:"5 повт. / страна",svg:S.press,muscles:["Цяло тяло","Рамене"],what:"От легнало до изправено с пудовката над главата. 6 фази.",tip:"Безопасност: започни без пудовка."},
-      {name:"Руски завои с пудовка",sets:4,reps:"20 повт.",svg:S.twist,muscles:["Кос корем"],what:"Легни назад. Завъртай пудовката от страна на страна.",tip:"Краката вдигнати за по-трудно."},
-      {name:"Планк с пудовка",sets:3,reps:"30 сек. / ръка",svg:S.sideplank,muscles:["Core"],what:"В планк. Ръката на пудовката. Хълбоките стабилни.",tip:"Не позволявай ротация."},
-      {name:"Мъртва буба с пудовка",sets:3,reps:"10 повт. / страна",svg:S.deadbug,muscles:["Дълбок корем"],what:"Дръж пудовката с противоположна ръка и крак.",tip:"Кръстът притиснат към пода."},
-      {name:"Пренос (Suitcase carry)",sets:3,reps:"30 м / страна",svg:S.march,muscles:["Core","Трапец","Стабилизатори"],what:"Пудовката в едната ръка. Ходи без да се накланяш.",tip:"Максимална стабилност — не се накланяй."}
+    {id:203,label:"П3",title:"Експлозивност и тонус",subtitle:"С пудовка · 3 серии",color:"#333333",glow:"rgba(0,0,0,.10)",short:"П3",exercises:[
+      {name:"Bob and Weave (Странична совалка)",sets:3,reps:"12 повт. общо",muscles:["Крака","Корем"],what:"Пудовката пред гърдите. Крачка встрани и снижаване под наклон (като избягване на удар), после на другия крак.",tip:"6 или 12 кг."},
+      {name:"Single Handed Swing (Суинг с една ръка)",sets:3,reps:"15 повт.",muscles:["Седалище","Гръб","Корем"],what:"Като класическия суинг, но контролираш пудовката само с една ръка. Сменяй ръцете на всеки сет.",tip:"6 или 12 кг."},
+      {name:"Racked Reverse Lunge (Обратен напад)",sets:3,reps:"10 крачки общо",muscles:["Крака","Седалище"],what:"Пудовката подпряна на предмишницата пред гърдите. Голяма крачка назад и спускане на коляното към пода.",tip:"6 кг."},
+      {name:"Two Handed Squat and Press (Клек с изтласкване)",sets:3,reps:"10 повт.",muscles:["Крака","Рамене"],what:"Пудовката с две ръце пред гърдите. Клякаш и при изправянето използваш силата от краката да я избуташ над главата.",tip:"6 кг."}
     ]},
-    {id:204,label:"П4",title:"Пълно тяло",subtitle:"С пудовка · Комплексна",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П4",exercises:[
-      {name:"Kettlebell Complex",sets:4,reps:"8 повт.",svg:S.press,muscles:["Цяло тяло"],what:"Суинг + Clean + Прес + Изпад с пудовката. Без пускане.",tip:"Функционален тренировъчен метод."},
-      {name:"Суинг с две ръце",sets:5,reps:"15 повт.",svg:S.deadlift,muscles:["Задни бедра","Седалище","Core"],what:"Класически суинг с две ръце.",tip:"Основното упражнение с пудовка."},
-      {name:"Гоблет клек + преса",sets:4,reps:"10 повт.",svg:S.squatarms,muscles:["Крака","Рамене"],what:"Клек с пудовката + при изправяне преса над главата.",tip:"Свързва горна и долна тяло."},
-      {name:"Clean (едноръчен)",sets:4,reps:"10 повт. / ръка",svg:S.row,muscles:["Задни бедра","Рамене","Core"],what:"Вдигни пудовката от пода до рамото с едната ръка.",tip:"Ръката близо до тялото."},
-      {name:"Изпад с преса",sets:3,reps:"8 повт. / крак",svg:S.lunge,muscles:["Крака","Рамене"],what:"Изпад + преса едновременно.",tip:"Координацията е ключова."}
+    {id:204,label:"П4",title:"Ядро и баланс",subtitle:"С пудовка · 3 серии",color:"#444444",glow:"rgba(0,0,0,.08)",short:"П4",exercises:[
+      {name:"Slingshot (Прехвърляне около таза)",sets:3,reps:"20 завъртания",muscles:["Корем","Координация"],what:"Въртиш пудовката около ханша. Служи и за активна почивка между по-тежките движения.",tip:"12 кг."},
+      {name:"Two Handed Swing (Суинг с две ръце)",sets:3,reps:"20 повт.",muscles:["Седалище","Задни бедра"],what:"Базов суинг с две ръце за максимално изгаряне и заздравяване на задната верига мускули.",tip:"12 кг."},
+      {name:"Single Leg Deadlift (Тяга на един крак)",sets:3,reps:"8 на крак",muscles:["Задни бедра","Седалище","Баланс"],what:"Пудовката в едната ръка. Навеждаш се напред от ханша, вдигайки срещуположния крак право назад за баланс.",tip:"Изисква силен корем. 6 кг."},
+      {name:"Sit and Press (Коремна преса с изтласкване)",sets:3,reps:"10 повт.",muscles:["Корем","Рамене"],what:"Легнал по гръб с пудовка с две ръце пред гърдите. Изправяш се в коремна преса и избутваш пудовката над глава.",tip:"4 или 6 кг."}
     ]},
-    {id:205,label:"П5",title:"Core и Стабилност Б",subtitle:"С пудовка · Напреднали",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П5",exercises:[
-      {name:"Суинг + прехвърляне",sets:4,reps:"20 повт.",svg:S.deadlift,muscles:["Задни бедра","Core"],what:"Суинг, на върха прехвърли пудовката в другата ръка.",tip:"Контролирано прехвърляне — не изпускай."},
-      {name:"Bottoms-up press",sets:3,reps:"8 повт. / ръка",svg:S.press,muscles:["Рамене","Core"],what:"Дръж пудовката с дъното нагоре. Натискай бавно.",tip:"Изисква значителна стабилност."},
-      {name:"Single-leg deadlift",sets:3,reps:"10 повт. / крак",svg:S.deadlift,muscles:["Задни бедра","Баланс"],what:"На един крак с пудовка. Наведи и изправи.",tip:"Баланс и концентрация."},
-      {name:"Around the body",sets:3,reps:"10 кръга / посока",svg:S.twist,muscles:["Core","Рамене"],what:"Прекарвай пудовката около тялото в кръг.",tip:"Корема стегнат."},
-      {name:"Sumo deadlift high pull",sets:4,reps:"12 повт.",svg:S.sumo,muscles:["Задни бедра","Трапец"],what:"Широка стойка. Вдигни пудовката до нивото на брадата.",tip:"Лактите над гирата в горна позиция."}
+    {id:205,label:"П5",title:"Рамена и корем",subtitle:"С пудовка · 3 серии",color:"#555555",glow:"rgba(0,0,0,.10)",short:"П5",exercises:[
+      {name:"Halo (Околоосно въртене)",sets:3,reps:"12 въртения",muscles:["Рамене"],what:"Раздвижване и натоварване на раменния пояс с бавни кръгове около главата.",tip:"6 кг."},
+      {name:"Goblet Squat (Гоблет клек)",sets:3,reps:"12 повт.",muscles:["Крака","Корем"],what:"Клек с пудовка пред гърдите. Бутай коленете леко настрани при спускането, за да отвориш таза.",tip:"12 кг."},
+      {name:"Single Arm Row (Гребане с една ръка)",sets:3,reps:"12 на страна",muscles:["Гръб"],what:"Гребане от наклон за силен гръб. Не върти раменете, нека работи само гърбът.",tip:"12 кг."},
+      {name:"Half Kneeling Press (Раменна преса от коляно)",sets:3,reps:"10 на ръка",muscles:["Рамене","Корем"],what:"На едно коляно на пода. Пудовката в позиция на гърди, избутваш я право нагоре над главата.",tip:"Позицията от коляно пази кръста. 4 или 6 кг."}
     ]},
-    {id:206,label:"П6",title:"Долна тяло Напреднали",subtitle:"С пудовка · Долна тяло",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П6",exercises:[
-      {name:"Pisol squat с пудовка",sets:3,reps:"5 повт. / крак",svg:S.deepsquat,muscles:["Квадрицепс","Баланс"],what:"На един крак, клекни дълбоко и се изправи. Пудовката за баланс.",tip:"Трудно упражнение — развивай постепенно."},
-      {name:"Bulgarski сплит клек",sets:4,reps:"10 повт. / крак",svg:S.lunge,muscles:["Квадрицепс","Седалище"],what:"Задният крак на пейка. Клекни дълбоко на предния крак.",tip:"По-трудно от стандартния изпад."},
-      {name:"Box jump замяна",sets:4,reps:"15 суинга",svg:S.deadlift,muscles:["Задни бедра","Взривна сила"],what:"Мощни суинги имитиращи вертикалното скачане.",tip:"За апартаментни условия без скачане."},
-      {name:"Kettlebell deadlift",sets:5,reps:"8 повт.",svg:S.deadlift,muscles:["Задни бедра","Долен гръб","Седалище"],what:"Класическа мъртва тяга с пудовка.",tip:"Перфектна техника > тежест."},
-      {name:"Широк сумо",sets:4,reps:"15 повт.",svg:S.sumo,muscles:["Вътрешни бедра","Седалище"],what:"Много широка стойка. Дълбок клек с пудовка между краката.",tip:"Отлично за вътрешни бедра."}
+    {id:206,label:"П6",title:"Функционална сила",subtitle:"С пудовка · 3 серии",color:"#111111",glow:"rgba(0,0,0,.08)",short:"П6",exercises:[
+      {name:"Bob and Weave (Странична совалка)",sets:3,reps:"12 повт.",muscles:["Крака","Корем"],what:"Странични снижавания с пудовка на гърдите за кондиция на бедрата.",tip:"6 или 12 кг."},
+      {name:"Single Handed Swing (Суинг с една ръка)",sets:3,reps:"15 повт.",muscles:["Седалище","Корем"],what:"Едностранен суинг, който кара коремните мускули да работят извънредно за баланс.",tip:"6 или 12 кг."},
+      {name:"Side Lunge (Страничен напад)",sets:3,reps:"10 крачки общо",muscles:["Крака","Вътрешни бедра"],what:"Пудовката пред гърдите. Голяма крачка встрани, клякаш върху този крак, другият остава изпънат.",tip:"6 кг."},
+      {name:"Two Handed Squat and Press (Клек с изтласкване)",sets:3,reps:"10 повт.",muscles:["Крака","Рамене"],what:"Комбинирано движение от клек и раменна преса, което натоварва цялото тяло наведнъж.",tip:"6 или 12 кг."}
     ]},
-    {id:207,label:"П7",title:"Метаболитна",subtitle:"С пудовка · HIIT",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П7",exercises:[
-      {name:"Суинг интервали",sets:8,reps:"20 сек. работа / 10 сек. почивка",svg:S.deadlift,muscles:["Цяло тяло","Кардио"],what:"Таbата с суинг. Максимален брой повторения за 20 секунди.",tip:"Контролирай дишането."},
-      {name:"Clean + Squat + Press",sets:4,reps:"8 повт. / страна",svg:S.press,muscles:["Цяло тяло"],what:"Вдигни → клек → преса. Все пак едно движение.",tip:"Комплексната тренировка изгаря максимум калории."},
-      {name:"Суинг двустранно",sets:5,reps:"15 повт.",svg:S.deadlift,muscles:["Задни бедра","Core"],what:"Класически суинг с интензивен темп.",tip:"Поддържай правилна техника при умора."},
-      {name:"Изпад + суинг",sets:3,reps:"10 повт. / крак",svg:S.lunge,muscles:["Крака","Задни бедра"],what:"Изпад напред, след стъпка назад — суинг.",tip:"Добро ниво на координация."},
-      {name:"Clean интервали",sets:6,reps:"30 сек. / страна",svg:S.row,muscles:["Цяло тяло"],what:"Едноръчен clean в бърз темп. Смени след 30 сек.",tip:"Не жертвай техниката за темпо."}
+    {id:207,label:"П7",title:"Базов тонус",subtitle:"С пудовка · 3 серии",color:"#222222",glow:"rgba(0,0,0,.10)",short:"П7",exercises:[
+      {name:"Good Morning (Добро утро)",sets:3,reps:"12 повт.",muscles:["Гръб","Задни бедра"],what:"Навеждане напред с изправен гръб за леко и приятно разтягане на задното бедро.",tip:"6 кг."},
+      {name:"Single Arm Deadlift (Тяга с една ръка)",sets:3,reps:"12 повт.",muscles:["Гръб","Седалище"],what:"Класическа тяга от пода с една ръка за поддържане на базовата сила в гърба и дупето.",tip:"12 кг."},
+      {name:"Racked Reverse Lunge (Обратен напад)",sets:3,reps:"10 крачки общо",muscles:["Крака","Седалище"],what:"Бавни контролирани напади назад с пудовка, фиксирана на гърдите.",tip:"6 кг."},
+      {name:"Sit and Press (Коремна преса с изтласкване)",sets:3,reps:"10 повт.",muscles:["Корем","Рамене"],what:"Финално натоварване за корема и раменете от лег до седеж.",tip:"4 или 6 кг."}
     ]},
-    {id:208,label:"П8",title:"Сила и Мощ",subtitle:"С пудовка · Напреднали",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П8",exercises:[
-      {name:"Снач (Kettlebell Snatch)",sets:5,reps:"8 повт. / ръка",svg:S.press,muscles:["Цяло тяло","Взривна сила"],what:"От пода директно над главата в едно движение.",tip:"Напреднало упражнение — учи се с треньор."},
-      {name:"Double kettlebell press",sets:4,reps:"8 повт.",svg:S.press,muscles:["Рамене","Трицепс","Core"],what:"Преса с две пудовки едновременно.",tip:"По-трудно за Core от едноръчния вариант."},
-      {name:"Bottoms-up squat",sets:3,reps:"10 повт.",svg:S.squatarms,muscles:["Крака","Core","Рамене"],what:"Пудовката с дъното нагоре, над главата. Клек.",tip:"Изключителна стабилност на рамото."},
-      {name:"Jump squat (имитация)",sets:4,reps:"15 суинга",svg:S.deadlift,muscles:["Задни бедра","Взривна сила"],what:"Мощни суинги с акцент на взривност.",tip:"Апартаментен вариант на скоковете."},
-      {name:"Ренегат ред",sets:3,reps:"8 повт. / ръка",svg:S.row,muscles:["Гръб","Core","Рамене"],what:"В планк с пудовка. Ред с всяка ръка.",tip:"Изключително комплексно упражнение."}
+    {id:208,label:"П8",title:"Кардио и издръжливост",subtitle:"С пудовка · 3 серии",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П8",exercises:[
+      {name:"Two Handed Swing (Суинг с две ръце)",sets:3,reps:"20 повт.",muscles:["Седалище","Задни бедра"],what:"Вдигаме пулса в началото с чист, силов суинг.",tip:"12 кг."},
+      {name:"Racked Squat (Клек с пудовка на гърди)",sets:3,reps:"12 повт.",muscles:["Крака","Корем"],what:"Клек с тежестта отпред, което кара корема да стои постоянно стегнат.",tip:"12 кг."},
+      {name:"Single Arm Row (Гребане с една ръка)",sets:3,reps:"12 на ръка",muscles:["Гръб","Бицепс"],what:"Издърпване на пудовката от наклон за силен гръб и бицепси.",tip:"12 кг."},
+      {name:"Slingshot (Прехвърляне около таза)",sets:3,reps:"30 сек. работа",muscles:["Предмишници","Координация"],what:"Завършваме с бързо темпо на прехвърляне около кръста за издръжливост и координация.",tip:"6 или 12 кг."}
     ]},
-    {id:209,label:"П9",title:"Активно Възстановяване",subtitle:"С пудовка · Мобилност",color:"#333333",glow:"rgba(0,0,0,.08)",short:"П9",exercises:[
-      {name:"Хало около главата (бавно)",sets:3,reps:"8 кръга / посока",svg:S.press,muscles:["Рамене","Мобилност"],what:"Бавно и контролирано движение около главата.",tip:"Загряване на раменните стави."},
-      {name:"Лек Windmill",sets:2,reps:"8 повт. / страна",svg:S.twist,muscles:["Кос корем","Ханш"],what:"С лека пудовка. Плавни движения.",tip:"Мобилност на торса и ханша."},
-      {name:"Goblet squat задръжка",sets:3,reps:"5 × 5 сек. задръжка",svg:S.squatarms,muscles:["Ханш","Крака"],what:"Клекни и задръж в долна позиция за мобилност.",tip:"Отличава подвижността на ханша."},
-      {name:"Around the body (бавно)",sets:2,reps:"10 кръга / посока",svg:S.twist,muscles:["Core","Рамене"],what:"Бавно прекарване около тялото.",tip:"Активация на core след тренировка."},
-      {name:"Лег суинг",sets:2,reps:"15 повт. / крак",svg:S.march,muscles:["Ханш","Задни бедра"],what:"Малки суинги с крак напред-назад и встрани.",tip:"Загряване на тазобедрените стави."}
-    ]},
+    {id:209,label:"П9",title:"Леко възстановяване",subtitle:"С пудовка · 3 серии",color:"#444444",glow:"rgba(0,0,0,.10)",short:"П9",exercises:[
+      {name:"Halo (Околоосно въртене)",sets:3,reps:"10 въртения",muscles:["Рамене"],what:"Леки кръгове около главата без бързане, за раздвижване на раменете след седмичното натоварване.",tip:"4 кг."},
+      {name:"Поза „Дете“ (без тежест)",sets:3,reps:"30 сек.",muscles:["Гръб","Ханш"],what:"Остави пудовката. Коленичи, седни на петите и протегни ръце далеч напред по земята за почивка на гърба.",tip:"Без тежест."},
+      {name:"Single Leg Deadlift (без тежест)",sets:3,reps:"8 на крак",muscles:["Баланс","Задни бедра"],what:"Навеждане на един крак без пудовка. Фокусирай се изцяло върху баланса на стъпалото и глезена.",tip:"Без тежест."},
+      {name:"Котешки гръб (без тежест)",sets:3,reps:"10 повт.",muscles:["Гръб","Корем"],what:"На четири крака. Извий бавно гърба нагоре (котка) и после надолу (крава) за разпускане на гръбнака.",tip:"Без тежест."}
+    ]}
   ]},
   {id:'booty',label:'Booty с ластик',workouts:[
     {id:301,label:"Б1",title:"Клекове и Изпади",subtitle:"С ластик · Долна тяло",color:"#444444",glow:"rgba(0,0,0,.06)",short:"Б1",exercises:[
@@ -1073,7 +1046,12 @@ const PARKS_DATA=[
 const HOODS_DATA=[
   {name:'Люлин',icon:'',symbol:'Тунелът «Ускорителя»',desc:'Тунелът, свързващ най-големия жилищен комплекс с останалата столица.',tags:['Запад'],maps:'%D0%9B%D1%8E%D0%BB%D0%B8%D0%BD+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
   {name:'Младост',icon:'',symbol:'Паметникът «Камбаните»',desc:'Построен за 30 дни за събранието «Знаме на мира» — над 100 камбани от целия свят.',tags:['Изток'],maps:'%D0%9C%D0%BB%D0%B0%D0%B4%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
-  {name:'Лозенец',icon:'',symbol:'Спирка «Вишнева»',desc:'Поетична спирка в борова гора от 30-те години — сред най-романтичните места в града.',tags:['Юг'],maps:'%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D0%B5%D1%86+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+  {name:'Лозенец',icon:'',symbol:'Спирка «Вишнева»',desc:'Поетична спирка в борова гора от 30-те години — сред най-романтичните места в града.',tags:['Юг'],
+  'Люлин': [
+    {name:'Кооперативният пазар', maps:'%D0%9A%D0%BE%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%B5%D0%BD+%D0%BF%D0%B0%D0%B7%D0%B0%D1%80+%D0%9B%D1%8E%D0%BB%D0%B8%D0%BD+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Водната кула в Люлин', maps:'%D0%92%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D1%83%D0%BB%D0%B0+%D0%9B%D1%8E%D0%BB%D0%B8%D0%BD+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+  ],
+maps:'%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D0%B5%D1%86+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
   {name:'Банишора',icon:'',symbol:'Лъвов мост',desc:'Проектиран от Вацлав Прошек — легендата казва, че лъвовете нямат езици.',tags:['Център'],maps:'%D0%9B%D1%8A%D0%B2%D0%BE%D0%B2+%D0%BC%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
   {name:'Хаджи Димитър',icon:'',symbol:'Графити муралите',desc:'Световноизвестен квартал — най-известният е портретът на Дядо Добри от НАСИМО.',tags:['Север'],maps:'%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8+%D0%94%D0%B8%D0%BC%D0%B8%D1%82%D1%8A%D1%80+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
   {name:'Надежда',icon:'',symbol:'Слънчевият часовник в Северен парк',desc:'Монументален хоризонтален слънчев часовник — уникален за градския пейзаж.',tags:['Север','Северен парк'],maps:'%D0%9D%D0%B0%D0%B4%D0%B5%D0%B6%D0%B4%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
@@ -1610,6 +1588,33 @@ function toggleParkGroup(id){
 
 
 // ── HOODS ────────────────────────────────────────────────────
+
+const HOOD_SUBPLACES = {
+  'Лозенец': [
+    {name:'Спирка „Вишнева“', maps:'%D0%A1%D0%BF%D0%B8%D1%80%D0%BA%D0%B0+%D0%92%D0%B8%D1%88%D0%BD%D0%B5%D0%B2%D0%B0+%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D0%B5%D1%86+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Софийска духовна семинария', maps:'%D0%A1%D0%BE%D1%84%D0%B8%D0%B9%D1%81%D0%BA%D0%B0+%D0%B4%D1%83%D1%85%D0%BE%D0%B2%D0%BD%D0%B0+%D1%81%D0%B5%D0%BC%D0%B8%D0%BD%D0%B0%D1%80%D0%B8%D1%8F'},
+    {name:'Водната кула', maps:'%D0%92%D0%BE%D0%B4%D0%BD%D0%B0%D1%82%D0%B0+%D0%BA%D1%83%D0%BB%D0%B0+%D0%9B%D0%BE%D0%B7%D0%B5%D0%BD%D0%B5%D1%86+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+  ],
+  'Люлин': [
+    {name:'Кооперативният пазар', maps:'%D0%9A%D0%BE%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%B5%D0%BD+%D0%BF%D0%B0%D0%B7%D0%B0%D1%80+%D0%9B%D1%8E%D0%BB%D0%B8%D0%BD+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Водната кула в Люлин', maps:'%D0%92%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D1%83%D0%BB%D0%B0+%D0%9B%D1%8E%D0%BB%D0%B8%D0%BD+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+  ],
+  'Младост': [
+    {name:'Комплекс „Камбаните“', maps:'%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B8%D1%82%D0%B5+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Бизнес парк София', maps:'%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81+%D0%BF%D0%B0%D1%80%D0%BA+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F+%D0%9C%D0%BB%D0%B0%D0%B4%D0%BE%D1%81%D1%82'},
+    {name:'Патиланци', maps:'%D0%9F%D0%B0%D1%80%D0%BA+%D0%9F%D0%B0%D1%82%D0%B8%D0%BB%D0%B0%D0%BD%D1%86%D0%B8+%D0%9C%D0%BB%D0%B0%D0%B4%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+  ],
+  'Княжево': [
+    {name:'Обръщалото на трамвай 5', maps:'%D0%9E%D0%B1%D1%80%D1%8A%D1%89%D0%B0%D0%BB%D0%BE+%D1%82%D1%80%D0%B0%D0%BC%D0%B2%D0%B0%D0%B9+5+%D0%9A%D0%BD%D1%8F%D0%B6%D0%B5%D0%B2%D0%BE+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Минерална баня „Княжево“', maps:'%D0%9C%D0%B8%D0%BD%D0%B5%D1%80%D0%B0%D0%BB%D0%BD%D0%B0+%D0%B1%D0%B0%D0%BD%D1%8F+%D0%9A%D0%BD%D1%8F%D0%B6%D0%B5%D0%B2%D0%BE+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Читалище „Братя Миладинови – 1917“', maps:'%D0%A7%D0%B8%D1%82%D0%B0%D0%BB%D0%B8%D1%89%D0%B5+%D0%91%D1%80%D0%B0%D1%82%D1%8F+%D0%9C%D0%B8%D0%BB%D0%B0%D0%B4%D0%B8%D0%BD%D0%BE%D0%B2%D0%B8+%D0%9A%D0%BD%D1%8F%D0%B6%D0%B5%D0%B2%D0%BE+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+  ],
+  'Банишора': [
+    {name:'Лъвов мост', maps:'%D0%9B%D1%8A%D0%B2%D0%BE%D0%B2+%D0%BC%D0%BE%D1%81%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Градинката „Майчин дом“', maps:'%D0%93%D1%80%D0%B0%D0%B4%D0%B8%D0%BD%D0%B0+%D0%9C%D0%B0%D0%B9%D1%87%D0%B8%D0%BD+%D0%B4%D0%BE%D0%BC+%D0%91%D0%B0%D0%BD%D0%B8%D1%88%D0%BE%D1%80%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+    {name:'Кулата с часовника на НГПИ „Св. Лука“', maps:'%D0%9D%D0%93%D0%9F%D0%98+%D0%A1%D0%B2%D0%B5%D1%82%D0%B8+%D0%9B%D1%83%D0%BA%D0%B0+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F'},
+  ],
+};
 function renderHoods(){
   var container=document.getElementById('hoodsList');
   if(!container)return;
@@ -1621,21 +1626,42 @@ function renderHoods(){
     var url='https://www.google.com/maps/search/?api=1&query='+h.maps;
     var isLogged=dayEnts.some(function(e){return e.placeId===h.name;});
     var num=String(i+1).padStart(2,'0');
-    html+='<div class="list-card">'
-      +'<div class="list-card-num">'+num+'</div>'
-      +'<div class="list-card-body">'
-        +'<div class="list-card-title">'+h.name+'</div>'
-        +'<div class="list-card-sub">'+h.symbol+'</div>'
-        +'<div class="list-card-actions">'
-          +'<button class="visit-btn'+(isLogged?' visited':'')+'" data-place="'+h.name+'" data-type="hood" onclick="event.stopPropagation();togglePlaceVisit(this.dataset.place,this.dataset.type)">'+(isLogged?'Посетено':'Посетих')+'</button>'
-          +'<a class="sugg-maps-link" href="'+url+'" target="_blank" rel="noopener">Карта</a>'
-        +'</div>'
-      +'</div>'
-      +'</div>';
+    var hasSub=HOOD_SUBPLACES[h.name]&&HOOD_SUBPLACES[h.name].length>0;
+    var subId='hood-sub-'+i;
+    html+='<div class="list-card" style="flex-direction:column;align-items:stretch;">';
+    html+='<div style="display:flex;align-items:center;justify-content:space-between;">';
+    html+='<div class="list-card-num">'+num+'</div>';
+    html+='<div class="list-card-body"><div class="list-card-title">'+h.name+'</div></div>';
+    if(hasSub){
+      html+='<button data-sub="'+subId+'" onclick="toggleHoodSub(this.dataset.sub)" style="background:none;border:none;font-size:20px;color:#BBBBBB;cursor:pointer;padding:4px 8px;line-height:1;" id="arr-'+subId+'">›</button>';
+    }
+    html+='</div>';
+    if(hasSub){
+      html+='<div id="'+subId+'" style="display:none;margin-top:10px;border-top:1px solid #EBEBEB;padding-top:8px;">';
+      HOOD_SUBPLACES[h.name].forEach(function(sp){
+        var spUrl='https://www.google.com/maps/search/?api=1&query='+sp.maps;
+        var spLogged=dayEnts.some(function(e){return e.placeId===sp.name;});
+        html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F5F5F5;">';
+        html+='<div style="font-size:13px;font-weight:600;color:#111111;flex:1;">'+sp.name+'</div>';
+        html+='<div style="display:flex;gap:8px;flex-shrink:0;">';
+        html+='<button class="visit-btn'+(spLogged?' visited':'')+'" data-place="'+sp.name+'" data-type="landmark" onclick="togglePlaceVisit(this.dataset.place,this.dataset.type)">'+(spLogged?'Посетено':'Посетих')+'</button>';
+        html+='<a class="sugg-maps-link" href="'+spUrl+'" target="_blank" rel="noopener">Карта</a>';
+        html+='</div></div>';
+      });
+      html+='</div>';
+    }
+    html+='</div>';
   });
   html+='</div>';
   container.innerHTML=html;
 }
+
+
+function toggleHoodSub(id){
+  var el=document.getElementById(id);
+  if(el)el.style.display=el.style.display==='none'?'block':'none';
+}
+
 
 function placeShort(name){return name.substring(0,6).replace(/\s/g,'');}
 function togglePlaceVisit(name,type){
